@@ -1,0 +1,1292 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"ac",
+				"action	Attr"
+			],
+			[
+				"h",
+				"h4	Tag"
+			],
+			[
+				"b",
+				"bolder"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"js",
+				"json_encode"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"co",
+				"controller"
+			],
+			[
+				"ti",
+				"tiles"
+			],
+			[
+				"Grou",
+				"grouped"
+			],
+			[
+				"col",
+				"col-md-10"
+			],
+			[
+				"app",
+				"appService"
+			],
+			[
+				"arti",
+				"articles"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"fo",
+				"form-group"
+			],
+			[
+				"post",
+				"post-meta"
+			],
+			[
+				"hr",
+				"href"
+			],
+			[
+				"ex",
+				"exec"
+			],
+			[
+				"get",
+				"getCourses"
+			],
+			[
+				"sort",
+				"sortOptions"
+			],
+			[
+				"crea",
+				"createDefaultCourses"
+			],
+			[
+				"cre",
+				"createDefaultCourses"
+			],
+			[
+				"C",
+				"Course"
+			],
+			[
+				"user",
+				"userUpdates"
+			],
+			[
+				"has",
+				"hashPwd"
+			],
+			[
+				"use",
+				"userUpdates"
+			],
+			[
+				"new",
+				"newUserData"
+			],
+			[
+				"mv",
+				"mvNotifier"
+			],
+			[
+				"en",
+				"encrypt"
+			],
+			[
+				"e",
+				"exports"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"rou",
+				"routeRoleChecks"
+			],
+			[
+				"r",
+				"return"
+			],
+			[
+				"pro",
+				"promise"
+			],
+			[
+				"success",
+				"successfully"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"ha",
+				"hashed_pwd"
+			],
+			[
+				"creat",
+				"createSalt"
+			],
+			[
+				"cr",
+				"crypto"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "views/index.php",
+			"settings":
+			{
+				"buffer_size": 2964,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/header.html",
+			"settings":
+			{
+				"buffer_size": 9959,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/nav.html",
+			"settings":
+			{
+				"buffer_size": 7478,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/scripts/modules.js",
+			"settings":
+			{
+				"buffer_size": 4221,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 47430,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/coupons/coupons.html",
+			"settings":
+			{
+				"buffer_size": 12121,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/coupons/coupon-edit.html",
+			"settings":
+			{
+				"buffer_size": 26241,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/dashboard.html",
+			"settings":
+			{
+				"buffer_size": 5915,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/coupons/shops.html",
+			"settings":
+			{
+				"buffer_size": 21522,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/coupons/categories.html",
+			"settings":
+			{
+				"buffer_size": 3104,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/wamp/www/angular_slimPHP_admin_panel/views/scripts/controllers.js",
+			"settings":
+			{
+				"buffer_size": 1543095,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/pages/signin.html",
+			"settings":
+			{
+				"buffer_size": 2855,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 81.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/wamp/www/aumfs/aumfs_automation/views/views/coupons/coupon-edit.html",
+		"/C/wamp/www/aumfs/aumfs_automation/views/scripts/services.js",
+		"/C/wamp/www/aumfs/aumfs_automation/views/scripts/controllers.js",
+		"/C/wamp/www/aumfs/aumfs_automation/views/views/tasks/tasks.html",
+		"/C/wamp/www/aumfs/aumfs_automation/system/libraries/Slim/Slim.php",
+		"/C/wamp/www/aumfs/aumfs_automation/system/libraries/Slim/Helper/Set.php",
+		"/C/wamp/www/aumfs/aumfs_automation/system/libraries/Slim/Http/Request.php",
+		"/C/wamp/www/aumfs/aumfs_automation/system/libraries/Slim/View.php",
+		"/C/wamp/www/ggk/style.css",
+		"/C/Users/deepjyoti/Desktop/HTML5 Admin Template/index.html",
+		"/C/wamp/bin/apache/apache2.4.2/conf/extra/httpd-vhosts.conf",
+		"/C/Users/deepjyoti/Documents/MyApp/platforms/android/AndroidManifest.xml",
+		"/C/wamp/www/career_and_college/SublimeText.gitignore",
+		"/C/Users/deepjyoti/Downloads/ggk.sql",
+		"/C/wamp/www/ggk/login.html",
+		"/C/wamp/www/ggk/logout.php",
+		"/C/wamp/www/ggk/css/style.css",
+		"/C/wamp/www/ggk/css/bootstrap_3.css",
+		"/C/Users/deepjyoti/Desktop/GGK/config/mysql_config.php",
+		"/C/Users/DEEPJY~1/AppData/Local/Temp/Rar$DR78.272/webkitbuilds/releases/stop motion/win/stop motion/libGLESv2.dll",
+		"/C/Users/deepjyoti/Documents/globalvision/public/vendor/angular/angular.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/includes/layout.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/sachin-carrier/sachin-summary.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/js/controllers.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/config/express.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/js/services.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/admin-post-create.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/account/mvSignupCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/account/mvUser.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/config/mongoose.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/data/sachin_cumulative.json",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/js/sachin_graphs/mvSachinStatsCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/views/index.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/jade/node_modules/monocle/node_modules/readdirp/stream-api.js",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/templates/helpers/sum.js",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/node_modules/handlebars/node_modules/uglify-js/node_modules/source-map/build/suffix-utils.jsm",
+		"/C/Users/deepjyoti/Documents/globalvision/public/vendor/ngprogress/ngProgress.css",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/node_modules/glob/test/new-glob-optional-options.js",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/node_modules/mout/object/deepMixIn.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/account/signup.jade",
+		"/C/Users/deepjyoti/Documents/cascade/package.json",
+		"/C/Users/deepjyoti/Documents/angular-desktop-app/src/package.json",
+		"/C/Users/deepjyoti/Documents/angular-desktop-app/bower.json",
+		"/C/Users/deepjyoti/Documents/node-webkit-angular-bootstrap-starter/app/index.html",
+		"/C/Users/deepjyoti/Documents/angular-desktop-app/src/index.html",
+		"/C/Users/deepjyoti/Documents/globalvision/server.js",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/mongoose/contRun.sh",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/CONTRIBUTING.md",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/node_modules/mout/lang/createObject.js",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/CHANGELOG.md",
+		"/C/Users/deepjyoti/Documents/globalvision/node_modules/bower/templates/std/search-results.std",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/d3-angular.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/highchart-angular.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/admin-post-edit.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/css/site.styl",
+		"/C/Users/deepjyoti/Documents/globalvision/public/vendor/d3v2/d3.v2.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/js/directive.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/config/config.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/view-article.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/mvPostService.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/app.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/mvListTagArticleCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/mvViewArticleCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/admin-post-list.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/mvAdminPostEditCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/mvAdminPostListCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/list-article.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/server/includes/scripts.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/server/config/routes.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/controllers/articles.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/controllers/users.js",
+		"/C/Users/deepjyoti/Documents/globalvision/server/models/article.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/mvAdminPostCreateCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/vendor/bootstrap/dist/css/bootstrap-glyphicons.css",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/articles/mvListArticleCtrl.js",
+		"/C/Users/deepjyoti/Documents/globalvision/public/css/site.css",
+		"/C/Users/deepjyoti/Documents/globalvision/public/vendor/bootstrap/dist/css/bootstrap.css",
+		"/C/Users/deepjyoti/Documents/blogjs/api/package.json",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/courses/course-list.jade",
+		"/C/Users/deepjyoti/Documents/Node.js-Chat/package.json",
+		"/C/Users/deepjyoti/Documents/globalvision/public/app/account/navbar-login.jade",
+		"/C/Users/deepjyoti/Documents/globalvision/public/vendor/ngprogress/build/ngProgress.js",
+		"/C/Users/deepjyoti/Documents/blogjs/README.md",
+		"/C/Users/deepjyoti/Documents/angular-socket-io-im/package.json",
+		"/C/Users/deepjyoti/Documents/angularjs-socket-node-chat/app.js",
+		"/C/Users/deepjyoti/Documents/socket-chat/package.json",
+		"/C/Users/deepjyoti/Documents/blogjs/api/npm-debug.log",
+		"/C/Users/deepjyoti/Documents/blogjs/api/blog.js",
+		"/C/Users/deepjyoti/Documents/blogjs/.htaccess",
+		"/C/Users/deepjyoti/Documents/myTutorial/server/config/routes.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/public/vendor/angular/angular.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/server.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/public/vendor/bootstrap/components.html",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/karma/lib/completion.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/jade/lib/compiler.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/jade/component.json",
+		"/C/Users/deepjyoti/Documents/myTutorial/public/vendor/jquery/test/data/core/cc_on.html",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/mout/number/MAX_INT.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/public/app/courses/course-details.jade",
+		"/C/Users/deepjyoti/Documents/MultiVision/server/includes/scripts.jade",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/jade/lib/self-closing.js",
+		"/C/Users/deepjyoti/Documents/MultiVision/package.json",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/11-building-angularjs-nodejs-apps-mean-m10-exercise-files/finished/MultiVision/server/controllers/courses.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/server/controllers/courses.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/stylus/node_modules/sax/test/attribute-name.js",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/11-building-angularjs-nodejs-apps-mean-m10-exercise-files/finished/MultiVision/server/includes/scripts.jade",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/11-building-angularjs-nodejs-apps-mean-m10-exercise-files/finished/MultiVision/public/app/main/new-courses.jade",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/11-building-angularjs-nodejs-apps-mean-m10-exercise-files/finished/MultiVision/public/app/main/featured-courses.jade",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/11-building-angularjs-nodejs-apps-mean-m10-exercise-files/finished/MultiVision/public/app/courses/course-list.jade",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/11-building-angularjs-nodejs-apps-mean-m10-exercise-files/finished/MultiVision/public/app/courses/course-details.jade",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/stylus/node_modules/sax/test/self-closing-tag.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/public/app/account/mvProfileCtrl.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/public/app/courses/course-list.jade",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/decompress-zip/node_modules/binary/test/not_enough_buf.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/mout/array/forEach.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/jade/lib/filters.js",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/10-building-angularjs-nodejs-apps-mean-m9-exercise-files/finished/MultiVision/public/app/courses/course-list.jade",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/10-building-angularjs-nodejs-apps-mean-m9-exercise-files/finished/MultiVision/public/css/site.styl",
+		"/C/Users/deepjyoti/Documents/myTutorial/public/css/site.css",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/stylus/graphics/Vectors/stylus_icon.svg",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/karma-chai-plugins/node_modules/sinon/test/sinon_test.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/.bin/stylus",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/glob/test/new-glob-optional-options.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/server/includes/scripts.jade",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/mout/lang/isNull.js",
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/10-building-angularjs-nodejs-apps-mean-m9-exercise-files/finished/MultiVision/server/includes/scripts.jade",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/stylus/index.js",
+		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/mongoose/index.js"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"date",
+			"Type",
+			"Shop",
+			"Actions",
+			"edit",
+			"cou",
+			"flotChartCtrl",
+			"AppData",
+			"Shop",
+			"Shops",
+			"Category",
+			"categories",
+			"category",
+			"categories",
+			"brand",
+			"marketplace",
+			"dialog",
+			"md5",
+			"slides",
+			"flex-viewport",
+			"slides",
+			".js",
+			"flex-viewport",
+			"slides",
+			"flex-viewport",
+			"ga-",
+			"ga",
+			"flex",
+			"flex-viewport",
+			"height: 95px",
+			"height: 95px;",
+			"flex-viewport",
+			"PROFESSORS",
+			"PROFESSOR",
+			"searchCourse",
+			"Search",
+			"lightbox",
+			"select-replace-cover",
+			"    \n",
+			"type",
+			"img",
+			"MEMBERSHIP",
+			"membership",
+			"err",
+			"add_err",
+			"laravel.dev",
+			"android:debuggable",
+			"Secret",
+			"follow_unfollow",
+			".js",
+			"REGENT NEWS & UPDATES",
+			"sixteen columns",
+			".css",
+			"monastry",
+			"font-family",
+			"PoiretOne-Regular",
+			"Dynalight-Regular",
+			"nav",
+			"PoiretOne-Regular.ttf",
+			"Dynalight-Regular.ttf",
+			".banner_con_block .nav_block ul.gateway_nav li.parent_nav.engineering > a {\nbackground-position: 5px -66px!important;\n}",
+			"follow_unfollow",
+			".img-con img ",
+			"img-con",
+			"ul#navmenu-v ul",
+			".banner_con_block",
+			"college-follow",
+			"home_left_col",
+			"gateway_sub_nav",
+			"ban_left_side",
+			"nav_block",
+			"hover ul",
+			"hover",
+			"ul hover",
+			"courses_icon_sprite.png",
+			"nav_block",
+			"admin",
+			"bar-title",
+			"findOutYourselfChart",
+			"SachinStatsCtrl",
+			"controller",
+			"firebrick",
+			"sachinStat",
+			"blackBackground",
+			"setChartSize",
+			"553px",
+			"chosen_option",
+			"format",
+			"setChartSize",
+			"summarychart",
+			"ng-bind-html",
+			"chartOptions",
+			"chartOptions ",
+			"mvD3AngularCtrl",
+			"pw",
+			"mesureStrength",
+			".navbar",
+			"speed",
+			"spped",
+			".js",
+			"MultiVision",
+			"form-inline"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "views/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2964,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1487,
+								1487
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 348.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "views/views/header.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9959,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8279,
+								8282
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4393.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/views/nav.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7478,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3884,
+								3884
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1187.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/scripts/modules.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								570,
+								570
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 47430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								43172,
+								43178
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 12781.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/views/coupons/coupons.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12121,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10594,
+								10594
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4785.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "views/views/coupons/coupon-edit.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 26241,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3825,
+								3825
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1371.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "views/views/dashboard.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5915,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4131,
+								4176
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1980.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "views/views/coupons/shops.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21522,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1605,
+								1605
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 124.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "views/views/coupons/categories.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3104,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1822,
+								1832
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 690.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/C/wamp/www/angular_slimPHP_admin_panel/views/scripts/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1543095,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1521973,
+								1521973
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "views/views/pages/signin.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2855,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2271,
+								2271
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 885.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "aumfs_automation.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"sc",
+				"js\\script.js"
+			],
+			[
+				"admin",
+				"admin.php"
+			],
+			[
+				"log",
+				"logout.php"
+			],
+			[
+				"val",
+				"validate_user.php"
+			],
+			[
+				"logi",
+				"login.html"
+			],
+			[
+				"conta",
+				"contact.html"
+			],
+			[
+				"i",
+				"index.html"
+			],
+			[
+				".js",
+				"js\\scripts.js"
+			],
+			[
+				"ga",
+				"gallery.html"
+			],
+			[
+				"app",
+				"public\\app\\js\\app.js"
+			],
+			[
+				"lay",
+				"server\\includes\\layout.jade"
+			],
+			[
+				"scri",
+				"server\\includes\\scripts.jade"
+			],
+			[
+				"direc",
+				"public\\app\\js\\directive.js"
+			],
+			[
+				"contro",
+				"public\\app\\js\\controllers.js"
+			],
+			[
+				"contr",
+				"public\\app\\js\\controllers.js"
+			],
+			[
+				"mvsc",
+				"public\\app\\js\\sachin_graphs\\mvSachinStatsCtrl.js"
+			],
+			[
+				"scr",
+				"server\\includes\\scripts.jade"
+			],
+			[
+				"summ",
+				"public\\app\\articles\\sachin-carrier\\summary.jade"
+			],
+			[
+				"con",
+				"public\\app\\js\\controllers.js"
+			],
+			[
+				"sa",
+				"public\\app\\articles\\sachin-summary.jade"
+			],
+			[
+				"",
+				"server\\includes\\scripts.jade"
+			],
+			[
+				"sach",
+				"public\\app\\articles\\sachin-summary.jade"
+			],
+			[
+				"inde",
+				"server\\views\\index.jade"
+			],
+			[
+				"ng",
+				"public\\vendor\\ngprogress\\ngProgress.css"
+			],
+			[
+				"ngp",
+				"public\\vendor\\ngprogress\\build\\ngProgress.js"
+			],
+			[
+				"dire",
+				"public\\app\\js\\directive.js"
+			],
+			[
+				"index",
+				"server\\views\\index.jade"
+			],
+			[
+				"nav",
+				"public\\app\\account\\navbar-login.jade"
+			],
+			[
+				"ser",
+				"public\\app\\js\\services.js"
+			],
+			[
+				"ro",
+				"server\\config\\routes.js"
+			],
+			[
+				"an",
+				"public\\vendor\\angular\\angular.js"
+			],
+			[
+				"comp",
+				"public\\vendor\\bootstrap\\composer.json"
+			],
+			[
+				"cou",
+				"public\\app\\courses\\course-details.jade"
+			],
+			[
+				"routs",
+				"server\\config\\routes.js"
+			],
+			[
+				"rou",
+				"server\\config\\routes.js"
+			],
+			[
+				"rout",
+				"server\\config\\routes.js"
+			],
+			[
+				"main",
+				"public\\app\\main\\main.jade"
+			],
+			[
+				"angu",
+				"public\\vendor\\angular\\angular.js"
+			],
+			[
+				"scrip",
+				"server\\includes\\scripts.jade"
+			],
+			[
+				"new",
+				"public\\app\\main\\new-courses.jade"
+			],
+			[
+				"feat",
+				"public\\app\\main\\featured-courses.jade"
+			],
+			[
+				"course",
+				"public\\app\\courses\\course-list.jade"
+			],
+			[
+				"mvm",
+				"public\\app\\main\\mvMainCtrl.js"
+			],
+			[
+				"mvco",
+				"public\\app\\courses\\mvCourseListCtrl.js"
+			],
+			[
+				"featu",
+				"public\\app\\main\\featured-courses.jade"
+			],
+			[
+				"mvma",
+				"public\\app\\main\\mvMainCtrl.js"
+			],
+			[
+				"site",
+				"public\\css\\site.css"
+			],
+			[
+				"sit",
+				"public\\css\\site.styl"
+			],
+			[
+				"mongoo",
+				"server\\config\\mongoose.js"
+			],
+			[
+				"ind",
+				"server\\views\\index.jade"
+			],
+			[
+				"route",
+				"server\\config\\routes.js"
+			],
+			[
+				"mv",
+				"public\\app\\account\\mvUser.js"
+			],
+			[
+				"mva",
+				"public\\app\\account\\mvAuth.js"
+			],
+			[
+				"user",
+				"server\\models\\User.js"
+			],
+			[
+				"mvu",
+				"public\\app\\account\\mvUser.js"
+			],
+			[
+				"auth",
+				"server\\config\\auth.js"
+			],
+			[
+				"mong",
+				"server\\config\\mongoose.js"
+			],
+			[
+				"mon",
+				"server\\config\\mongoose.js"
+			],
+			[
+				"mvau",
+				"public\\app\\account\\mvAuth.js"
+			],
+			[
+				"mvi",
+				"public\\app\\account\\mvIdentity.js"
+			],
+			[
+				"app.js",
+				"public\\app\\app.js"
+			],
+			[
+				"mvide",
+				"public\\app\\account\\mvIdentity.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\wamp\\www\\aumfs\\aumfs_automation\\aumfs_project.sublime-workspace"
+			],
+			[
+				"au",
+				"C:\\wamp\\www\\aumfs\\aumfs_automation\\aumfs_project.sublime-workspace"
+			],
+			[
+				"ca",
+				"C:\\wamp\\www\\career_and_college\\carrer_and_college.sublime-project"
+			],
+			[
+				"for",
+				"C:\\Users\\deepjyoti\\Documents\\formula1_MEAN_stack.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 255.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

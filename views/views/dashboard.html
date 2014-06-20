@@ -1,0 +1,148 @@
+<div class="page page-dashboard" data-ng-controller="DashboardCtrl">
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Yearly Overview"></span></strong></div>
+        <div class="panel-body" data-ng-controller="flotChartCtrl">
+            <div data-flot-chart
+                 data-data="line1.data"
+                 data-options="line1.options"
+                 style="width: 100%; height: 250px;"
+                 ></div>
+        </div>
+    </div>  
+
+
+    <!-- stats -->
+    <div class="row">
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-success">
+                    <i class="fa fa-rocket"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">25 <span class="size-h4">%</span></p>
+                    <p class="text-muted"><span data-i18n="Growth"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-info">
+                    <i class="fa fa-users"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">112</p>
+                    <p class="text-muted"><span data-i18n="New Customers"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-warning">
+                    <i class="fa fa-rupee"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">4,550</p>
+                    <p class="text-muted"><span data-i18n="Profit"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-danger">
+                    <i class="fa fa-shopping-cart"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">262</p>
+                    <p class="text-muted"><span data-i18n="Sales"></span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end stats -->
+
+
+<!--     <div class="row">
+        <div class="col-md-8">
+            <section class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Map"></span></strong></div>
+                <div class="panel-body" data-ng-controller="jqvmapCtrl">
+                    <div class="ui-map" ui-jqvmap options="worldMap"></div>
+                </div>
+            </section> 
+        </div>
+        <div class="col-md-4">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Realtime Chart</h3>
+                </div>
+                <div class="panel-body" data-ng-controller="flotChartCtrl.realtime">
+                    <div data-flot-chart-realtime
+                         data-type="realtime"
+                         style="width: 100%; height: 400px;"
+                         ></div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Recent Orders</strong></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Service Id</th>
+                    <th>Status</th>
+                    <th>Customer</th>
+                    <th>Type Of service</th>
+                    <th>Date Of Order</th>
+                    <th>Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><span class="color-success"><i class="fa fa-level-up"></i></span> TWLT</td>
+                    <td><span class="label label-success">Done</span></td>
+                    <td>Deepjyoti Khakhlary</td>
+                    <td>OTJ</td>
+                    <td>20-05-2014</td>
+                    <td><progressbar class="progressbar-xs no-margin" value="100"></progressbar>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><span class="color-success"><i class="fa fa-level-up"></i></span> A16Z</td>
+                    <td><span class="label label-primary">Due</span></td>
+                    <td>Nihar Thakuria</td>
+                    <td>OTJ</td>
+                    <td>26-05-2014</td>
+                    <td><progressbar class="progressbar-xs no-margin" value="34" type="success"></progressbar></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><span class="color-warning"><i class="fa fa-level-down"></i></span> DARK</td>
+                    <td><span class="label label-success">Due</span></td>
+                    <td>Arindum Roy</td>
+                    <td>AMC</td>
+                    <td>30-05-2014</td>
+                    <td><progressbar class="progressbar-xs no-margin" value="68" type="info"></progressbar></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><span class="color-info"><i class="fa fa-level-up"></i></span> Q300</td>
+                    <td><span class="label label-danger">Blocked</span></td>
+                    <td>Mr Harsh</td>
+                    <td>AMC</td>
+                    <td>05-06-2014</td>
+                    <td><progressbar class="progressbar-xs no-margin" value="52" type="warning"></progressbar></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+  
