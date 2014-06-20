@@ -193,45 +193,26 @@
 			<th>
 				<div class="th">
 					Status
-                        <span class="glyphicon glyphicon-chevron-up"
-                              data-ng-click=" order('status') "
-                              data-ng-class="{active: row == 'status'}"></span>
-                        <span class="glyphicon glyphicon-chevron-down"
-                              data-ng-click=" order('-status') "
-                              data-ng-class="{active: row == '-status'}"></span>
 				</div>
 			</th>
 			<th>
 				<div class="th">
 					Date Of Order
-                        <span class="glyphicon glyphicon-chevron-up"
-                              data-ng-click=" order('status') "
-                              data-ng-class="{active: row == 'status'}"></span>
-                        <span class="glyphicon glyphicon-chevron-down"
-                              data-ng-click=" order('-status') "
-                              data-ng-class="{active: row == '-status'}"></span>
 				</div>
 			</th>
 			<th>
 				<div class="th">
 					Date Of Service
-                        <span class="glyphicon glyphicon-chevron-up"
-                              data-ng-click=" order('status') "
-                              data-ng-class="{active: row == 'status'}"></span>
-                        <span class="glyphicon glyphicon-chevron-down"
-                              data-ng-click=" order('-status') "
-                              data-ng-class="{active: row == '-status'}"></span>
 				</div>
 			</th>
 			<th>
 				<div class="th">
 					Assigned To
-                        <span class="glyphicon glyphicon-chevron-up"
-                              data-ng-click=" order('status') "
-                              data-ng-class="{active: row == 'status'}"></span>
-                        <span class="glyphicon glyphicon-chevron-down"
-                              data-ng-click=" order('-status') "
-                              data-ng-class="{active: row == '-status'}"></span>
+				</div>
+			</th>
+			<th>
+				<div class="th">
+					Invoice Action
 				</div>
 			</th>
 			<th>
@@ -248,6 +229,7 @@
 			<td>20-05-2014</td>
 			<td>23-05-2014</td>
 			<td>Deep Das</td>
+			<td><a href="/oncall/invoice" class="btn btn-primary btn-block">Generate Invoice</a></td>
 			<td>
 				<a ng-href="/oncall/{{coupon.id}}" class="btn-icon btn-icon-sm btn-primary"
 				   role="button"
