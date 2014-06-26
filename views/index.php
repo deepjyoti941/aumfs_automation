@@ -17,7 +17,7 @@
             <link rel="stylesheet" href="/views/styles/main.css">
 
     </head>
-    <body data-ng-app="app" id="app" data-custom-background="" data-off-canvas-nav="" oncontextmenu="return false;">
+    <body data-ng-app="app" id="app" data-custom-background="" data-off-canvas-nav="">
         <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -43,8 +43,7 @@
         <script src="/views/scripts/vendor_angularjs/angular-route.js"></script>
 
         <script src="/views/scripts/image_crop/crop.js"></script>
-        <script src="/views/scripts/angular-dreamfactory.js"></script>
-        <script src="/views/scripts/dreamfactory-user-management.js"></script>
+        <script src="/views/scripts/angular-factory.js"></script>
         <script src="/views/scripts/modules.js"></script>
 
         <script src="/views/scripts/ui.js"></script>

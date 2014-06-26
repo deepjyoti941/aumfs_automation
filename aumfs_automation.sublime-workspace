@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"si",
+				"signin"
+			],
+			[
 				"op",
 				"option	Tag"
 			],
@@ -204,10 +212,42 @@
 	"buffers":
 	[
 		{
+			"file": "system/core/router.php",
+			"settings":
+			{
+				"buffer_size": 2073,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "views/index.php",
 			"settings":
 			{
-				"buffer_size": 2964,
+				"buffer_size": 2994,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/login.php",
+			"settings":
+			{
+				"buffer_size": 4982,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/views/pages/profile.html",
+			"settings":
+			{
+				"buffer_size": 7849,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/styles/main.css",
+			"settings":
+			{
+				"buffer_size": 206779,
 				"line_ending": "Windows"
 			}
 		},
@@ -215,7 +255,7 @@
 			"file": "views/views/header.html",
 			"settings":
 			{
-				"buffer_size": 9959,
+				"buffer_size": 9953,
 				"line_ending": "Windows"
 			}
 		},
@@ -223,7 +263,47 @@
 			"file": "views/views/nav.html",
 			"settings":
 			{
-				"buffer_size": 7478,
+				"buffer_size": 6298,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/deepjyoti/Documents/storeroom83/bower.json",
+			"settings":
+			{
+				"buffer_size": 627,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/deepjyoti/Documents/node_sample_app/server.js",
+			"settings":
+			{
+				"buffer_size": 1933,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/deepjyoti/Documents/storeroom83/server.js",
+			"settings":
+			{
+				"buffer_size": 2503,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/deepjyoti/Documents/storeroom83/views/partials/login.jade",
+			"settings":
+			{
+				"buffer_size": 1018,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/deepjyoti/Documents/storeroom83/Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 4394,
 				"line_ending": "Windows"
 			}
 		},
@@ -239,7 +319,7 @@
 			"file": "views/scripts/app.js",
 			"settings":
 			{
-				"buffer_size": 47430,
+				"buffer_size": 47446,
 				"line_ending": "Windows"
 			}
 		},
@@ -247,7 +327,7 @@
 			"file": "views/views/coupons/coupons.html",
 			"settings":
 			{
-				"buffer_size": 12121,
+				"buffer_size": 10590,
 				"line_ending": "Windows"
 			}
 		},
@@ -255,7 +335,7 @@
 			"file": "views/views/coupons/coupon-edit.html",
 			"settings":
 			{
-				"buffer_size": 26241,
+				"buffer_size": 26240,
 				"line_ending": "Windows"
 			}
 		},
@@ -263,7 +343,7 @@
 			"file": "views/views/dashboard.html",
 			"settings":
 			{
-				"buffer_size": 5915,
+				"buffer_size": 5924,
 				"line_ending": "Windows"
 			}
 		},
@@ -295,7 +375,7 @@
 			"file": "views/views/pages/signin.html",
 			"settings":
 			{
-				"buffer_size": 2855,
+				"buffer_size": 2478,
 				"line_ending": "Windows"
 			}
 		}
@@ -327,6 +407,16 @@
 	},
 	"file_history":
 	[
+		"/C/Users/deepjyoti/Documents/storeroom83/config/default.json",
+		"/C/Users/deepjyoti/Documents/storeroom83/config/development.json",
+		"/C/Users/deepjyoti/Desktop/workspace/package.json",
+		"/C/wamp/www/aumfs/aumfs_automation/views/views/pages/invoice.html",
+		"/C/wamp/www/aumfs/aumfs_automation/index.php",
+		"/C/wamp/www/aumfs/aumfs_automation/views/views/pages/lock-screen.html",
+		"/C/wamp/www/aumfs/aumfs_automation/views/login.php",
+		"/C/wamp/www/aumfs/aumfs_automation/Procfile",
+		"/C/Users/deepjyoti/Desktop/phpdesktop-chrome/www/includes/header.inc.php",
+		"/C/wamp/www/aumfs/aumfs_automation/views/index.php",
 		"/C/wamp/www/aumfs/aumfs_automation/views/views/coupons/coupon-edit.html",
 		"/C/wamp/www/aumfs/aumfs_automation/views/scripts/services.js",
 		"/C/wamp/www/aumfs/aumfs_automation/views/scripts/controllers.js",
@@ -444,17 +534,7 @@
 		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/mout/array/forEach.js",
 		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/jade/lib/filters.js",
 		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/10-building-angularjs-nodejs-apps-mean-m9-exercise-files/finished/MultiVision/public/app/courses/course-list.jade",
-		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/10-building-angularjs-nodejs-apps-mean-m9-exercise-files/finished/MultiVision/public/css/site.styl",
-		"/C/Users/deepjyoti/Documents/myTutorial/public/css/site.css",
-		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/stylus/graphics/Vectors/stylus_icon.svg",
-		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/karma-chai-plugins/node_modules/sinon/test/sinon_test.js",
-		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/.bin/stylus",
-		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/glob/test/new-glob-optional-options.js",
-		"/C/Users/deepjyoti/Documents/myTutorial/server/includes/scripts.jade",
-		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/bower/node_modules/mout/lang/isNull.js",
-		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/10-building-angularjs-nodejs-apps-mean-m9-exercise-files/finished/MultiVision/server/includes/scripts.jade",
-		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/stylus/index.js",
-		"/C/Users/deepjyoti/Documents/myTutorial/node_modules/mongoose/index.js"
+		"/G/Building AngularJS and Node.js Apps with the MEAN Stack/building-angularjs-nodejs-apps-mean/10-building-angularjs-nodejs-apps-mean-m9-exercise-files/finished/MultiVision/public/css/site.styl"
 	],
 	"find":
 	{
@@ -472,6 +552,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"invoice",
 			"date",
 			"Type",
 			"Shop",
@@ -591,54 +672,168 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 10,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "views/index.php",
+					"file": "system/core/router.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2964,
+						"buffer_size": 2073,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1487,
-								1487
+								196,
+								196
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 592.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "views/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2994,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								899,
+								899
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 348.0,
+						"translation.y": 79.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/login.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4982,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								996,
+								1025
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "views/views/header.html",
+					"buffer": 3,
+					"file": "views/views/pages/profile.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9959,
+						"buffer_size": 7849,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8279,
-								8282
+								7300,
+								7300
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 293.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/styles/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 206779,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								206779,
+								206779
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 4966.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/views/header.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9953,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2065,
+								2065
 							]
 						],
 						"settings":
@@ -647,27 +842,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4393.0,
+						"translation.y": 93.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 6,
 					"file": "views/views/nav.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7478,
+						"buffer_size": 6298,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3884,
-								3884
+								2789,
+								2789
 							]
 						],
 						"settings":
@@ -677,14 +872,164 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1187.0,
+						"translation.y": 231.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/Users/deepjyoti/Documents/storeroom83/bower.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 627,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								452,
+								452
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/C/Users/deepjyoti/Documents/node_sample_app/server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1933,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1933,
+								1740
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1393.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/deepjyoti/Documents/storeroom83/server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2503,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1572.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 10,
+					"file": "/C/Users/deepjyoti/Documents/storeroom83/views/partials/login.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1018,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								473,
+								473
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 17.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/C/Users/deepjyoti/Documents/storeroom83/Gruntfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4394,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								528,
+								528
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 2190.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
 					"file": "views/scripts/modules.js",
 					"semi_transient": false,
 					"settings":
@@ -709,24 +1054,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 13,
 					"file": "views/scripts/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 47430,
+						"buffer_size": 47446,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								43172,
-								43178
+								41406,
+								41406
 							]
 						],
 						"settings":
@@ -735,27 +1080,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 12781.0,
+						"translation.y": 12201.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 14,
 					"file": "views/views/coupons/coupons.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12121,
+						"buffer_size": 10590,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10594,
-								10594
+								8386,
+								8386
 							]
 						],
 						"settings":
@@ -764,27 +1109,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4785.0,
+						"translation.y": 3777.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 15,
 					"file": "views/views/coupons/coupon-edit.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 26241,
+						"buffer_size": 26240,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3825,
-								3825
+								26043,
+								26043
 							]
 						],
 						"settings":
@@ -793,27 +1138,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1371.0,
+						"translation.y": 8472.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 16,
 					"file": "views/views/dashboard.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5915,
+						"buffer_size": 5924,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4131,
-								4176
+								537,
+								537
 							]
 						],
 						"settings":
@@ -823,14 +1168,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1980.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 17,
 					"file": "views/views/coupons/shops.html",
 					"semi_transient": false,
 					"settings":
@@ -855,11 +1200,11 @@
 						"translation.y": 124.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 18,
 					"file": "views/views/coupons/categories.html",
 					"semi_transient": false,
 					"settings":
@@ -884,11 +1229,11 @@
 						"translation.y": 690.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 19,
 					"file": "/C/wamp/www/angular_slimPHP_admin_panel/views/scripts/controllers.js",
 					"semi_transient": false,
 					"settings":
@@ -912,24 +1257,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 20,
 					"file": "views/views/pages/signin.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2855,
+						"buffer_size": 2478,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2271,
-								2271
+								0,
+								2478
 							]
 						],
 						"settings":
@@ -939,10 +1284,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 885.0,
+						"translation.y": 38.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 15,
 					"type": "text"
 				}
 			]
@@ -994,6 +1339,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"rout",
+				"system\\core\\router.php"
+			],
 			[
 				"sc",
 				"js\\script.js"
@@ -1132,10 +1481,6 @@
 			],
 			[
 				"rou",
-				"server\\config\\routes.js"
-			],
-			[
-				"rout",
 				"server\\config\\routes.js"
 			],
 			[

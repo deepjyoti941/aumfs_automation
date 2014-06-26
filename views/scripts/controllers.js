@@ -51,24 +51,7 @@ angular.module("app.controllers", [])
 
 		// Login function
 		$scope.loginFunc = function () {
-			// Call to the DreamFactory user service using provided login method
-			DreamFactory.api.user.login({
-					email   : 'jerezb31@gmail.com',
-					password: 'Chillin@31'
-				},
 
-				// Success function
-				function (data) {
-					logger.log(data);
-
-					// Handle login success
-				},
-
-				// Error function
-				function (error) {
-					logger.log(error);
-					// Handle Login failure
-				})
 		};
 
 		return $scope.isSpecificPage = function () {
@@ -279,7 +262,12 @@ angular.module("app.controllers", [])
 			logger.logError("Shop Deleted");
 		}
 	}])
-	.controller("CouponsCtrl", ["$scope", "Category", "Shop", "Coupon", "CouponImages", "logger", "$filter", "$resource", "$timeout", function ($scope, Category, Shop, Coupon, CouponImages, logger, $filter, $resource, $timeout) {
+	.controller("newCustomerCtrl", ["$scope","$resource", function($scope, $resource) {
+		$scope.today = new Date();
+
+	}])
+
+	.controller("CouponsCtrl", ["$scope", "logger", "$filter", "$resource", "$timeout", function ($scope, logger, $filter, $resource, $timeout) {
 		$scope.start = function () {
 			$scope.Coupons = Coupon.get({}, function (data) {
 				$scope.initTable();

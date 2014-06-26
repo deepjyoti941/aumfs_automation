@@ -1,4 +1,4 @@
-<div class="page page-coupon" ng-controller="CouponsCtrl">
+<div class="page page-coupon" ng-controller="newCustomerCtrl">
 <section  data-ng-cloak>
 
 <accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCoupon">
@@ -16,7 +16,29 @@
 				       id="newTitleAlias" placeholder="Enter Customer Address" required>
 			</div>
 			<div class="form-group">
-				<label class="" for="newShortDesc">Service Date</label>
+				<div class="row">
+					<div class="col-sm-6 col-md-4 col-lg-2">
+						<label class="" for="newCategory">Enquiry Type</label><br>
+								<span class="ui-select">
+					                <select id="newCategory" ng-model="enquiry_type" required>
+										<option value="assessment">Assessment</option>
+										<option value="quotation">Quotation</option>
+										<option value="followup">Follow Up</option>
+					                </select>
+					            </span>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2" ng-show="enquiry_type == 'followup'" style="margin-left: 30px;">
+						<label class="" for="newCategory">Follow Up Type</label><br>
+						<span class="ui-select">
+			                <select id="newShop" ng-model="follow_up_type">
+			                        <option value="delay">Delay</option>
+			                        <option value="cancel">Cancel</option>
+			                        <option value="confirm">Confirm</option>
+			                        required>
+			                </select>			            
+			            </span>
+					</div>
+				</div>
 
 				<div class="input-group ui-datepicker">
 					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -36,6 +58,11 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="" for="newShortDesc">Short Description</label>
+				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
+				          rows="2" required data-min="3" data-max="100"></textarea>
+			</div>
+			<div class="form-group">
 				<label>Status</label>
 				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio"
 				                               value="active"><span>Active</span></label>
@@ -45,13 +72,6 @@
 				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio"
 				                               value="expired"><span>Expired</span></label>
 			</div>
-<!-- 			<div class="form-group">
-				<label>Type</label>
-				<label class="ui-radio"><input ng-model="newCoupon.coupon_type" name="radio2" type="radio" value="deal"><span>Deal</span></label>
-				<label class="ui-radio"><input ng-model="newCoupon.coupon_type" name="radio2" type="radio"
-				                               value="printable" checked><span>Printable</span></label>
-				<label class="ui-radio"><input ng-model="newCoupon.coupon_type" name="radio2" type="radio" value="code"><span>Code</span></label>
-			</div> -->
 			<div class="form-group" ng-if="newCoupon.coupon_type == 'code'">
 				<label class="" for="newCode">Coupon Code</label>
 				<input ng-model="newCoupon.coupon_code" type="text" class="form-control"
@@ -80,20 +100,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="" for="newShortDesc">Short Description About Service</label>
-				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
-				          rows="2" required data-min="3" data-max="100"></textarea>
-			</div>
-			<div class="form-group">
+<!-- 			<div class="form-group">
 				<label class="">Full Description</label>
 
 				<div text-angular ng-model="newCoupon.description" class="ui-editor"></div>
 
-			</div>
-<!-- 			<div class="form-group">
-				<label class="">Coupon Tags</label>
-				<tags-input ng-model="newCoupon.coupon_tags" id="newTags" class="ui-tags-input" required></tags-input>
 			</div> -->
 			<div class="form-group">
 				<label class="" for="listPrice">List Price</label>
@@ -111,22 +122,6 @@
 				       id="discount" placeholder="Enter Discount">
 			</div>
 			<hr/>
-<!-- 			<p>
-			<input type="file" class="uploadfile3" id="uploadfile3" style="display: none;"/>
-
-			<div class="newupload3 btn btn-primary">Upload an image?</div>
-			<a href="javascript:;" class="cropButton2 btn btn-success" ng-click="crop();">Crop &amp; Save Image</a>
-			</p> -->
-
-
-<!-- 			<div class="example3">
-
-				<div class="default3">
-					<div class="cropMain"></div>
-					<div class="cropSlider"></div>
-				</div>
-
-			</div> -->
 			<button type="submit" class="btn btn-info">Create Order</button>
 		</form>
 	</accordion-group>
@@ -146,11 +141,11 @@
 					       data-ng-keyup="search()">
 				</form>
 			</div>
-			<div class="col-sm-3 col-xs-6 filter-result-info">
+<!-- 			<div class="col-sm-3 col-xs-6 filter-result-info">
                     <span>
                         Showing {{filteredCoupons.length}}/{{Coupons.record.length}} entries
                     </span>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -258,13 +253,14 @@
 			</div>
 			<div class="col-md-6 text-right pagination-container">
 				<pagination class="pagination-sm"
-				            page="currentPage"
-				            total-items="filteredCoupons.length"
-				            max-size="4"
-				            on-select-page="select(page)"
-				            items-per-page="numPerPage"
-				            rotate="false"
-				            boundary-links="true"></pagination>
+		            page="currentPage"
+		            total-items="filteredCoupons.length"
+		            max-size="4"
+		            on-select-page="select(page)"
+		            items-per-page="numPerPage"
+		            rotate="false"
+		            boundary-links="true">
+				</pagination>
 			</div>
 		</div>
 	</footer>

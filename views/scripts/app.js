@@ -1,159 +1,7 @@
 (function () {
 	"use strict";
 	angular.module("app.chart.ctrls", []).controller("chartCtrl", ["$scope", function ($scope) {
-		return $scope.easypiechart = {percent: 65, options: {animate: {duration: 1e3, enabled: !0}, barColor: "#31C0BE", lineCap: "round", size: 180, lineWidth: 5}}, $scope.easypiechart2 = {percent: 35, options: {animate: {duration: 1e3, enabled: !0}, barColor: "#66B5D7", lineCap: "round", size: 180, lineWidth: 10}}, $scope.easypiechart3 = {percent: 68, options: {animate: {duration: 1e3, enabled: !0}, barColor: "#60CD9B", lineCap: "square", size: 180, lineWidth: 20, scaleLength: 0}}, $scope.gaugeChart1 = {data: {maxValue: 3e3, animationSpeed: 40, val: 1375}, options: {lines: 12, angle: 0, lineWidth: .47, pointer: {length: .6, strokeWidth: .03, color: "#000000"}, limitMax: "false", colorStart: "#A3C86D", colorStop: "#A3C86D", strokeColor: "#E0E0E0", generateGradient: !0, percentColors: [
-			[0, "#60CD9B"],
-			[1, "#60CD9B"]
-		]}}, $scope.gaugeChart2 = {data: {maxValue: 3e3, animationSpeed: 45, val: 1200}, options: {lines: 12, angle: 0, lineWidth: .47, pointer: {length: .6, strokeWidth: .03, color: "#464646"}, limitMax: "true", colorStart: "#7ACBEE", colorStop: "#7ACBEE", strokeColor: "#F1F1F1", generateGradient: !0, percentColors: [
-			[0, "#66B5D7"],
-			[1, "#66B5D7"]
-		]}}, $scope.gaugeChart3 = {data: {maxValue: 3e3, animationSpeed: 50, val: 1100}, options: {lines: 12, angle: 0, lineWidth: .47, pointer: {length: .6, strokeWidth: .03, color: "#464646"}, limitMax: "true", colorStart: "#FF7857", colorStop: "#FF7857", strokeColor: "#F1F1F1", generateGradient: !0, percentColors: [
-			[0, "#E87352"],
-			[1, "#E87352"]
-		]}}
-	}]).controller("morrisChartCtrl", ["$scope", function ($scope) {
-		return $scope.mainData = [
-			{month: "2013-01", xbox: 294e3, will: 136e3, playstation: 244e3},
-			{month: "2013-02", xbox: 228e3, will: 335e3, playstation: 127e3},
-			{month: "2013-03", xbox: 199e3, will: 159e3, playstation: 13e4},
-			{month: "2013-04", xbox: 174e3, will: 16e4, playstation: 82e3},
-			{month: "2013-05", xbox: 255e3, will: 318e3, playstation: 82e3},
-			{month: "2013-06", xbox: 298400, will: 401800, playstation: 98600},
-			{month: "2013-07", xbox: 37e4, will: 225e3, playstation: 159e3},
-			{month: "2013-08", xbox: 376700, will: 303600, playstation: 13e4},
-			{month: "2013-09", xbox: 527800, will: 301e3, playstation: 119400}
-		], $scope.simpleData = [
-			{year: "2008", value: 20},
-			{year: "2009", value: 10},
-			{year: "2010", value: 5},
-			{year: "2011", value: 5},
-			{year: "2012", value: 20},
-			{year: "2013", value: 19}
-		], $scope.comboData = [
-			{year: "2008", a: 20, b: 16, c: 12},
-			{year: "2009", a: 10, b: 22, c: 30},
-			{year: "2010", a: 5, b: 14, c: 20},
-			{year: "2011", a: 5, b: 12, c: 19},
-			{year: "2012", a: 20, b: 19, c: 13},
-			{year: "2013", a: 28, b: 22, c: 20}
-		], $scope.donutData = [
-			{label: "Download Sales", value: 12},
-			{label: "In-Store Sales", value: 30},
-			{label: "Mail-Order Sales", value: 20},
-			{label: "Online Sales", value: 19}
-		]
-	}]).controller("flotChartCtrl", ["$scope", function ($scope) {
-		var areaChart, barChart, lineChart1;
-		return lineChart1 = {}, lineChart1.data1 = [
-			[1, 15],
-			[2, 20],
-			[3, 14],
-			[4, 10],
-			[5, 10],
-			[6, 20],
-			[7, 28],
-			[8, 26],
-			[9, 22],
-			[10, 23],
-			[11, 24]
-		], lineChart1.data2 = [
-			[1, 9],
-			[2, 15],
-			[3, 17],
-			[4, 21],
-			[5, 16],
-			[6, 15],
-			[7, 13],
-			[8, 15],
-			[9, 29],
-			[10, 21],
-			[11, 29]
-		], $scope.line1 = {}, $scope.line1.data = [
-			{data: lineChart1.data1, label: "Product A"},
-			{data: lineChart1.data2, label: "Product B", lines: {fill: !1}}
-		], $scope.line1.options = {series: {lines: {show: !0, fill: !0, fillColor: {colors: [
-			{opacity: 0},
-			{opacity: .3}
-		]}}, points                              : {show: !0, lineWidth: 2, fill: !0, fillColor: "#ffffff", symbol: "circle", radius: 5}}, colors: ["#31C0BE", "#8170CA", "#E87352"], tooltip: !0, tooltipOpts: {defaultTheme: !1}, grid: {hoverable: !0, clickable: !0, tickColor: "#f9f9f9", borderWidth: 1, borderColor: "#eeeeee"}, xaxis: {ticks: [
-			[1, "Jan."],
-			[2, "Feb."],
-			[3, "Mar."],
-			[4, "Apr."],
-			[5, "May"],
-			[6, "June"],
-			[7, "July"],
-			[8, "Aug."],
-			[9, "Sept."],
-			[10, "Oct."],
-			[11, "Nov."],
-			[12, "Dec."]
-		]}}, areaChart = {}, areaChart.data1 = [
-			[2007, 15],
-			[2008, 20],
-			[2009, 10],
-			[2010, 5],
-			[2011, 5],
-			[2012, 20],
-			[2013, 28]
-		], areaChart.data2 = [
-			[2007, 15],
-			[2008, 16],
-			[2009, 22],
-			[2010, 14],
-			[2011, 12],
-			[2012, 19],
-			[2013, 22]
-		], $scope.area = {}, $scope.area.data = [
-			{data: areaChart.data1, label: "Value A", lines: {fill: !0}},
-			{data: areaChart.data2, label: "Value B", points: {show: !0}, yaxis: 2}
-		], $scope.area.options = {series: {lines: {show: !0, fill: !1}, points: {show: !0, lineWidth: 2, fill: !0, fillColor: "#ffffff", symbol: "circle", radius: 5}, shadowSize: 0}, grid: {hoverable: !0, clickable: !0, tickColor: "#f9f9f9", borderWidth: 1, borderColor: "#eeeeee"}, colors: ["#60CD9B", "#8170CA"], tooltip: !0, tooltipOpts: {defaultTheme: !1}, xaxis: {mode: "time"}, yaxes: [
-			{},
-			{position: "right"}
-		]}, barChart = {}, barChart.data1 = [
-			[2008, 20],
-			[2009, 10],
-			[2010, 5],
-			[2011, 5],
-			[2012, 20],
-			[2013, 28]
-		], barChart.data2 = [
-			[2008, 16],
-			[2009, 22],
-			[2010, 14],
-			[2011, 12],
-			[2012, 19],
-			[2013, 22]
-		], barChart.data3 = [
-			[2008, 12],
-			[2009, 30],
-			[2010, 20],
-			[2011, 19],
-			[2012, 13],
-			[2013, 20]
-		], $scope.barChart = {}, $scope.barChart.data = [
-			{label: "Value A", data: barChart.data1},
-			{label: "Value B", data: barChart.data2},
-			{label: "Value C", data: barChart.data3}
-		], $scope.barChart.options = {series: {stack: !0, bars: {show: !0, fill: 1, barWidth: .3, align: "center", horizontal: !1, order: 1}}, grid: {hoverable: !0, borderWidth: 1, borderColor: "#eeeeee"}, tooltip: !0, tooltipOpts: {defaultTheme: !1}, colors: ["#60CD9B", "#66B5D7", "#EEC95A", "#E87352"]}, $scope.pieChart = {}, $scope.pieChart.data = [
-			{label: "Download Sales", data: 12},
-			{label: "In-Store Sales", data: 30},
-			{label: "Mail-Order Sales", data: 20},
-			{label: "Online Sales", data: 19}
-		], $scope.pieChart.options = {series: {pie: {show: !0}}, legend: {show: !0}, grid: {hoverable: !0, clickable: !0}, colors: ["#60CD9B", "#66B5D7", "#EEC95A", "#E87352"], tooltip: !0, tooltipOpts: {content: "%p.0%, %s", defaultTheme: !1}}, $scope.donutChart = {}, $scope.donutChart.data = [
-			{label: "Download Sales", data: 12},
-			{label: "In-Store Sales", data: 30},
-			{label: "Mail-Order Sales", data: 20},
-			{label: "Online Sales", data: 19}
-		], $scope.donutChart.options = {series: {pie: {show: !0, innerRadius: .5}}, legend: {show: !0}, grid: {hoverable: !0, clickable: !0}, colors: ["#60CD9B", "#66B5D7", "#EEC95A", "#E87352"], tooltip: !0, tooltipOpts: {content: "%p.0%, %s", defaultTheme: !1}}, $scope.donutChart2 = {}, $scope.donutChart2.data = [
-			{label: "Download Sales", data: 12},
-			{label: "In-Store Sales", data: 30},
-			{label: "Mail-Order Sales", data: 20},
-			{label: "Online Sales", data: 19},
-			{label: "Direct Sales", data: 15}
-		], $scope.donutChart2.options = {series: {pie: {show: !0, innerRadius: .5}}, legend: {show: !1}, grid: {hoverable: !0, clickable: !0}, colors: ["#1BB7A0", "#39B5B9", "#52A3BB", "#619CC4", "#6D90C5"], tooltip: !0, tooltipOpts: {content: "%p.0%, %s", defaultTheme: !1}}
-	}]).controller("flotChartCtrl.realtime", ["$scope", function () {
-	}]).controller("sparklineCtrl", ["$scope", function ($scope) {
-		return $scope.demoData1 = {data: [3, 1, 2, 2, 4, 6, 4, 5, 2, 4, 5, 3, 4, 6, 4, 7], options: {type: "line", lineColor: "#fff", highlightLineColor: "#fff", fillColor: "#60CD9B", spotColor: !1, minSpotColor: !1, maxSpotColor: !1, width: "100%", height: "150px"}}, $scope.simpleChart1 = {data: [3, 1, 2, 3, 5, 3, 4, 2], options: {type: "line", lineColor: "#31C0BE", fillColor: "#bce0df", spotColor: !1, minSpotColor: !1, maxSpotColor: !1}}, $scope.simpleChart2 = {data: [3, 1, 2, 3, 5, 3, 4, 2], options: {type: "bar", barColor: "#31C0BE"}}, $scope.simpleChart3 = {data: [3, 1, 2, 3, 5, 3, 4, 2], options: {type: "pie", sliceColors: ["#31C0BE", "#60CD9B", "#E87352", "#8170CA", "#EEC95A", "#60CD9B"]}}, $scope.tristateChart1 = {data: [1, 2, -3, -5, 3, 1, -4, 2], options: {type: "tristate", posBarColor: "#95b75d", negBarColor: "#fa8564"}}, $scope.largeChart1 = {data: [3, 1, 2, 3, 5, 3, 4, 2], options: {type: "line", lineColor: "#674E9E", highlightLineColor: "#7ACBEE", fillColor: "#927ED1", spotColor: !1, minSpotColor: !1, maxSpotColor: !1, width: "100%", height: "150px"}}, $scope.largeChart2 = {data: [3, 1, 2, 3, 5, 3, 4, 2], options: {type: "bar", barColor: "#31C0BE", barWidth: 10, width: "100%", height: "150px"}}, $scope.largeChart3 = {data: [3, 1, 2, 3, 5], options: {type: "pie", sliceColors: ["#31C0BE", "#60CD9B", "#E87352", "#8170CA", "#EEC95A", "#60CD9B"], width: "150px", height: "150px"}}
+
 	}])
 }).call(this), function () {
 	"use strict";
@@ -161,46 +9,6 @@
 		return{restrict: "A", scope: {data: "=", options: "="}, link: function (scope, ele) {
 			var data, gauge, options;
 			return data = scope.data, options = scope.options, gauge = new Gauge(ele[0]).setOptions(options), gauge.maxValue = data.maxValue, gauge.animationSpeed = data.animationSpeed, gauge.set(data.val)
-		}}
-	}]).directive("flotChart", [function () {
-		return{restrict: "A", scope: {data: "=", options: "="}, link: function (scope, ele) {
-			var data, options, plot;
-			return data = scope.data, options = scope.options, plot = $.plot(ele[0], data, options)
-		}}
-	}]).directive("flotChartRealtime", [function () {
-		return{restrict: "A", link: function (scope, ele) {
-			var data, getRandomData, plot, totalPoints, update, updateInterval;
-			return data = [], totalPoints = 300, getRandomData = function () {
-				var i, prev, res, y;
-				for (data.length > 0 && (data = data.slice(1)); data.length < totalPoints;)prev = data.length > 0 ? data[data.length - 1] : 50, y = prev + 10 * Math.random() - 5, 0 > y ? y = 0 : y > 100 && (y = 100), data.push(y);
-				for (res = [], i = 0; i < data.length;)res.push([i, data[i]]), ++i;
-				return res
-			}, update = function () {
-				plot.setData([getRandomData()]), plot.draw(), setTimeout(update, updateInterval)
-			}, data = [], totalPoints = 300, updateInterval = 200, plot = $.plot(ele[0], [getRandomData()], {series: {lines: {show: !0, fill: !0}, shadowSize: 0}, yaxis: {min: 0, max: 100}, xaxis: {show: !1}, grid: {hoverable: !0, borderWidth: 1, borderColor: "#eeeeee"}, colors: ["#5BDDDC"]}), update()
-		}}
-	}]).directive("sparkline", [function () {
-		return{restrict: "A", scope: {data: "=", options: "="}, link: function (scope, ele) {
-			var data, options, sparkResize, sparklineDraw;
-			return data = scope.data, options = scope.options, sparkResize = void 0, sparklineDraw = function () {
-				return ele.sparkline(data, options)
-			}, $(window).resize(function () {
-				return clearTimeout(sparkResize), sparkResize = setTimeout(sparklineDraw, 200)
-			}), sparklineDraw()
-		}}
-	}]).directive("morrisChart", [function () {
-		return{restrict: "A", scope: {data: "="}, link: function (scope, ele, attrs) {
-			var colors, data, func, options;
-			switch (data = scope.data, attrs.type) {
-				case"line":
-					return colors = void 0 === attrs.lineColors || "" === attrs.lineColors ? null : JSON.parse(attrs.lineColors), options = {element: ele[0], data: data, xkey: attrs.xkey, ykeys: JSON.parse(attrs.ykeys), labels: JSON.parse(attrs.labels), lineWidth: attrs.lineWidth || 2, lineColors: colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"], resize: !0}, new Morris.Line(options);
-				case"area":
-					return colors = void 0 === attrs.lineColors || "" === attrs.lineColors ? null : JSON.parse(attrs.lineColors), options = {element: ele[0], data: data, xkey: attrs.xkey, ykeys: JSON.parse(attrs.ykeys), labels: JSON.parse(attrs.labels), lineWidth: attrs.lineWidth || 2, lineColors: colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"], behaveLikeLine: attrs.behaveLikeLine || !1, fillOpacity: attrs.fillOpacity || "auto", pointSize: attrs.pointSize || 4, resize: !0}, new Morris.Area(options);
-				case"bar":
-					return colors = void 0 === attrs.barColors || "" === attrs.barColors ? null : JSON.parse(attrs.barColors), options = {element: ele[0], data: data, xkey: attrs.xkey, ykeys: JSON.parse(attrs.ykeys), labels: JSON.parse(attrs.labels), barColors: colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"], stacked: attrs.stacked || null, resize: !0}, new Morris.Bar(options);
-				case"donut":
-					return colors = void 0 === attrs.colors || "" === attrs.colors ? null : JSON.parse(attrs.colors), options = {element: ele[0], data: data, colors: colors || ["#0B62A4", "#3980B5", "#679DC6", "#95BBD7", "#B0CCE1", "#095791", "#095085", "#083E67", "#052C48", "#042135"], resize: !0}, attrs.formatter && (func = new Function("y", "data", attrs.formatter), options.formatter = func), new Morris.Donut(options)
-			}
 		}}
 	}])
 }.call(this), function () {
@@ -597,31 +405,6 @@
 		return $routeProvider
 			.when("/", {templateUrl: "/views/views/pages/signin.html"})
 			.when("/dashboard", {templateUrl: "/views/views/dashboard.html"})
-			.when("/ui/typography", {templateUrl: "/views/views/ui/typography.html"})
-			.when("/ui/buttons", {templateUrl: "/views/views/ui/buttons.html"})
-			.when("/ui/icons", {templateUrl: "/views/views/ui/icons.html"})
-			.when("/ui/grids", {templateUrl: "/views/views/ui/grids.html"})
-			.when("/ui/widgets", {templateUrl: "/views/views/ui/widgets.html"})
-			.when("/ui/components", {templateUrl: "/views/views/ui/components.html"})
-			.when("/ui/timeline", {templateUrl: "/views/views/ui/timeline.html"})
-			.when("/ui/nested-lists", {templateUrl: "/views/views/ui/nested-lists.html"})
-			.when("/ui/pricing-tables", {templateUrl: "/views/views/ui/pricing-tables.html"})
-			.when("/forms/elements", {templateUrl: "/views/views/forms/elements.html"})
-			.when("/forms/layouts", {templateUrl: "/views/views/forms/layouts.html"})
-			.when("/forms/validation", {templateUrl: "/views/views/forms/validation.html"})
-			.when("/forms/wizard", {templateUrl: "/views/views/forms/wizard.html"})
-			.when("/maps/gmap", {templateUrl: "/views/views/maps/gmap.html"})
-			.when("/maps/jqvmap", {templateUrl: "/views/views/maps/jqvmap.html"})
-			.when("/tables/static", {templateUrl: "/views/views/tables/static.html"})
-			.when("/tables/responsive", {templateUrl: "/views/views/tables/responsive.html"})
-			.when("/tables/dynamic", {templateUrl: "/views/views/tables/dynamic.html"})
-			.when("/charts/others", {templateUrl: "/views/views/charts/charts.html"})
-			.when("/charts/morris", {templateUrl: "/views/views/charts/morris.html"})
-			.when("/charts/flot", {templateUrl: "/views/views/charts/flot.html"})
-			.when("/mail/inbox", {templateUrl: "/views/views/mail/inbox.html"})
-			.when("/mail/compose", {templateUrl: "/views/views/mail/compose.html"})
-			.when("/mail/single", {templateUrl: "/views/views/mail/single.html"})
-			.when("/pages/features", {templateUrl: "/views/views/pages/features.html"})
 			.when("/pages/signin", {templateUrl: "/views/views/pages/signin.html"})
 			.when("/pages/signup", {templateUrl: "/views/views/pages/signup.html"})
 			.when("/pages/forgot", {templateUrl: "/views/views/pages/forgot-password.html"})
@@ -648,16 +431,13 @@
 			})
 			.when("/register", {templateUrl: "/views/views/pages/signup.html", controller: 'RegisterCtrlCtrl'})
 			.when("/lock-screen", {templateUrl: "/views/views/pages/lock-screen.html"})
-			.when("/categories", {templateUrl: "/views/views/coupons/categories.html"})
-			.when("/shops", {templateUrl: "/views/views/coupons/shops.html"})
-			.when("/shops/:id", {templateUrl: "/views/views/coupons/shop-edit.html"})
 			.when("/oncall", {templateUrl: "/views/views/coupons/coupons.html"})
 			.when("/oncall/:id", {templateUrl: "/views/views/coupons/coupon-edit.html"})
 			.otherwise({redirectTo: "/404"}),
 			$locationProvider.html5Mode(true);
 	}])
-	.constant('DSP_URL', 'https://dsp-gorigins.cloud.dreamfactory.com')
-	.constant('DSP_API_KEY', 'Marketplace')
+	.constant('DSP_URL', '')
+	.constant('DSP_API_KEY', '')
 	.config(['$httpProvider', 'DSP_API_KEY', function($httpProvider, DSP_API_KEY) {
 		$httpProvider.defaults.headers.common['X-DreamFactory-Application-Name'] = DSP_API_KEY;
 	}])
@@ -696,65 +476,6 @@
 				return i18nDirective.updateText(ele, value, attrs.placeholder)
 			})
 		}}
-	}]).controller("LangCtrl", ["$scope", "localize", function ($scope, localize) {
-		return $scope.lang = "English", $scope.setLang = function (lang) {
-			switch (lang) {
-				case"English":
-					localize.setLanguage("EN-US");
-					break;
-				case"Español":
-					localize.setLanguage("ES-ES");
-					break;
-				case"日本語":
-					localize.setLanguage("JA-JP");
-					break;
-				case"中文":
-					localize.setLanguage("ZH-TW");
-					break;
-				case"Deutsch":
-					localize.setLanguage("DE-DE");
-					break;
-				case"français":
-					localize.setLanguage("FR-FR");
-					break;
-				case"Italiano":
-					localize.setLanguage("IT-IT");
-					break;
-				case"Portugal":
-					localize.setLanguage("PT-BR");
-					break;
-				case"Русский язык":
-					localize.setLanguage("RU-RU");
-					break;
-				case"한국어":
-					localize.setLanguage("KO-KR")
-			}
-			return $scope.lang = lang
-		}, $scope.getFlag = function () {
-			var lang;
-			switch (lang = $scope.lang) {
-				case"English":
-					return"flags-american";
-				case"Español":
-					return"flags-spain";
-				case"日本語":
-					return"flags-japan";
-				case"中文":
-					return"flags-china";
-				case"Deutsch":
-					return"flags-germany";
-				case"français":
-					return"flags-france";
-				case"Italiano":
-					return"flags-italy";
-				case"Portugal":
-					return"flags-portugal";
-				case"Русский язык":
-					return"flags-russia";
-				case"한국어":
-					return"flags-korea"
-			}
-		}
 	}])
 }.call(this), function () {
 	// Controllers Go Here

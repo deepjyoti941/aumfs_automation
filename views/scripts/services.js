@@ -101,38 +101,36 @@ angular.module("app.services", [])
 			}
 		}
 	}])
-	.factory('AppData', ['DSP_URL', 'DSP_API_KEY', function (DSP_URL, DSP_API_KEY) {
-		"use strict";
-		return {
-			DB          : DSP_URL + '/rest/db',
-			Files       : DSP_URL + '/rest/files/applications/' + DSP_API_KEY,
-			CouponImages: DSP_URL + '/rest/files/applications/' + DSP_API_KEY + '/images/coupons/?include_files=true'
-		};
-		// Usefull Things to remember
-		// https://dsp-gorigins.cloud.dreamfactory.com/rest/db/coupons?related=shop_by_shop_id%2Ccategories_by_category_id%2Chotspots_by_hotspot_id
-	}])
-	.factory('Category', ['$resource', 'AppData', function ($resource, AppData) {
-		"use strict";
-		return $resource(AppData.DB + '/categories/:id/?app_name=Marketplace&fields=*', {},
-			{ update: { method: 'PUT' }, query: {method: 'GET', isArray: false} });
-	}])
-	.factory('Shop', ['$resource', 'AppData', function ($resource, AppData) {
-		"use strict";
-		return $resource(AppData.DB + '/shop/:id/?app_name=Marketplace&fields=*', {},
-			{ update: { method: 'PUT' }, query: {method: 'GET', isArray: false} });
-	}])
-	.factory('Coupon', ['$resource', 'AppData', function ($resource, AppData) {
-		"use strict";
-		return $resource(AppData.DB + '/coupons/:id/?app_name=Marketplace&fields=*&related=shop_by_shop_id%2Ccategories_by_category_id%2Chotspots_by_hotspot_id', {},
-			{ update: { method: 'PUT', url: AppData.DB + '/coupons/:id/?app_name=Marketplace&fields=*' }, query: {method: 'GET', isArray: false} });
-	}])
-	.factory('CouponImages', ['$resource', 'AppData', function ($resource, AppData) {
-		"use strict";
-		return $resource(AppData.CouponImages, {},
-			{
-				create: { method: 'POST', url: AppData.Files + '/images/coupons/?check_exist=true', params: { url: '@url' } },
-				update: { method: 'PUT' },
-				query : { method: 'GET', isArray: false }
-			});
-	}])
+	// .factory('AppData', ['DSP_URL', 'DSP_API_KEY', function (DSP_URL, DSP_API_KEY) {
+	// 	"use strict";
+	// 	return {
+	// 		DB          : DSP_URL + '/rest/db',
+	// 		Files       : DSP_URL + '/rest/files/applications/' + DSP_API_KEY,
+	// 		CouponImages: DSP_URL + '/rest/files/applications/' + DSP_API_KEY + '/images/coupons/?include_files=true'
+	// 	};
+	// }])
+	// .factory('Category', ['$resource', 'AppData', function ($resource, AppData) {
+	// 	"use strict";
+	// 	return $resource(AppData.DB + '/categories/:id/?app_name=Marketplace&fields=*', {},
+	// 		{ update: { method: 'PUT' }, query: {method: 'GET', isArray: false} });
+	// }])
+	// .factory('Shop', ['$resource', 'AppData', function ($resource, AppData) {
+	// 	"use strict";
+	// 	return $resource(AppData.DB + '/shop/:id/?app_name=Marketplace&fields=*', {},
+	// 		{ update: { method: 'PUT' }, query: {method: 'GET', isArray: false} });
+	// }])
+	// .factory('Coupon', ['$resource', 'AppData', function ($resource, AppData) {
+	// 	"use strict";
+	// 	return $resource(AppData.DB + '/coupons/:id/?app_name=Marketplace&fields=*&related=shop_by_shop_id%2Ccategories_by_category_id%2Chotspots_by_hotspot_id', {},
+	// 		{ update: { method: 'PUT', url: AppData.DB + '/coupons/:id/?app_name=Marketplace&fields=*' }, query: {method: 'GET', isArray: false} });
+	// }])
+	// .factory('CouponImages', ['$resource', 'AppData', function ($resource, AppData) {
+	// 	"use strict";
+	// 	return $resource(AppData.CouponImages, {},
+	// 		{
+	// 			create: { method: 'POST', url: AppData.Files + '/images/coupons/?check_exist=true', params: { url: '@url' } },
+	// 			update: { method: 'PUT' },
+	// 			query : { method: 'GET', isArray: false }
+	// 		});
+	// }])
 
