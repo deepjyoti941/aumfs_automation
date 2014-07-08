@@ -38,6 +38,7 @@
 			                </select>			            
 			            </span>
 					</div>
+
 				</div>
 
 				<div class="input-group ui-datepicker">
@@ -80,11 +81,43 @@
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-6 col-md-4 col-lg-2">
-						<label class="" for="newCategory">Category</label><br>
+						<label class="" for="serviceName">Service Name</label><br>
 								<span class="ui-select">
-					                <select id="newCategory" ng-model="newCoupon.category_id"
-					                        ng-options="category.id as category.title for category in Categories.record"
-					                        required></select>
+					                <select id="serviceName">
+					                	<option>Select Service Type</option>
+					                	<option>Electrical/Plumbing/Carpentry</option>
+					                	<option>Air Conditioner</option>
+					                </select>
+					            </span>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
+						<label class="" for="aumPrice">AUM Price</label><br>
+								<span class="ui-select">
+					                <select id="newShop">
+					                	<option>Select Service Price</option>
+					                	<option>Rs.100 / hr / technician</option>
+					                	<option>Rs.1000(Price per unit)</option>
+					                </select>
+					            </span>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
+						<label class="" for="serviceQuantity">Quantity</label><br>
+								<span class="ui-select">
+					                <select id="serviceQuantity">
+					                	<option>Select Quantity</option>
+					                	<option>1</option>
+					                	<option>3</option>
+					                </select>
+					            </span>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
+						<label class="" for="serviceFrequency">Frequency</label><br>
+								<span class="ui-select">
+					                <select id="serviceFrequency">
+					                	<option>Select Frequency</option>
+					                	<option>Unlimited</option>
+					                	<option>Half Yearly</option>
+					                </select>
 					            </span>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
@@ -106,21 +139,7 @@
 				<div text-angular ng-model="newCoupon.description" class="ui-editor"></div>
 
 			</div> -->
-			<div class="form-group">
-				<label class="" for="listPrice">List Price</label>
-				<input ng-model="newCoupon.list_price" type="text" class="form-control"
-				       id="listPrice" placeholder="Enter List Price" required>
-			</div>
-			<div class="form-group">
-				<label class="" for="newPrice">New Price</label>
-				<input ng-model="newCoupon.new_price" type="text" class="form-control"
-				       id="newPrice" placeholder="Enter New Price">
-			</div>
-			<div class="form-group">
-				<label class="" for="discount">Discount</label>
-				<input ng-model="newCoupon.discount" type="text" class="form-control"
-				       id="discount" placeholder="Enter Discount">
-			</div>
+
 			<hr/>
 			<button type="submit" class="btn btn-info">Create Order</button>
 		</form>

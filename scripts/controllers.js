@@ -14,7 +14,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }).length, $scope.$on("taskRemaining:changed", function (event, count) {
             return $scope.taskRemainingCount = count
         })
-}]).controller("DashboardCtrl", ["$scope", function () { }]).controller("newCustomerCtrl", ["$scope", function($scope) {
+}]).controller("DashboardCtrl", ["$scope", function () { 
+
+}]).controller("newCustomerCtrl", ["$scope", function($scope) {
         $scope.today = new Date();
 
 }]).controller("employeeCtrl", ["$scope", "$http", function($scope, $http) {
