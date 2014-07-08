@@ -173,18 +173,12 @@
 		<tr>
 			<th>
 				<div class="th">
-					Title
-                        <span class="glyphicon glyphicon-chevron-up"
-                              data-ng-click=" order('title') "
-                              data-ng-class="{active: row == 'title'}"></span>
-                        <span class="glyphicon glyphicon-chevron-down"
-                              data-ng-click=" order('-title') "
-                              data-ng-class="{active: row == '-title'}"></span>
+					ID
 				</div>
 			</th>
 			<th>
 				<div class="th">
-					Shop
+					Customer Name
                         <span class="glyphicon glyphicon-chevron-up"
                               data-ng-click=" order('shop_by_shop_id.title') "
                               data-ng-class="{active: row == 'shop_by_shop_id.title'}"></span>
@@ -195,7 +189,7 @@
 			</th>
 			<th>
 				<div class="th">
-					Category
+					Service Name
                         <span class="glyphicon glyphicon-chevron-up"
                               data-ng-click=" order('categories_by_category_id.title') "
                               data-ng-class="{active: row == 'categories_by_category_id.title'}"></span>
@@ -235,11 +229,11 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr data-ng-repeat="coupon in currentPageCoupons">
+		<tr data-ng-repeat="">
 			<td>{{coupon.title}}</td>
-			<td>{{coupon.shop_by_shop_id.title}}</td>
-			<td>{{coupon.categories_by_category_id.title}}</td>
-			<td><span class="label label-warning">{{coupon.status}}</span></td>
+			<td></td>
+			<td></td>
+			<td><span class="label label-warning">{{customer.status}}</span></td>
 			<td>20-05-2014</td>
 			<td>23-05-2014</td>
 			<td>Deep Das</td>
