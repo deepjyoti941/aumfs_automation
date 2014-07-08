@@ -1,0 +1,54 @@
+<div class="page" ng-controller="onCallJobsCtrl">
+	<section class="panel panel-default">
+		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Add Oncall job details</strong></div>
+		<div class="panel-body">
+			<div ng-controller="addOncallJobsForm">
+				<table class="table table-bordered table-striped table-responsive">
+					<thead>
+						<tr>
+							<th>
+								<div class="th">
+									Service Name
+								</div>
+							</th>
+							<th>
+								<div class="th">
+									AUM Price
+								</div>
+							</th>
+							<th>
+								<div class="th">
+									Quantity
+								</div>
+							</th>
+							<th>
+								<div class="th">
+									Frequency
+								</div>
+							</th>
+							<th>
+								
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng:repeat="item in service.items">
+            				<td><input type="text" class="form-control" ng:model="item.service_name"></td>
+            				<td><input type="text" class="form-control" ng:model="item.aum_price" ng:required></td>
+            				<td><input type="number" class="form-control"  ng:model="item.qty" ng:required></td>
+            				<td><input type="text" class="form-control"  ng:model="item.frequency"></td>
+            				<td>[<a href ng:click="removeItem($index)"><i class="fa fa-times"></i></a>]</td>
+						</tr>
+				        <tr>
+				            <td><a href ng-click="addItem()" class="btn btn-gap-v btn-primary"><i class="fa fa-plus"></i> Add Service</a>
+							<a href ng-click="saveService()" class="btn btn-w-md btn-gap-v btn-success"><i class="fa fa-floppy-o"></i>  Save Service</a>
+				            </td>
+				        </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+
+</div>

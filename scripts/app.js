@@ -1614,6 +1614,8 @@
             templateUrl: "views/dashboard.html"
         }).when("/oncall", {
             templateUrl: "views/oncall/oncall.html"
+        }).when("/oncall-jobs", {
+            templateUrl: "views/oncall/oncall-jobs.html"
         }).when("/pages/signin", {
             templateUrl: "views/pages/signin.html"
         }).when("/pages/forgot", {
@@ -1632,6 +1634,12 @@
             templateUrl: "views/pages/settings.html"
         }).when("/tasks", {
             templateUrl: "views/tasks/tasks.html"
+        }).when("/employee-listing", {
+            templateUrl: "views/employee/employee-listing.html"
+        }).when("/employee-status", {
+            templateUrl: "views/employee/employee-work-status.html"
+        }).when("/employee-listing/:id", {
+            templateUrl: "views/employee/employee-edit.html"
         }).otherwise({
             redirectTo: "/404"
         })
@@ -1892,9 +1900,6 @@
         }).length, $scope.$on("taskRemaining:changed", function (event, count) {
             return $scope.taskRemainingCount = count
         })
-    }]).controller("DashboardCtrl", ["$scope", function () { }]).controller("newCustomerCtrl", ["$scope", function($scope) {
-        $scope.today = new Date();
-
     }])
 }.call(this), function() {
     "use strict";

@@ -1,0 +1,39 @@
+<div class="page" ng-controller="EmployeeEditCtrl">
+	<ol class="breadcrumb-alt">
+		<li><a href="#/dashboard">Dashboard</a></li>
+		<li><a href="#/employee-listing">Employee List</a></li>
+		<li class="active"><a href="">1</a></li>
+	</ol>
+
+	<section class="panel panel-default">
+		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Edit Employee</strong></div>
+		<div class="panel-body">
+			<form class="" role="form" name="newEmployeeForm" ng-submit="editEmployee()">
+				<div class="form-group">
+					<label class="" for="newUser">Name Of Employee</label>
+					<input ng-model="newEmployee.name" type="text" class="form-control"
+					       id="newEmployee"
+					       placeholder="Enter Name" value="demo name" required>
+				</div>
+				<div class="form-group">
+					<label class="" for="newEmployeeEmail">Employee Email</label>
+					<input ng-model="newEmployee.email" type="text" class="form-control"
+					       id="newTitleAlias" placeholder="Enter User Email" value="demo@gmail.com" required>
+				</div>
+				<div class="form-group">
+					<label class="" for="newEmployeeImage">Upload Employee Image</label><br/>
+					<input type="file" title="Choose Image" data-ui-file-upload="" class="btn-primary" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+
+				</div>
+				<div class="form-group">
+					<label class="" for="newShortDesc">Additional Information about Employee</label>
+					<textarea ng-model="newUser.short_description" id="newShortDesc" class="form-control resizeless"
+					          rows="2" required data-min="3" data-max="100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</textarea>
+				</div>
+				<hr/>
+				<a href="#/employee-listing" class="btn btn-info">Update Employee</a>
+<!-- 				<button type="submit" class="btn btn-info">Update Employee</button>
+ -->			</form>
+		</div>
+	</section>
+</div>
