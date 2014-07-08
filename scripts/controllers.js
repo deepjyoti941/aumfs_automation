@@ -40,12 +40,10 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         items: [{
             service_name: "Electrical/Plumbing/Carpentry",
             aum_price: 'Rs.100 / hr / technician',
-            qty: 9,
             frequency:"Unlimited"},
             {
             service_name: "Air Conditioner",
             aum_price: 'Rs.1000(Price per unit)',
-            qty: 1,
             frequency:"Half Yearly"
         }]
     };
