@@ -1614,8 +1614,8 @@
             templateUrl: "views/dashboard.html"
         }).when("/oncall", {
             templateUrl: "views/oncall/oncall.html"
-        }).when("/oncall-jobs", {
-            templateUrl: "views/oncall/oncall-jobs.html"
+        }).when("/oncall-charges", {
+            templateUrl: "views/oncall/oncall-charges.html"
         }).when("/pages/signin", {
             templateUrl: "views/pages/signin.html"
         }).when("/pages/forgot", {
@@ -1640,6 +1640,10 @@
             templateUrl: "views/employee/employee-work-status.html"
         }).when("/employee-listing/:id", {
             templateUrl: "views/employee/employee-edit.html"
+        }).when("/otj", {
+            templateUrl: "views/otj/otj.html"
+        }).when("/otj-jobs", {
+            templateUrl: "views/otj/otj-jobs.html"
         }).otherwise({
             redirectTo: "/404"
         })

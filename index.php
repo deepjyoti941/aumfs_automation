@@ -36,7 +36,7 @@
 
         <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <script src="scripts/vendor.js"></script>
-
+        <script src="scripts/moment.js"></script>
         <script src="scripts/ui.js"></script>
 
         <script src="scripts/app.js"></script>

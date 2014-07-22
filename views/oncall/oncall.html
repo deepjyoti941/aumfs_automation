@@ -1,4 +1,4 @@
-<div class="page page-oncall" ng-controller="newCustomerCtrl">
+<div class="page page-oncall" ng-controller="oncallCustomerCtrl">
 <section  data-ng-cloak>
 
 <accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
@@ -6,7 +6,7 @@
 		<form class="" role="form" name="newCustomerForm" ng-submit="createCustomer()">
 			<div class="form-group">
 				<label class="" for="newTitle">Customer Name</label>
-				<input ng-model="newCoupon.title" ng-change="toSlug(newCoupon.title)" type="text" class="form-control"
+				<input ng-model="newCoupon.title" type="text" class="form-control"
 				       id="newTitle"
 				       placeholder="Enter Customer Name" required>
 			</div>
@@ -15,47 +15,215 @@
 				<input ng-model="newCoupon.title_alias" type="text" class="form-control"
 				       id="newTitleAlias" placeholder="Enter Customer Address" required>
 			</div>
-			<div class="form-group">
-				<div class="row">
-					<div class="col-sm-6 col-md-4 col-lg-2">
-						<label class="" for="newCategory">Enquiry Type</label><br>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label class="" for="serviceName">Service Name</label><br>
 								<span class="ui-select">
-					                <select id="newCategory" ng-model="enquiry_type" required>
-										<option value="assessment">Assessment</option>
-										<option value="quotation">Quotation</option>
-										<option value="followup">Follow Up</option>
+					                <select ng-model="oncall_services" id="serviceName" ng-options="service.name for service in oncall_services_list">
+					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
 					                </select>
 					            </span>
+					</div>					
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label class="" for="employeeName">Assign This Task to</label><br>
+								<span class="ui-select">
+					                <select id="employeeName">
+				                		<option>Select Employee</option>
+				                        <option>debo das</option>
+				                        <option>rup das</option>
+				                        <option>Aunupam saikia</option>
+				                        required></select>
+					            </span>
 					</div>
-					<div class="col-sm-6 col-md-4 col-lg-2" ng-show="enquiry_type == 'followup'" style="margin-left: 30px;">
-						<label class="" for="newCategory">Follow Up Type</label><br>
+				</div>
+				<div class="col-md-4">
+				</div>
+			</div>
+
+<!-- 			<div class="form-group">
+				<label class="" for="serviceCharges">Service Charges</label><br>
 						<span class="ui-select">
-			                <select id="newShop" ng-model="follow_up_type">
-			                        <option value="delay">Delay</option>
-			                        <option value="cancel">Cancel</option>
-			                        <option value="confirm">Confirm</option>
-			                        required>
-			                </select>			            
+			                <select ng-model="service_charge" id="serviceCharges" ng-options="service_charge.code as service_charge.service_name for service_charge in service_charges">
+			                	<option value="" ng-hide="service_charge">Select Service Type</option>
+
+			                </select>
 			            </span>
+			            <br>selected: {{service_charge}}				
+			</div> -->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="" for="assignDate">Assign Date and Time</label><br>
+			        <div data-ng-controller="DatepickerDemoCtrl">
+	                    <div class="input-group ui-datepicker">
+	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                        <input type="text" 
+	                               class="form-control"
+	                               datepicker-popup="{{format}}"
+	                               ng-model="assignDate"
+	                               show-weeks="false"
+	                               is-open="opened"
+	                               min="today"
+	                               datepicker-options="dateOptions" 
+	                               date-disabled="disabled(date, mode)"
+	                               ng-required="true" 
+	                               close-text="Close">
+	                    </div>
+			        </div>
 					</div>
-
 				</div>
-
-				<div class="input-group ui-datepicker">
-					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-					<input type="text"
-					       class="form-control"
-					       datepicker-popup="dd/MM/yyyy"
-					       show-weeks="false"
-					       ng-model="newCoupon.expire_date"
-					       is-open="opened"
-					       min="today"
-					       datepicker-options="dateOptions"
-					       ng-required="true"
-					       close-text="Close">
+				<div class="col-md-6">
+					<div class="form-group">
+				        <div data-ng-controller="TimepickerDemoCtrl">
+				            <div class="row">
+				                <div class="col-sm-4">
+				                    <div ng-model="assignTime" ng-change="changed()" style="display:inline-block;">
+				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+				                    </div>                    
+				                </div>
+				                <div class="col-sm-4">
+				            		<div class="callout callout-info" style="background-color:white">
+				            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }} Hours" disabled>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+					</div>
 				</div>
-				<div class="callout callout-info">
-					<p>Date is: {{newCoupon.expire_date | date:'fullDate'}}</p>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="" for="assignDate">Date and Time of Act</label><br>
+			        <div data-ng-controller="DatepickerDemoCtrl">
+	                    <div class="input-group ui-datepicker">
+	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                        <input type="text" 
+	                               class="form-control"
+	                               datepicker-popup="{{format}}"
+	                               ng-model="actDate"
+	                               show-weeks="false"
+	                               is-open="opened"
+	                               min="today"
+	                               datepicker-options="dateOptions" 
+	                               date-disabled="disabled(date, mode)"
+	                               ng-required="true" 
+	                               close-text="Close">
+	                    </div>
+			        </div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+				        <div data-ng-controller="TimepickerDemoCtrl">
+				            <div class="row">
+				                <div class="col-sm-4">
+				                    <div ng-model="actTime" ng-change="changed()" style="display:inline-block;">
+				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+				                    </div>                    
+				                </div>
+				                <div class="col-sm-4">
+				            		<div class="callout callout-info" style="background-color:white">
+				            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm' }} Hours" disabled>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="" for="assignDate">Actual Date and Time of Act</label><br>
+			        <div data-ng-controller="DatepickerDemoCtrl">
+	                    <div class="input-group ui-datepicker">
+	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                        <input type="text" 
+	                               class="form-control"
+	                               datepicker-popup="{{format}}"
+	                               ng-model="actualDate"
+	                               show-weeks="false"
+	                               is-open="opened"
+	                               min="today"
+	                               datepicker-options="dateOptions" 
+	                               date-disabled="disabled(date, mode)"
+	                               ng-required="true" 
+	                               close-text="Close">
+	                    </div>
+	                    <p>Date is {{actualDate | date:'fullDate'}}</p>
+			        </div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+				        <div data-ng-controller="TimepickerDemoCtrl">
+				            <div class="row">
+				                <div class="col-sm-4">
+				                    <div ng-model="actualTime" ng-change="changed()" style="display:inline-block;">
+				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+				                    </div>                    
+				                </div>
+				                <div class="col-sm-4">
+				            		<div class="callout callout-info" style="background-color:white">
+				            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm' }} Hours" disabled>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-6">
+							<label class="ui-checkbox"><input ng-model="helper" name="helper" type="checkbox" value="option2" checked><span>Helper Required</span></label>
+						</div>
+						<div class="col-md-6">
+							<input ng-model="numberOfHelpers" ng-show="helper" type="text" class="form-control"
+						       id="helperNumber" placeholder="enter number of helpers">
+
+						</div>
+	
+					</div>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<a class="btn btn-primary" id="work-hours" ng-click="timeDifference()"><i class="fa fa-clock-o"></i> Get Work Hours</a>
+					<input type="text" class="form-control" ng-model="workingHour" id="working-hours" disabled="">
+				</div>
+				<div class="col-md-6">
+					
+	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label class="" for="billAmount">Bill Amount</label><br>
+					<input type="text" class="form-control" ng-model="billAmount" id="bill-amount" disabled="">
+				</div>
+				<div class="col-md-6">
+					
+	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label class="" for="billNumber">Bill Number</label><br>
+					<input type="text" class="form-control" ng-model="billNumber" id="bill-number" disabled="">
+				</div>
+				<div class="col-md-6">
+					
+	
 				</div>
 			</div>
 			<div class="form-group">
@@ -63,7 +231,7 @@
 				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
 				          rows="2" required data-min="3" data-max="100"></textarea>
 			</div>
-			<div class="form-group">
+<!-- 			<div class="form-group">
 				<label>Status</label>
 				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio"
 				                               value="active"><span>Active</span></label>
@@ -72,67 +240,44 @@
 				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio" value="suspended"><span>Suspended</span></label>
 				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio"
 				                               value="expired"><span>Expired</span></label>
-			</div>
-			<div class="form-group" ng-if="newCoupon.coupon_type == 'code'">
+			</div> -->
+<!-- 			<div class="form-group" ng-if="newCoupon.coupon_type == 'code'">
 				<label class="" for="newCode">Coupon Code</label>
 				<input ng-model="newCoupon.coupon_code" type="text" class="form-control"
 				       id="newCode" placeholder="Enter Coupon Code" required>
-			</div>
-			<div class="form-group">
+			</div> -->
+<!-- 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-6 col-md-4 col-lg-2">
 						<label class="" for="serviceName">Service Name</label><br>
 								<span class="ui-select">
-					                <select id="serviceName">
-					                	<option>Select Service Type</option>
-					                	<option>Electrical/Plumbing/Carpentry</option>
-					                	<option>Air Conditioner</option>
+					                <select ng-model="oncall_services" id="serviceName" ng-options="service.name for service in oncall_services_list">
+					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
 					                </select>
 					            </span>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
-						<label class="" for="aumPrice">AUM Price</label><br>
+						<label class="" for="serviceCharges">Service Charges</label><br>
 								<span class="ui-select">
-					                <select id="newShop">
-					                	<option>Select Service Price</option>
-					                	<option>Rs.100 / hr / technician</option>
-					                	<option>Rs.1000(Price per unit)</option>
+					                <select ng-model="service_charge" id="serviceCharges" ng-options="service_charge.code as service_charge.service_name for service_charge in service_charges">
+					                	<option value="" ng-hide="service_charge">Select Service Type</option>
+
 					                </select>
 					            </span>
+					            <br>selected: {{service_charge}}
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
-						<label class="" for="serviceQuantity">Quantity</label><br>
-								<span class="ui-select">
-					                <select id="serviceQuantity">
-					                	<option>Select Quantity</option>
-					                	<option>1</option>
-					                	<option>3</option>
-					                </select>
-					            </span>
+ 						<label class="" for="assignDate">Assigned Date</label><br>
+
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
-						<label class="" for="serviceFrequency">Frequency</label><br>
-								<span class="ui-select">
-					                <select id="serviceFrequency">
-					                	<option>Select Frequency</option>
-					                	<option>Unlimited</option>
-					                	<option>Half Yearly</option>
-					                </select>
-					            </span>
+
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
-						<label class="" for="newShop">Assign This Task to</label><br>
-								<span class="ui-select">
-					                <select id="newShop">
-					                		<option>Select Employee</option>
-					                        <option>debo das</option>
-					                        <option>rup das</option>
-					                        <option>Aunupam saikia</option>
-					                        required></select>
-					            </span>
+
 					</div>
 				</div>
-			</div>
+			</div> -->
 <!-- 			<div class="form-group">
 				<label class="">Full Description</label>
 
@@ -229,11 +374,11 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr data-ng-repeat="">
-			<td>{{coupon.title}}</td>
+		<tr>
 			<td></td>
 			<td></td>
-			<td><span class="label label-warning">{{customer.status}}</span></td>
+			<td></td>
+			<td><span class="label label-warning"></span></td>
 			<td>20-05-2014</td>
 			<td>23-05-2014</td>
 			<td>Deep Das</td>
