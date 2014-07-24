@@ -57,7 +57,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="" for="assignDate">Assign Date and Time</label><br>
+						<label class="" for="assignDate">Date and Time of Order</label><br>
 			        <div data-ng-controller="DatepickerDemoCtrl">
 	                    <div class="input-group ui-datepicker">
 	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -85,7 +85,7 @@
 				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 				                    </div>                    
 				                </div>
-				                <div class="col-sm-4">
+				                <div class="col-sm-4" style="display:none">
 				            		<div class="callout callout-info" style="background-color:white">
 				            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }} Hours" disabled>
 				                    </div>
@@ -127,7 +127,7 @@
 				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 				                    </div>                    
 				                </div>
-				                <div class="col-sm-4">
+				                <div class="col-sm-4" style="display:none">
 				            		<div class="callout callout-info" style="background-color:white">
 				            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm' }} Hours" disabled>
 				                    </div>
@@ -171,7 +171,7 @@
 				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 				                    </div>                    
 				                </div>
-				                <div class="col-sm-4">
+				                <div class="col-sm-4"  style="display:none">
 				            		<div class="callout callout-info" style="background-color:white">
 				            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm' }} Hours" disabled>
 				                    </div>
@@ -189,8 +189,7 @@
 						</div>
 						<div class="col-md-6">
 							<input ng-model="numberOfHelpers" ng-show="helper" type="text" class="form-control"
-						       id="helperNumber" placeholder="enter number of helpers">
-
+						       id="number_of_helpers" placeholder="enter number of helpers">
 						</div>
 	
 					</div>					
@@ -206,26 +205,28 @@
 	
 				</div>
 			</div>
+			<div class="space"></div>
 			<div class="row">
 				<div class="col-md-6">
-					<label class="" for="billAmount">Bill Amount</label><br>
-					<input type="text" class="form-control" ng-model="billAmount" id="bill-amount" disabled="">
+					<a class="btn btn-primary" id="bill-amount" ng-click="getBillAmount()"><i class="fa fa-inr"></i> Get Billing Price</a>
+<!-- 					<label class="" for="billAmount">Bill Amount</label><br>
+ -->					<input type="text" class="form-control" ng-model="billAmount" id="bill_amount" disabled="">
 				</div>
 				<div class="col-md-6">
-					
-	
 				</div>
 			</div>
+
+			<div class="space"></div>
 			<div class="row">
 				<div class="col-md-6">
 					<label class="" for="billNumber">Bill Number</label><br>
-					<input type="text" class="form-control" ng-model="billNumber" id="bill-number" disabled="">
+					<input type="text" class="form-control" ng-model="billNumber" id="bill-number" placeholder="Enter bill number">
 				</div>
 				<div class="col-md-6">
-					
-	
 				</div>
 			</div>
+
+			<div class="space"></div>
 			<div class="form-group">
 				<label class="" for="newShortDesc">Short Description</label>
 				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
