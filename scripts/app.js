@@ -1904,7 +1904,11 @@
         }).length, $scope.$on("taskRemaining:changed", function (event, count) {
             return $scope.taskRemainingCount = count
         })
-    }])
+    }]).service('Oncall', function ($resource) {
+        return $resource('api/oncall/:id', {}, {
+            update: {method:'PUT'}
+        });
+    });
 }.call(this), function() {
     "use strict";
 }.call(this);

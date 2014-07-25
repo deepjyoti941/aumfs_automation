@@ -23,6 +23,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.actTime = date;
         $scope.actualTime = date;
         $scope.numberOfHelpers = 0;
+
         // var now  = "04/09/2013 15:00";
         // var then = "04/09/2013 14:00";
 

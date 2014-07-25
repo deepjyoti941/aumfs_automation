@@ -1,9 +1,7 @@
 // "use strict";
-// angular.module("app.timedifference", [])
-//     .factory('myService', function () {
-//         return {
-//             say: function () {
-//                 return "Hello World";
-//             }
-//         };
-//     });
+// angular.module("app", [])
+// 	.service('Wine', function ($resource) {
+// 	    return $resource('api/wines/:wineId', {}, {
+// 	        update: {method:'PUT'}
+// 	    });
+// 	});
