@@ -1,253 +1,257 @@
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+      <i>({{match.model.capital}})</i>
+  </a>
+</script>
+
 <div class="page page-oncall" ng-controller="oncallCustomerCtrl">
 <section  data-ng-cloak>
 
 <accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
 	<accordion-group heading="Add New Customer">
+Selected Country: {{selectedCountries}}
 
-		<form class="" role="form" name="newCustomerForm">
+			<div class="form-group">
+				<label class="" for="existingCustomer">Search for existing customer</label>
+                  <input type="text" ng-model="selectedCountries" placeholder="Search Customer" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+			</div>
+
+		<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm()">
 			<div class="form-group">
 				<label class="" for="newTitle">Customer Name</label>
-				<input ng-model="newCustomerForm.customer_name" type="text" name="customer_name" class="form-control"
-				       id="newTitle"
-				       placeholder="Enter Customer Name" required>
+				<input  type="text" ng-model="newCustomer.customer_name" name="customer_name" class="form-control" id="newTitle"
+				       placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
 			</div>
 			<div class="form-group">
 				<label class="" for="customerAddress">Customer Address</label>
-				<input name="customer_address" ng-model="newCustomerForm.customer_address" type="text" class="form-control"
+				<input name="customer_address" ng-model="newCustomer.customer_address" type="text" class="form-control"
 				       id="customer_address" placeholder="Enter Customer Address" required>
 			</div>
 			<div class="form-group">
 				<label class="" for="customerPhone">Customer Phone</label>
-				<input name="customer_phone" ng-model="newCustomerForm.customer_phone" type="text" class="form-control"
+				<input name="customer_phone" ng-model="newCustomer.customer_phone" type="text" class="form-control"
 				       id="customer_phone" placeholder="Enter Customer Phone Number" required>
 			</div>
 			<div class="row">
 				<div class="col-md-2 col-md-offset-10">
-					<input type="submit" ng-click="submitData(newCustomerForm)" class="btn btn-info" value="Add Customer">
+					<input type="submit" class="btn btn-info" ng-click="show_oncall =! show_oncall" value="Add New Customer">
 				</div>
 			</div>
-
 		</form>
-		<form class="" role="form" name="oncallForm" ng-submit="submitOncall()">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
-						<label class="" for="serviceName">Service Name</label><br>
-							<span class="ui-select">
-				                <select ng-model="oncall_services" id="serviceName" ng-options="service.name for service in oncall_services_list">
-				                	<option value="" ng-hide="oncall_services">Select Service Type</option>
-				                </select>
-				            </span>
-					</div>					
-				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-						<label class="" for="employeeName">Assign This Task to</label><br>
+
+		
+		<div ng-show="show_oncall">
+			<form class="" role="form" name="oncallForm" ng-submit="submitOncall()">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="" for="serviceName">Service Name</label><br>
 								<span class="ui-select">
-					                <select id="employeeName">
-				                		<option>Select Employee</option>
-				                        <option>debo das</option>
-				                        <option>rup das</option>
-				                        <option>Aunupam saikia</option>
-				                        required></select>
+					                <select ng-model="oncall_services" id="serviceName" ng-options="service.name for service in oncall_services_list">
+					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
+					                </select>
 					            </span>
+						</div>					
 					</div>
-				</div>
-				<div class="col-md-4">
-				</div>
-			</div>
-
-<!-- 			<div class="form-group">
-				<label class="" for="serviceCharges">Service Charges</label><br>
-						<span class="ui-select">
-			                <select ng-model="service_charge" id="serviceCharges" ng-options="service_charge.code as service_charge.service_name for service_charge in service_charges">
-			                	<option value="" ng-hide="service_charge">Select Service Type</option>
-
-			                </select>
-			            </span>
-			            <br>selected: {{service_charge}}				
-			</div> -->
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="" for="assignDate">Date and Time of Order</label><br>
-			        <div data-ng-controller="DatepickerDemoCtrl">
-	                    <div class="input-group ui-datepicker">
-	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-	                        <input type="text" 
-	                               class="form-control"
-	                               datepicker-popup="{{format}}"
-	                               ng-model="assignDate"
-	                               show-weeks="false"
-	                               is-open="opened"
-	                               min="today"
-	                               datepicker-options="dateOptions" 
-	                               date-disabled="disabled(date, mode)"
-	                               ng-required="true" 
-	                               close-text="Close">
-	                    </div>
-			        </div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-				        <div data-ng-controller="TimepickerDemoCtrl">
-				            <div class="row">
-				                <div class="col-sm-4">
-				                    <div ng-model="assignTime" ng-change="changed()" style="display:inline-block;">
-				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-				                    </div>                    
-				                </div>
-				                <div class="col-sm-4" style="display:none">
-				            		<div class="callout callout-info" style="background-color:white">
-				            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }} Hours" disabled>
-				                    </div>
-				                </div>
-				            </div>
-				        </div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="" for="assignDate">Date and Time of Act</label><br>
-			        <div data-ng-controller="DatepickerDemoCtrl">
-	                    <div class="input-group ui-datepicker">
-	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-	                        <input type="text" 
-	                               class="form-control"
-	                               datepicker-popup="{{format}}"
-	                               ng-model="actDate"
-	                               show-weeks="false"
-	                               is-open="opened"
-	                               min="today"
-	                               datepicker-options="dateOptions" 
-	                               date-disabled="disabled(date, mode)"
-	                               ng-required="true" 
-	                               close-text="Close">
-	                    </div>
-			        </div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-				        <div data-ng-controller="TimepickerDemoCtrl">
-				            <div class="row">
-				                <div class="col-sm-4">
-				                    <div ng-model="actTime" ng-change="changed()" style="display:inline-block;">
-				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-				                    </div>                    
-				                </div>
-				                <div class="col-sm-4" style="display:none">
-				            		<div class="callout callout-info" style="background-color:white">
-				            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm' }} Hours" disabled>
-				                    </div>
-				                </div>
-				            </div>
-				        </div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="" for="assignDate">Completion Date and Time of Act</label><br>
-			        <div data-ng-controller="DatepickerDemoCtrl">
-	                    <div class="input-group ui-datepicker">
-	                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-	                        <input type="text" 
-	                               class="form-control"
-	                               datepicker-popup="{{format}}"
-	                               ng-model="actualDate"
-	                               show-weeks="false"
-	                               is-open="opened"
-	                               min="today"
-	                               datepicker-options="dateOptions" 
-	                               date-disabled="disabled(date, mode)"
-	                               ng-required="true" 
-	                               close-text="Close">
-	                    </div>
-	                    <p>Date is {{actualDate | date:'fullDate'}}</p>
-			        </div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-				        <div data-ng-controller="TimepickerDemoCtrl">
-				            <div class="row">
-				                <div class="col-sm-4">
-				                    <div ng-model="actualTime" ng-change="changed()" style="display:inline-block;">
-				                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-				                    </div>                    
-				                </div>
-				                <div class="col-sm-4"  style="display:none">
-				            		<div class="callout callout-info" style="background-color:white">
-				            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm' }} Hours" disabled>
-				                    </div>
-				                </div>
-				            </div>
-				        </div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="row">
-						<div class="col-md-6">
-							<label class="ui-checkbox"><input ng-model="helper" name="helper" type="checkbox" value="option2" checked><span>Helper Required</span></label>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="" for="employeeName">Assign This Task to</label><br>
+									<span class="ui-select">
+						                <select id="employeeName">
+					                		<option>Select Employee</option>
+					                        <option>debo das</option>
+					                        <option>rup das</option>
+					                        <option>Aunupam saikia</option>
+					                        required></select>
+						            </span>
 						</div>
-						<div class="col-md-6">
-							<input ng-model="numberOfHelpers" ng-show="helper" type="text" class="form-control"
-						       id="number_of_helpers" placeholder="enter number of helpers">
+					</div>
+					<div class="col-md-4">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="" for="assignDate">Date and Time of Order</label><br>
+				        <div data-ng-controller="DatepickerDemoCtrl">
+		                    <div class="input-group ui-datepicker">
+		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		                        <input type="text" 
+		                               class="form-control"
+		                               datepicker-popup="{{format}}"
+		                               ng-model="assignDate"
+		                               show-weeks="false"
+		                               is-open="opened"
+		                               min="today"
+		                               datepicker-options="dateOptions" 
+		                               date-disabled="disabled(date, mode)"
+		                               ng-required="true" 
+		                               close-text="Close">
+		                    </div>
+				        </div>
 						</div>
-	
-					</div>					
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+					        <div data-ng-controller="TimepickerDemoCtrl">
+					            <div class="row">
+					                <div class="col-sm-4">
+					                    <div ng-model="assignTime" ng-change="changed()" style="display:inline-block;">
+					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+					                    </div>                    
+					                </div>
+					                <div class="col-sm-4" style="display:none">
+					            		<div class="callout callout-info" style="background-color:white">
+					            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }} Hours" disabled>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<a class="btn btn-primary" id="work-hours" ng-click="timeDifference()"><i class="fa fa-clock-o"></i> Get Work Hours</a>
-					<input type="text" class="form-control" ng-model="workingHour" id="working-hours" disabled="">
-				</div>
-				<div class="col-md-6">
-					
-	
-				</div>
-			</div>
-			<div class="space"></div>
-			<div class="row">
-				<div class="col-md-6">
-					<a class="btn btn-primary" id="bill-amount" ng-click="getBillAmount()"><i class="fa fa-inr"></i> Get Billing Price</a>
-<!-- 					<label class="" for="billAmount">Bill Amount</label><br>
- -->					<input type="text" class="form-control" ng-model="billAmount" id="bill_amount" disabled="">
-				</div>
-				<div class="col-md-6">
-				</div>
-			</div>
 
-			<div class="space"></div>
-			<div class="row">
-				<div class="col-md-6">
-					<label class="" for="billNumber">Bill Number</label><br>
-					<input type="text" class="form-control" ng-model="billNumber" id="bill-number" placeholder="Enter bill number">
-				</div>
-				<div class="col-md-6">
-				</div>
-			</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="" for="assignDate">Date and Time of Act</label><br>
+				        <div data-ng-controller="DatepickerDemoCtrl">
+		                    <div class="input-group ui-datepicker">
+		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		                        <input type="text" 
+		                               class="form-control"
+		                               datepicker-popup="{{format}}"
+		                               ng-model="actDate"
+		                               show-weeks="false"
+		                               is-open="opened"
+		                               min="today"
+		                               datepicker-options="dateOptions" 
+		                               date-disabled="disabled(date, mode)"
+		                               ng-required="true" 
+		                               close-text="Close">
+		                    </div>
+				        </div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+					        <div data-ng-controller="TimepickerDemoCtrl">
+					            <div class="row">
+					                <div class="col-sm-4">
+					                    <div ng-model="actTime" ng-change="changed()" style="display:inline-block;">
+					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+					                    </div>   
 
-			<div class="space"></div>
-			<div class="form-group">
-				<label class="" for="newShortDesc">Short Description</label>
-				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
-				          rows="2" required data-min="3" data-max="100"></textarea>
-			</div>
-			<hr/>
-			<input type="submit" class="btn btn-info" value="Create Order">
-		</form>
+					                </div>
+					                <div class="col-sm-4" style="display:none">
+					            		<div class="callout callout-info" style="background-color:white">
+					            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm' }} Hours" disabled>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="" for="assignDate">Completion Date and Time of Act</label><br>
+				        <div data-ng-controller="DatepickerDemoCtrl">
+		                    <div class="input-group ui-datepicker">
+		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		                        <input type="text" 
+		                               class="form-control"
+		                               datepicker-popup="{{format}}"
+		                               ng-model="actualDate"
+		                               show-weeks="false"
+		                               is-open="opened"
+		                               min="today"
+		                               datepicker-options="dateOptions" 
+		                               date-disabled="disabled(date, mode)"
+		                               ng-required="true" 
+		                               close-text="Close">
+		                    </div>
+		                    <p>Date is {{actualDate | date:'fullDate'}}</p>
+				        </div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+					        <div data-ng-controller="TimepickerDemoCtrl">
+					            <div class="row">
+					                <div class="col-sm-4">
+					                    <div ng-model="actualTime" ng-change="changed()" style="display:inline-block;">
+					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+					                    </div>                    
+					                </div>
+					                <div class="col-sm-4"  style="display:none">
+					            		<div class="callout callout-info" style="background-color:white">
+					            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm' }} Hours" disabled>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-6">
+								<label class="ui-checkbox"><input ng-model="helper" name="helper" type="checkbox" value="option2" checked><span>Helper Required</span></label>
+							</div>
+							<div class="col-md-6">
+								<input ng-model="numberOfHelpers" ng-show="helper" type="text" class="form-control"
+							       id="number_of_helpers" placeholder="enter number of helpers">
+							</div>
+		
+						</div>					
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<a class="btn btn-primary" id="work-hours" ng-click="timeDifference()"><i class="fa fa-clock-o"></i> Get Work Hours</a>
+						<input type="text" class="form-control" ng-model="workingHour" id="working-hours" disabled="">
+					</div>
+					<div class="col-md-6">
+						
+		
+					</div>
+				</div>
+				<div class="space"></div>
+				<div class="row">
+					<div class="col-md-6">
+						<a class="btn btn-primary" id="bill-amount" ng-click="getBillAmount()"><i class="fa fa-inr"></i> Get Billing Price</a>
+					<input type="text" class="form-control" ng-model="billAmount" id="bill_amount" disabled="">
+					</div>
+					<div class="col-md-6">
+					</div>
+				</div>
+
+				<div class="space"></div>
+				<div class="row">
+					<div class="col-md-6">
+						<label class="" for="billNumber">Bill Number</label><br>
+						<input type="text" class="form-control" ng-model="billNumber" id="bill-number" placeholder="Enter bill number">
+					</div>
+					<div class="col-md-6">
+					</div>
+				</div>
+
+				<div class="space"></div>
+				<div class="form-group">
+					<label class="" for="newShortDesc">Short Description</label>
+					<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
+					          rows="2" required data-min="3" data-max="100"></textarea>
+				</div>
+				<hr/>
+				<input type="submit" class="btn btn-info" value="Create Order">
+			</form>
+		</div>
 	</accordion-group>
 </accordion>
 

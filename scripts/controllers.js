@@ -16,24 +16,37 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         });
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
-}]).controller("oncallCustomerCtrl", ["$scope","$filter","timeDifference", function($scope,$filter,timeDifference) {
+}]).controller("oncallCustomerCtrl", ["$scope","$http","$filter","timeDifference", function($scope,$http,$filter,timeDifference) {
         var date = new Date();
         $scope.assignDate = date;
         $scope.assignTime = date;
         $scope.actTime = date;
         $scope.actualTime = date;
         $scope.numberOfHelpers = 0;
+        $scope.newCustomer = {};
+        $scope.oncallDetails = {};
+        $scope.somebinding = $scope.selectedCountries;
 
-        // var now  = "04/09/2013 15:00";
-        // var then = "04/09/2013 14:00";
+        $http.post('api/get_customer.php', $scope.newCustomer)
+                .success(function(data) {
+                
+            }); 
 
-        // var ms = moment(now,"DD/MM/YYYY HH:mm").diff(moment(then,"DD/MM/YYYY HH:mm"));
-        // var d = moment.duration(ms);
-        // var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm");
-        // console.log(s);
-        // $scope.timediff = function(start, end) {
-        //   return  moment.utc(moment(end.diff(moment(start)))).format("mm")
-        // }
+        $scope.processNewCustomerForm = function() {
+            $scope.newCustomer.action = 'save_new_customer';
+            $http.post('api/process.php', $scope.newCustomer)
+                .success(function(data) {
+                
+            });       
+        }
+
+        $scope.submitOncall = function() {
+            $scope.oncallDetails.action = 'save_oncall_details';
+            $http.post('api/process.php', $scope.oncallDetails)
+                .success(function(data) {
+                
+            });            
+        }
 
         $scope.getBillAmount = function() {
             var working_hours =  $('#working-hours').val();
@@ -81,14 +94,17 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var diff = hour + ":" + min.substring(0,2);
             $('#working-hours').val(hour);
         };
-
-
-
+          getCountries(); // Load all countries with capitals
+          function getCountries(){  
+          $http.get("api/getCustomer.php").success(function(data){
+                $scope.countries = data;
+               });
+          };
         $scope.oncall_services_list = [
-            {name:'Electrical'},
-            {name:'Plumbing'},
-            {name:'Carpentry'},
-            {name:'Air Conditioner repair'}
+            {name:'Electrical' , id:1},
+            {name:'Plumbing' , id:2 },
+            {name:'Carpentry', id:3},
+            {name:'Air Conditioner repair', id:4}
         ];
         $scope.service_charges = [
             {service_name:"1st Hour", price:200,code:"1h"},
