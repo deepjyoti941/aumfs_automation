@@ -32,7 +32,10 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                 
             }); 
 
-        $scope.processNewCustomerForm = function() {
+        $scope.processNewCustomerForm = function(selectedCountries) {
+            $scope.newCustomer.customer_name = selectedCountries['id'];
+            $scope.newCustomer.customer_address = selectedCountries['capital'];
+            $scope.newCustomer.customer_phone = selectedCountries['country'];
             $scope.newCustomer.action = 'save_new_customer';
             $http.post('api/process.php', $scope.newCustomer)
                 .success(function(data) {
