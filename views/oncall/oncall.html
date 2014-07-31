@@ -10,18 +10,15 @@
 
 <accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
 	<accordion-group heading="Add New Customer">
-Selected Country: {{selectedCountries}}
-
 			<div class="form-group">
 				<label class="" for="existingCustomer">Search for existing customer</label>
-                  <input type="text" ng-model="selectedCountries" placeholder="Search Customer" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+                  <input type="text" ng-model="selectedCountries" placeholder="Enter Customer Name Here" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
 			</div>
 
 		<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCountries)">
 			<div class="form-group">
 				<label class="" for="newTitle">Customer Name</label>
-				<input  type="text" ng-model="selectedCountries.id" name="customer_name" class="form-control" id="newTitle"
-				       placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
+				<input  type="text" ng-model="selectedCountries.id" name="customer_name" class="form-control" id="existing_customer_id" placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
 			</div>
 			<div class="form-group">
 				<label class="" for="customerAddress">Customer Address</label>
@@ -33,22 +30,45 @@ Selected Country: {{selectedCountries}}
 				<input name="customer_phone" ng-model="selectedCountries.country" type="text" class="form-control"
 				       id="customer_phone" placeholder="Enter Customer Phone Number" required>
 			</div>
-			<div class="row">
+<!-- 			<div class="row">
 				<div class="col-md-2 col-md-offset-10">
 					<input type="submit" class="btn btn-info" ng-click="show_oncall =! show_oncall" value="Add New Customer">
 				</div>
+			</div> -->
+			<div class="row">
+				<div class="col-md-4">
+					<label class="ui-checkbox"><input ng-model="new_customer" name="new_customer_chk" type="checkbox" value="option2"><span>Is it a New Customer</span></label>
+				</div>
+				<div class="col-md-4">
+					<label class="ui-checkbox"><input id="existing_customer_chk" ng-model="existing_customer" name="existing_customer" ng-change="change(existing_customer)" type="checkbox"><span>Is it a Existing Customer</span></label>
+				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<input type="submit" class="btn btn-info" ng-show="new_customer" value="Add New Customer">
+				</div>
+			</div>	
 		</form>
+		</br>
+		<hr>
+		</br>
 
-		
-		<div ng-show="show_oncall">
-			<form class="" role="form" name="oncallForm" ng-submit="submitOncall()">
+
+		<div>
+		<form class="" role="form" name="oncallForm">
+			<div class="row">
+				<div class="col-md-6">
+					<label class="" for="customerId">Customer Id</label><br>
+					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id"><br>
+
+				</div>
+			</div>
 				<div class="row">
 					<div class="col-md-4">
 						<div class="form-group">
 							<label class="" for="serviceName">Service Name</label><br>
 								<span class="ui-select">
-					                <select ng-model="oncall_services" id="serviceName" ng-options="service.name for service in oncall_services_list">
+					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.name for service in oncall_services_list track by service.id">
 					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
 					                </select>
 					            </span>
@@ -64,7 +84,7 @@ Selected Country: {{selectedCountries}}
 					                        <option>rup das</option>
 					                        <option>Aunupam saikia</option>
 					                        required></select>
-						            </span>
+					            </span>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -146,7 +166,7 @@ Selected Country: {{selectedCountries}}
 					                </div>
 					                <div class="col-sm-4" style="display:none">
 					            		<div class="callout callout-info" style="background-color:white">
-					            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm' }} Hours" disabled>
+					            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm:ss' }} Hours" disabled>
 					                    </div>
 					                </div>
 					            </div>
@@ -175,7 +195,7 @@ Selected Country: {{selectedCountries}}
 		                               ng-required="true" 
 		                               close-text="Close">
 		                    </div>
-		                    <p>Date is {{actualDate | date:'fullDate'}}</p>
+		                    <p>Date is {{actualDate | date:'yyyy-MM-dd'}}</p>
 				        </div>
 						</div>
 					</div>
@@ -188,9 +208,9 @@ Selected Country: {{selectedCountries}}
 					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 					                    </div>                    
 					                </div>
-					                <div class="col-sm-4"  style="display:none">
+					                <div class="col-sm-4" style="display:none">
 					            		<div class="callout callout-info" style="background-color:white">
-					            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm' }} Hours" disabled>
+					            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm:ss' }} Hours" disabled>
 					                    </div>
 					                </div>
 					            </div>
@@ -249,7 +269,7 @@ Selected Country: {{selectedCountries}}
 					          rows="2" required data-min="3" data-max="100"></textarea>
 				</div>
 				<hr/>
-				<input type="submit" class="btn btn-info" value="Create Order">
+				<input type="submit" class="btn btn-info" value="Create Order" ng-click="submitOncall()">
 			</form>
 		</div>
 	</accordion-group>

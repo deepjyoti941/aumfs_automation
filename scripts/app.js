@@ -752,7 +752,7 @@
         }, $scope.dateOptions = {
             "year-format": "'yy'",
             "starting-day": 1
-        }, $scope.formats = ["dd-MMMM-yyyy", "yyyy/MM/dd", "shortDate"], $scope.format = $scope.formats[0]
+        }, $scope.formats = ["yyyy-MM-dd","dd-MMMM-yyyy", "yyyy/MM/dd", "shortDate"], $scope.format = $scope.formats[0]
     }]).controller("TimepickerDemoCtrl", ["$scope", function ($scope) {
         return $scope.mytime = new Date, $scope.hstep = 1, $scope.mstep = 15, $scope.options = {
             hstep: [1, 2, 3],

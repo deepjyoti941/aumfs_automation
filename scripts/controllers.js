@@ -16,7 +16,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         });
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
-}]).controller("oncallCustomerCtrl", ["$scope","$http","$filter","timeDifference", function($scope,$http,$filter,timeDifference) {
+}]).controller("oncallCustomerCtrl", ["$scope","$rootScope","$http","$filter","timeDifference", function($scope,$rootScope,$http,$filter,timeDifference) {
         var date = new Date();
         $scope.assignDate = date;
         $scope.assignTime = date;
@@ -24,31 +24,55 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.actualTime = date;
         $scope.numberOfHelpers = 0;
         $scope.newCustomer = {};
-        $scope.oncallDetails = {};
+        $scope.oncallDetails = {}; 
+        $scope.oncallCustomer = {};
         $scope.somebinding = $scope.selectedCountries;
+        
+
 
         $http.post('api/get_customer.php', $scope.newCustomer)
                 .success(function(data) {
                 
             }); 
+        
+        $scope.change = function($event) {
+            if($event == true){
+                console.log('clicked');
+                var existing_customer_id =  $('#existing_customer_id').val();
+                $scope.oncallCustomer.customer_id = existing_customer_id;
+            }else {
+                $scope.customer_id = 'not an existing customer';
+            };
+            
+        }
+
+        //angular.element("#customer_id").val()
 
         $scope.processNewCustomerForm = function(selectedCountries) {
+            $rootScope.existing_customer_id = selectedCountries['id'];
             $scope.newCustomer.customer_name = selectedCountries['id'];
             $scope.newCustomer.customer_address = selectedCountries['capital'];
             $scope.newCustomer.customer_phone = selectedCountries['country'];
-            $scope.newCustomer.action = 'save_new_customer';
-            $http.post('api/process.php', $scope.newCustomer)
+            $scope.newCustomer.method = 'save_new_customer';
+            
+            // $http.post('api/customer_controller.php', $scope.newCustomer).success(function(data){
+            //     // $scope.countries = data;
+            //     console.log(data);
+            // });
+
+            $http.post('api/customer_controller.php', $scope.newCustomer)
                 .success(function(data) {
-                
+                $scope.oncallCustomer.customer_id = data.customer_id;
             });       
         }
 
         $scope.submitOncall = function() {
-            $scope.oncallDetails.action = 'save_oncall_details';
-            $http.post('api/process.php', $scope.oncallDetails)
-                .success(function(data) {
-                
-            });            
+            alert('clicked');
+            // $scope.oncallDetails.action = 'save_oncall_details';
+            // $http.post('api/process.php', $scope.oncallDetails)
+            //     .success(function(data) {
+            //     console.log(data);
+            // });            
         }
 
         $scope.getBillAmount = function() {
@@ -104,10 +128,10 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                });
           };
         $scope.oncall_services_list = [
-            {name:'Electrical' , id:1},
-            {name:'Plumbing' , id:2 },
-            {name:'Carpentry', id:3},
-            {name:'Air Conditioner repair', id:4}
+            {name:'Electrical' , id:12},
+            {name:'Plumbing' , id:22 },
+            {name:'Carpentry', id:33},
+            {name:'Air Conditioner repair', id:44}
         ];
         $scope.service_charges = [
             {service_name:"1st Hour", price:200,code:"1h"},

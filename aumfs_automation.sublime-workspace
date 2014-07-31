@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"customer",
+				"customer_phone"
+			],
+			[
+				"new",
+				"newCustomer"
+			],
+			[
+				"pro",
+				"processNewCustomerForm"
+			],
+			[
+				"sc",
+				"scope"
+			],
+			[
 				"on",
 				"oncallDetails"
 			],
@@ -55,7 +71,7 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 2420,
+				"buffer_size": 2429,
 				"line_ending": "Windows"
 			}
 		},
@@ -68,10 +84,26 @@
 			}
 		},
 		{
+			"file": "api/config/mysql_config.php",
+			"settings":
+			{
+				"buffer_size": 385,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "api/getCustomer.php",
 			"settings":
 			{
-				"buffer_size": 369,
+				"buffer_size": 367,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "api/customer_controller.php",
+			"settings":
+			{
+				"buffer_size": 959,
 				"line_ending": "Windows"
 			}
 		},
@@ -111,7 +143,7 @@
 			"file": "scripts/controllers.js",
 			"settings":
 			{
-				"buffer_size": 7002,
+				"buffer_size": 8246,
 				"line_ending": "Windows"
 			}
 		},
@@ -119,7 +151,7 @@
 			"file": "views/oncall/oncall.html",
 			"settings":
 			{
-				"buffer_size": 15582,
+				"buffer_size": 16495,
 				"line_ending": "Windows"
 			}
 		},
@@ -160,7 +192,7 @@
 			"file": "scripts/app.js",
 			"settings":
 			{
-				"buffer_size": 71870,
+				"buffer_size": 71883,
 				"line_ending": "Windows"
 			}
 		},
@@ -225,6 +257,8 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/aumfs_automation/aumfs/api/config/mysql_config.php",
+		"/C/wamp/www/aumfs_automation/aumfs/scripts/custom.js",
 		"/C/wamp/www/angularcode_autocomplete/includes/config.php",
 		"/C/wamp/www/angularcode_autocomplete/ajax/getCountries.php",
 		"/C/wamp/www/aumfs_automation/aumfs/scripts/libs/toastr.js",
@@ -264,6 +298,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"oncall_services_list",
+			"oncallCustomer.customer_id",
+			"customer_id",
+			"oncallCustomer.customer_id",
+			"oncallCustomer",
+			"customer_id",
+			"existing_customer_id",
+			"setHours",
+			"customer_id",
+			"existing_customer_id",
+			"selectedCountries",
 			"getBillAmount",
 			"AppCtrl",
 			"services",
@@ -313,7 +358,7 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 10,
 			"sheets":
 			[
 				{
@@ -322,15 +367,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2420,
+						"buffer_size": 2429,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2401,
-								2401
+								2409,
+								2409
 							]
 						],
 						"settings":
@@ -340,10 +385,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 580.0,
+						"translation.y": 506.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -359,8 +404,36 @@
 						"selection":
 						[
 							[
-								95,
-								95
+								169,
+								169
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "api/config/mysql_config.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 385,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								233,
+								233
 							]
 						],
 						"settings":
@@ -375,20 +448,48 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "api/getCustomer.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 369,
+						"buffer_size": 367,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								189,
-								189
+								364,
+								324
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "api/customer_controller.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 959,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								237,
+								237
 							]
 						],
 						"settings":
@@ -403,7 +504,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "/C/Users/deepjyoti/Documents/angular-http-auth-gh-pages/index.html",
 					"semi_transient": false,
 					"settings":
@@ -433,7 +534,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "scripts/services.js",
 					"semi_transient": false,
 					"settings":
@@ -445,8 +546,8 @@
 						"selection":
 						[
 							[
-								3,
-								197
+								196,
+								196
 							]
 						],
 						"settings":
@@ -457,11 +558,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "views/oncall/oncall-charges.html",
 					"semi_transient": false,
 					"settings":
@@ -486,11 +587,11 @@
 						"translation.y": 200.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
 					"semi_transient": false,
 					"settings":
@@ -502,8 +603,8 @@
 						"selection":
 						[
 							[
-								2424,
-								2424
+								1350,
+								1350
 							]
 						],
 						"settings":
@@ -513,27 +614,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1400.0,
+						"translation.y": 460.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "scripts/controllers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7002,
+						"buffer_size": 8246,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1495,
-								1495
+								5886,
+								5886
 							]
 						],
 						"settings":
@@ -543,27 +644,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 380.0,
+						"translation.y": 2340.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "views/oncall/oncall.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15582,
+						"buffer_size": 16495,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1148,
-								1148
+								2319,
+								2319
 							]
 						],
 						"settings":
@@ -572,14 +673,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 113.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "scripts/ui-bootstrap-tpls-0.9.0.js",
 					"semi_transient": false,
 					"settings":
@@ -591,8 +692,8 @@
 						"selection":
 						[
 							[
-								108307,
-								108307
+								108446,
+								108446
 							]
 						],
 						"settings":
@@ -605,11 +706,11 @@
 						"translation.y": 65824.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "scripts/moment.js",
 					"semi_transient": false,
 					"settings":
@@ -636,11 +737,11 @@
 						"translation.y": 51530.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "views/otj/otj.html",
 					"semi_transient": false,
 					"settings":
@@ -652,8 +753,8 @@
 						"selection":
 						[
 							[
-								2537,
-								2537
+								335,
+								335
 							]
 						],
 						"settings":
@@ -662,14 +763,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 143.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"file": "views/otj/otj-jobs.html",
 					"semi_transient": false,
 					"settings":
@@ -694,24 +795,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"file": "scripts/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 71870,
+						"buffer_size": 71883,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								57393,
-								57405
+								26033,
+								26033
 							]
 						],
 						"settings":
@@ -720,15 +821,15 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 31901.0,
+						"translation.x": 0.0,
+						"translation.y": 15161.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 16,
 					"file": "scripts/directives.js",
 					"semi_transient": false,
 					"settings":
@@ -740,8 +841,8 @@
 						"selection":
 						[
 							[
-								247,
-								247
+								280,
+								280
 							]
 						],
 						"settings":
@@ -753,11 +854,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 17,
 					"file": "views/dashboard.html",
 					"semi_transient": false,
 					"settings":
@@ -783,11 +884,11 @@
 						"translation.y": 320.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 18,
 					"file": "views/nav.html",
 					"semi_transient": false,
 					"settings":
@@ -813,7 +914,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 18,
 					"type": "text"
 				}
 			]
@@ -870,6 +971,18 @@
 				"scripts\\app.js"
 			],
 			[
+				"oncall",
+				"views\\oncall\\oncall.html"
+			],
+			[
+				"con",
+				"scripts\\controllers.js"
+			],
+			[
+				"co",
+				"scripts\\controllers.js"
+			],
+			[
 				"on",
 				"views\\oncall\\oncall.html"
 			],
@@ -884,14 +997,6 @@
 			[
 				"contro",
 				"scripts\\controllers.js"
-			],
-			[
-				"con",
-				"scripts\\controllers.js"
-			],
-			[
-				"oncall",
-				"views\\oncall\\oncall.html"
 			],
 			[
 				"nav",
