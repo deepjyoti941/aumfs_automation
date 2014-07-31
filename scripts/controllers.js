@@ -62,17 +62,47 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
             $http.post('api/customer_controller.php', $scope.newCustomer)
                 .success(function(data) {
-                $scope.oncallCustomer.customer_id = data.customer_id;
+                    if (data.status == true) {
+                            toastr.success("Customer Added successfully");
+                            toastr.options = {
+                              "closeButton": false,
+                              "debug": false,
+                              "positionClass": "toast-top-right",
+                              "onclick": null,
+                              "showDuration": "800",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                            }
+                        $scope.oncallCustomer.customer_id = data.customer_id;
+ 
+                    };
             });       
         }
 
         $scope.submitOncall = function() {
-            alert('clicked');
+            var post_data = {};
+            post_data.customer_id = angular.element('#customer_id').val();
+            post_data.service_type = angular.element('#serviceName').val();
+            post_data.employee_list = angular.element('#employee_list').val();
+            post_data.act_date = angular.element('#actDate').val();
+            post_data.act_time = angular.element('#actTime').val();
+            post_data.completion_date = angular.element('#actualDate').val();
+            post_data.completion_time = angular.element('#actualTime').val();
+            post_data.number_of_helpers = angular.element('#number_of_helpers').val();
+            post_data.working_hours = angular.element('#working-hours').val();
+            post_data.bill_amount = angular.element('#bill_amount').val();
+            post_data.bill_number = angular.element('#bill-number').val();
+            post_data.short_desc = angular.element('#shortDesc').val();
             // $scope.oncallDetails.action = 'save_oncall_details';
-            // $http.post('api/process.php', $scope.oncallDetails)
-            //     .success(function(data) {
-            //     console.log(data);
-            // });            
+            $http.post('api/oncall_controller.php', post_data)
+                .success(function(data) {
+                //console.log(data);
+            });            
         }
 
         $scope.getBillAmount = function() {
@@ -123,8 +153,8 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         };
           getCountries(); // Load all countries with capitals
           function getCountries(){  
-          $http.get("api/getCustomer.php").success(function(data){
-                $scope.countries = data;
+          $http.get("api/customerlist.php").success(function(data){
+                $scope.customers = data;
                });
           };
         $scope.oncall_services_list = [
@@ -133,6 +163,13 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             {name:'Carpentry', id:33},
             {name:'Air Conditioner repair', id:44}
         ];
+
+        $scope.service_employee_list = [
+            {name:'dev das', id:'E1'},
+            {name:'deep das', id:'E2'},
+            {name:'rohit sharma', id:'E3'},
+        ];
+
         $scope.service_charges = [
             {service_name:"1st Hour", price:200,code:"1h"},
             {service_name:"2nd to 5th", price:150, code:"2t5h"},

@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="customTemplate.html">
   <a>
       <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
-      <i>({{match.model.capital}})</i>
+      <i>({{match.model.customer_name}})</i>
   </a>
 </script>
 
@@ -11,8 +11,10 @@
 <accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
 	<accordion-group heading="Add New Customer">
 			<div class="form-group">
-				<label class="" for="existingCustomer">Search for existing customer</label>
-                  <input type="text" ng-model="selectedCountries" placeholder="Enter Customer Name Here" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+			{{selectedCustomer}}
+             <input type="text" ng-model="selectedCustomer" placeholder="Search for existing customer here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+
+                  <input type="text" ng-model="selectedCountries" placeholder="Search for existing customer ere" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
 			</div>
 
 		<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCountries)">
@@ -78,12 +80,9 @@
 						<div class="form-group">
 							<label class="" for="employeeName">Assign This Task to</label><br>
 									<span class="ui-select">
-						                <select id="employeeName">
-					                		<option>Select Employee</option>
-					                        <option>debo das</option>
-					                        <option>rup das</option>
-					                        <option>Aunupam saikia</option>
-					                        required></select>
+						                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.name for list_employee in service_employee_list track by list_employee.id">
+						                <option value="" ng-hide="employee_list">Select Employee</option>
+						                </select>
 					            </span>
 						</div>
 					</div>
@@ -140,6 +139,7 @@
 		                    <div class="input-group ui-datepicker">
 		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 		                        <input type="text" 
+		                        	   id="actDate"
 		                               class="form-control"
 		                               datepicker-popup="{{format}}"
 		                               ng-model="actDate"
@@ -166,7 +166,7 @@
 					                </div>
 					                <div class="col-sm-4" style="display:none">
 					            		<div class="callout callout-info" style="background-color:white">
-					            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm:ss' }} Hours" disabled>
+					            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm:ss' }}" disabled>
 					                    </div>
 					                </div>
 					            </div>
@@ -185,6 +185,7 @@
 		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 		                        <input type="text" 
 		                               class="form-control"
+		                               id="actualDate"
 		                               datepicker-popup="{{format}}"
 		                               ng-model="actualDate"
 		                               show-weeks="false"
@@ -210,7 +211,7 @@
 					                </div>
 					                <div class="col-sm-4" style="display:none">
 					            		<div class="callout callout-info" style="background-color:white">
-					            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm:ss' }} Hours" disabled>
+					            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm:ss' }}" disabled>
 					                    </div>
 					                </div>
 					            </div>
@@ -265,7 +266,7 @@
 				<div class="space"></div>
 				<div class="form-group">
 					<label class="" for="newShortDesc">Short Description</label>
-					<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
+					<textarea ng-model="short_description" id="shortDesc" class="form-control resizeless"
 					          rows="2" required data-min="3" data-max="100"></textarea>
 				</div>
 				<hr/>
