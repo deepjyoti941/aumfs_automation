@@ -12,24 +12,27 @@
 	<accordion-group heading="Add New Customer">
 			<div class="form-group">
 			{{selectedCustomer}}
+			
              <input type="text" ng-model="selectedCustomer" placeholder="Search for existing customer here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
 
-                  <input type="text" ng-model="selectedCountries" placeholder="Search for existing customer ere" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+                  <!-- <input type="text" ng-model="selectedCountries" placeholder="Search for existing customer ere" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;"> -->
 			</div>
 
-		<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCountries)">
+		<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCustomer)">
 			<div class="form-group">
 				<label class="" for="newTitle">Customer Name</label>
-				<input  type="text" ng-model="selectedCountries.id" name="customer_name" class="form-control" id="existing_customer_id" placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
+				<input  style="display:none" type="text" ng-model="selectedCustomer.customer_id" name="customer_id" class="form-control" id="existing_customer_id" placeholder="Customer Id" >
+
+				<input  type="text" ng-model="selectedCustomer.customer_name" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
 			</div>
 			<div class="form-group">
 				<label class="" for="customerAddress">Customer Address</label>
-				<input name="customer_address" ng-model="selectedCountries.capital" type="text" class="form-control"
+				<input name="customer_address" ng-model="selectedCustomer.customer_address" type="text" class="form-control"
 				       id="customer_address" placeholder="Enter Customer Address" required>
 			</div>
 			<div class="form-group">
 				<label class="" for="customerPhone">Customer Phone</label>
-				<input name="customer_phone" ng-model="selectedCountries.country" type="text" class="form-control"
+				<input name="customer_phone" ng-model="selectedCustomer.customer_phone" type="text" class="form-control"
 				       id="customer_phone" placeholder="Enter Customer Phone Number" required>
 			</div>
 <!-- 			<div class="row">

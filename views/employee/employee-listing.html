@@ -3,7 +3,7 @@
     <section class="">
 		<accordion close-others="true" class="ui-accordion ui-accordion-info" id="addEmployee">
 			<accordion-group heading="Add New Employee">
-				<form class="" role="form" name="newEmployeeForm" ng-submit="createEmployee()">
+				<form class="" role="form" name="newEmployeeForm" ng-submit="createEmployee(newEmployee)">
 					<div class="form-group">
 						<label class="" for="newUser">Name Of Employee</label>
 						<input ng-model="newEmployee.name" type="text" class="form-control"
@@ -16,18 +16,28 @@
 						       id="newTitleAlias" placeholder="Enter User Email" required>
 					</div>
 					<div class="form-group">
-						<label class="" for="newEmployeeImage">Upload Employee Image</label><br/>
-						<input type="file" title="Choose Image" data-ui-file-upload="" class="btn-primary" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-
+						<label class="" for="employeePhoneNumber">Employee Mobile Number</label>
+						<input ng-model="newEmployee.phone" type="text" class="form-control"
+						       id="employee_phone" placeholder="Enter Employee Mobile Number" required>
 					</div>
 					<div class="form-group">
 						<label class="" for="newShortDesc">Additional Information about Employee</label>
-						<textarea ng-model="newUser.short_description" id="newShortDesc" class="form-control resizeless"
+						<textarea ng-model="newEmployee.short_description" id="newShortDesc" class="form-control resizeless"
 						          rows="2" required data-min="3" data-max="100"></textarea>
 					</div>
 					<hr/>
 					<button type="submit" class="btn btn-info">Add Employee</button>
 				</form>
+				<hr>
+				<div id="imageUploadPanel">
+					<label class="ui-checkbox"><input ng-model="uploadImageCheck" name="uploadImageCheck" type="checkbox" value="option2" checked><span>Do You Want to upload Image of this employee? </span></label>
+					<div class="form-group" ng-show="uploadImageCheck">
+					    <input type="text" class="form-control" ng-model="employee_id" id="employee_id">
+						<input type="file" title="Choose Employee Image" data-ui-file-upload="" class="btn-primary" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+
+					</div>
+				</div>
+
 			</accordion-group>
 		</accordion>
 

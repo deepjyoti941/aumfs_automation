@@ -48,11 +48,11 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
         //angular.element("#customer_id").val()
 
-        $scope.processNewCustomerForm = function(selectedCountries) {
-            $rootScope.existing_customer_id = selectedCountries['id'];
-            $scope.newCustomer.customer_name = selectedCountries['id'];
-            $scope.newCustomer.customer_address = selectedCountries['capital'];
-            $scope.newCustomer.customer_phone = selectedCountries['country'];
+        $scope.processNewCustomerForm = function(selectedCustomer) {
+            $rootScope.existing_customer_id = selectedCustomer['customer_id'];
+            $scope.newCustomer.customer_name = selectedCustomer['customer_name'];
+            $scope.newCustomer.customer_address = selectedCustomer['customer_address'];
+            $scope.newCustomer.customer_phone = selectedCustomer['customer_phone'];
             $scope.newCustomer.method = 'save_new_customer';
             
             // $http.post('api/customer_controller.php', $scope.newCustomer).success(function(data){
@@ -151,6 +151,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var diff = hour + ":" + min.substring(0,2);
             $('#working-hours').val(hour);
         };
+
           getCountries(); // Load all countries with capitals
           function getCountries(){  
           $http.get("api/customerlist.php").success(function(data){
@@ -201,16 +202,29 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
 }]).controller("employeeCtrl", ["$scope", "$http", function($scope, $http) {
 
+   $scope.createEmployee = function(newEmployee) {
+        newEmployee.method = 'save_new_employee';
+        $http.post('api/employee_controller.php', newEmployee)
+            .success(function(data) {
+                console.log(data);
+                $scope.employee_id = data.employee_id;
+        });
+ 
+    };
+
 	$scope.uploadFile = function(files) {
 	    var fd = new FormData();
 	    //Take the first selected file
 	    fd.append("file", files[0]);
-
-	    $http.post("/api/employee/upload-image", fd, {
+        fd.append("employee_id", $scope.employee_id);
+        fd.append("method","upload_employee_image");
+	    $http.post("/api/employee_controller.php", fd, {
 	        withCredentials: true,
 	        headers: {'Content-Type': undefined },
 	        transformRequest: angular.identity
-	    }).success().error();
+	    }).success(function(data) {
+            console.log(data);
+        }).error();
 
 	};        
 }]).controller("newOtjCustomerCtrl", ["$scope", "$http", function($scope, $http) {
