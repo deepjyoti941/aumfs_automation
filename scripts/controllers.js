@@ -206,8 +206,12 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         newEmployee.method = 'save_new_employee';
         $http.post('api/employee_controller.php', newEmployee)
             .success(function(data) {
-                console.log(data);
-                $scope.employee_id = data.employee_id;
+                if (data.status == true) {
+                    console.log(data);
+                    $scope.employee_id = data.employee_id;
+                    $scope.ajax_success = true;
+                };
+                
         });
  
     };

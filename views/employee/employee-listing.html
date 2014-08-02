@@ -29,7 +29,7 @@
 					<button type="submit" class="btn btn-info">Add Employee</button>
 				</form>
 				<hr>
-				<div id="imageUploadPanel">
+				<div id="imageUploadPanel" ng-show="ajax_success">
 					<label class="ui-checkbox"><input ng-model="uploadImageCheck" name="uploadImageCheck" type="checkbox" value="option2" checked><span>Do You Want to upload Image of this employee? </span></label>
 					<div class="form-group" ng-show="uploadImageCheck">
 					    <input type="text" class="form-control" ng-model="employee_id" id="employee_id">
