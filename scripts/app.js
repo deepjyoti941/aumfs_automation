@@ -1639,7 +1639,8 @@
         }).when("/employee-status", {
             templateUrl: "views/employee/employee-work-status.html"
         }).when("/employee-listing/:id", {
-            templateUrl: "views/employee/employee-edit.html"
+            templateUrl: "views/employee/employee-edit.html",
+            controller: 'EmployeeEditCtrl'
         }).when("/otj", {
             templateUrl: "views/otj/otj.html"
         }).when("/otj-jobs", {

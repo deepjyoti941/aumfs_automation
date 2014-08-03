@@ -33,10 +33,14 @@
 					<label class="ui-checkbox"><input ng-model="uploadImageCheck" name="uploadImageCheck" type="checkbox" value="option2" checked><span>Do You Want to upload Image of this employee? </span></label>
 					<div class="form-group" ng-show="uploadImageCheck">
 					    <input type="text" class="form-control" ng-model="employee_id" id="employee_id">
-						<input type="file" title="Choose Employee Image" data-ui-file-upload="" class="btn-primary" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+						<input type="file" title="Choose Employee Image" data-ui-file-upload="" id="upload_employee_image" class="btn-primary" onchange="angular.element(this).scope().uploadFile(this.files)"/>
 
 					</div>
+					<div class="form-group">
+						<a href="" ng-click="addNewEmployee()" class="btn btn-gap-v btn-primary"><i class="fa fa-plus"></i> Add Another Employee</a>
+					</div>
 				</div>
+
 
 			</accordion-group>
 		</accordion>
@@ -45,7 +49,37 @@
 		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Employee List</strong></div>
 		<div class="panel-body">
     	<div class="row" style="overflow-x: hidden;width: 101%;">
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
+
+    		<div ng-repeat="employee in employee_list">
+	    		<div id="employee_{{employee.employee_id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
+		    		<div class="thumbnail bg-bright">
+							<div class="bgImg-employee">
+								<div ng-if="employee.employee_photo =='' ">
+									<img ng-src="images/default.png">								
+								</div>
+								<div ng-if="employee.employee_photo !=''">
+									<img ng-src="{{employee.employee_photo}}">								
+								</div>
+							</div>
+					</div>	
+					<p class="text-center">{{employee.employee_name}}</p>
+					<div class="caption">
+						<p class="text-center">
+							<a ng-href="#/employee-listing/{{employee.employee_id}}" class="btn-icon btn-icon-sm btn-primary"
+							   role="button"
+							   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
+									class="fa fa-edit"></i></a>
+							<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
+							   ng-dblclick="deleteShop(shop)" role="button"
+							   tooltip-placement="top" tooltip="Delete (Double Click)"
+							   tooltip-append-to-body="true"><i
+									class="fa fa-times"></i></a>
+						</p>
+					</div>
+	    		</div>
+    		</div>
+
+<!-- 			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
 				<div class="thumbnail bg-bright">
 					<div class="bgImg-employee">
 					</div>
@@ -64,136 +98,8 @@
 						</p>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
-			<div id="shop_{{shop.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<a ng-href="#/employee-listing/2" class="btn-icon btn-icon-sm btn-primary"
-							   role="button"
-							   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-									class="fa fa-edit"></i></a>
-							<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-							   ng-dblclick="deleteShop(shop)" role="button"
-							   tooltip-placement="top" tooltip="Delete (Double Click)"
-							   tooltip-append-to-body="true"><i
-									class="fa fa-times"></i></a>
-						</p>
-					</div>
-				</div>
-
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<a ng-href="#/employee-listing/3" class="btn-icon btn-icon-sm btn-primary"
-							   role="button"
-							   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-									class="fa fa-edit"></i></a>
-							<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-							   ng-dblclick="deleteShop(shop)" role="button"
-							   tooltip-placement="top" tooltip="Delete (Double Click)"
-							   tooltip-append-to-body="true"><i
-									class="fa fa-times"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<a ng-href="#/employee-listing/4" class="btn-icon btn-icon-sm btn-primary"
-							   role="button"
-							   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-									class="fa fa-edit"></i></a>
-							<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-							   ng-dblclick="deleteShop(shop)" role="button"
-							   tooltip-placement="top" tooltip="Delete (Double Click)"
-							   tooltip-append-to-body="true"><i
-									class="fa fa-times"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<a ng-href="#/employee-listing/5" class="btn-icon btn-icon-sm btn-primary"
-							   role="button"
-							   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-									class="fa fa-edit"></i></a>
-							<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-							   ng-dblclick="deleteShop(shop)" role="button"
-							   tooltip-placement="top" tooltip="Delete (Double Click)"
-							   tooltip-append-to-body="true"><i
-									class="fa fa-times"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<a ng-href="#/employee-listing/6" class="btn-icon btn-icon-sm btn-primary"
-							   role="button"
-							   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-									class="fa fa-edit"></i></a>
-							<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-							   ng-dblclick="deleteShop(shop)" role="button"
-							   tooltip-placement="top" tooltip="Delete (Double Click)"
-							   tooltip-append-to-body="true"><i
-									class="fa fa-times"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<a ng-href="#/employee-listing/7" class="btn-icon btn-icon-sm btn-primary"
-							   role="button"
-							   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-									class="fa fa-edit"></i></a>
-							<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-							   ng-dblclick="deleteShop(shop)" role="button"
-							   tooltip-placement="top" tooltip="Delete (Double Click)"
-							   tooltip-append-to-body="true"><i
-									class="fa fa-times"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
 			</div>
     	</div>
 		</div>

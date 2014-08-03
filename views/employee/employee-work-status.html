@@ -8,7 +8,7 @@
 		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Employee Status</strong></div>
 		<div class="panel-body">
     	<div class="row" style="overflow-x: hidden;width: 101%;">
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
+<!-- 			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
 				<div class="thumbnail bg-bright">
 					<div class="bgImg-employee">
 					</div>
@@ -20,93 +20,38 @@
 						</p>
 					</div>
 				</div>
-			</div>
-
-			<div id="shop_{{shop.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
+			</div> -->
+    		<div ng-repeat="employee in employee_list">
+	    		<div id="employee_{{employee.employee_id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
+		    		<div class="thumbnail bg-bright">
+							<div class="bgImg-employee">
+								<div ng-if="employee.employee_photo =='' ">
+									<img ng-src="images/default.png">								
+								</div>
+								<div ng-if="employee.employee_photo !=''">
+									<img ng-src="{{employee.employee_photo}}">								
+								</div>
+							</div>
+					</div>	
+					<p class="text-center">{{employee.employee_name}}</p>
 					<div class="caption">
-						<p class="text-center">
-							<span class="label label-success">Available</span>
-						</p>
-					</div>
-				</div>
-
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<span class="label label-danger">Engaged</span>
-
-						</p>
-					</div>
-				</div>
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<span class="label label-danger">Engaged</span>
-
-						</p>
-					</div>
-				</div>
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
-							<span class="label label-danger">Engaged</span>
-
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
-
-					<div class="caption">
-						<p class="text-center">
+						<div ng-if="employee.is_engaged == 0 ">
+							<p class="text-center">
 								<span class="label label-success">Available</span>
-
-						</p>
+							</p>						
+						</div>
+						<div ng-if="employee.is_engaged != 0 ">
+							<p class="text-center">
+								<span class="label label-danger">Engaged</span>
+							</p>						
+						</div>
 					</div>
-				</div>
-			</div>
-			<div id="employee_{{employee.id}}" class="col-xs-6 col-sm-4 col-md-4 col-lg-2 am-fade-and-scale">
-				<div class="thumbnail bg-bright">
-					<div class="bgImg-employee">
-					</div>
-					<p class="text-center">abc name</p>
+	    		</div>
+    		</div>
+	
+		
 
-					<div class="caption">
-						<p class="text-center">
-							<span class="label label-danger">Engaged</span>
-
-						</p>
-					</div>
-				</div>
-			</div>
+		
 			</div>
     	</div>
 		</div>

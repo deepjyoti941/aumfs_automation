@@ -1,5 +1,10 @@
 <?php 
+	error_reporting(0);    
+	//error_reporting(E_ALL ^ E_NOTICE);
+    //error_reporting(E_ALL^ E_WARNING);
 	require_once 'config/mysql_config.php';
+	require_once 'classes/class.upload.php';
+
 	$data = json_decode(file_get_contents("php://input"));
 	// $method = mysql_real_escape_string($data->method);
 	// echo $method;
@@ -24,8 +29,53 @@
 			echo json_encode($data);
 		}
 
-	}elseif ($_POST['method'] == 'upload_employee_image
-') {
-		
+	}elseif ($_POST['method'] == 'upload_employee_image') {
+	   	$employee_img = new Upload($_FILES['file']);
+		if ($employee_img->uploaded) {
+		  $img_name_original = $_FILES['file']['name'];
+		  $img_name = explode('.', $img_name_original);
+		  $employee_img->file_new_name_body = $img_name[0];
+		  $employee_img->image_resize = true;
+		  $employee_img->image_x = 170;
+		  $employee_img->image_y = 170;
+		  $employee_img->Process('../images/uploads/'.$_POST['employee_id']);
+		  $employee_image_original = '/images/uploads/'.$_POST['employee_id'].'/'.$img_name_original;
+		}
+		if ($employee_img->processed) {
+			$sql = "UPDATE employee_details SET employee_photo =:employee_photo WHERE employee_id = :employee_id";
+			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+			$result = $sth->execute(array(':employee_photo'=>$employee_image_original ,':employee_id' => $_POST['employee_id']));
+
+	       if ($result == 1) {
+	          $data = array(
+	            "status" => true
+	            );
+	          echo json_encode($data);
+	        } else {
+	          $data = array(
+	            "status" => false
+	            );
+	          echo json_encode($data);
+	        }
+	        $dbh = null;
+
+
+		} else {
+			echo "not processed";
+		}
+
+	} elseif ($data->method == 'get_employee_list') {
+
+		$sql_employee = "SELECT * FROM employee_details";
+		$stmt = $dbh->query($sql_employee);
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($row);
+
+	}elseif ($data->method == 'get_employee_by_id') {
+
+		$sql_employee = "SELECT * FROM employee_details WHERE employee_id=$data->employee_id";
+		$stmt = $dbh->query($sql_employee);
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		echo json_encode($row);
 	}
 ?>

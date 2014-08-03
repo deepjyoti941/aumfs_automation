@@ -2,38 +2,53 @@
 	<ol class="breadcrumb-alt">
 		<li><a href="#/dashboard">Dashboard</a></li>
 		<li><a href="#/employee-listing">Employee List</a></li>
-		<li class="active"><a href="">1</a></li>
+		<li class="active"><a href="">{{employee.employee_id}}</a></li>
 	</ol>
 
 	<section class="panel panel-default">
 		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Edit Employee</strong></div>
 		<div class="panel-body">
-			<form class="" role="form" name="newEmployeeForm" ng-submit="editEmployee()">
+			<form class="" role="form" name="newEmployeeForm" ng-submit="UpdateEmployee()">
 				<div class="form-group">
 					<label class="" for="newUser">Name Of Employee</label>
-					<input ng-model="newEmployee.name" type="text" class="form-control"
-					       id="newEmployee"
-					       placeholder="Enter Name" value="demo name" required>
+					<input type="text" ng-model="employee_name" class="form-control"  id="employee_name"
+					       placeholder="Enter Name" >
 				</div>
 				<div class="form-group">
 					<label class="" for="newEmployeeEmail">Employee Email</label>
-					<input ng-model="newEmployee.email" type="text" class="form-control"
-					       id="newTitleAlias" placeholder="Enter User Email" value="demo@gmail.com" required>
+					<input ng-model="employee_email" type="text" class="form-control"
+					       id="employee_email" placeholder="Enter User Email">
 				</div>
 				<div class="form-group">
-					<label class="" for="newEmployeeImage">Upload Employee Image</label><br/>
-					<input type="file" title="Choose Image" data-ui-file-upload="" class="btn-primary" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-
+					<label class="" for="employeePhoneNumber">Employee Mobile Number</label>
+					<input ng-model="employee_mobile" type="text" class="form-control"
+					       id="employee_phone" placeholder="Enter Employee Mobile Number">
 				</div>
 				<div class="form-group">
 					<label class="" for="newShortDesc">Additional Information about Employee</label>
-					<textarea ng-model="newUser.short_description" id="newShortDesc" class="form-control resizeless"
-					          rows="2" required data-min="3" data-max="100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</textarea>
+					<textarea ng-model="employee_desc" id="employee_desc" class="form-control resizeless"
+					          rows="2" required data-min="3" data-max="100"></textarea>
 				</div>
 				<hr/>
-				<a href="#/employee-listing" class="btn btn-info">Update Employee</a>
-<!-- 				<button type="submit" class="btn btn-info">Update Employee</button>
- -->			</form>
+				<button type="submit" class="btn btn-info">Update Employee</button>
+			</form>
+			<hr>
+				<div id="imageUploadPanel">
+					<div class="thumbnail bg-bright">
+						<div class="bgImg-employee">
+							<div ng-if="employee.employee_photo =='' ">
+								<p>No image for this employee</p>								
+							</div>
+							<div ng-if="employee.employee_photo !=''">
+								<img ng-src="{{employee.employee_photo}}">								
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="file" title="Choose New Image" data-ui-file-upload="" id="upload_employee_image" class="btn-primary" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+
+					</div>
+				</div>
 		</div>
 	</section>
 </div>

@@ -200,14 +200,33 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         };
 
 
-}]).controller("employeeCtrl", ["$scope", "$http", function($scope, $http) {
+}]).controller("employeeCtrl", ["$scope","$route", "$http", function($scope ,$route ,$http) {
+
+    $http.post("api/employee_controller.php",{method:'get_employee_list'} ).success(function(data){
+        $scope.employee_list = data;
+        console.log($scope.employee_list)
+    });
 
    $scope.createEmployee = function(newEmployee) {
         newEmployee.method = 'save_new_employee';
         $http.post('api/employee_controller.php', newEmployee)
             .success(function(data) {
                 if (data.status == true) {
-                    console.log(data);
+                        toastr.success("Employee Added successfully");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "positionClass": "toast-top-right",
+                          "onclick": null,
+                          "showDuration": "800",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
                     $scope.employee_id = data.employee_id;
                     $scope.ajax_success = true;
                 };
@@ -227,10 +246,53 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 	        headers: {'Content-Type': undefined },
 	        transformRequest: angular.identity
 	    }).success(function(data) {
-            console.log(data);
+               if (data.status == true) {
+                        toastr.success("Image Uploaded successfully");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "positionClass": "toast-top-right",
+                          "onclick": null,
+                          "showDuration": "800",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+                    $scope.oncallCustomer.customer_id = data.customer_id;
+                    $scope.ajax_success_upload = true;
+
+                };
         }).error();
 
+        $scope.addNewEmployee = function() {
+            $route.reload();
+        }
+
 	};        
+}]).controller("EmployeeEditCtrl", ["$scope","$routeParams","$route", "$http", function($scope ,$routeParams, $route ,$http) {
+    var data = {};
+    data.method =  'get_employee_by_id';
+    data.employee_id = $routeParams.id;
+    $http.post("api/employee_controller.php", data).success(function(data){
+        $scope.employee_email = data.employee_email;
+        $scope.employee_desc = data.employee_desc;
+        $scope.employee_mobile = data.employee_mobile;
+        $scope.employee_name = data.employee_name;
+        $scope.employee_id = data.employee_id;
+        $scope.employee = data;
+    });   
+
+
+}]).controller("EmployeeStatusCtrl", ["$scope", "$http", function($scope, $http) {
+
+       $http.post("api/employee_controller.php",{method:'get_employee_list'} ).success(function(data){
+        $scope.employee_list = data;
+    });
+
 }]).controller("newOtjCustomerCtrl", ["$scope", "$http", function($scope, $http) {
 
 }]).controller("otjJobsCtrl", ["$scope", "$http", function($scope, $http) {
