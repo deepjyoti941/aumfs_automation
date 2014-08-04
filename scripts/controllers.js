@@ -27,13 +27,12 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.oncallDetails = {}; 
         $scope.oncallCustomer = {};
         $scope.somebinding = $scope.selectedCountries;
-        
 
 
-        $http.post('api/get_customer.php', $scope.newCustomer)
-                .success(function(data) {
+        // $http.post('api/get_customer.php', $scope.newCustomer)
+        //         .success(function(data) {
                 
-            }); 
+        //     }); 
         
         $scope.change = function($event) {
             if($event == true){
@@ -88,20 +87,37 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var post_data = {};
             post_data.customer_id = angular.element('#customer_id').val();
             post_data.service_type = angular.element('#serviceName').val();
-            post_data.employee_list = angular.element('#employee_list').val();
-            post_data.act_date = angular.element('#actDate').val();
-            post_data.act_time = angular.element('#actTime').val();
-            post_data.completion_date = angular.element('#actualDate').val();
-            post_data.completion_time = angular.element('#actualTime').val();
-            post_data.number_of_helpers = angular.element('#number_of_helpers').val();
-            post_data.working_hours = angular.element('#working-hours').val();
-            post_data.bill_amount = angular.element('#bill_amount').val();
-            post_data.bill_number = angular.element('#bill-number').val();
-            post_data.short_desc = angular.element('#shortDesc').val();
-            // $scope.oncallDetails.action = 'save_oncall_details';
+            post_data.assign_employee_id = angular.element('#employee_list').val();
+            // post_data.act_date = angular.element('#actDate').val();
+            // post_data.act_time = angular.element('#actTime').val();
+            // post_data.completion_date = angular.element('#actualDate').val();
+            // post_data.completion_time = angular.element('#actualTime').val();
+            // post_data.number_of_helpers = angular.element('#number_of_helpers').val();
+            // post_data.working_hours = angular.element('#working-hours').val();
+            // post_data.bill_amount = angular.element('#bill_amount').val();
+            // post_data.bill_number = angular.element('#bill-number').val();
+            //post_data.short_desc = angular.element('#shortDesc').val();
+            post_data.method = 'save_oncall_details';
             $http.post('api/oncall_controller.php', post_data)
                 .success(function(data) {
-                //console.log(data);
+                    if (data.status == true) {
+                        toastr.success("Order Created successfully");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "positionClass": "toast-top-right",
+                          "onclick": null,
+                          "showDuration": "800",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+ 
+                    };
             });            
         }
 
@@ -152,24 +168,43 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             $('#working-hours').val(hour);
         };
 
-          getCountries(); // Load all countries with capitals
-          function getCountries(){  
-          $http.get("api/customerlist.php").success(function(data){
+          getCustomerList();
+          getServiceList();
+          getEmployeeList();
+          function getCustomerList(){  
+            $http.get("api/customerlist.php").success(function(data){
                 $scope.customers = data;
-               });
+            });
           };
-        $scope.oncall_services_list = [
-            {name:'Electrical' , id:12},
-            {name:'Plumbing' , id:22 },
-            {name:'Carpentry', id:33},
-            {name:'Air Conditioner repair', id:44}
-        ];
 
-        $scope.service_employee_list = [
-            {name:'dev das', id:'E1'},
-            {name:'deep das', id:'E2'},
-            {name:'rohit sharma', id:'E3'},
-        ];
+          function getServiceList() {
+            $http.post('api/oncall_controller.php', {method:'get_service_list'})
+                .success(function(data) {
+                    $scope.oncall_services_list = data;
+                
+            });    
+          }
+
+          function getEmployeeList() {
+            $http.post('api/employee_controller.php', {method:'get_free_employee_list'})
+                .success(function(data) {
+                    $scope.service_employee_list = data;
+                
+            }); 
+          }
+
+        // $scope.oncall_services_list = [
+        //     {name:'Electrical' , id:12},
+        //     {name:'Plumbing' , id:22 },
+        //     {name:'Carpentry', id:33},
+        //     {name:'Air Conditioner repair', id:44}
+        // ];
+
+        // $scope.service_employee_list = [
+        //     {name:'dev das', id:'E1'},
+        //     {name:'deep das', id:'E2'},
+        //     {name:'rohit sharma', id:'E3'},
+        // ];
 
         $scope.service_charges = [
             {service_name:"1st Hour", price:200,code:"1h"},
@@ -423,3 +458,39 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
  
     };
 });
+
+
+
+
+// var numbers = "0123456789";
+
+// var chars= "acdefhiklmnoqrstuvwxyz";
+
+// var string_length = 3;
+// var randomstring = '';
+// var randomstring2 = '';
+
+// for (var x=0;x<string_length;x++) {
+
+//     var letterOrNumber = Math.floor(Math.random() * 2);
+
+//         var rnum = Math.floor(Math.random() * chars.length);
+//         randomstring += chars.substring(rnum,rnum+1);
+
+
+// } for (var y=0;y<string_length;y++) {
+
+//     var letterOrNumber2 = Math.floor(Math.random() * 2);
+
+//         var rnum2 = Math.floor(Math.random() * numbers.length);
+//         randomstring2 += numbers.substring(rnum2,rnum2+1);
+
+
+// }
+
+// function shuffle(o){
+//     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+//     return o;
+// };
+
+// var code=shuffle((randomstring+randomstring2).split('')).join('');

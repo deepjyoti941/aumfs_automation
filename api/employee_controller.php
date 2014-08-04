@@ -64,7 +64,14 @@
 			echo "not processed";
 		}
 
-	} elseif ($data->method == 'get_employee_list') {
+	} elseif ($data->method == 'get_free_employee_list') {
+
+		$sql_employee = "SELECT * FROM employee_details WHERE is_engaged = 0";
+		$stmt = $dbh->query($sql_employee);
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($row);
+
+	}elseif ($data->method == 'get_employee_list') {
 
 		$sql_employee = "SELECT * FROM employee_details";
 		$stmt = $dbh->query($sql_employee);

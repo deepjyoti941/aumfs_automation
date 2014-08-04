@@ -64,7 +64,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<label class="" for="customerId">Customer Id</label><br>
-					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id"><br>
+					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
 
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 						<div class="form-group">
 							<label class="" for="serviceName">Service Name</label><br>
 								<span class="ui-select">
-					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.name for service in oncall_services_list track by service.id">
+					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.service_name for service in oncall_services_list track by service.service_name" required>
 					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
 					                </select>
 					            </span>
@@ -83,7 +83,7 @@
 						<div class="form-group">
 							<label class="" for="employeeName">Assign This Task to</label><br>
 									<span class="ui-select">
-						                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.name for list_employee in service_employee_list track by list_employee.id">
+						                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id" required>
 						                <option value="" ng-hide="employee_list">Select Employee</option>
 						                </select>
 					            </span>
@@ -108,7 +108,6 @@
 		                               min="today"
 		                               datepicker-options="dateOptions" 
 		                               date-disabled="disabled(date, mode)"
-		                               ng-required="true" 
 		                               close-text="Close">
 		                    </div>
 				        </div>
@@ -151,7 +150,6 @@
 		                               min="today"
 		                               datepicker-options="dateOptions" 
 		                               date-disabled="disabled(date, mode)"
-		                               ng-required="true" 
 		                               close-text="Close">
 		                    </div>
 				        </div>
@@ -196,7 +194,6 @@
 		                               min="today"
 		                               datepicker-options="dateOptions" 
 		                               date-disabled="disabled(date, mode)"
-		                               ng-required="true" 
 		                               close-text="Close">
 		                    </div>
 		                    <p>Date is {{actualDate | date:'yyyy-MM-dd'}}</p>
@@ -270,7 +267,7 @@
 				<div class="form-group">
 					<label class="" for="newShortDesc">Short Description</label>
 					<textarea ng-model="short_description" id="shortDesc" class="form-control resizeless"
-					          rows="2" required data-min="3" data-max="100"></textarea>
+					          rows="2" data-min="3" data-max="100"></textarea>
 				</div>
 				<hr/>
 				<input type="submit" class="btn btn-info" value="Create Order" ng-click="submitOncall()">
