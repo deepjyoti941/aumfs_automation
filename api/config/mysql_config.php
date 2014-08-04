@@ -1,21 +1,28 @@
 <?php
-/*** mysql hostname ***/
-$hostname = '127.0.0.1';
 
-/*** mysql username ***/
-//$username = 'admin_ggk';
-$username = 'root';
+if ($_SERVER[HTTP_HOST] == 'aumfs.dev') {
+	
+	$hostname = '127.0.0.1';
+	$username = 'root';
+	$password = '';
+	try {
+	    $dbh = new PDO("mysql:host=localhost;dbname=aumfs", $username, $password);
+	    }
+	catch(PDOException $e) {
+	    echo $e->getMessage();
+	    }
+	}else{
 
-/*** mysql password ***/
-//$password = '&Eog38n4';
-$password = '';
+	$hostname = '127.0.0.1';
+	$username = 'root';
+	$password = 'admin';
+	try {
+	    $dbh = new PDO("mysql:host=localhost;dbname=aumfs", $username, $password);
+	    }
+	catch(PDOException $e) {
+	    echo $e->getMessage();
+	    }
+	}
 
-try {
-    $dbh = new PDO("mysql:host=localhost;dbname=aumfs", $username, $password);
-    //echo 'Connected to database';
-    }
-catch(PDOException $e) {
-    echo $e->getMessage();
-    }
-    
+
 ?>
