@@ -204,7 +204,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
     $http.post("api/employee_controller.php",{method:'get_employee_list'} ).success(function(data){
         $scope.employee_list = data;
-        console.log($scope.employee_list)
     });
 
    $scope.createEmployee = function(newEmployee) {
@@ -272,7 +271,35 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             $route.reload();
         }
 
-	};        
+	};   
+
+    $scope.deleteEmployee = function(employee_id) {
+        console.log(employee_id);
+        var r = confirm("Are You Sure! It can't be Undo");
+        if (r == true) {
+            $http.post("api/employee_controller.php",{method:'delete_employee',employee_id:employee_id} ).success(function(data){
+                console.log(data);
+                angular.element('#employee_'+employee_id).remove();
+                toastr.success("Employee Deleted successfully");
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "positionClass": "toast-top-right",
+                  "onclick": null,
+                  "showDuration": "800",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            });
+        } else {}
+
+    }    
+
 }]).controller("EmployeeEditCtrl", ["$scope","$routeParams","$route", "$http", function($scope ,$routeParams, $route ,$http) {
     var data = {};
     data.method =  'get_employee_by_id';

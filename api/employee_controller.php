@@ -132,5 +132,23 @@
 			echo "not processed";
 		}
 
+	}elseif ($data->method == 'delete_employee') {
+		$sql = "DELETE FROM employee_details WHERE employee_id=:employee_id";
+		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $result = $sth->execute(array(':employee_id'=>$data->employee_id));
+
+	    if ($result == 1) {
+	        $data = array(
+	            "status" => true
+	        );
+	        echo json_encode($data);
+	    } else {
+	        $data = array(
+	        	"status" => false
+	        );
+	          echo json_encode($data);
+	    }
+	    $dbh = null;
+
 	}
 ?>
