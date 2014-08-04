@@ -277,7 +277,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     var data = {};
     data.method =  'get_employee_by_id';
     data.employee_id = $routeParams.id;
-    $http.post("api/employee_controller.php", data).success(function(data){
+    $http.post("api/employee_controller.php", data).success(function(data) {
         $scope.employee_email = data.employee_email;
         $scope.employee_desc = data.employee_desc;
         $scope.employee_mobile = data.employee_mobile;
@@ -286,10 +286,74 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.employee = data;
     });   
 
+    $scope.UpdateEmployee = function() {
+        var updated_data = {};
+        updated_data.method = 'update_employee';
+        updated_data.employee_email = $scope.employee_email; 
+        updated_data.employee_desc = $scope.employee_desc;
+        updated_data.employee_mobile = $scope.employee_mobile;
+        updated_data.employee_name = $scope.employee_name;
+        updated_data.employee_id = $scope.employee_id;
+        $http.post("api/employee_controller.php", updated_data).success(function(data) {
+           if (data.status == true) {
+                    toastr.success("Employee Updated successfully");
+                    toastr.options = {
+                      "closeButton": false,
+                      "debug": false,
+                      "positionClass": "toast-top-right",
+                      "onclick": null,
+                      "showDuration": "900",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    }
+
+            };
+            
+        });        
+    }
+
+
+    $scope.uploadFile = function(files) {
+        var fd = new FormData();
+        //Take the first selected file
+        fd.append("file", files[0]);
+        fd.append("employee_id", $routeParams.id);
+        fd.append("method","update_employee_image");
+        $http.post("/api/employee_controller.php", fd, {
+            withCredentials: true,
+            headers: {'Content-Type': undefined },
+            transformRequest: angular.identity
+        }).success(function(data) {
+               if (data.status == true) {
+                        toastr.success("Image Updated successfully");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "positionClass": "toast-top-right",
+                          "onclick": null,
+                          "showDuration": "800",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+                $scope.employee.employee_photo = data.emoloyee_image;
+
+                };
+        }).error();
+
+    };  
 
 }]).controller("EmployeeStatusCtrl", ["$scope", "$http", function($scope, $http) {
-
-       $http.post("api/employee_controller.php",{method:'get_employee_list'} ).success(function(data){
+        $http.post("api/employee_controller.php",{method:'get_employee_list'} ).success(function(data){
         $scope.employee_list = data;
     });
 
