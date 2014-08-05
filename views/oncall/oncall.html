@@ -117,7 +117,7 @@
 					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 					                    </div>                    
 					                </div>
-					                <div class="col-sm-4" style="display:none">
+					                <div class="col-sm-4">
 					            		<div class="callout callout-info" style="background-color:white">
 					            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }} Hours" disabled>
 					                    </div>
@@ -160,7 +160,7 @@
 					                    </div>   
 
 					                </div>
-					                <div class="col-sm-4" style="display:none">
+					                <div class="col-sm-4" >
 					            		<div class="callout callout-info" style="background-color:white">
 					            			<input style="background-color: #f4f8fa" id="actTime" type="text" value="{{actTime | date:'HH:mm:ss' }}" disabled>
 					                    </div>
@@ -204,7 +204,7 @@
 					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 					                    </div>                    
 					                </div>
-					                <div class="col-sm-4" style="display:none">
+					                <div class="col-sm-4">
 					            		<div class="callout callout-info" style="background-color:white">
 					            			<input style="background-color: #f4f8fa" id="actualTime" type="text" value="{{actualTime | date:'HH:mm:ss' }}" disabled>
 					                    </div>
@@ -303,6 +303,7 @@
 	            <th>Service Name&nbsp;<a ng-click="sort_by('service_name');"><i class="glyphicon glyphicon-sort"></i></a></th>
 	            <th>Order Date and Time&nbsp;<a ng-click="sort_by('order_date_time');"><i class="glyphicon glyphicon-sort"></i></a></th>
 	            <th>Assigned Employee&nbsp;<a ng-click="sort_by('employee_name');"><i class="glyphicon glyphicon-sort"></i></a></th>
+	            <th>Order Status</th>
 	            <th>Action</th>
             </thead>
             <tbody>
@@ -314,6 +315,16 @@
                     <td>{{data.service_name}}</td>
                     <td>{{data.order_date_time}}</td>
                     <td>{{data.employee_name}}</td>
+                    <td>
+					<div class="caption">
+						<div ng-if="data.bill_number == '' ">
+								<span class="label label-danger">Pending</span>
+						</div>
+						<div ng-if="data.bill_number != '' ">
+								<span class="label label-success">Completed</span>
+						</div>
+					</div>						
+                    </td>
                     <td>
 						<a ng-href="#/oncall/{{data.oncall_service_id}}" class="btn-icon btn-icon-sm btn-primary"
 						   role="button"

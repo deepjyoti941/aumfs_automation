@@ -80,21 +80,24 @@
 						<div class="form-group">
 					        <div data-ng-controller="TimepickerDemoCtrl">
 					            <div class="row">
-					                <div class="col-sm-4">
+						            <div class="col-sm-4">
+						            	<div class="callout callout-info" style="background-color:white">
+					                		<label>Order Time</label>
+					                        <input type="text" ng-model="orderTime"  readonly="">
+					                    </div>
+						            </div>
+<!-- 					                <div class="col-sm-4">
 					                    <div ng-model="assignTime" ng-change="changed()" style="display:inline-block;">
 					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 					                    </div>                    
-					                </div>
+					                </div> -->
 					                <div class="col-sm-4" style="display:none">
 					            		<div class="callout callout-info" style="background-color:white">
 					            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }}" >
 					                    </div>
 					
 					                </div>
-					                <div class="callout callout-info">
-					                <label>Order Time</label>
-					                        <input type="text" ng-model="orderTime"  readonly="">
-					                    </div>
+					                
 					            </div>
 					        </div>
 						</div>
@@ -104,7 +107,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="" for="assignDate">Date and Time of Act</label><br>
+							<label class="" for="assignDate">Action Date</label><br>
 				        <div data-ng-controller="DatepickerDemoCtrl">
 		                    <div class="input-group ui-datepicker">
 		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -127,7 +130,16 @@
 						<div class="form-group">
 					        <div data-ng-controller="TimepickerDemoCtrl">
 					            <div class="row">
+					             	<div class="col-sm-4">
+						            	<div class="callout callout-info" style="background-color:white">
+					                		<label>Action Time</label>
+					                        <input type="text" ng-model="actionTime"  readonly="">
+					                    </div>
+						            </div>
+						            <div class="col-sm-2"></div>
 					                <div class="col-sm-4">
+					                	<label>Set Action Time</label>
+
 					                    <div ng-model="actTime" ng-change="changed()" style="display:inline-block;">
 					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 					                    </div>   
@@ -148,7 +160,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="" for="assignDate">Completion Date and Time of Act</label><br>
+							<label class="" for="assignDate">Completion Date</label><br>
 				        <div data-ng-controller="DatepickerDemoCtrl">
 		                    <div class="input-group ui-datepicker">
 		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -172,7 +184,16 @@
 						<div class="form-group">
 					        <div data-ng-controller="TimepickerDemoCtrl">
 					            <div class="row">
+					             	<div class="col-sm-4">
+						            	<div class="callout callout-info" style="background-color:white">
+					                		<label>Completion Time</label>
+					                        <input type="text" ng-model="completionTime"  readonly="">
+					                    </div>
+						            </div>
+						            <div class="col-sm-2"></div>
 					                <div class="col-sm-4">
+					                	<label>Set Completion Time</label>
+
 					                    <div ng-model="actualTime" ng-change="changed()" style="display:inline-block;">
 					                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 					                    </div>                    
@@ -204,7 +225,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<a class="btn btn-primary" id="work-hours" ng-click="timeDifference()"><i class="fa fa-clock-o"></i> Get Work Hours</a>
-						<input type="text" class="form-control" ng-model="workingHour" id="working-hours" disabled="">
+						<input type="text" class="form-control" ng-model="workingHour" id="working-hours" readonly="">
 					</div>
 					<div class="col-md-6">
 						
@@ -238,7 +259,7 @@
 					          rows="2" data-min="3" data-max="100"></textarea>
 				</div>
 				<hr/>
-				<input type="submit" class="btn btn-info" value="Create Order" ng-click="submitOncall()">
+				<input type="submit" class="btn btn-info" value="Update Order" ng-click="updateOrder()">
 			</form>
 		</div>
         </div>

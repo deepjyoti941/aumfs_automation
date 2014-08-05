@@ -17,11 +17,19 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
 }]).controller("oncallCustomerCtrl", ["$scope","$timeout","$rootScope","$http","$filter","timeDifference", function($scope,$timeout,$rootScope,$http,$filter,timeDifference) {
+        // var x = new Date('3/16/2013 17:00:00');// x is now a date object
+       // x.setHours(0,0,0,0); set  hours to 0, min Secs and milliSecs as well
+       // Logger.log(x);
+
         var date = new Date();
         $scope.assignDate = date;
         $scope.assignTime = date;
-        $scope.actTime = date;
-        $scope.actualTime = date;
+        var dt = new Date();
+        dt.setHours(0,0,0,0);
+        $scope.actTime = dt;
+        var at = new Date();
+        at.setHours(0,0,0,0);
+        $scope.actualTime = at;
         $scope.numberOfHelpers = 0;
         $scope.newCustomer = {};
         $scope.oncallDetails = {}; 
@@ -106,15 +114,16 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             post_data.customer_id = angular.element('#customer_id').val();
             post_data.service_type = angular.element('#serviceName').val();
             post_data.assign_employee_id = angular.element('#employee_list').val();
-            // post_data.act_date = angular.element('#actDate').val();
-            // post_data.act_time = angular.element('#actTime').val();
-            // post_data.completion_date = angular.element('#actualDate').val();
-            // post_data.completion_time = angular.element('#actualTime').val();
-            // post_data.number_of_helpers = angular.element('#number_of_helpers').val();
-            // post_data.working_hours = angular.element('#working-hours').val();
-            // post_data.bill_amount = angular.element('#bill_amount').val();
-            // post_data.bill_number = angular.element('#bill-number').val();
-            //post_data.short_desc = angular.element('#shortDesc').val();
+
+            post_data.act_date = angular.element('#actDate').val();
+            post_data.act_time = angular.element('#actTime').val();
+            post_data.completion_date = angular.element('#actualDate').val();
+            post_data.completion_time = angular.element('#actualTime').val();
+            post_data.number_of_helpers = angular.element('#number_of_helpers').val();
+            post_data.working_hours = angular.element('#working-hours').val();
+            post_data.bill_amount = angular.element('#bill_amount').val();
+            post_data.bill_number = angular.element('#bill-number').val();
+            post_data.short_desc = angular.element('#shortDesc').val();
             post_data.method = 'save_oncall_details';
             $http.post('api/oncall_controller.php', post_data)
                 .success(function(data) {
@@ -248,13 +257,83 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                   $scope.assigned_employee = data[0].employee_name;
                   $scope.assignDate = new Date(data[0].order_date_time);
                   $scope.orderTime = data[0].order_date_time_all;
+                  $scope.numberOfHelpers = data[0].helper_number;
+                  $scope.workingHour = data[0].working_hour;
+                  $scope.billAmount = data[0].billing_price;
+                  $scope.billNumber = data[0].bill_number;
+                  $scope.short_description = data[0].description;
+                  if (data[0].act_date == "0000-00-00") {
+                    $scope.actDate = '';
+                  }else {
+                    $scope.actDate = data[0].act_date;
+                  };
+
+                  if (data[0].completion_date == "0000-00-00") {
+                    $scope.actualDate = '';
+                  }else{
+                    $scope.actualDate = data[0].completion_date;
+                  };
+
+                  if (data[0].act_time == "12:00 AM") {
+                    $scope.actionTime = '';
+                  }else{
+                    $scope.actionTime = data[0].act_time;
+                  };
+
+                  if (data[0].completion_time == "12:00 AM") {
+                    $scope.completionTime = '';
+                  }else{
+                    $scope.completionTime = data[0].completion_time;
+                  };
         });
+
+        $scope.updateOrder = function() {
+            var url = document.URL
+            var id = url.substring(url.lastIndexOf('/') + 1);
+            var post_data = {};
+            post_data.oncall_service_id = id;
+            post_data.act_date = angular.element('#actDate').val();
+            post_data.act_time = angular.element('#actTime').val();
+            post_data.completion_date = angular.element('#actualDate').val();
+            post_data.completion_time = angular.element('#actualTime').val();
+            post_data.number_of_helpers = angular.element('#number_of_helpers').val();
+            post_data.working_hours = angular.element('#working-hours').val();
+            post_data.bill_amount = angular.element('#bill_amount').val();
+            post_data.bill_number = angular.element('#bill-number').val();
+            post_data.short_desc = angular.element('#shortDesc').val();
+            post_data.method = 'update_oncall_details'; 
+            $http.post('api/oncall_controller.php', post_data)
+                .success(function(data) {
+                    if (data.status == true) {
+                        toastr.success("Order Updated successfully");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "positionClass": "toast-top-right",
+                          "onclick": null,
+                          "showDuration": "800",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+ 
+                    };
+            });           
+        }
 
         var date = new Date();
         $scope.assignDate = date;
         $scope.assignTime = date;
-        $scope.actTime = date;
-        $scope.actualTime = date;
+        var dt = new Date();
+        dt.setHours(0,0,0,0);
+        $scope.actTime = dt;
+        var at = new Date();
+        at.setHours(0,0,0,0);
+        $scope.actualTime = at;
         $scope.numberOfHelpers = 0;
         $scope.newCustomer = {};
         $scope.oncallDetails = {}; 
