@@ -31,6 +31,17 @@
 				);
 			echo json_encode($data);
 		}
+	}elseif ($data->method == 'get_service_by_id') { 
+		$sql_service_list = "SELECT oc.oncall_service_id, oc.customer_id, oc.service_name, DATE_FORMAT(oc.order_date_time,'%h:%i %p') AS order_date_time_all, DATE_FORMAT(oc.act_time,'%h:%i %p') AS act_time, DATE_FORMAT(oc.order_date_time,'%Y-%m-%d') AS order_date_time, DATE_FORMAT(oc.order_date_time,'%T') AS order_time, ed.employee_name, ed.is_engaged,cd.customer_address,cd.customer_phone,cd.customer_name
+				FROM oncall_customer_details AS oc
+				STRAIGHT_JOIN employee_details AS ed
+				STRAIGHT_JOIN customer_details AS cd
+				WHERE oc.customer_id = cd.customer_id
+				AND oc.assigned_employee_id = ed.employee_id AND oc.oncall_service_id=$data->oncall_service_id
+				ORDER BY cd.customer_name ASC";
+		$stmt = $dbh->query($sql_service_list);
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($row);
 	}
 
 ?>

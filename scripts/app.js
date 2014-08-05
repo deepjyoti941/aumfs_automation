@@ -1614,6 +1614,8 @@
             templateUrl: "views/dashboard.html"
         }).when("/oncall", {
             templateUrl: "views/oncall/oncall.html"
+        }).when("/oncall/:id", {
+            templateUrl: "views/oncall/oncall-edit.html"
         }).when("/oncall-charges", {
             templateUrl: "views/oncall/oncall-charges.html"
         }).when("/pages/signin", {

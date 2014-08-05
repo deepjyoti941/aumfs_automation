@@ -1,65 +1,33 @@
-<script type="text/ng-template" id="customTemplate.html">
-  <a>
-      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
-      <i>({{match.model.customer_name}})</i>
-  </a>
-</script>
+<div class="page" ng-controller="editOncallCustomerCtrl">
 
-<div class="page page-oncall" ng-controller="oncallCustomerCtrl">
-<section  data-ng-cloak>
-
-<accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
-	<accordion-group heading="Add New Customer">
-			<div class="form-group">
-			{{selectedCustomer}}
-			
-             <input type="text" ng-model="selectedCustomer" placeholder="Search for existing customer here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
-
-                  <!-- <input type="text" ng-model="selectedCountries" placeholder="Search for existing customer ere" typeahead="c as c.country for c in countries | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;"> -->
-			</div>
-
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Oncall Update Page</strong></div>
+        <div class="panel-body">
 		<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCustomer)">
 			<div class="form-group">
 				<label class="" for="newTitle">Customer Name</label>
-				<input  style="display:none" type="text" ng-model="selectedCustomer.customer_id" name="customer_id" class="form-control" id="existing_customer_id" placeholder="Customer Id" >
-
-				<input  type="text" ng-model="selectedCustomer.customer_name" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
+				<input  style="display:none" type="text" ng-model="service_name" name="service_name" class="form-control" id="existing_customer_id" placeholder="service name" >
+                <input  style="display:none" type="text" ng-model="assigned_employee" name="assigned_employee" class="form-control" id="existing_customer_id" placeholder="service name" >
+				<input  type="text" ng-model="customer_name" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name" readonly>
 			</div>
 			<div class="form-group">
 				<label class="" for="customerAddress">Customer Address</label>
-				<input name="customer_address" ng-model="selectedCustomer.customer_address" type="text" class="form-control"
-				       id="customer_address" placeholder="Enter Customer Address" required>
+				<input name="customer_address" ng-model="customer_address" type="text" class="form-control"
+				       id="customer_address" placeholder="Enter Customer Address" readonly>
 			</div>
 			<div class="form-group">
 				<label class="" for="customerPhone">Customer Phone</label>
-				<input name="customer_phone" ng-model="selectedCustomer.customer_phone" type="text" class="form-control"
-				       id="customer_phone" placeholder="Enter Customer Phone Number" required>
+				<input name="customer_phone" ng-model="customer_phone" type="text" class="form-control"
+				       id="customer_phone" placeholder="Enter Customer Phone Number" readonly>
 			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<label class="ui-checkbox"><input ng-model="new_customer" name="new_customer_chk" type="checkbox" value="option2"><span>Is it a New Customer</span></label>
-				</div>
-				<div class="col-md-4">
-					<label class="ui-checkbox"><input id="existing_customer_chk" ng-model="existing_customer" name="existing_customer" ng-change="change(existing_customer)" type="checkbox"><span>Is it a Existing Customer</span></label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<input type="submit" class="btn btn-info" ng-show="new_customer" value="Add New Customer">
-				</div>
-			</div>	
 		</form>
-		</br>
-		<hr>
-		</br>
-
 
 		<div>
 		<form class="" role="form" name="oncallForm">
 			<div class="row">
 				<div class="col-md-6">
 					<label class="" for="customerId">Customer Id</label><br>
-					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
+					<input type="text" readonly class="form-control" ng-model="customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
 
 				</div>
 			</div>
@@ -68,8 +36,8 @@
 						<div class="form-group">
 							<label class="" for="serviceName">Service Name</label><br>
 								<span class="ui-select">
-					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.service_name for service in oncall_services_list track by service.service_name" required>
-					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
+					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.service_name for service in oncall_services_list track by service.service_name" disabled>
+					                	<option value="" ng-hide="oncall_services">{{service_name}}</option>
 					                </select>
 					            </span>
 						</div>					
@@ -78,8 +46,8 @@
 						<div class="form-group">
 							<label class="" for="employeeName">Assign This Task to</label><br>
 									<span class="ui-select">
-						                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id" required>
-						                <option value="" ng-hide="employee_list">Select Employee</option>
+						                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id" disabled>
+						                <option value="" ng-hide="employee_list">{{assigned_employee}}</option>
 						                </select>
 					            </span>
 						</div>
@@ -90,7 +58,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="" for="assignDate">Date and Time of Order</label><br>
+							<label class="" for="assignDate">Order Date</label><br>
 				        <div data-ng-controller="DatepickerDemoCtrl">
 		                    <div class="input-group ui-datepicker">
 		                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -119,9 +87,14 @@
 					                </div>
 					                <div class="col-sm-4" style="display:none">
 					            		<div class="callout callout-info" style="background-color:white">
-					            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }} Hours" disabled>
+					            			<input style="background-color: #f4f8fa" id="assignTime" type="text" value="{{assignTime | date:'HH:mm' }}" >
 					                    </div>
+					
 					                </div>
+					                <div class="callout callout-info">
+					                <label>Order Time</label>
+					                        <input type="text" ng-model="orderTime"  readonly="">
+					                    </div>
 					            </div>
 					        </div>
 						</div>
@@ -268,80 +241,6 @@
 				<input type="submit" class="btn btn-info" value="Create Order" ng-click="submitOncall()">
 			</form>
 		</div>
-	</accordion-group>
-</accordion>
-
-<section class="panel panel-default table-dynamic">
-	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> OnCall Customer List</strong></div>
-
-    <div class="row">
-        <div class="col-md-2">PageSize:
-            <select ng-model="entryLimit" class="form-control">
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-                <option>50</option>
-                <option>100</option>
-            </select>
         </div>
-        <div class="col-md-3">Filter:
-            <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5>
-        </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div class="col-md-12" ng-show="filteredItems > 0">
-            <table class="table table-striped table-bordered">
-            <thead>
-	            <th>Service ID&nbsp;<a ng-click="sort_by('oncall_service_id');"><i class="glyphicon glyphicon-sort"></i></a></th>
-	            <th>Customer Name&nbsp;<a ng-click="sort_by('customer_name');"><i class="glyphicon glyphicon-sort"></i></a></th>
-	            <th>Address&nbsp;<a ng-click="sort_by('customer_address');"><i class="glyphicon glyphicon-sort"></i></a></th>
-	            <th>Customer Phone&nbsp;<a ng-click="sort_by('customer_phone');"><i class="glyphicon glyphicon-sort"></i></a></th>
-	            <th>Service Name&nbsp;<a ng-click="sort_by('service_name');"><i class="glyphicon glyphicon-sort"></i></a></th>
-	            <th>Order Date and Time&nbsp;<a ng-click="sort_by('order_date_time');"><i class="glyphicon glyphicon-sort"></i></a></th>
-	            <th>Assigned Employee&nbsp;<a ng-click="sort_by('employee_name');"><i class="glyphicon glyphicon-sort"></i></a></th>
-	            <th>Action</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td>{{data.oncall_service_id}}</td>
-                    <td>{{data.customer_name}}</td>	
-                    <td>{{data.customer_address}}</td>
-                    <td>{{data.customer_phone}}</td>
-                    <td>{{data.service_name}}</td>
-                    <td>{{data.order_date_time}}</td>
-                    <td>{{data.employee_name}}</td>
-                    <td>
-						<a ng-href="#/oncall/{{data.oncall_service_id}}" class="btn-icon btn-icon-sm btn-primary"
-						   role="button"
-						   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-								class="fa fa-edit"></i></a>
-						<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-						   ng-dblclick="deleteCoupon(data.oncall_service_id)" role="button"
-						   tooltip-placement="top" tooltip="Delete (Double Click)" tooltip-append-to-body="true"><i
-								class="fa fa-times"></i>
-						</a>
-                    </td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        <div class="col-md-12" ng-show="filteredItems == 0">
-            <div class="col-md-12">
-                <h4>No customers found</h4>
-            </div>
-        </div>
-        <div class="col-md-12" ng-show="filteredItems > 0">    
-            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
-            
-            
-        </div>
-    </div>
-
-
-</section>
-</section>
+    </section>
 </div>

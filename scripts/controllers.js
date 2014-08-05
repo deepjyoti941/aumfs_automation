@@ -16,7 +16,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         });
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
-}]).controller("oncallCustomerCtrl", ["$scope","$rootScope","$http","$filter","timeDifference", function($scope,$rootScope,$http,$filter,timeDifference) {
+}]).controller("oncallCustomerCtrl", ["$scope","$timeout","$rootScope","$http","$filter","timeDifference", function($scope,$timeout,$rootScope,$http,$filter,timeDifference) {
         var date = new Date();
         $scope.assignDate = date;
         $scope.assignTime = date;
@@ -230,6 +230,82 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             {service_name:"6th Onwards", price:100, code:"6h"},
 
         ]
+
+}]).controller("editOncallCustomerCtrl", ["$scope","$timeout","$routeParams","$rootScope","$http","$filter","timeDifference", function($scope,$routeParams,$timeout,$rootScope,$http,$filter,timeDifference) {
+        var post_oncall_data = {};
+        var url = document.URL
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        post_oncall_data.oncall_service_id = id;
+        post_oncall_data.method = 'get_service_by_id';
+        $http.post('api/oncall_controller.php', post_oncall_data)
+                .success(function(data) {
+                  console.log(data);
+                  $scope.customer_name = data[0].customer_name;
+                  $scope.customer_address = data[0].customer_address;
+                  $scope.customer_phone = data[0].customer_phone;
+                  $scope.customer_id = data[0].customer_id;
+                  $scope.service_name = data[0].service_name;
+                  $scope.assigned_employee = data[0].employee_name;
+                  $scope.assignDate = new Date(data[0].order_date_time);
+                  $scope.orderTime = data[0].order_date_time_all;
+        });
+
+        var date = new Date();
+        $scope.assignDate = date;
+        $scope.assignTime = date;
+        $scope.actTime = date;
+        $scope.actualTime = date;
+        $scope.numberOfHelpers = 0;
+        $scope.newCustomer = {};
+        $scope.oncallDetails = {}; 
+        $scope.oncallCustomer = {};
+
+        $scope.getBillAmount = function() {
+            var working_hours =  $('#working-hours').val();
+            var bill_amount = 0;
+            var no_of_helper = $('#number_of_helpers').val();
+            var helper_charge = no_of_helper * 50;
+            if (working_hours == 0) {
+                bill_amount = 0;
+                $('#bill_amount').val(bill_amount);
+            }else if (working_hours == 1 || working_hours < 1) {
+                bill_amount = bill_amount + helper_charge + 200;
+                $('#bill_amount').val(bill_amount);
+            } else if (working_hours >= 2 && working_hours <= 5) {
+                bill_amount = bill_amount + 200;
+                var remaining_2nd_5th_hours = working_hours - 1;
+                var bill_amount_2nd_5th_onward = remaining_2nd_5th_hours * 150;
+                bill_amount = bill_amount + bill_amount_2nd_5th_onward + helper_charge;
+                $('#bill_amount').val(bill_amount);
+            } else if (working_hours >= 6) {
+                bill_amount = bill_amount + 200;
+                var bill_amount_2nd_5th_onward = 4 * 150;
+                var remaining_6th_hours = working_hours - 5;
+                var bill_amount_6th_onward = remaining_6th_hours * 100;
+                bill_amount = bill_amount + bill_amount_2nd_5th_onward + bill_amount_6th_onward + helper_charge; 
+                $('#bill_amount').val(bill_amount);
+            }
+        };
+
+        $scope.timeDifference = function() {
+            var assignTime = $('#actTime').val();
+            var actualTime = $('#actualTime').val();
+
+            var start = $filter('date')(assignTime); 
+            var end = $filter('date')(actualTime); 
+            var s = start.split(':');
+            var e = end.split(':');
+            var min = e[1]-s[1];
+            var hour_carry = 0;
+            if(min < 0){
+                min += 60;
+                hour_carry += 1;
+            }
+            var hour = e[0]-s[0]-hour_carry;
+            min = ((min/60)*100).toString();
+            var diff = hour + ":" + min.substring(0,2);
+            $('#working-hours').val(hour);
+        };  
 
 }]).controller("onCallChargesCtrl", ["$scope", "$http", function($scope, $http) {
 
