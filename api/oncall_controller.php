@@ -15,11 +15,16 @@
 		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':service_name'=>$data->service_type,':assigned_employee_id'=>$data->assign_employee_id));
 		//print_r($sth->errorInfo());
 		if ($result == 1) {
- 			$data = array(
-	            "status" => true
-	        );
-	        echo json_encode($data);
-			
+			$sql = "UPDATE employee_details SET is_engaged = 1 WHERE employee_id = :employee_id";
+			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+			$result = $sth->execute(array(':employee_id' => $data->assign_employee_id));
+			if ($result == 1) {
+	 			$data = array(
+		            "status" => true
+		        );
+		        echo json_encode($data);
+				
+			}
 		} else {
 			$data = array(
 				"status" => false
