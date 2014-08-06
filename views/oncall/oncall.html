@@ -42,6 +42,9 @@
 				<div class="col-md-4">
 					<label class="ui-checkbox"><input id="existing_customer_chk" ng-model="existing_customer" name="existing_customer" ng-change="change(existing_customer)" type="checkbox"><span>Is it a Existing Customer</span></label>
 				</div>
+				<div class="col-md-4">
+					<label class="ui-checkbox"><input id="blacklist_customer_chk" ng-model="blacklist_customer" name="existing_customer"  ng-change="changeBlacklist(blacklist_customer)" type="checkbox" checked><span>Blacklist Customer</span></label>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
@@ -296,7 +299,19 @@
         <div class="col-md-12" ng-show="filteredItems > 0">
             <table class="table table-bordered table-striped table-responsive">
             <thead>
-	            <th>Service ID&nbsp;<a ng-click="sort_by('oncall_service_id');"><i class="glyphicon glyphicon-sort"></i></a></th>
+
+	            <th>Service ID&nbsp;</th>
+	            <th>Customer Name&nbsp;</th>
+	            <th>Address&nbsp;</th>
+	            <th>Customer Phone&nbsp;</th>
+	            <th>Service Name&nbsp;</th>
+	            <th>Order Date and Time&nbsp;</th>
+	            <th>Assigned Employee&nbsp;</th>
+	            <th>Order Status</th>
+	            <th>Is Back Listed</th>
+	            <th>Action</th>
+
+<!-- 	            <th>Service ID&nbsp;<a ng-click="sort_by('oncall_service_id');"><i class="glyphicon glyphicon-sort"></i></a></th>
 	            <th>Customer Name&nbsp;<a ng-click="sort_by('customer_name');"><i class="glyphicon glyphicon-sort"></i></a></th>
 	            <th>Address&nbsp;<a ng-click="sort_by('customer_address');"><i class="glyphicon glyphicon-sort"></i></a></th>
 	            <th>Customer Phone&nbsp;<a ng-click="sort_by('customer_phone');"><i class="glyphicon glyphicon-sort"></i></a></th>
@@ -304,7 +319,7 @@
 	            <th>Order Date and Time&nbsp;<a ng-click="sort_by('order_date_time');"><i class="glyphicon glyphicon-sort"></i></a></th>
 	            <th>Assigned Employee&nbsp;<a ng-click="sort_by('employee_name');"><i class="glyphicon glyphicon-sort"></i></a></th>
 	            <th>Order Status</th>
-	            <th>Action</th>
+	            <th>Action</th> -->
             </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
@@ -316,11 +331,19 @@
                     <td>{{data.order_date_time}}</td>
                     <td>{{data.employee_name}}</td>
                     <td>
-						<div ng-if="data.bill_number == '' ">
+                    	<div ng-if="data.bill_number == '' ">
 								<span class="label label-danger">Pending</span>
 						</div>
 						<div ng-if="data.bill_number != '' ">
 								<span class="label label-success">Completed</span>
+						</div>	
+                    </td>
+                    <td>
+						<div ng-if="data.black_listed == '1' ">
+								<span class="label label-danger">YES</span>
+						</div>
+						<div ng-if="data.black_listed != '1' ">
+								<span class="label label-success">NO</span>
 						</div>
                     </td>
                     <td>
@@ -328,11 +351,11 @@
 						   role="button"
 						   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
 								class="fa fa-edit"></i></a>
-						<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
+				<!-- 		<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
 						   ng-dblclick="deleteCoupon(data.oncall_service_id)" role="button"
 						   tooltip-placement="top" tooltip="Delete (Double Click)" tooltip-append-to-body="true"><i
 								class="fa fa-times"></i>
-						</a>
+						</a> -->
                     </td>
                 </tr>
             </tbody>

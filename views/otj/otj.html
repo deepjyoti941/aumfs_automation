@@ -1,26 +1,64 @@
-<div class="page page-oncall" ng-controller="newOtjCustomerCtrl">
-<section  data-ng-cloak>
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+      <i>({{match.model.customer_name}})</i>
+  </a>
+</script>
 
+<div class="page page-oncall" ng-controller="newOtjCustomerCtrl">
 <accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
 	<accordion-group heading="Add OTJ Customer">
-		<form class="" role="form" name="newCustomerForm" ng-submit="createCustomer()">
+			<div class="form-group">
+			{{selectedCustomer}}
+			
+             <input type="text" ng-model="selectedCustomer" placeholder="Search for existing customer here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+			</div>
+
+		<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCustomer)">
 			<div class="form-group">
 				<label class="" for="newTitle">Customer Name</label>
-				<input ng-model="newCoupon.title" ng-change="toSlug(newCoupon.title)" type="text" class="form-control"
-				       id="newTitle"
-				       placeholder="Enter Customer Name" required>
+				<input  style="display:none" type="text" ng-model="selectedCustomer.customer_id" name="customer_id" class="form-control" id="existing_customer_id" placeholder="Customer Id" >
+
+				<input  type="text" ng-model="selectedCustomer.customer_name" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
 			</div>
 			<div class="form-group">
-				<label class="" for="newTitleAlias">Customer Address</label>
-				<input ng-model="newCoupon.title_alias" type="text" class="form-control"
-				       id="newTitleAlias" placeholder="Enter Customer Address" required>
+				<label class="" for="customerAddress">Customer Address</label>
+				<input name="customer_address" ng-model="selectedCustomer.customer_address" type="text" class="form-control"
+				       id="customer_address" placeholder="Enter Customer Address" required>
 			</div>
 			<div class="form-group">
+				<label class="" for="customerPhone">Customer Phone</label>
+				<input name="customer_phone" ng-model="selectedCustomer.customer_phone" type="text" class="form-control"
+				       id="customer_phone" placeholder="Enter Customer Phone Number" required>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label class="ui-checkbox"><input ng-model="new_customer" name="new_customer_chk" type="checkbox" value="option2"><span>Is it a New Customer</span></label>
+				</div>
+				<div class="col-md-4">
+					<label class="ui-checkbox"><input id="existing_customer_chk" ng-model="existing_customer" name="existing_customer" ng-change="change(existing_customer)" type="checkbox"><span>Is it a Existing Customer</span></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<input type="submit" class="btn btn-info" ng-show="new_customer" value="Add New Customer">
+				</div>
+			</div>	
+		</form>
+		<form class="" role="form" name="newCustomerForm" ng-submit="createCustomer()">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="" for="customerId">Customer Id</label><br>
+						<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
+
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-sm-6 col-md-4 col-lg-2">
 						<label class="" for="newCategory">Enquiry Type</label><br>
 								<span class="ui-select">
-					                <select id="newCategory" ng-model="enquiry_type" required>
+					                <select id="action_type" ng-model="enquiry_type" required>
 										<option value="assessment">Assessment</option>
 										<option value="quotation">Quotation</option>
 										<option value="followup">Follow Up</option>
@@ -30,7 +68,7 @@
 					<div class="col-sm-6 col-md-4 col-lg-2" ng-show="enquiry_type == 'followup'" style="margin-left: 30px;">
 						<label class="" for="newCategory">Follow Up Type</label><br>
 						<span class="ui-select">
-			                <select id="newShop" ng-model="follow_up_type">
+			                <select id="followup_type" ng-model="follow_up_type">
 			                        <option value="delay">Delay</option>
 			                        <option value="cancel">Cancel</option>
 			                        <option value="confirm">Confirm</option>
@@ -47,15 +85,13 @@
 					       class="form-control"
 					       datepicker-popup="dd/MM/yyyy"
 					       show-weeks="false"
-					       ng-model="newCoupon.expire_date"
+					       ng-model="enquiry_date"
+					       id="enquiry_date" 
 					       is-open="opened"
 					       min="today"
 					       datepicker-options="dateOptions"
 					       ng-required="true"
 					       close-text="Close">
-				</div>
-				<div class="callout callout-info">
-					<p>Date is: {{newCoupon.expire_date | date:'fullDate'}}</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -64,81 +100,38 @@
 				          rows="2" required data-min="3" data-max="100"></textarea>
 			</div>
 			<div class="form-group">
-				<label>Status</label>
-				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio"
-				                               value="active"><span>Active</span></label>
-				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio" value="inactive"
-				                               checked><span>Inactive</span></label>
-				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio" value="suspended"><span>Suspended</span></label>
-				<label class="ui-radio"><input ng-model="newCoupon.status" name="radio1" type="radio"
-				                               value="expired"><span>Expired</span></label>
-			</div>
-			<div class="form-group" ng-if="newCoupon.coupon_type == 'code'">
-				<label class="" for="newCode">Coupon Code</label>
-				<input ng-model="newCoupon.coupon_code" type="text" class="form-control"
-				       id="newCode" placeholder="Enter Coupon Code" required>
-			</div>
-			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-6 col-md-4 col-lg-2">
-						<label class="" for="serviceName">Service Name</label><br>
+						<label class="" for="serviceName">Service Name</label>
 								<span class="ui-select">
-					                <select id="serviceName">
-					                	<option>Select Service Type</option>
-					                	<option>Electrical/Plumbing/Carpentry</option>
-					                	<option>Air Conditioner</option>
+					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.service_name for service in oncall_services_list track by service.service_name" required>
+					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
 					                </select>
 					            </span>
 					</div>
-					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
+					<div class="col-sm-6 col-md-4 col-lg-4" style="margin-left: 30px;">
 						<label class="" for="aumPrice">AUM Price</label><br>
-								<span class="ui-select">
-					                <select id="newShop">
-					                	<option>Select Service Price</option>
-					                	<option>Rs.100 / hr / technician</option>
-					                	<option>Rs.1000(Price per unit)</option>
-					                </select>
-					            </span>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
-						<label class="" for="serviceQuantity">Quantity</label><br>
-								<span class="ui-select">
-					                <select id="serviceQuantity">
-					                	<option>Select Quantity</option>
-					                	<option>1</option>
-					                	<option>3</option>
-					                </select>
-					            </span>
+						<input style="margin-top: 10px;" ng-model="aumPrice" type="text" class="form-control"
+				       id="aumPrice" placeholder="Enter Price" required>		
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
 						<label class="" for="serviceFrequency">Frequency</label><br>
-								<span class="ui-select">
-					                <select id="serviceFrequency">
-					                	<option>Select Frequency</option>
-					                	<option>Unlimited</option>
-					                	<option>Half Yearly</option>
-					                </select>
-					            </span>
+							<span class="ui-select">
+								<select></select>
+							</span>		
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
 						<label class="" for="newShop">Assign This Task to</label><br>
-								<span class="ui-select">
-					                <select id="newShop">
-					                		<option>Select Employee</option>
-					                        <option>debo das</option>
-					                        <option>rup das</option>
-					                        <option>Aunupam saikia</option>
-					                        required></select>
-					            </span>
+							<span class="ui-select">
+					                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id" required>
+					                <option value="" ng-hide="employee_list">Select Employee</option>
+					                </select>
+				            </span>
+						
 					</div>
 				</div>
 			</div>
-<!-- 			<div class="form-group">
-				<label class="">Full Description</label>
 
-				<div text-angular ng-model="newCoupon.description" class="ui-editor"></div>
-
-			</div> -->
 
 			<hr/>
 			<button type="submit" class="btn btn-info">Create Order</button>
@@ -160,11 +153,7 @@
 					       data-ng-keyup="search()">
 				</form>
 			</div>
-<!-- 			<div class="col-sm-3 col-xs-6 filter-result-info">
-                    <span>
-                        Showing {{filteredCoupons.length}}/{{Coupons.record.length}} entries
-                    </span>
-			</div> -->
+
 		</div>
 	</div>
 

@@ -24,5 +24,22 @@
 			echo json_encode($data);
 		}
 
+	}elseif ($data->method == 'backlist_customer') {
+			$sql = "UPDATE customer_details SET black_listed = 1 WHERE customer_id = :customer_id";
+			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+			$result = $sth->execute(array(':customer_id' => $data->existing_customer_id));
+			//print_r($sth->errorInfo());
+	       if ($result == 1) {
+	          $data = array(
+	            "status" => true
+	            );
+	          echo json_encode($data);
+	        } else {
+	          $data = array(
+	            "status" => false
+	            );
+	          echo json_encode($data);
+	        }
+	        $dbh = null;
 	}
 ?>

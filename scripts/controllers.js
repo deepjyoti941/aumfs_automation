@@ -53,6 +53,52 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             
         }
 
+        $scope.changeBlacklist = function($event) {
+            if($event == true && $('#existing_customer_id').val() != ''){
+                var existing_customer_id =  $('#existing_customer_id').val();
+                var post_data = {};
+                post_data.existing_customer_id = existing_customer_id;
+                post_data.method = 'backlist_customer';
+                $http.post('api/customer_controller.php', post_data)
+                              .success(function(data) {
+                                  if (data.status == true) {
+                                      toastr.success("Customer Backlisted successfully");
+                                      toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "positionClass": "toast-top-right",
+                                        "onclick": null,
+                                        "showDuration": "800",
+                                        "hideDuration": "1000",
+                                        "timeOut": "5000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                      }
+               
+                                  };
+                          });                  
+            }else {
+                    toastr.error("Idiot!! You must find customer first to backlist");
+                    toastr.options = {
+                      "closeButton": false,
+                      "debug": false,
+                      "positionClass": "toast-bottom-left",
+                      "onclick": null,
+                      "showDuration": "800",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    }
+            };
+        }
+
         $http.get('api/getOncallCustomerList.php').success(function(data){
           console.log(data);
             $scope.list = data;
@@ -249,6 +295,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $http.post('api/oncall_controller.php', post_oncall_data)
                 .success(function(data) {
                   console.log(data);
+                  $scope.ext_employee_id = data[0].assigned_employee_id;
                   $scope.customer_name = data[0].customer_name;
                   $scope.customer_address = data[0].customer_address;
                   $scope.customer_phone = data[0].customer_phone;
@@ -292,6 +339,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var id = url.substring(url.lastIndexOf('/') + 1);
             var post_data = {};
             post_data.oncall_service_id = id;
+            post_data.assigned_employee_id = angular.element('#employee_id_assigned').val();
             post_data.act_date = angular.element('#actDate').val();
             post_data.act_time = angular.element('#actTime').val();
             post_data.completion_date = angular.element('#actualDate').val();
@@ -593,8 +641,78 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     });
 
 }]).controller("newOtjCustomerCtrl", ["$scope", "$http", function($scope, $http) {
+          $scope.enquiry_date = new Date()
+          $scope.newCustomer = {};
+          $scope.processNewCustomerForm = function(selectedCustomer) {
+            $scope.newCustomer.customer_name = selectedCustomer['customer_name'];
+            $scope.newCustomer.customer_address = selectedCustomer['customer_address'];
+            $scope.newCustomer.customer_phone = selectedCustomer['customer_phone'];
+            $scope.newCustomer.method = 'save_new_customer';
+          
+            $http.post('api/customer_controller.php', $scope.newCustomer)
+                .success(function(data) {
+                    if (data.status == true) {
+                            toastr.success("Customer Added successfully");
+                            toastr.options = {
+                              "closeButton": false,
+                              "debug": false,
+                              "positionClass": "toast-top-right",
+                              "onclick": null,
+                              "showDuration": "800",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                            }
+                        $scope.oncallCustomer.customer_id = data.customer_id;
+ 
+                    };
+            });       
+        }
+
+        $scope.oncallCustomer = {};
+         $scope.change = function($event) {
+            if($event == true){
+                console.log('clicked');
+                var existing_customer_id =  $('#existing_customer_id').val();
+                $scope.oncallCustomer.customer_id = existing_customer_id;
+            }else {
+                $scope.customer_id = 'not an existing customer';
+            };
+            
+        }
+          getCustomerList();
+          getServiceList();
+          getEmployeeList();
+          function getCustomerList(){  
+            $http.get("api/customerlist.php").success(function(data){
+                $scope.customers = data;
+            });
+          };
+
+           function getServiceList() {
+            $http.post('api/oncall_controller.php', {method:'get_service_list'})
+                .success(function(data) {
+                    $scope.oncall_services_list = data;
+                
+            });    
+          }
+
+          function getEmployeeList() {
+            $http.post('api/employee_controller.php', {method:'get_free_employee_list'})
+                .success(function(data) {
+                    $scope.service_employee_list = data;
+                
+            }); 
+          }   
 
 }]).controller("otjJobsCtrl", ["$scope", "$http", function($scope, $http) {
+
+
+
 
 }]).controller("otjJobsForm", ["$scope", "$http", function($scope, $http) {
 
@@ -620,6 +738,10 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     },
     $scope.removeItem = function(index) {
         $scope.service.items.splice(index, 1);
+    }
+
+    $scope.saveService = function(item) {
+        console.log(item);
     }
 
 }]).controller("adminSettingsCtrl", ["$scope", "$http", function($scope, $http) {

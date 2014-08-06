@@ -13,11 +13,6 @@
 							</th>
 							<th>
 								<div class="th">
-									AUM Price
-								</div>
-							</th>
-							<th>
-								<div class="th">
 									Frequency
 								</div>
 							</th>
@@ -29,13 +24,12 @@
 					<tbody>
 						<tr ng:repeat="item in service.items">
             				<td><input type="text" class="form-control" ng:model="item.service_name"></td>
-            				<td><input type="text" class="form-control" ng:model="item.aum_price" ng:required></td>
             				<td><input type="text" class="form-control"  ng:model="item.frequency"></td>
             				<td>[<a href ng:click="removeItem($index)"><i class="fa fa-times"></i></a>]</td>
 						</tr>
 				        <tr>
 				            <td><a href ng-click="addItem()" class="btn btn-gap-v btn-primary"><i class="fa fa-plus"></i> Add Service</a>
-							<a href ng-click="saveService()" class="btn btn-w-md btn-gap-v btn-success"><i class="fa fa-floppy-o"></i>  Save Service</a>
+							<a href ng-click="saveService(items)" class="btn btn-w-md btn-gap-v btn-success"><i class="fa fa-floppy-o"></i>  Save Service</a>
 				            </td>
 				        </tr>
 					</tbody>

@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/config.php';
 
-	$query="SELECT oc.bill_number, oc.oncall_service_id, oc.service_name, oc.order_date_time, ed.employee_name, ed.is_engaged,cd.customer_address,cd.customer_phone,cd.customer_name
+	$query="SELECT oc.bill_number, oc.oncall_service_id, oc.service_name, oc.order_date_time, ed.employee_name, ed.is_engaged,cd.customer_address,cd.customer_phone,cd.black_listed,cd.customer_name
 				FROM oncall_customer_details AS oc
 				STRAIGHT_JOIN employee_details AS ed
 				STRAIGHT_JOIN customer_details AS cd

@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/config.php';
 
-$query="select distinct c.customer_id, c.customer_name, c.customer_address, c.customer_phone from customer_details c order by 1";
+$query="select distinct c.black_listed, c.customer_id, c.customer_name, c.customer_address, c.customer_phone from customer_details c order by 1";
 $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
 $arr = array();
