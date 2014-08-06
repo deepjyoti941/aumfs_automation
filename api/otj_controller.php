@@ -6,7 +6,7 @@
 		$sql = "INSERT INTO otj_service_type (service_name,service_frequency) VALUES (:service_name,:service_frequency)";
 
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$result = $sth->execute(array(':service_name' =>$data->service_name,':service_frequency'=>$data->frequency));
+		$result = $sth->execute(array(':service_name' =>$data->service_name,':service_frequency'=>$data->service_frequency));
 		//print_r($sth->errorInfo());
 		if ($result == 1) {
 			$data = array(
