@@ -739,7 +739,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
       var service_list = {};
       service_list.method = 'save_otj_service';
       service_list.service_name = $scope.service_name;
-      service_list.frequency = $scope.service_frequency;
+      service_list.service_frequency = $scope.service_frequency;
       $scope.service.push(service_list);
 
       $http.post('api/otj_controller.php', service_list)
