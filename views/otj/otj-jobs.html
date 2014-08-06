@@ -17,23 +17,41 @@
 								</div>
 							</th>
 							<th>
-								
+								<div class="th">
+									Action
+								</div>
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng:repeat="item in service.items">
-            				<td><input type="text" class="form-control" ng:model="item.service_name"></td>
-            				<td><input type="text" class="form-control"  ng:model="item.frequency"></td>
-            				<td>[<a href ng:click="removeItem($index)"><i class="fa fa-times"></i></a>]</td>
+						<tr ng:repeat="item in service">
+            				<td>{{item.service_name}}</td>
+            				<td>{{item.service_frequency}}</td>
+            				<td><a href ng:click="removeItem($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
 						</tr>
-				        <tr>
+<!-- 				        <tr>
 				            <td><a href ng-click="addItem()" class="btn btn-gap-v btn-primary"><i class="fa fa-plus"></i> Add Service</a>
 							<a href ng-click="saveService(items)" class="btn btn-w-md btn-gap-v btn-success"><i class="fa fa-floppy-o"></i>  Save Service</a>
 				            </td>
-				        </tr>
+				        </tr> -->
 					</tbody>
 				</table>
+				<div class="row">
+					<div class="col-md-4">
+						<label class="" for="ServiceName">Service Name</label>
+						<input type="text" ng-model="service_name" name="service_name" class="form-control" id="service_name" placeholder="Enter Service Name Here" required="">
+					</div>
+					<div class="col-md-4">
+						<label class="" for="serviceFrequency">Frequency (in days)</label>
+						<input type="text" ng-model="service_frequency" name="service_frequency" class="form-control" id="service_frequency" placeholder="Enter Frequency of Service" required="">
+					</div>
+					<div class="col-md-4">
+					<br>
+					<a href ng-click="addService()" class="btn btn-gap-v btn-primary"><i class="fa fa-plus"></i> Add Service</a>
+					<a href ng-click="addAnotherService()" class="btn btn-gap-v btn-primary"> Add Another</a>	
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</section>

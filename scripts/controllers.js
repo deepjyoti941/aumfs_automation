@@ -715,29 +715,97 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
 
 }]).controller("otjJobsForm", ["$scope", "$http", function($scope, $http) {
+    getServiceList()
+    function getServiceList() {
+        $http.post('api/otj_controller.php', {method:'get_service_list'})
+            .success(function(data) {
+                $scope.service = data;
+            
+        }); 
+    }
 
-    $scope.service = {
-        items: [{
-            service_name: "Electrical/Plumbing/Carpentry",
-            aum_price: 'Rs.100 / hr / technician',
-            frequency:"Unlimited"},
-            {
-            service_name: "Air Conditioner",
-            aum_price: 'Rs.1000(Price per unit)',
-            frequency:"Half Yearly"
-        }]
-    };
+    // $scope.service = [
+    //         {
+    //         service_name: "Electrical/Plumbing/Carpentry",
+    //         frequency:"Unlimited"
+    //         },
+    //         {
+    //         service_name: "Air Conditioner",
+    //         frequency:"Half Yearly"
+    //         }
+    //     ]
+
+     $scope.addService =  function() {
+      var service_list = {};
+      service_list.method = 'save_otj_service';
+      service_list.service_name = $scope.service_name;
+      service_list.frequency = $scope.service_frequency;
+      $scope.service.push(service_list);
+
+      $http.post('api/otj_controller.php', service_list)
+        .success(function(data) {
+            if (data.status == true) {
+                    toastr.success("Service Added successfully");
+                    toastr.options = {
+                      "closeButton": false,
+                      "debug": false,
+                      "positionClass": "toast-top-right",
+                      "onclick": null,
+                      "showDuration": "800",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    }
+            };            
+        
+      }); 
+
+     }
+
+     $scope.addAnotherService = function() {
+      $scope.service_name = '';
+      $scope.service_frequency= '';
+     }
 
     $scope.addItem = function() {
-        $scope.service.items.push({
+        $scope.service.push({
             service_name: '',
             aum_price: '',
             qty: 0,
             frequency:''
         });
     },
-    $scope.removeItem = function(index) {
-        $scope.service.items.splice(index, 1);
+    $scope.removeItem = function(idx) {
+        var service_to_delete = $scope.service[idx];
+        var post_data = {};
+        post_data.method = 'delete_service_by_id';
+        post_data.service_id = service_to_delete.service_id
+        $http.post('api/otj_controller.php', post_data)
+        .success(function(data) {
+            if (data.status == true) {
+                    $scope.service.splice(idx, 1);
+                    toastr.success("Service Deleted successfully");
+                    toastr.options = {
+                      "closeButton": false,
+                      "debug": false,
+                      "positionClass": "toast-top-right",
+                      "onclick": null,
+                      "showDuration": "800",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    }
+            };            
+        
+      }); 
     }
 
     $scope.saveService = function(item) {
