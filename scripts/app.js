@@ -1614,6 +1614,14 @@
             templateUrl: "views/dashboard.html"
         }).when("/oncall", {
             templateUrl: "views/oncall/oncall.html"
+        }).when("/aum", {
+            templateUrl: "views/aum/aum.html"
+        }).when("/aum-jobs", {
+            templateUrl: "views/aum/aum-jobs.html"
+        }).when("/amc", {
+            templateUrl: "views/amc/amc.html"
+        }).when("/amc-jobs", {
+            templateUrl: "views/amc/amc-jobs.html"
         }).when("/oncall/:id", {
             templateUrl: "views/oncall/oncall-edit.html"
         }).when("/oncall-charges", {

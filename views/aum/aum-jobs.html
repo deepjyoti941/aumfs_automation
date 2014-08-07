@@ -1,8 +1,8 @@
-<div class="page" ng-controller="otjJobsCtrl">
+<div class="page" ng-controller="aumJobsCtrl">
 	<section class="panel panel-default">
-		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Add OTJ details</strong></div>
+		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Add AUM details</strong></div>
 		<div class="panel-body">
-			<div ng-controller="otjJobsForm">
+			<div ng-controller="aumJobsForm">
 				<table class="table table-bordered table-striped table-responsive">
 					<thead>
 						<tr>
@@ -13,7 +13,12 @@
 							</th>
 							<th>
 								<div class="th">
-									Frequency
+									AUM Price (In Rupees)
+								</div>
+							</th>
+							<th>
+								<div class="th">
+									Frequency (in Days)
 								</div>
 							</th>
 							<th>
@@ -26,6 +31,7 @@
 					<tbody>
 						<tr ng:repeat="item in service">
             				<td>{{item.service_name}}</td>
+            				<td>{{item.service_price}}</td>
             				<td>{{item.service_frequency}}</td>
             				<td><a href ng:click="removeItem($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
 						</tr>
@@ -40,6 +46,10 @@
 					<div class="col-md-4">
 						<label class="" for="ServiceName">Service Name</label>
 						<input type="text" ng-model="service_name" name="service_name" class="form-control" id="service_name" placeholder="Enter Service Name Here" required="">
+					</div>
+					<div class="col-md-4">
+						<label class="" for="servicePrice">Price (in Rupees)</label>
+						<input type="text" ng-model="service_price" name="service_price" class="form-control" id="service_price" placeholder="Enter Price of Service" required="">
 					</div>
 					<div class="col-md-4">
 						<label class="" for="serviceFrequency">Frequency (in days)</label>
