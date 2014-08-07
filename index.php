@@ -14,8 +14,6 @@
         <!-- end needs images -->
         <link rel="stylesheet" href="styles/libs/toastr.css">
         <link rel="stylesheet" href="styles/main.css">
-        <link rel="stylesheet" type="text/css" href="http://cdn.webrupee.com/font">
-
 
     </head>
     <body data-ng-app="app" id="app" data-custom-background="" data-off-canvas-nav="">

@@ -812,20 +812,50 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("adminSettingsCtrl", ["$scope", "$http", function($scope, $http) {
 
 }]).controller("aumCustomerCtrl", ["$scope", "$http", function($scope, $http) {
+      $scope.order_date = new Date();
+      $scope.subscription_fee = 1000;
+      $scope.service_quantity = 0;
+      $scope.oncallCustomer = {};
+      $scope.newCustomer = {};
+      $scope.processNewCustomerForm = function(selectedCustomer) {
+        $scope.newCustomer.customer_name = selectedCustomer['customer_name'];
+        $scope.newCustomer.customer_address = selectedCustomer['customer_address'];
+        $scope.newCustomer.customer_phone = selectedCustomer['customer_phone'];
+        $scope.newCustomer.method = 'save_new_customer';
+      
+        $http.post('api/customer_controller.php', $scope.newCustomer)
+            .success(function(data) {
+                if (data.status == true) {
+                        toastr.success("Customer Added successfully");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "positionClass": "toast-top-right",
+                          "onclick": null,
+                          "showDuration": "800",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+                    $scope.oncallCustomer.customer_id = data.customer_id;
 
-       $scope.subscription_fee = 1000;
-       $scope.service_quantity = 0;
-       $scope.oncallCustomer = {};
-         $scope.change = function($event) {
-            if($event == true){
-                console.log('clicked');
-                var existing_customer_id =  $('#existing_customer_id').val();
-                $scope.oncallCustomer.customer_id = existing_customer_id;
-            }else {
-                $scope.customer_id = 'not an existing customer';
-            };
-            
+                };
+            });       
         }
+       $scope.change = function($event) {
+          if($event == true){
+              console.log('clicked');
+              var existing_customer_id =  $('#existing_customer_id').val();
+              $scope.oncallCustomer.customer_id = existing_customer_id;
+          }else {
+              $scope.customer_id = 'not an existing customer';
+          };
+          
+      }
           getCustomerList();
           getServiceList();
           //getEmployeeList();
@@ -845,22 +875,51 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
 
     $scope.calculatePrice = function() {
-      var total = [];
+        var aum_service_array = [];
+        var total = [];
         var test = document.getElementById("service_list_data").getElementsByTagName("input");
         for(var i=0;i<test.length;i++) {
-            //alert(test[i].id);
+            var aum_service = {};
+            aum_service.service_id = test[i].id;
+            aum_service.quantity = test[i].value;
+            aum_service_array.push(aum_service);
             var text_id = test[i].id;
-            //alert(text_id);
             var service_price = parseInt(angular.element('#'+text_id).closest('td').prev().html());
             var total_price = service_price * test[i].value;
             total.push(total_price);
-       }  
-      var aum_price = total.reduce(function(prev, cur) {
-        return prev + cur;
-      });
-      aum_price = aum_price + 1000;
+        }  
+        var aum_price = total.reduce(function(prev, cur) {
+          return prev + cur;
+        });
+        console.log(aum_service_array);
+        aum_price = aum_price + 1000;
+        $scope.price_result = aum_price
 
-      $scope.price_result = aum_price
+        var post_data = {};
+        post_data.method = 'save_aum_customer_details';
+        post_data.customer_id = angular.element('#customer_id').val();
+        post_data.order_date = angular.element('#order_date').val();
+        post_data.total = aum_price;
+        $http.post('api/aum_controller.php', post_data)
+          .success(function(data) {
+               if (data.status == true) {
+                var aum_service_details = {};
+                aum_service_details.method = 'save_aum_service_details'
+                aum_service_details.aum_order_id = data.aum_order_id;
+                aum_service_details.details = aum_service_array
+                  $http.post('api/aum_controller.php', aum_service_details)
+                    .success(function(data) {
+                         if (data.status == true) {
+                            
+
+                          };              
+                    
+                  });
+
+                };              
+          
+        }); 
+
     }
 
 }]).controller("aumJobsCtrl", ["$scope", "$http", function($scope, $http) {

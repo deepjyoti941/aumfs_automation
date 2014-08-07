@@ -10,8 +10,6 @@
 	<accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
 		<accordion-group heading="Add New Customer">
 				<div class="form-group">
-				{{selectedCustomer}}
-				
 	             <input type="text" ng-model="selectedCustomer" placeholder="Search for existing customer here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
 				</div>
 				<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCustomer)">
@@ -39,7 +37,12 @@
 							<label class="ui-checkbox"><input id="existing_customer_chk" ng-model="existing_customer" name="existing_customer" ng-change="change(existing_customer)" type="checkbox"><span>Is it a Existing Customer</span></label>
 						</div>
 						<div class="col-md-4">
-							<label class="ui-checkbox"><input id="blacklist_customer_chk" ng-model="blacklist_customer" name="existing_customer"  ng-change="changeBlacklist(blacklist_customer)" type="checkbox" checked><span>Blacklist Customer</span></label>
+							<div ng-if="selectedCustomer.black_listed =='1' ">
+								<label class="ui-checkbox"><input id="blacklisted_customer_chk"  name="backlisted_customer" type="checkbox" checked><span>Blacklisted Customer</span></label>
+							</div>
+							<div ng-if="selectedCustomer.black_listed !='1'">
+									<label class="ui-checkbox"><input id="blacklist_customer_chk" ng-model="blacklist_customer" name="existing_customer"  ng-change="changeBlacklist(blacklist_customer)" type="checkbox" checked><span>Blacklist this Customer</span></label>							
+							</div>
 						</div>
 					</div>
 					<div class="row">
@@ -61,6 +64,21 @@
 					<input type="text" readonly class="form-control" ng-model="subscription_fee" name="subscription_fee" id="subscription_fee">
 				</div>
 			</div>
+			<div class="input-group ui-datepicker">
+				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+				 <input type="text" 
+                       class="form-control"
+                       datepicker-popup="{{format}}"
+                       ng-model="order_date"
+                       id="order_date" 
+                       show-weeks="false"
+                       is-open="opened"
+                       min="today"
+                       datepicker-options="dateOptions" 
+                       date-disabled="disabled(date, mode)"
+                       close-text="Close">
+			</div>
+			<br>
 		    <div class="row" id="service_list_data">
 		        <div class="col-md-12">
 		            <table class="table table-bordered table-striped table-responsive">
@@ -90,13 +108,12 @@
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<input type="submit" class="btn btn-info" ng-click="calculatePrice()" value="Calculate Price">
+					<input type="submit" class="btn btn-info"  ng-click="calculatePrice()" value="Calculate And Save">
 				</div>
 				<div class="col-md-2">
 					<input type="text" readonly class="form-control" ng-model="price_result">
 				</div>
 			</div>
-
 		</form>
 		</accordion-group>
 	</accordion>

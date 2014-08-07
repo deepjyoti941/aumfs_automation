@@ -9,7 +9,6 @@
 <accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
 	<accordion-group heading="Add OTJ Customer">
 			<div class="form-group">
-			{{selectedCustomer}}
 			
              <input type="text" ng-model="selectedCustomer" placeholder="Search for existing customer here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
 			</div>
@@ -37,6 +36,14 @@
 				</div>
 				<div class="col-md-4">
 					<label class="ui-checkbox"><input id="existing_customer_chk" ng-model="existing_customer" name="existing_customer" ng-change="change(existing_customer)" type="checkbox"><span>Is it a Existing Customer</span></label>
+				</div>
+				<div class="col-md-4">
+					<div ng-if="selectedCustomer.black_listed =='1' ">
+						<label class="ui-checkbox"><input id="blacklisted_customer_chk"  name="backlisted_customer" type="checkbox" checked><span>Blacklisted Customer</span></label>
+					</div>
+					<div ng-if="selectedCustomer.black_listed !='1'">
+							<label class="ui-checkbox"><input id="blacklist_customer_chk" ng-model="blacklist_customer" name="existing_customer"  ng-change="changeBlacklist(blacklist_customer)" type="checkbox" checked><span>Blacklist this Customer</span></label>							
+					</div>
 				</div>
 			</div>
 			<div class="row">
