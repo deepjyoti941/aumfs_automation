@@ -59,12 +59,16 @@
 			echo json_encode($data);
 		}
 	}elseif ($data->method == 'save_aum_service_details') {
-		print_r($data);
+		//print_r($data);
 		foreach ($data->details as $value) {
 			//print_r($value->service_id);
 			$sql = "INSERT INTO  aum_service_details (aum_order_id,service_id,quantity) VALUES (:aum_order_id,:service_id,:quantity)";
 			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 			$result = $sth->execute(array(':aum_order_id' =>$data->aum_order_id,':service_id' =>$value->service_id,':quantity'=>$value->quantity));
 		}
+		$data = array(
+			"status" => true
+			);
+		echo json_encode($data);
 	}
 ?>
