@@ -1618,6 +1618,8 @@
             templateUrl: "views/aum/aum.html"
         }).when("/aum-jobs", {
             templateUrl: "views/aum/aum-jobs.html"
+        }).when("/aum-invoice/:id", {
+            templateUrl: "views/aum/aum-invoice.html"
         }).when("/amc", {
             templateUrl: "views/amc/amc.html"
         }).when("/amc-jobs", {
