@@ -1066,8 +1066,8 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
       }); 
     }
 
-}]).controller("aumInvoiceCtrl", ["$scope", "$window", function ($scope) {
-
+}]).controller("aumInvoiceCtrl", ["$scope","$routeParams", "$window" ,"$http", function ($scope, $routeParams, $http) {
+      $scope.order_id = $routeParams.id;
       $scope.main_name = 'Aumfs Automation Company';
         return $scope.printInvoice = function () {
             var originalContents, popupWin, printContents;
