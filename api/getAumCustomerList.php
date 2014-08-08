@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/config.php';
 
-	$query="SELECT aum.order_date,aum.order_status,aum.total,cd.customer_name,cd.customer_address,cd.customer_phone,cd.customer_id,cd.black_listed 
+	$query="SELECT aum.aum_order_id,aum.order_date,aum.order_status,aum.total,cd.customer_name,cd.customer_address,cd.customer_phone,cd.customer_id,cd.black_listed 
 				FROM aum_customer_details AS aum STRAIGHT_JOIN customer_details AS cd  
 				WHERE aum.customer_id=cd.customer_id
 				ORDER BY cd.customer_name ASC";
