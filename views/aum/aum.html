@@ -121,5 +121,68 @@
 
 <section class="panel panel-default table-dynamic">
 	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> AUM Customer List</strong></div>
+	   <div class="row">
+        <div class="col-md-2">PageSize:
+            <select ng-model="entryLimit" class="form-control">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+        </div>
+        <div class="col-md-3">Filter:
+            <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5>
+        </div>
+    </div>
+    <br/>
+	<div class="row">
+        <div class="col-md-12" ng-show="filteredItems > 0">
+            <table class="table table-bordered table-striped table-responsive">
+	            <thead>
+
+		            <th>Customer ID</th>
+		            <th>Customer Name</th>
+		            <th>Address</th>
+		            <th>Customer Phone</th>
+		            <th>Order Date</th>
+		            <th>Total Price(Rs.)</th>
+		            <th>Order Status</th>
+		            <th>Is Back Listed</th>
+		            <th>Action</th>
+		        </thead>
+		        <tbody>
+		        	<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+		        		<td>{{data.customer_id}}</td>
+		        		<td>{{data.customer_name}}</td>
+		        		<td>{{data.customer_address}}</td>
+		        		<td>{{data.customer_phone}}</td>
+		        		<td>{{data.order_date}}</td>
+		        		<td>{{data.total}}</td>
+		        		<td>{{data.order_status}}</td>
+		        		<td>{{data.black_listed}}</td>
+		        		<td></td>
+
+		        	</tr>
+		        </tbody>
+		    </table>
+		</div>
+	</div>
+	<div class="row">
+        <div class="col-md-12" ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4>No customers found</h4>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="filteredItems > 0">    
+            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
+            
+            
+        </div>
+	</div>
+
 </section>
 </div>

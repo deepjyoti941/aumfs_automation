@@ -70,5 +70,7 @@
 			"status" => true
 			);
 		echo json_encode($data);
+	}elseif ($data->method == 'get_aum_customer_list') {
+		# code...
 	}
 ?>
