@@ -162,8 +162,22 @@
 		        		<td>{{data.customer_phone}}</td>
 		        		<td>{{data.order_date}}</td>
 		        		<td>{{data.total}}</td>
-		        		<td>{{data.order_status}}</td>
-		        		<td>{{data.black_listed}}</td>
+		        		<td>
+			        		<div ng-if="data.order_status == '1' ">
+									<span class="label label-success">Done</span>
+							</div>
+							<div ng-if="data.order_status != '1' ">
+									<span class="label label-danger">Pending</span>
+							</div>
+		        		</td>
+		        		<td>
+			        		<div ng-if="data.black_listed == '1' ">
+									<span class="label label-danger">YES</span>
+							</div>
+							<div ng-if="data.black_listed != '1' ">
+									<span class="label label-success">NO</span>
+							</div>
+		        		</td>
 		        		<td><a href ng:click="aumInvoice($index)" class="btn btn-w-md btn-gap-v btn-info">View Details/Create Invoice</a></td>
 
 		        	</tr>
