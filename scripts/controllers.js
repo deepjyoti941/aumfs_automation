@@ -1,5 +1,5 @@
 "use strict";
-angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$location", function ($scope, $location) {
+angular.module("app.controllers", ['chieffancypants.loadingBar', 'ngAnimate']).controller("AppCtrl", ["$scope", "$location", function ($scope, $location) {
     return $scope.isSpecificPage = function () {
         var path;
         return path = $location.path(), _.contains(["/404", "/pages/500", "/pages/login", "/pages/signin", "/pages/signin1", "/pages/signin2", "/pages/signup", "/pages/signup1", "/pages/signup2", "/pages/forgot", "/pages/lock-screen"], path)
@@ -16,7 +16,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         });
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
-}]).controller("oncallCustomerCtrl", ["$scope","$timeout","$rootScope","$http","$filter","timeDifference", function($scope,$timeout,$rootScope,$http,$filter,timeDifference) {
+}]).controller("oncallCustomerCtrl", ["$scope","$timeout","$rootScope","$http","$filter","timeDifference","cfpLoadingBar", function($scope,$timeout,$rootScope,$http,$filter,timeDifference,cfpLoadingBar) {
         // var x = new Date('3/16/2013 17:00:00');// x is now a date object
        // x.setHours(0,0,0,0); set  hours to 0, min Secs and milliSecs as well
        // Logger.log(x);
@@ -297,7 +297,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
         ]
 
-}]).controller("editOncallCustomerCtrl", ["$scope","$timeout","$routeParams","$rootScope","$http","$filter","timeDifference", function($scope,$routeParams,$timeout,$rootScope,$http,$filter,timeDifference) {
+}]).controller("editOncallCustomerCtrl", ["$scope","$timeout","cfpLoadingBar", "$routeParams","$rootScope","$http","$filter","timeDifference", function($scope,$routeParams,$timeout,$rootScope,$http,$filter,timeDifference,cfpLoadingBar) {
         var post_oncall_data = {};
         var url = document.URL
         var id = url.substring(url.lastIndexOf('/') + 1);
@@ -457,9 +457,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var diff = hour + ":" + min.substring(0,2);
         }; 
 
-}]).controller("onCallChargesCtrl", ["$scope", "$http", function($scope, $http) {
+}]).controller("onCallChargesCtrl", ["$scope", "$timeout","cfpLoadingBar","$http", function($scope, $http,$timeout,cfpLoadingBar) {
 
-}]).controller("addOncallChargesForm", ["$scope" , "$http", function($scope, $http) {
+}]).controller("addOncallChargesForm", ["$scope" , "$http","$timeout","cfpLoadingBar", function($scope, $http,$timeout,cfpLoadingBar) {
      $scope.helper_charge = 50;
        $scope.service = {
             items: [
@@ -479,7 +479,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         };
 
 
-}]).controller("employeeCtrl", ["$scope","$route", "$http", function($scope ,$route ,$http) {
+}]).controller("employeeCtrl", ["$scope","$route", "$http","$timeout","cfpLoadingBar", function($scope ,$route ,$http,$timeout,cfpLoadingBar) {
 
     $http.post("api/employee_controller.php",{method:'get_employee_list'} ).success(function(data){
         $scope.employee_list = data;
@@ -579,7 +579,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
     }    
 
-}]).controller("EmployeeEditCtrl", ["$scope","$routeParams","$route", "$http", function($scope ,$routeParams, $route ,$http) {
+}]).controller("EmployeeEditCtrl", ["$scope","$routeParams","$route", "$http","$timeout","cfpLoadingBar", function($scope ,$routeParams, $route ,$http,$timeout,cfpLoadingBar) {
     var data = {};
     data.method =  'get_employee_by_id';
     data.employee_id = $routeParams.id;
@@ -663,7 +663,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.employee_list = data;
     });
 
-}]).controller("newOtjCustomerCtrl", ["$scope", "$http", function($scope, $http) {
+}]).controller("newOtjCustomerCtrl", ["$scope", "$http","$timeout","cfpLoadingBar", function($scope, $http,$timeout,cfpLoadingBar) {
 
 
           $http.get('api/getOtjCustomerList.php').success(function(data){
