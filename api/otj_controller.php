@@ -3,10 +3,10 @@
 	$data = json_decode(file_get_contents("php://input"));
 
 	if ($data->method == 'save_otj_service') {
-		$sql = "INSERT INTO otj_service_type (service_name,service_frequency) VALUES (:service_name,:service_frequency)";
+		$sql = "INSERT INTO otj_service_type (service_name) VALUES (:service_name)";
 
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$result = $sth->execute(array(':service_name' =>$data->service_name,':service_frequency'=>$data->service_frequency));
+		$result = $sth->execute(array(':service_name' =>$data->service_name));
 		//print_r($sth->errorInfo());
 		if ($result == 1) {
 			$data = array(

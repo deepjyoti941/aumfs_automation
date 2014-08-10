@@ -102,11 +102,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="" for="newShortDesc">Short Description</label>
-				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
-				          rows="2" required data-min="3" data-max="100"></textarea>
-			</div>
-			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-6 col-md-4 col-lg-2">
 						<label class="" for="serviceName">Service Name</label>
@@ -121,12 +116,12 @@
 						<input style="margin-top: 10px;" ng-model="aumPrice" type="text" class="form-control"
 				       id="aumPrice" placeholder="Enter Price" required>		
 					</div>
-					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
+<!-- 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
 						<label class="" for="serviceFrequency">Frequency</label><br>
 							<span class="ui-select">
 								<select></select>
 							</span>		
-					</div>
+					</div> -->
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
 						<label class="" for="newShop">Assign This Task to</label><br>
 							<span class="ui-select">
@@ -137,6 +132,11 @@
 						
 					</div>
 				</div>
+				<div class="form-group">
+				<label class="" for="newShortDesc">Short Description</label>
+				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
+				          rows="2" required data-min="3" data-max="100"></textarea>
+			</div>
 			</div>
 
 

@@ -13,11 +13,6 @@
 							</th>
 							<th>
 								<div class="th">
-									Frequency
-								</div>
-							</th>
-							<th>
-								<div class="th">
 									Action
 								</div>
 							</th>
@@ -26,7 +21,6 @@
 					<tbody>
 						<tr ng:repeat="item in service">
             				<td>{{item.service_name}}</td>
-            				<td>{{item.service_frequency}}</td>
             				<td><a href ng:click="removeItem($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
 						</tr>
 <!-- 				        <tr>
@@ -40,10 +34,6 @@
 					<div class="col-md-4">
 						<label class="" for="ServiceName">Service Name</label>
 						<input type="text" ng-model="service_name" name="service_name" class="form-control" id="service_name" placeholder="Enter Service Name Here" required="">
-					</div>
-					<div class="col-md-4">
-						<label class="" for="serviceFrequency">Frequency (in days)</label>
-						<input type="text" ng-model="service_frequency" name="service_frequency" class="form-control" id="service_frequency" placeholder="Enter Frequency of Service" required="">
 					</div>
 					<div class="col-md-4">
 					<br>
