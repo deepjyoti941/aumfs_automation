@@ -408,6 +408,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             }else {
               helper_hourly_charge = 0;
             };
+
             var helper_charge = no_of_helper * 50;
             if (working_hours == 0) {
                 bill_amount = 0;
@@ -663,6 +664,28 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     });
 
 }]).controller("newOtjCustomerCtrl", ["$scope", "$http", function($scope, $http) {
+
+
+          $http.get('api/getOtjCustomerList.php').success(function(data){
+            console.log(data);
+              $scope.list = data;
+              $scope.currentPage = 1; //current page
+              $scope.entryLimit = 5; //max no of items to display in a page
+              $scope.filteredItems = $scope.list.length; //Initially for no filter  
+              $scope.totalItems = $scope.list.length;
+          });
+          $scope.setPage = function(pageNo) {
+              $scope.currentPage = pageNo;
+          };
+          $scope.filter = function() {
+              $timeout(function() { 
+                  $scope.filteredItems = $scope.filtered.length;
+              }, 10);
+          };
+          $scope.sort_by = function(predicate) {
+              $scope.predicate = predicate;
+              $scope.reverse = !$scope.reverse;
+          };
           $scope.enquiry_date = new Date()
           $scope.newCustomer = {};
           $scope.processNewCustomerForm = function(selectedCustomer) {
@@ -706,6 +729,73 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             };
             
         }
+
+        $scope.enquiry_type_list = [
+          {type:'Assessment'},
+          {type:'Quotation'},
+          {type:'FollowUp'}
+        ],
+
+        $scope.follow_up_type_list = [
+          {type:'Delay'},
+          {type:'Cancel'},
+          {type:'Confirm'}
+        ];
+
+        $scope.createOtjOrder = function() {
+          if (angular.element('#customer_id').val() == '') {
+            toastr.error("Idiot!! You must insert customer first");
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "positionClass": "toast-bottom-left",
+              "onclick": null,
+              "showDuration": "800",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+          }else {
+              var post_data = {};
+              post_data.method = 'save_otj_customer';
+              post_data.customer_id = angular.element('#customer_id').val();
+              post_data.enquiry_type = angular.element('#enquiry_type').val();
+              post_data.follow_up_type = angular.element('#follow_up_type').val();
+              post_data.enquiry_date = angular.element('#enquiry_date').val();
+              post_data.service_name = angular.element('#serviceName').val();
+              post_data.price = angular.element('#aumPrice').val();
+              post_data.assigned_employee_id = angular.element('#employee_list').val();
+              post_data.short_description = angular.element('#short_description').val();
+              console.log(post_data);
+                $http.post('api/otj_controller.php', post_data)
+                    .success(function(data) {
+                       if (data.status == true) {
+                                toastr.success("Order Created successfully");
+                                toastr.options = {
+                                  "closeButton": false,
+                                  "debug": false,
+                                  "positionClass": "toast-top-right",
+                                  "onclick": null,
+                                  "showDuration": "800",
+                                  "hideDuration": "1000",
+                                  "timeOut": "5000",
+                                  "extendedTimeOut": "1000",
+                                  "showEasing": "swing",
+                                  "hideEasing": "linear",
+                                  "showMethod": "fadeIn",
+                                  "hideMethod": "fadeOut"
+                                } 
+                        };
+                    
+                }); 
+
+          }
+
+        }
           getCustomerList();
           getServiceList();
           getEmployeeList();
@@ -716,7 +806,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           };
 
            function getServiceList() {
-            $http.post('api/oncall_controller.php', {method:'get_service_list'})
+            $http.post('api/otj_controller.php', {method:'get_service_list'})
                 .success(function(data) {
                     $scope.oncall_services_list = data;
                 

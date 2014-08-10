@@ -65,21 +65,16 @@
 					<div class="col-sm-6 col-md-4 col-lg-2">
 						<label class="" for="newCategory">Enquiry Type</label><br>
 								<span class="ui-select">
-					                <select id="action_type" ng-model="enquiry_type" required>
-										<option value="assessment">Assessment</option>
-										<option value="quotation">Quotation</option>
-										<option value="followup">Follow Up</option>
+									<select name="oncallCustomer.enquiry_type" ng-model="enquiry_type" id="enquiry_type" ng-options="enquiry.type for enquiry in enquiry_type_list track by enquiry.type" required>
+					                	<option value="" ng-hide="enquiry_type">Select Enquiry Type</option>
 					                </select>
 					            </span>
 					</div>
-					<div class="col-sm-6 col-md-4 col-lg-2" ng-show="enquiry_type == 'followup'" style="margin-left: 30px;">
+					<div class="col-sm-6 col-md-4 col-lg-2"  style="margin-left: 30px;">
 						<label class="" for="newCategory">Follow Up Type</label><br>
 						<span class="ui-select">
-			                <select id="followup_type" ng-model="follow_up_type">
-			                        <option value="delay">Delay</option>
-			                        <option value="cancel">Cancel</option>
-			                        <option value="confirm">Confirm</option>
-			                        required>
+							<select name="oncallCustomer.follow_up_type" ng-model="follow_up_type" id="follow_up_type" ng-options="follow.type for follow in follow_up_type_list track by follow.type">
+			                	<option value="" ng-hide="follow_up_type">Select Follow up Type</option>
 			                </select>			            
 			            </span>
 					</div>
@@ -90,7 +85,7 @@
 					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 					<input type="text"
 					       class="form-control"
-					       datepicker-popup="dd/MM/yyyy"
+						   datepicker-popup="{{format}}"
 					       show-weeks="false"
 					       ng-model="enquiry_date"
 					       id="enquiry_date" 
@@ -106,26 +101,20 @@
 					<div class="col-sm-6 col-md-4 col-lg-2">
 						<label class="" for="serviceName">Service Name</label>
 								<span class="ui-select">
-					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.service_name for service in oncall_services_list track by service.service_name" required>
+					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.service_name for service in oncall_services_list track by service.service_name">
 					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
 					                </select>
 					            </span>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-4" style="margin-left: 30px;">
-						<label class="" for="aumPrice">AUM Price</label><br>
+						<label class="" for="aumPrice">Service Price (in Rs.)</label><br>
 						<input style="margin-top: 10px;" ng-model="aumPrice" type="text" class="form-control"
-				       id="aumPrice" placeholder="Enter Price" required>		
+				       id="aumPrice" placeholder="Enter Price">		
 					</div>
-<!-- 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
-						<label class="" for="serviceFrequency">Frequency</label><br>
-							<span class="ui-select">
-								<select></select>
-							</span>		
-					</div> -->
 					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
 						<label class="" for="newShop">Assign This Task to</label><br>
 							<span class="ui-select">
-					                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id" required>
+					                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id">
 					                <option value="" ng-hide="employee_list">Select Employee</option>
 					                </select>
 				            </span>
@@ -134,145 +123,114 @@
 				</div>
 				<div class="form-group">
 				<label class="" for="newShortDesc">Short Description</label>
-				<textarea ng-model="newCoupon.short_description" id="newShortDesc" class="form-control resizeless"
-				          rows="2" required data-min="3" data-max="100"></textarea>
+				<textarea ng-model="short_description" id="short_description" class="form-control resizeless"
+				          rows="2" data-min="3" data-max="100"></textarea>
 			</div>
 			</div>
 
 
 			<hr/>
-			<button type="submit" class="btn btn-info">Create Order</button>
+			<button type="submit" ng-click="createOtjOrder()" class="btn btn-info">Create Order</button>
 		</form>
 	</accordion-group>
 </accordion>
 
 <section class="panel panel-default table-dynamic">
 	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> OTJ Customer List</strong></div>
+    <div class="row">
+        <div class="col-md-2">PageSize:
+            <select ng-model="entryLimit" class="form-control">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+        </div>
+        <div class="col-md-3">Filter:
+            <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5>
+        </div>
+    </div>
+	<br/>
+    <div class="row">
+        <div class="col-md-12" ng-show="filteredItems > 0">
+            <table class="table table-bordered table-striped table-responsive">
+	            <thead>
 
-	<div class="table-filters">
-		<div class="row">
-			<div class="col-sm-4 col-xs-6">
-				<form>
-					<input type="text"
-					       placeholder="search"
-					       class="form-control"
-					       data-ng-model="searchKeywords"
-					       data-ng-keyup="search()">
-				</form>
-			</div>
+		            <th>Service ID</th>
+		            <th>Customer Name</th>
+		            <th>Customer Phone</th>
+		            <th>Service Name</th>
+		            <th>Order Date</th>
+		            <th>Price(Rs.)</th>
+		            <th>Assigned Employee</th>
+		            <th>Order Status</th>
+		            <th>Is Back Listed</th>
+		            <th>Action</th>
+		        </thead>
+		        <tbody>
+		        	<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+		        	<td>{{data.otj_service_id}}</td>
+		        	<td>{{data.customer_name}}</td>
+		        	<td>{{data.customer_phone}}</td>
+		        	<td>
+		        		<div ng-if="data.service_name == '' ">
+								<span class="label label-info">Not Confirmed</span>
+						</div>
+						<div ng-if="data.bill_number != '' ">
+								<span class="label label-info">{{data.service_name}}</span>
+						</div>
+		        	</td>
+					<td>{{data.action_date}}</td>
+					<td>{{data.aum_price}}</td>
+					<td>
+		        		<div ng-if="data.assigned_employee_id == '0' ">
+								<span class="label label-info">Not Confirmed</span>
+						</div>
+						<div ng-if="data.assigned_employee_id != '0' ">
+								<span class="label label-info">{{data.assigned_employee_id}}</span>
+						</div>
+					</td>
+					<td>
+                    	<div ng-if="data.order_status == '0' ">
+								<span class="label label-danger">Pending</span>
+						</div>
+						<div ng-if="data.order_status != '0' ">
+								<span class="label label-success">Completed</span>
+						</div>	
+                    </td>
+                    <td>
+						<div ng-if="data.black_listed == '1' ">
+								<span class="label label-danger">YES</span>
+						</div>
+						<div ng-if="data.black_listed != '1' ">
+								<span class="label label-success">NO</span>
+						</div>
+                    </td>
+                    <td>
+                    	<a ng-href="#/otj/{{data.otj_service_id}}" class="btn-icon btn-icon-sm btn-primary"
+						   role="button"
+						   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
+								class="fa fa-edit"></i>
+						</a>
+						<a href="#/otj-invoice/{{data.otj_service_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice</a>
+                    </td>
 
-		</div>
-	</div>
 
-	<table class="table table-bordered table-striped table-responsive">
-		<thead>
-		<tr>
-			<th>
-				<div class="th">
-					ID
-				</div>
-			</th>
-			<th>
-				<div class="th">
-					Customer Name
-                        <span class="glyphicon glyphicon-chevron-up"
-                              data-ng-click=" order('shop_by_shop_id.title') "
-                              data-ng-class="{active: row == 'shop_by_shop_id.title'}"></span>
-                        <span class="glyphicon glyphicon-chevron-down"
-                              data-ng-click=" order('-shop_by_shop_id.title') "
-                              data-ng-class="{active: row == '-shop_by_shop_id.title'}"></span>
-				</div>
-			</th>
-			<th>
-				<div class="th">
-					Service Name
-                        <span class="glyphicon glyphicon-chevron-up"
-                              data-ng-click=" order('categories_by_category_id.title') "
-                              data-ng-class="{active: row == 'categories_by_category_id.title'}"></span>
-                        <span class="glyphicon glyphicon-chevron-down"
-                              data-ng-click=" order('-categories_by_category_id.title') "
-                              data-ng-class="{active: row == '-categories_by_category_id.title'}"></span>
-				</div>
-			</th>
-			<th>
-				<div class="th">
-					Status
-				</div>
-			</th>
-			<th>
-				<div class="th">
-					Date Of Order
-				</div>
-			</th>
-			<th>
-				<div class="th">
-					Date Of Service
-				</div>
-			</th>
-			<th>
-				<div class="th">
-					Assigned To
-				</div>
-			</th>
-			<th>
-				<div class="th">
-					Invoice Action
-				</div>
-			</th>
-			<th>
-				<div class="th">Actions</div>
-			</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><span class="label label-warning"></span></td>
-			<td>20-05-2014</td>
-			<td>23-05-2014</td>
-			<td>Deep Das</td>
-			<td><a href="/oncall/invoice" class="btn btn-primary btn-block">Generate Invoice</a></td>
-			<td>
-				<a ng-href="/oncall/{{coupon.id}}" class="btn-icon btn-icon-sm btn-primary"
-				   role="button"
-				   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-						class="fa fa-edit"></i></a>
-				<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
-				   ng-dblclick="deleteCoupon(coupon)" role="button"
-				   tooltip-placement="top" tooltip="Delete (Double Click)" tooltip-append-to-body="true"><i
-						class="fa fa-times"></i></a>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-
-	<footer class="table-footer">
-		<div class="row">
-			<div class="col-md-6 page-num-info">
-                    <span>
-                        Show
-                        <select data-ng-model="numPerPage"
-                                data-ng-options="num for num in numPerPageOpt"
-                                data-ng-change="onNumPerPageChange()">
-                        </select>
-                        entries per page
-                    </span>
-			</div>
-			<div class="col-md-6 text-right pagination-container">
-				<pagination class="pagination-sm"
-		            page="currentPage"
-		            total-items="filteredCoupons.length"
-		            max-size="4"
-		            on-select-page="select(page)"
-		            items-per-page="numPerPage"
-		            rotate="false"
-		            boundary-links="true">
-				</pagination>
-			</div>
-		</div>
-	</footer>
+		        </tbody>
+	        </table>
+	    </div>
+       <div class="col-md-12" ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4>No customers found</h4>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="filteredItems > 0">    
+            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>  
+        </div>
 </section>
 </section>
 </div>
