@@ -60,8 +60,15 @@
 					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
 				</div>
 				<div class="col-md-6">
-					<label class="" for="subscription_fee ">Subscription Fee /yr</label><br>
-					<input type="text" readonly class="form-control" ng-model="subscription_fee" name="subscription_fee" id="subscription_fee">
+						<span class="ui-select">
+							<select style="margin-top: 20px;" name="subscription_fee"  id="subscription_fee">
+			                	<option value="0">Select Subcription Type</option>
+			                	<option value="1000/yr">1000/yr</option>
+			                	<option value="1900/yr">1900/yr</option>
+			                </select>
+			            </span>
+					<!-- <input type="text" readonly class="form-control" ng-model="subscription_fee" name="subscription_fee" id="subscription_fee"> -->
+
 				</div>
 			</div>
 			<div class="input-group ui-datepicker">
@@ -89,6 +96,7 @@
 				            <th>Service Price</th>
 				            <th>Quantity</th>
 				            <th>Frequency</th>
+				            <th>Action</th>
 				            
 				        </thead>
 				        <tbody>
@@ -100,6 +108,7 @@
 				        		<input type="number" id="{{data.service_id}}" class="form-control" ng-model="service_quantity" name="service_quantity" id="customer_id">
 				        	</td>
 				        	<td>{{data.service_frequency}}</td>
+				        	<td><a href ng:click="removeService($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
 				        </tr>
 				        	
 				        </tbody>

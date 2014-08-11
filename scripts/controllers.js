@@ -946,7 +946,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             $scope.reverse = !$scope.reverse;
         };
 
-
+        $scope.removeService = function($index) {
+           $scope.aum_services_list.splice($index, 1);
+        }
 
 
       $scope.order_date = new Date();
@@ -1034,26 +1036,33 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         var total = [];
         var test = document.getElementById("service_list_data").getElementsByTagName("input");
         for(var i=0;i<test.length;i++) {
-            var aum_service = {};
-            aum_service.service_id = test[i].id;
-            aum_service.quantity = test[i].value;
-            aum_service_array.push(aum_service);
             var text_id = test[i].id;
             var service_price = parseInt(angular.element('#'+text_id).closest('td').prev().html());
             var total_price = service_price * test[i].value;
+            var aum_service = {};
+            aum_service.service_id = test[i].id;
+            aum_service.quantity = test[i].value;
+            aum_service.qty_total = total_price;
+            aum_service_array.push(aum_service);
             total.push(total_price);
         }  
         var aum_price = total.reduce(function(prev, cur) {
           return prev + cur;
         });
         console.log(aum_service_array);
-        aum_price = aum_price + 1000;
+        if (angular.element('#subscription_fee').val() == '1000/yr') {
+         aum_price = aum_price + 1000; 
+       }else {
+         aum_price = aum_price + 1900; 
+       }
+        
         $scope.price_result = aum_price
 
         var post_data = {};
         post_data.method = 'save_aum_customer_details';
         post_data.customer_id = angular.element('#customer_id').val();
         post_data.order_date = angular.element('#order_date').val();
+        post_data.subscription_type = angular.element('#subscription_fee').val();
         post_data.total = aum_price;
         $http.post('api/aum_controller.php', post_data)
           .success(function(data) {

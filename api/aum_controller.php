@@ -41,10 +41,10 @@
 			echo json_encode($data);
 		}			
 	}elseif ($data->method == 'save_aum_customer_details') { 
-		$sql = "INSERT INTO  aum_customer_details (customer_id,order_date,total) VALUES (:customer_id,:order_date,:total)";
+		$sql = "INSERT INTO  aum_customer_details (customer_id,order_date,total,subscription_type) VALUES (:customer_id,:order_date,:total,:subscription_type)";
 
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':order_date' =>$data->order_date,':total'=>$data->total));
+		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':order_date' =>$data->order_date,':total'=>$data->total,':subscription_type'=>$data->subscription_type));
 		//print_r($sth->errorInfo());
 		if ($result == 1) {
 			$data = array(
@@ -62,9 +62,9 @@
 		//print_r($data);
 		foreach ($data->details as $value) {
 			//print_r($value->service_id);
-			$sql = "INSERT INTO  aum_service_details (aum_order_id,service_id,quantity) VALUES (:aum_order_id,:service_id,:quantity)";
+			$sql = "INSERT INTO  aum_service_details (aum_order_id,service_id,quantity,qty_total) VALUES (:aum_order_id,:service_id,:quantity,:qty_total)";
 			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-			$result = $sth->execute(array(':aum_order_id' =>$data->aum_order_id,':service_id' =>$value->service_id,':quantity'=>$value->quantity));
+			$result = $sth->execute(array(':aum_order_id' =>$data->aum_order_id,':service_id' =>$value->service_id,':quantity'=>$value->quantity, ':qty_total'=>$value->qty_total));
 		}
 		$data = array(
 			"status" => true
