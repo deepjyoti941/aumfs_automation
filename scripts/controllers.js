@@ -1196,6 +1196,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             return printContents = document.getElementById("invoice").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()
         }
 }]).controller("amcCustomerCtrl", ["$scope", "$http", function($scope, $http) {
+      $scope.enquiry_date = new Date();
       $scope.order_date = new Date();
       $scope.subscription_fee = 1000;
       $scope.service_quantity = 0;
@@ -1240,6 +1241,18 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           };
           
       }
+
+      $scope.enquiry_type_list = [
+        {type:'Assessment'},
+        {type:'Quotation'},
+        {type:'FollowUp'}
+      ],
+
+      $scope.follow_up_type_list = [
+        {type:'Delay'},
+        {type:'Cancel'},
+        {type:'Confirm'}
+      ];
 
         getCustomerList();
         //getServiceList();

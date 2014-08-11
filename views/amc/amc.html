@@ -53,6 +53,42 @@
 				<br><br>
 		<form class="" role="form" name="aumForm">
 			<div class="row">
+				<div class="col-sm-6 col-md-4 col-lg-2">
+					<label class="" for="newCategory">Enquiry Type</label><br>
+							<span class="ui-select">
+								<select name="oncallCustomer.enquiry_type" ng-model="enquiry_type" id="enquiry_type" ng-options="enquiry.type for enquiry in enquiry_type_list track by enquiry.type" required>
+				                	<option value="" ng-hide="enquiry_type">Select Enquiry Type</option>
+				                </select>
+				            </span>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-2"  style="margin-left: 30px;">
+					<label class="" for="newCategory">Follow Up Type</label><br>
+					<span class="ui-select">
+						<select name="oncallCustomer.follow_up_type" ng-model="follow_up_type" id="follow_up_type" ng-options="follow.type for follow in follow_up_type_list track by follow.type">
+		                	<option value="" ng-hide="follow_up_type">Select Follow up Type</option>
+		                </select>			            
+		            </span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="" for="endDate">Enquiry Date</label><br>
+		        <div data-ng-controller="DatepickerDemoCtrl">
+	                <div class="input-group ui-datepicker">
+	                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                    <input type="text" 
+	                           class="form-control"
+	                           datepicker-popup="{{format}}"
+	                           ng-model="enquiry_date"
+	                           id="enquiry_date" 
+	                           show-weeks="false"
+	                           is-open="opened"
+	                           min="today"
+	                           datepicker-options="dateOptions" 
+	                           close-text="Close">
+	                </div>
+		        </div>
+			</div>
+			<div class="row">
 				<div class="col-md-6">
 					<label class="" for="customerId">Customer Id</label><br>
 					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
