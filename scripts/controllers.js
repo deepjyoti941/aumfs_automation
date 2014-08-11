@@ -1062,6 +1062,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         post_data.method = 'save_aum_customer_details';
         post_data.customer_id = angular.element('#customer_id').val();
         post_data.order_date = angular.element('#order_date').val();
+        post_data.end_date = angular.element('#end_date').val();
         post_data.subscription_type = angular.element('#subscription_fee').val();
         post_data.total = aum_price;
         $http.post('api/aum_controller.php', post_data)

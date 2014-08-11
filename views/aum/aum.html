@@ -71,6 +71,7 @@
 
 				</div>
 			</div>
+			<label class="" for="startDate">Start Date</label><br>
 			<div class="input-group ui-datepicker">
 				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				 <input type="text" 
@@ -86,6 +87,24 @@
                        close-text="Close">
 			</div>
 			<br>
+			<div class="form-group">
+				<label class="" for="endDate">End Date</label><br>
+		        <div data-ng-controller="DatepickerDemoCtrl">
+	                <div class="input-group ui-datepicker">
+	                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                    <input type="text" 
+	                           class="form-control"
+	                           datepicker-popup="{{format}}"
+	                           ng-model="endDate"
+	                           id="end_date" 
+	                           show-weeks="false"
+	                           is-open="opened"
+	                           min="today"
+	                           datepicker-options="dateOptions" 
+	                           close-text="Close">
+	                </div>
+		        </div>
+			</div>
 		    <div class="row" id="service_list_data">
 		        <div class="col-md-12">
 		            <table class="table table-bordered table-striped table-responsive">
