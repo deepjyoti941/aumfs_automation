@@ -1,0 +1,70 @@
+<div class="page" ng-controller="amcJobsCtrl">
+	<section class="panel panel-default">
+		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Add AMC details</strong></div>
+		<div class="panel-body">
+			<div ng-controller="amcJobsForm">
+				<table class="table table-bordered table-striped table-responsive">
+					<thead>
+						<tr>
+							<th>
+								<div class="th">
+									Service Name
+								</div>
+							</th>
+							<th>
+								<div class="th">
+									AMC Price (In Rupees)
+								</div>
+							</th>
+							<th>
+								<div class="th">
+									Frequency (in Days) 
+									<a tooltip-placement="top" tooltip="1 Year = 365, 6 Months = 180, 3 Months = 120 , 1 Month = 30, Unlimited = 0" tooltip-append-to-body="true"><strong>(?)</strong></a>
+								</div>
+							</th>
+							<th>
+								<div class="th">
+									Action
+								</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng:repeat="item in service">
+            				<td>{{item.service_name}}</td>
+            				<td>{{item.service_price}}</td>
+            				<td>{{item.service_frequency}}</td>
+            				<td><a href ng:click="removeItem($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
+						</tr>
+<!-- 				        <tr>
+				            <td><a href ng-click="addItem()" class="btn btn-gap-v btn-primary"><i class="fa fa-plus"></i> Add Service</a>
+							<a href ng-click="saveService(items)" class="btn btn-w-md btn-gap-v btn-success"><i class="fa fa-floppy-o"></i>  Save Service</a>
+				            </td>
+				        </tr> -->
+					</tbody>
+				</table>
+				<div class="row">
+					<div class="col-md-4">
+						<label class="" for="ServiceName">Service Name</label>
+						<input type="text" ng-model="service_name" name="service_name" class="form-control" id="service_name" placeholder="Enter Service Name Here" required="">
+					</div>
+					<div class="col-md-4">
+						<label class="" for="servicePrice">Price (in Rupees)</label>
+						<input type="text" ng-model="service_price" name="service_price" class="form-control" id="service_price" placeholder="Enter Price of Service" required="">
+					</div>
+					<div class="col-md-4">
+						<label class="" for="serviceFrequency">Frequency (in days) <a tooltip-placement="top" tooltip="1 Year = 365, 6 Months = 180, 3 Months = 120 , 1 Month = 30, Unlimited = 0" tooltip-append-to-body="true"><strong>(?)</strong></a></label>
+						<input type="text" ng-model="service_frequency" name="service_frequency" class="form-control" id="service_frequency" placeholder="Enter Frequency of Service" required="">
+					</div>
+					<div class="col-md-4">
+					<br>
+					<a href ng-click="addService()" class="btn btn-gap-v btn-primary"><i class="fa fa-plus"></i> Add Service</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+</div>

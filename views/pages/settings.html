@@ -38,8 +38,57 @@
 				</form>
 			</accordion-group>
 		</accordion>
-		<accordion close-others="true" class="ui-accordion ui-accordion-info" id="listUser">
-			<accordion-group heading="List User">
+<section class="panel panel-default table-dynamic">
+	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> OTJ Customer List</strong></div>
+		<table class="table table-bordered table-striped table-responsive">
+			<thead>
+			<tr>
+				<th>
+					<div class="th">
+						Name
+					</div>
+				</th>
+				<th>
+					<div class="th">
+						Email
+					</div>
+				</th>
+				<th>
+					<div class="th">
+						User Type
+					</div>
+				</th>
+				<th>
+					<div class="th">
+						Status
+					</div>
+				</th>
+				<th>
+					<div class="th">Actions</div>
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Admin</td>
+				<td>admin@gmail.com</td>
+				<td>Master</td>
+				<td><span class="label label-success">Active</span></td>
+				<td>
+					<a ng-href="/oncall/{{coupon.id}}" class="btn-icon btn-icon-sm btn-primary"
+					   role="button"
+					   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
+							class="fa fa-edit"></i></a>
+					<a href="javascript:;" class="btn-icon btn-icon-sm btn-danger"
+					   ng-dblclick="deleteCoupon(coupon)" role="button"
+					   tooltip-placement="top" tooltip="Delete (Double Click)"  tooltip-append-to-body="true"><i
+							class="fa fa-times"></i></a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+</section>
+				<!-- <accordion-group heading="List User">
 				<table class="table table-bordered table-striped table-responsive">
 					<thead>
 					<tr>
@@ -87,9 +136,9 @@
 					</tr>
 					</tbody>
 				</table>
-			</accordion-group>
-		</accordion>
-        </div>
-    </section> 
+			</accordion-group> -->
+<!-- 		</accordion>
+ -->        <!-- </div> -->
+    <!-- </section>  -->
 
 </div>
