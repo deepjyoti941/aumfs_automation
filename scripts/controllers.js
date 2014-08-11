@@ -1195,6 +1195,60 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var originalContents, popupWin, printContents;
             return printContents = document.getElementById("invoice").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()
         }
+}]).controller("amcCustomerCtrl", ["$scope", "$http", function($scope, $http) {
+      $scope.order_date = new Date();
+      $scope.subscription_fee = 1000;
+      $scope.service_quantity = 0;
+      $scope.oncallCustomer = {};
+      $scope.newCustomer = {};
+      $scope.processNewCustomerForm = function(selectedCustomer) {
+        $scope.newCustomer.customer_name = selectedCustomer['customer_name'];
+        $scope.newCustomer.customer_address = selectedCustomer['customer_address'];
+        $scope.newCustomer.customer_phone = selectedCustomer['customer_phone'];
+        $scope.newCustomer.method = 'save_new_customer';
+      
+        $http.post('api/customer_controller.php', $scope.newCustomer)
+            .success(function(data) {
+                if (data.status == true) {
+                        toastr.success("Organization Added successfully");
+                        toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "positionClass": "toast-top-right",
+                          "onclick": null,
+                          "showDuration": "800",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+                    $scope.oncallCustomer.customer_id = data.customer_id;
+
+                };
+            });       
+        }
+       $scope.change = function($event) {
+          if($event == true){
+              console.log('clicked');
+              var existing_customer_id =  $('#existing_customer_id').val();
+              $scope.oncallCustomer.customer_id = existing_customer_id;
+          }else {
+              $scope.customer_id = 'not an existing customer';
+          };
+          
+      }
+
+        getCustomerList();
+        //getServiceList();
+        //getEmployeeList();
+        function getCustomerList(){  
+          $http.get("api/customerlist.php").success(function(data){
+              $scope.customers = data;
+          });
+        };
 }]).controller("amcJobsCtrl", ["$scope", "$http", function($scope, $http) {
 
 }]).controller("amcJobsForm", ["$scope", "$http", function($scope, $http) {

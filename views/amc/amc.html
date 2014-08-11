@@ -1,0 +1,151 @@
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+      <i>({{match.model.customer_name}})</i>
+  </a>
+</script>
+<div class="page page-oncall" ng-controller="amcCustomerCtrl">
+	<accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
+		<accordion-group heading="Add New Organization">
+				<div class="form-group">
+	             <input type="text" ng-model="selectedCustomer" placeholder="Search for existing customer here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
+				</div>
+				<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCustomer)">
+					<div class="form-group">
+						<label class="" for="newTitle">Organization Name</label>
+						<input  style="display:none" type="text" ng-model="selectedCustomer.customer_id" name="customer_id" class="form-control" id="existing_customer_id" placeholder="Customer Id" >
+
+						<input  type="text" ng-model="selectedCustomer.customer_name" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
+					</div>
+					<div class="form-group">
+						<label class="" for="customerAddress">Organization Address</label>
+						<input name="customer_address" ng-model="selectedCustomer.customer_address" type="text" class="form-control"
+						       id="customer_address" placeholder="Enter Customer Address" required>
+					</div>
+					<div class="form-group">
+						<label class="" for="customerPhone">Organization Phone</label>
+						<input name="customer_phone" ng-model="selectedCustomer.customer_phone" type="text" class="form-control"
+						       id="customer_phone" placeholder="Enter Customer Phone Number" required>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<label class="ui-checkbox"><input ng-model="new_customer" name="new_customer_chk" type="checkbox" value="option2"><span>Is it a New Organization</span></label>
+						</div>
+						<div class="col-md-4">
+							<label class="ui-checkbox"><input id="existing_customer_chk" ng-model="existing_customer" name="existing_customer" ng-change="change(existing_customer)" type="checkbox"><span>Is it a Existing Organization</span></label>
+						</div>
+						<div class="col-md-4">
+							<div ng-if="selectedCustomer.black_listed =='1' ">
+								<label class="ui-checkbox"><input id="blacklisted_customer_chk"  name="backlisted_customer" type="checkbox" checked><span>Blacklisted Organization</span></label>
+							</div>
+							<div ng-if="selectedCustomer.black_listed !='1'">
+									<label class="ui-checkbox"><input id="blacklist_customer_chk" ng-model="blacklist_customer" name="existing_customer"  ng-change="changeBlacklist(blacklist_customer)" type="checkbox" checked><span>Blacklist this Organization</span></label>							
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<input type="submit" class="btn btn-info" ng-show="new_customer" value="Add New Customer">
+						</div>
+					</div>	
+				</form>
+
+				<br><br>
+		<form class="" role="form" name="aumForm">
+			<div class="row">
+				<div class="col-md-6">
+					<label class="" for="customerId">Customer Id</label><br>
+					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
+				</div>
+				<div class="col-md-6">
+						<span class="ui-select">
+							<select style="margin-top: 20px;" name="subscription_fee"  id="subscription_fee">
+			                	<option value="0">Select Subcription Type</option>
+			                	<option value="1000/yr">1000/yr</option>
+			                	<option value="1900/yr">1900/yr</option>
+			                </select>
+			            </span>
+					<!-- <input type="text" readonly class="form-control" ng-model="subscription_fee" name="subscription_fee" id="subscription_fee"> -->
+
+				</div>
+			</div>
+			<label class="" for="startDate">Start Date</label><br>
+			<div class="input-group ui-datepicker">
+				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+				 <input type="text" 
+                       class="form-control"
+                       datepicker-popup="{{format}}"
+                       ng-model="order_date"
+                       id="order_date" 
+                       show-weeks="false"
+                       is-open="opened"
+                       min="today"
+                       datepicker-options="dateOptions" 
+                       date-disabled="disabled(date, mode)"
+                       close-text="Close">
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="" for="endDate">End Date</label><br>
+		        <div data-ng-controller="DatepickerDemoCtrl">
+	                <div class="input-group ui-datepicker">
+	                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                    <input type="text" 
+	                           class="form-control"
+	                           datepicker-popup="{{format}}"
+	                           ng-model="endDate"
+	                           id="end_date" 
+	                           show-weeks="false"
+	                           is-open="opened"
+	                           min="today"
+	                           datepicker-options="dateOptions" 
+	                           close-text="Close">
+	                </div>
+		        </div>
+			</div>
+<!-- 		    <div class="row" id="service_list_data">
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-striped table-responsive">
+			            <thead>
+
+				            <th>Service ID</th>
+				            <th>Service Name</th>
+				            <th>Service Price</th>
+				            <th>Quantity</th>
+				            <th>Frequency <a tooltip-placement="top" tooltip="1 Year = 365, 6 Months = 180, 4 Months = 90, 3 Months = 120 , 1 Month = 30, Unlimited = 0" tooltip-append-to-body="true"><strong>(?)</strong></a></th>
+				            <th>Action</th>
+				            
+				        </thead>
+				        <tbody>
+				        <tr ng-repeat="data in aum_services_list">
+				        	<td>{{data.service_id}}</td>
+				        	<td>{{data.service_name}}</td>
+				        	<td>{{data.service_price}}</td>
+				        	<td>
+				        		<input type="number" id="{{data.service_id}}" class="form-control" ng-model="service_quantity" name="service_quantity" id="customer_id">
+				        	</td>
+				        	<td>{{data.service_frequency}}</td>
+				        	<td><a href ng:click="removeService($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
+				        </tr>
+				        	
+				        </tbody>
+				    </table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<input type="submit" class="btn btn-info"  ng-click="calculatePrice()" value="Calculate And Save">
+				</div>
+				<div class="col-md-2">
+					<input type="text" readonly class="form-control" ng-model="price_result">
+				</div>
+			</div> -->
+		</form>
+		</accordion-group>
+	</accordion>
+<section class="panel panel-default table-dynamic">
+	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> AMC Organization List</strong></div>
+	   <div class="row">
+	   </div>
+</section>
+</div>
