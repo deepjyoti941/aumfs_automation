@@ -199,30 +199,30 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var bill_amount = 0;
             var helper_hourly_charge = 0
             var no_of_helper = $('#number_of_helpers').val();
-            if (no_of_helper > 0) {
-              helper_hourly_charge = working_hours * 50;
-            }else {
-              helper_hourly_charge = 0;
-            };
-            var helper_charge = no_of_helper * 50;
+            // if (no_of_helper > 0) {
+            //   helper_hourly_charge = working_hours * 50;
+            // }else {
+            //   helper_hourly_charge = 0;
+            // };
+            var helper_charge = (no_of_helper * 50) * working_hours;
             if (working_hours == 0) {
                 bill_amount = 0;
                 $('#bill_amount').val(bill_amount);
             }else if (working_hours == 1 || working_hours < 1) {
-                bill_amount = bill_amount + helper_charge + 200 + helper_hourly_charge;
+                bill_amount = bill_amount + helper_charge + 200 ;
                 $('#bill_amount').val(bill_amount);
             } else if (working_hours >= 2 && working_hours <= 5) {
                 bill_amount = bill_amount + 200;
                 var remaining_2nd_5th_hours = working_hours - 1;
                 var bill_amount_2nd_5th_onward = remaining_2nd_5th_hours * 150;
-                bill_amount = bill_amount + bill_amount_2nd_5th_onward + helper_charge + helper_hourly_charge;
+                bill_amount = bill_amount + bill_amount_2nd_5th_onward + helper_charge;
                 $('#bill_amount').val(bill_amount);
             } else if (working_hours >= 6) {
                 bill_amount = bill_amount + 200;
                 var bill_amount_2nd_5th_onward = 4 * 150;
                 var remaining_6th_hours = working_hours - 5;
                 var bill_amount_6th_onward = remaining_6th_hours * 100;
-                bill_amount = bill_amount + bill_amount_2nd_5th_onward + bill_amount_6th_onward + helper_charge + helper_hourly_charge; 
+                bill_amount = bill_amount + bill_amount_2nd_5th_onward + bill_amount_6th_onward + helper_charge; 
                 $('#bill_amount').val(bill_amount);
             }
         };
