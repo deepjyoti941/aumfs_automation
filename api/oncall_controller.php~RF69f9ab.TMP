@@ -21,9 +21,7 @@
 			$result = $sth->execute(array(':employee_id' => $data->assign_employee_id));
 			if ($result == 1) {
 				$sql = "INSERT INTO employee_assigned_service_details(employee_id,assigned_date, assigned_service) VALUES (:employee_id, :assigned_date, :assigned_service )";
-				$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 				$result = $sth->execute(array(':employee_id' =>$data->assign_employee_id,':assigned_date'=>$data->act_date,':assigned_service'=>$data->service_type));
-					//print_r($sth->errorInfo());
 					if ($result == 1) {
 				        $data = array(
 				            "status" => true

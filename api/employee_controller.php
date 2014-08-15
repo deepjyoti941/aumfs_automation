@@ -78,6 +78,13 @@
 		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode($row);
 
+	}elseif ($data->method == 'get_employee_services_by_id') {
+
+		$sql_employee = "SELECT * FROM employee_assigned_service_details WHERE employee_id=$data->employee_id";
+		$stmt = $dbh->query($sql_employee);
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($row);
+
 	}elseif ($data->method == 'get_employee_by_id') {
 
 		$sql_employee = "SELECT * FROM employee_details WHERE employee_id=$data->employee_id";

@@ -1,0 +1,14 @@
+<div class="page" ng-controller="EmployeeWorkDetailsCtrl">
+	<ol class="breadcrumb-alt">
+		<li><a href="#/dashboard">Dashboard</a></li>
+		<li><a href="#/employee-listing">Employee List</a></li>
+		<li><a href="#/employee-status">Employee Status</a></li>
+		<li class="active"><a href="">Employee Work Details</a></li>
+	</ol>
+	<section class="panel panel-default">
+		<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Employee Work Details</strong></div>
+		<div class="panel-body">
+	    	
+	    </div>
+	</section>
+</div>

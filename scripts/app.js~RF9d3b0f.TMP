@@ -1653,7 +1653,8 @@
         }).when("/employee-status", {
             templateUrl: "views/employee/employee-work-status.html"
         }).when("/employee-status/:id", {
-            templateUrl: "views/employee/employee-work-details.html"
+            templateUrl: "views/employee/employee-work-details.html",
+            controller: 'EmployeeWorkDetailsCtrl'
         }).when("/employee-listing/:id", {
             templateUrl: "views/employee/employee-edit.html",
             controller: 'EmployeeEditCtrl'

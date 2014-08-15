@@ -663,15 +663,8 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.employee_list = data;
     });
 
-}]).controller("EmployeeWorkDetailsCtrl", ["$scope","$http", function($scope, $http) {
-    var url = document.URL
-    var id = url.substring(url.lastIndexOf('/') + 1);
-    var post_data = {};
-    post_data.method = 'get_employee_services_by_id';
-    post_data.employee_id = id
-    $http.post("api/employee_controller.php",post_data ).success(function(data){
-      $scope.employee_services = data
-    });
+}]).controller("EmployeeWorkDetailsCtrl", ["$scope","$routeParams" ,"$http", function($scope, $http, $routeParams) {
+ 
 }]).controller("newOtjCustomerCtrl", ["$scope", "$http", function($scope, $http) {
 
           $http.get('api/getOtjCustomerList.php').success(function(data){
