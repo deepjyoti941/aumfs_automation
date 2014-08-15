@@ -139,7 +139,7 @@
 	                </div>
 		        </div>
 			</div>
-<!-- 		    <div class="row" id="service_list_data">
+		    <div class="row" id="service_list_data">
 		        <div class="col-md-12">
 		            <table class="table table-bordered table-striped table-responsive">
 			            <thead>
@@ -153,7 +153,7 @@
 				            
 				        </thead>
 				        <tbody>
-				        <tr ng-repeat="data in aum_services_list">
+				        <tr ng-repeat="data in amc_services_list">
 				        	<td>{{data.service_id}}</td>
 				        	<td>{{data.service_name}}</td>
 				        	<td>{{data.service_price}}</td>
@@ -168,6 +168,10 @@
 				    </table>
 				</div>
 			</div>
+			<div class="form-group">
+                <label for="">Extra Inventory</label>
+                    <textarea name="extra_inventory" id="extra_inventory" class="form-control" rows="4"></textarea> 
+            </div>
 			<div class="row">
 				<div class="col-md-2">
 					<input type="submit" class="btn btn-info"  ng-click="calculatePrice()" value="Calculate And Save">
@@ -175,7 +179,7 @@
 				<div class="col-md-2">
 					<input type="text" readonly class="form-control" ng-model="price_result">
 				</div>
-			</div> -->
+			</div>
 		</form>
 		</accordion-group>
 	</accordion>

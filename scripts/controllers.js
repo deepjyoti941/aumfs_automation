@@ -1262,14 +1262,121 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         {type:'Confirm'}
       ];
 
+      $scope.removeService = function($index) {
+         $scope.amc_services_list.splice($index, 1);
+      }
         getCustomerList();
-        //getServiceList();
+        getServiceList();
         //getEmployeeList();
         function getCustomerList(){  
           $http.get("api/customerlist.php").success(function(data){
               $scope.customers = data;
           });
         };
+
+        function getServiceList() {
+            $http.post('api/amc_controller.php', {method:'get_service_list'})
+                .success(function(data) {
+                    $scope.amc_services_list = data;
+                
+            });    
+          }
+
+      $scope.calculatePrice = function() {
+        if (angular.element('#customer_id').val() == '') {
+              toastr.error("Idiot!! You must insert customer first");
+              toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "positionClass": "toast-bottom-left",
+                "onclick": null,
+                "showDuration": "800",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
+        }else {
+
+          var aum_service_array = [];
+          var total = [];
+          var test = document.getElementById("service_list_data").getElementsByTagName("input");
+          for(var i=0;i<test.length;i++) {
+              var text_id = test[i].id;
+              var service_price = parseInt(angular.element('#'+text_id).closest('td').prev().html());
+              var total_price = service_price * test[i].value;
+              var aum_service = {};
+              aum_service.service_id = test[i].id;
+              aum_service.quantity = test[i].value;
+              aum_service.qty_total = total_price;
+              aum_service_array.push(aum_service);
+              total.push(total_price);
+          }  
+          var aum_price = total.reduce(function(prev, cur) {
+            return prev + cur;
+          });
+          console.log(aum_service_array);
+          if (angular.element('#subscription_fee').val() == '1000/yr') {
+           aum_price = aum_price + 1000; 
+         }else {
+           aum_price = aum_price + 1900; 
+         }
+          
+          $scope.price_result = aum_price
+
+          var post_data = {};
+          post_data.method = 'save_amc_customer_details';
+          post_data.customer_id = angular.element('#customer_id').val();
+          post_data.order_date = angular.element('#order_date').val();
+          post_data.end_date = angular.element('#end_date').val();
+          post_data.enquiry_type = angular.element('#enquiry_type').val();
+          post_data.enquiry_date = angular.element('#enquiry_date').val();
+          post_data.follow_up_type = angular.element('#follow_up_type').val();
+          post_data.subscription_type = angular.element('#subscription_fee').val();
+          post_data.extra_inventory = angular.element('#extra_inventory').val();
+          post_data.total = aum_price;
+          $http.post('api/amc_controller.php', post_data)
+            .success(function(data) {
+                 if (data.status == true) {
+                  var amc_service_details = {};
+                  amc_service_details.method = 'save_amc_service_details'
+                  amc_service_details.amc_order_id = data.amc_order_id;
+                  amc_service_details.details = aum_service_array
+                    $http.post('api/amc_controller.php', amc_service_details)
+                      .success(function(data) {
+                           if (data.status == true) {
+                              toastr.success("Customer Added Successfully");
+                                toastr.options = {
+                                  "closeButton": false,
+                                  "debug": false,
+                                  "positionClass": "toast-bottom-left",
+                                  "onclick": null,
+                                  "showDuration": "800",
+                                  "hideDuration": "1000",
+                                  "timeOut": "5000",
+                                  "extendedTimeOut": "1000",
+                                  "showEasing": "swing",
+                                  "hideEasing": "linear",
+                                  "showMethod": "fadeIn",
+                                  "hideMethod": "fadeOut"
+                                }                            
+
+                            };              
+                      
+                    });
+
+                  };              
+            
+          }); 
+         
+        }
+      }
+
+
+
 }]).controller("amcJobsCtrl", ["$scope", "$http", function($scope, $http) {
 
 }]).controller("amcJobsForm", ["$scope", "$http", function($scope, $http) {

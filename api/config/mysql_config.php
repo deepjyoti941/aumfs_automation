@@ -1,4 +1,5 @@
 <?php
+	//error_reporting(E_ALL);
 	error_reporting(0); 
 	if ($_SERVER[HTTP_HOST] == 'aumfs.dev') {
 
