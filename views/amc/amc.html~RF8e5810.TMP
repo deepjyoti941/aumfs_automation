@@ -183,11 +183,9 @@
 		</form>
 		</accordion-group>
 	</accordion>
-
-
 <section class="panel panel-default table-dynamic">
 	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> AMC Organization List</strong></div>
-	   <div class="row">
+<div class="row">
         <div class="col-md-2">PageSize:
             <select ng-model="entryLimit" class="form-control">
                 <option>5</option>
@@ -227,7 +225,7 @@
 		        		<td>{{data.customer_name}}</td>
 		        		<td>{{data.customer_address}}</td>
 		        		<td>{{data.customer_phone}}</td>
-		        		<td>{{data.enquiry_date}}</td>
+		        		<td>{{data.order_date}}</td>
 		        		<td>{{data.total}}</td>
 		        		<td>
 			        		<div ng-if="data.order_status == '1' ">

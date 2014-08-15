@@ -1204,6 +1204,28 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             return printContents = document.getElementById("invoice").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()
         }
 }]).controller("amcCustomerCtrl", ["$scope", "$http", function($scope, $http) {
+
+        $http.get('api/getAmcCustomerList.php').success(function(data){
+          console.log(data);
+            $scope.list = data;
+            $scope.currentPage = 1; //current page
+            $scope.entryLimit = 5; //max no of items to display in a page
+            $scope.filteredItems = $scope.list.length; //Initially for no filter  
+            $scope.totalItems = $scope.list.length;
+        });
+        $scope.setPage = function(pageNo) {
+            $scope.currentPage = pageNo;
+        };
+        $scope.filter = function() {
+            $timeout(function() { 
+                $scope.filteredItems = $scope.filtered.length;
+            }, 10);
+        };
+        $scope.sort_by = function(predicate) {
+            $scope.predicate = predicate;
+            $scope.reverse = !$scope.reverse;
+        };
+
       $scope.enquiry_date = new Date();
       $scope.order_date = new Date();
       $scope.subscription_fee = 1000;
