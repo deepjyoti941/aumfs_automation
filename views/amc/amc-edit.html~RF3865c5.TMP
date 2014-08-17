@@ -1,33 +1,27 @@
-<script type="text/ng-template" id="customTemplate.html">
-  <a>
-      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
-      <i>({{match.model.customer_name}})</i>
-  </a>
-</script>
-<div class="page page-oncall" ng-controller="amcCustomerCtrl">
-	<accordion close-others="true" class="ui-accordion ui-accordion-info" id="addCustomer">
-		<accordion-group heading="Add New Organization">
+<div class="page" ng-controller="editAmcCustomerCtrl">
+
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Oncall Update Page</strong></div>
+        <div class="panel-body">
 				<div class="form-group">
-	             <input type="text" ng-model="selectedCustomer" placeholder="Search for existing Organization here" typeahead="c as c.customer_name for c in customers | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control" style="width:350px;">
-				</div>
 				<form class="" role="form" id="newCustomerForm" name="newCustomerForm" ng-submit="processNewCustomerForm(selectedCustomer)">
 					<div class="form-group">
 						<label class="" for="newTitle">Organization Name</label>
-						<input  style="display:none" type="text" ng-model="selectedCustomer.customer_id" name="customer_id" class="form-control" id="existing_customer_id" placeholder="Organization Id" >
+						<input  style="display:none" type="text" ng-model="customer_id" name="organization_id" class="form-control" id="existing_organization_id" placeholder="Organization Id" >
 
-						<input  type="text" ng-model="selectedCustomer.customer_name" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Organization Name" value="{{somebinding.id}}" required>
+						<input  type="text" ng-model="customer_name" name="customer_name" class="form-control" id="organization_name" placeholder="Enter Organization Name" value="{{somebinding.id}}" required>
 					</div>
 					<div class="form-group">
 						<label class="" for="customerAddress">Organization Address</label>
-						<input name="customer_address" ng-model="selectedCustomer.customer_address" type="text" class="form-control"
-						       id="customer_address" placeholder="Enter Organization Address" required>
+						<input name="organization_address" ng-model="customer_address" type="text" class="form-control"
+						       id="organization_address" placeholder="Enter Organization Address" required>
 					</div>
 					<div class="form-group">
 						<label class="" for="customerPhone">Organization Phone</label>
 						<input name="customer_phone" ng-model="selectedCustomer.customer_phone" type="text" class="form-control"
-						       id="customer_phone" placeholder="Enter Organization Phone Number" required>
+						       id="organization_phone" placeholder="Enter Organization Phone Number" required>
 					</div>
-					<div class="row">
+		<!-- 			<div class="row">
 						<div class="col-md-4">
 							<label class="ui-checkbox"><input ng-model="new_customer" name="new_customer_chk" type="checkbox" value="option2"><span>Is it a New Organization</span></label>
 						</div>
@@ -47,7 +41,7 @@
 						<div class="col-md-4">
 							<input type="submit" class="btn btn-info" ng-show="new_customer" value="Add New Organization">
 						</div>
-					</div>	
+					</div>	 -->
 				</form>
 
 				<br><br>
@@ -91,7 +85,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<label class="" for="customerId">Organization Id</label><br>
-					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
+					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="organization_id" required><br>
 				</div>
 				<div class="col-md-6">
 						<span class="ui-select">
@@ -158,7 +152,7 @@
 				        	<td>{{data.service_name}}</td>
 				        	<td>{{data.service_price}}</td>
 				        	<td>
-				        		<input type="number" id="{{data.service_id}}" class="form-control" ng-model="service_quantity" name="service_quantity" id="customer_id">
+				        		<input type="number" id="{{data.service_id}}" class="form-control" value="{{data.quantity}}" name="service_quantity">
 				        	</td>
 				        	<td>{{data.service_frequency}}</td>
 				        	<td><a href ng:click="removeService($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
@@ -174,103 +168,13 @@
             </div>
 			<div class="row">
 				<div class="col-md-2">
-					<input type="submit" class="btn btn-info"  ng-click="calculatePrice()" value="Calculate And Save">
+					<input type="submit" class="btn btn-info"  ng-click="calculatePrice()" value="Calculate And Update">
 				</div>
 				<div class="col-md-2">
-					<input type="text" readonly class="form-control" ng-model="price_result">
+					<input type="text" readonly class="form-control" ng-model="price_result" id="price_result">
 				</div>
 			</div>
 		</form>
-		</accordion-group>
-	</accordion>
-
-
-<section class="panel panel-default table-dynamic">
-	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> AMC Organization List</strong></div>
-	   <div class="row">
-        <div class="col-md-2">PageSize:
-            <select ng-model="entryLimit" class="form-control">
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-                <option>50</option>
-                <option>100</option>
-            </select>
         </div>
-        <div class="col-md-3">Filter:
-            <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5>
-        </div>
-    </div>
-    <br/>
-	<div class="row">
-        <div class="col-md-12" ng-show="filteredItems > 0">
-            <table class="table table-bordered table-striped table-responsive">
-	            <thead>
-	            	<th>Order Id</th>
-<!-- 		            <th>Customer ID</th>
- -->		            <th>Customer Name</th>
-		            <th>Address</th>
-		            <th>Customer Phone</th>
-		            <th>Order Date</th>
-		            <th>Total Price(Rs)</th>
-		            <th>Order Status</th>
-		            <th>Is Back Listed</th>
-		            <th>Action</th>
-		        </thead>
-		        <tbody>
-		        	<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-		        		<td>{{data.amc_order_id}}</td>
-<!-- 		        		<td>{{data.customer_id}}</td>
- -->		        	<td>{{data.customer_name}}</td>
-		        		<td>{{data.customer_address}}</td>
-		        		<td>{{data.customer_phone}}</td>
-		        		<td>{{data.enquiry_date}}</td>
-		        		<td>{{data.total}}</td>
-		        		<td>
-			        		<div ng-if="data.order_status == '1' ">
-									<span class="label label-success">Done</span>
-							</div>
-							<div ng-if="data.order_status != '1' ">
-									<span class="label label-danger">Pending</span>
-							</div>
-		        		</td>
-		        		<td>
-			        		<div ng-if="data.black_listed == '1' ">
-									<span class="label label-danger">YES</span>
-							</div>
-							<div ng-if="data.black_listed != '1' ">
-									<span class="label label-success">NO</span>
-							</div>
-		        		</td>
-		        		<td>
-		        		<a ng-href="#/amc/{{data.amc_order_id}}" class="btn-icon btn-icon-sm btn-primary"
-						   role="button"
-						   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-								class="fa fa-edit"></i>
-						</a>
-		        		<a href="#/amc-invoice/{{data.amc_order_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice</a>
-		        		</td>
-
-		        	</tr>
-		        </tbody>
-		    </table>
-		</div>
-	</div>
-	<div class="row">
-        <div class="col-md-12" ng-show="filteredItems == 0">
-            <div class="col-md-12">
-                <h4>No customers found</h4>
-            </div>
-        </div>
-        <div class="col-md-12" ng-show="filteredItems > 0">    
-            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
-            
-            
-        </div>
-	</div>
-
-</section>
+     </section>
 </div>

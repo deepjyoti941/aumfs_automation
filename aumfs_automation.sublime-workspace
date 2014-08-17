@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"enquiry",
+				"enquiry_date"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"ser",
+				"service_list"
+			],
+			[
+				"amc",
+				"amc_order_id"
+			],
+			[
+				"err",
+				"error_reporting"
+			],
+			[
 				"assig",
 				"assigned_service"
 			],
@@ -50,10 +70,6 @@
 			[
 				"te",
 				"text_id"
-			],
-			[
-				"ser",
-				"service_price"
 			],
 			[
 				"t",
@@ -216,26 +232,26 @@
 	"buffers":
 	[
 		{
-			"file": "api/getOtjCustomerList.php",
-			"settings":
-			{
-				"buffer_size": 691,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "scripts/controllers.js",
 			"settings":
 			{
-				"buffer_size": 56455,
+				"buffer_size": 63098,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "views/employee/employee-work-details.html",
+			"file": "views/amc/amc-edit.html",
 			"settings":
 			{
-				"buffer_size": 1159,
+				"buffer_size": 8919,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "api/amc_controller.php",
+			"settings":
+			{
+				"buffer_size": 3672,
 				"line_ending": "Windows"
 			}
 		},
@@ -248,101 +264,10 @@
 			}
 		},
 		{
-			"file": "api/oncall_controller.php",
+			"file": "views/amc/amc.html",
 			"settings":
 			{
-				"buffer_size": 5085,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/employee/employee-work-status.html",
-			"settings":
-			{
-				"buffer_size": 2128,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "api/aum_controller.php",
-			"settings":
-			{
-				"buffer_size": 2933,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/aum/aum.html",
-			"settings":
-			{
-				"buffer_size": 10519,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/otj/otj.html",
-			"settings":
-			{
-				"buffer_size": 10966,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "api/otj_controller.php",
-			"settings":
-			{
-				"buffer_size": 2302,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/oncall/oncall.html",
-			"settings":
-			{
-				"buffer_size": 17888,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/oncall/oncall-edit.html",
-			"settings":
-			{
-				"buffer_size": 12434,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/nav.html",
-			"settings":
-			{
-				"buffer_size": 2501,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 2429,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/otj/otj-jobs.html",
-			"settings":
-			{
-				"buffer_size": 1653,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<div class=\"page\" ng-controller=\"aumJobsCtrl\">\n	<section class=\"panel panel-default\">\n		<div class=\"panel-heading\"><strong><span class=\"glyphicon glyphicon-th\"></span> Add AUM details</strong></div>\n		<div class=\"panel-body\">\n			<div ng-controller=\"aumJobsForm\">\n				<table class=\"table table-bordered table-striped table-responsive\">\n					<thead>\n						<tr>\n							<th>\n								<div class=\"th\">\n									Service Name\n								</div>\n							</th>\n							<th>\n								<div class=\"th\">\n									AUM Price (In Rupees)\n								</div>\n							</th>\n							<th>\n								<div class=\"th\">\n									Frequency (in Days) <a tooltip-placement=\"top\" tooltip=\"1 Year = 365, 6 Months = 180, 4 Months = 90, 3 Months = 120 , 1 Month = 30, Unlimited = 0\" tooltip-append-to-body=\"true\"><strong>(?)</strong></a>\n								</div>\n							</th>\n							<th>\n								<div class=\"th\">\n									Action\n								</div>\n							</th>\n						</tr>\n					</thead>\n					<tbody>\n						<tr ng:repeat=\"item in service\">\n            				<td>{{item.service_name}}</td>\n            				<td>{{item.service_price}}</td>\n            				<td>{{item.service_frequency}}</td>\n            				<td><a href ng:click=\"removeItem($index)\" class=\"btn-icon btn-icon-sm btn-danger\"><i class=\"fa fa-times\"></i></a></td>\n						</tr>\n					</tbody>\n				</table>\n				<div class=\"row\">\n					<div class=\"col-md-4\">\n						<label class=\"\" for=\"ServiceName\">Service Name</label>\n						<input type=\"text\" ng-model=\"service_name\" name=\"service_name\" class=\"form-control\" id=\"service_name\" placeholder=\"Enter Service Name Here\" required=\"\">\n					</div>\n					<div class=\"col-md-4\">\n						<label class=\"\" for=\"servicePrice\">Price (in Rupees)</label>\n						<input type=\"text\" ng-model=\"service_price\" name=\"service_price\" class=\"form-control\" id=\"service_price\" placeholder=\"Enter Price of Service\" required=\"\">\n					</div>\n					<div class=\"col-md-4\">\n						<label class=\"\" for=\"serviceFrequency\">Frequency (in days) <a tooltip-placement=\"top\" tooltip=\"1 Year = 365, 6 Months = 180, 4 Months = 90, 3 Months = 120 , 1 Month = 30, Unlimited = 0\" tooltip-append-to-body=\"true\"><strong>(?)</strong></a></label>\n						<input type=\"text\" ng-model=\"service_frequency\" name=\"service_frequency\" class=\"form-control\" id=\"service_frequency\" placeholder=\"Enter Frequency of Service\" required=\"\">\n					</div>\n					<div class=\"col-md-4\">\n					<br>\n					<a href ng-click=\"addService()\" class=\"btn btn-gap-v btn-primary\"><i class=\"fa fa-plus\"></i> Add Service</a>\n					</div>\n\n				</div>\n			</div>\n		</div>\n	</section>\n\n\n</div>\n",
-			"file": "views/aum/aum-jobs.html",
-			"file_size": 2934,
-			"file_write_time": 130525167663778648,
-			"settings":
-			{
-				"buffer_size": 2536,
+				"buffer_size": 12910,
 				"line_ending": "Windows"
 			}
 		},
@@ -350,23 +275,7 @@
 			"file": "scripts/app.js",
 			"settings":
 			{
-				"buffer_size": 72622,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/employee/employee-edit.html",
-			"settings":
-			{
-				"buffer_size": 2284,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/amc/amc-jobs.html",
-			"settings":
-			{
-				"buffer_size": 2875,
+				"buffer_size": 72703,
 				"line_ending": "Windows"
 			}
 		}
@@ -407,6 +316,31 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/aumfs_automation/views/pages/settings.html",
+		"/C/wamp/www/aumfs_automation/api/config/mysql_config.php",
+		"/C/wamp/www/aumfs_automation/api/amc_controller.php~RF2d900f.TMP",
+		"/C/wamp/www/aumfs_automation/api/amc_controller.php",
+		"/C/wamp/www/aumfs_automation/api/aum_controller.php",
+		"/C/wamp/www/aumfs_automation/api/getAmcCustomerList.php",
+		"/C/wamp/www/aumfs_automation/views/otj/otj.html",
+		"/C/wamp/www/aumfs_automation/scripts/app.js",
+		"/C/wamp/www/aumfs_automation/views/pages/services.html",
+		"/C/wamp/www/aumfs_automation/scripts/services.js",
+		"/C/wamp/www/aumfs_automation/api/getOtjCustomerList.php",
+		"/C/wamp/www/aumfs_automation/scripts/controllers.js",
+		"/C/wamp/www/aumfs_automation/views/employee/employee-work-details.html",
+		"/C/wamp/www/aumfs_automation/api/employee_controller.php",
+		"/C/wamp/www/aumfs_automation/api/oncall_controller.php",
+		"/C/wamp/www/aumfs_automation/views/employee/employee-work-status.html",
+		"/C/wamp/www/aumfs_automation/views/aum/aum.html",
+		"/C/wamp/www/aumfs_automation/api/otj_controller.php",
+		"/C/wamp/www/aumfs_automation/views/oncall/oncall.html",
+		"/C/wamp/www/aumfs_automation/views/oncall/oncall-edit.html",
+		"/C/wamp/www/aumfs_automation/views/nav.html",
+		"/C/wamp/www/aumfs_automation/index.php",
+		"/C/wamp/www/aumfs_automation/views/otj/otj-jobs.html",
+		"/C/wamp/www/aumfs_automation/views/aum/aum-jobs.html",
+		"/C/wamp/www/aumfs_automation/views/amc/amc-jobs.html",
 		"/C/wamp/www/aumfs_automation/old/views/scripts/angularjs/src/google-code-prettify/lang-n.js",
 		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
 		"/C/wamp/www/aumfs_automation/aumfs/scripts/controllers.js",
@@ -488,6 +422,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"customer_id",
+			"amc",
+			"aum",
+			"get_amc_details_by_id",
+			"employee",
+			"get_service_list",
+			"amc_services_list",
 			"get_free_employee_list",
 			"url",
 			"window",
@@ -584,53 +525,24 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "api/getOtjCustomerList.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 691,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								507,
-								507
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 17,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "scripts/controllers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 56455,
+						"buffer_size": 63098,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12443,
-								12465
+								59020,
+								59020
 							]
 						],
 						"settings":
@@ -640,27 +552,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5161.0,
+						"translation.y": 28301.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "views/employee/employee-work-details.html",
+					"buffer": 1,
+					"file": "views/amc/amc-edit.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1159,
+						"buffer_size": 8919,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1083,
-								1083
+								778,
+								795
 							]
 						],
 						"settings":
@@ -672,6 +584,35 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "api/amc_controller.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3672,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3672,
+								3672
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1400.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -687,8 +628,8 @@
 						"selection":
 						[
 							[
-								2437,
-								2459
+								3058,
+								3058
 							]
 						],
 						"settings":
@@ -697,348 +638,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1164.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "api/oncall_controller.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5085,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								335,
-								335
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "views/employee/employee-work-status.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2128,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1829,
-								1829
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 620.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "api/aum_controller.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2933,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1462,
-								1462
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 11.0,
-						"translation.y": 540.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "views/aum/aum.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10519,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1966.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "views/otj/otj.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10966,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 346.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 15,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "api/otj_controller.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2302,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1478,
-								1478
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 746.0,
+						"translation.y": 1340.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "views/oncall/oncall.html",
+					"buffer": 4,
+					"file": "views/amc/amc.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 17888,
+						"buffer_size": 12910,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4463,
-								4463
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1633.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "views/oncall/oncall-edit.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12434,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8589,
-								8589
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3613.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "views/nav.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2501,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1219,
-								1219
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 340.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 18,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2429,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2192,
-								2192
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 581.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 16,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "views/otj/otj-jobs.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1653,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								786,
-								667
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 140.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "views/aum/aum-jobs.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2536,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1297,
-								263
+								312,
+								312
 							]
 						],
 						"settings":
@@ -1050,24 +670,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 5,
 					"file": "scripts/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 72622,
+						"buffer_size": 72703,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								59193,
-								59193
+								58481,
+								58481
 							]
 						],
 						"settings":
@@ -1077,68 +697,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 32694.0,
+						"translation.y": 32281.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 17,
-					"file": "views/employee/employee-edit.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2284,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								472,
-								472
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 18,
-					"file": "views/amc/amc-jobs.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2875,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								799,
-								618
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 180.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
 					"type": "text"
 				}
 			]
@@ -1191,12 +753,28 @@
 		"selected_items":
 		[
 			[
-				"con",
-				"scripts\\controllers.js"
-			],
-			[
 				"app",
 				"scripts\\app.js"
+			],
+			[
+				"am",
+				"views\\amc\\amc.html"
+			],
+			[
+				"amc",
+				"api\\amc_controller.php"
+			],
+			[
+				"otj",
+				"views\\otj\\otj.html"
+			],
+			[
+				"se",
+				"views\\pages\\settings.html"
+			],
+			[
+				"con",
+				"scripts\\controllers.js"
 			],
 			[
 				"co",
@@ -1263,10 +841,6 @@
 				"scripts\\controllers.js"
 			],
 			[
-				"otj",
-				"views\\otj\\otj.html"
-			],
-			[
 				"index",
 				"index.php"
 			],
@@ -1324,7 +898,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 310.0,
+	"side_bar_width": 308.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

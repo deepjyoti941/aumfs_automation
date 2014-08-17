@@ -1622,6 +1622,8 @@
             templateUrl: "views/aum/aum-invoice.html"
         }).when("/amc", {
             templateUrl: "views/amc/amc.html"
+        }).when("/amc/:id", {
+            templateUrl: "views/amc/amc-edit.html"
         }).when("/amc-jobs", {
             templateUrl: "views/amc/amc-jobs.html"
         }).when("/oncall/:id", {

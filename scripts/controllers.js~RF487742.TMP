@@ -1485,8 +1485,8 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.price_result = aum_price
 
         var post_data = {};
-        post_data.method = 'update_amc_customer_details';
-        post_data.amc_order_id = $routeParams.id;
+        post_data.method = 'save_amc_customer_details';
+        post_data.customer_id = angular.element('#organization_id').val();
         post_data.enquiry_date = angular.element('#enquiry_date').val();
         post_data.start_date = angular.element('#order_date').val();
         post_data.end_date = angular.element('#end_date').val();
@@ -1500,13 +1500,13 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           .success(function(data) {
                if (data.status == true) {
                 var amc_service_details = {};
-                amc_service_details.method = 'update_amc_service_details'
-                amc_service_details.amc_order_id = $routeParams.id;
+                amc_service_details.method = 'save_amc_service_details'
+                amc_service_details.amc_order_id = data.amc_order_id;
                 amc_service_details.details = aum_service_array
                   $http.post('api/amc_controller.php', amc_service_details)
                     .success(function(data) {
                          if (data.status == true) {
-                            toastr.success("Organization Updated Successfully");
+                            toastr.success("Customer Added Successfully");
                               toastr.options = {
                                 "closeButton": false,
                                 "debug": false,

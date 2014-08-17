@@ -71,5 +71,10 @@
 			"status" => true
 			);
 		echo json_encode($data);
+	}elseif ($data->method == 'get_amc_details_by_id') {
+		$sql_amc_by_id = "SELECT * FROM amc_customer_details AS cd STRAIGHT_JOIN amc_service_details AS sd STRAIGHT_JOIN amc_service_type AS st STRAIGHT_JOIN customer_details AS cust WHERE cd.amc_order_id=sd.amc_order_id AND cd.customer_id= cust.customer_id AND sd.service_id=st.service_id AND cd.amc_order_id=$data->amc_order_id";
+		$stmt = $dbh->query($sql_amc_by_id);
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($row);	
 	}
 ?>
