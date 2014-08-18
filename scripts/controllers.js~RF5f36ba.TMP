@@ -1607,25 +1607,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
       }); 
     }
 
-}]).controller("amcInvoiceCtrl", ["$scope","$http","$routeParams", "$window" , function($scope, $http, $routeParams) {
+}]).controller("amcInvoiceCtrl", ["$scope","$routeParams", "$window" ,"$http", function ($scope, $routeParams, $http) {
       $scope.order_id = $routeParams.id;
       $scope.main_name = 'Aumfs Automation Company';
-
-      var post_data = {};
-      post_data.amc_order_id = $routeParams.id;
-      post_data.method = 'get_amc_details_by_id'; 
-      $http.post('api/amc_controller.php', post_data)
-        .success(function(data) {
-          $scope.amc_services_list = data;
-          $scope.customer_name = data[0]['customer_name'];
-          $scope.customer_phone = data[0]['customer_phone'];
-          $scope.customer_address = data[0]['customer_address'];
-          $scope.subscription_type = data[0]['subscription_type'];
-          $scope.grand_total = data[0]['total'];
-          $scope.extra_inventory = data[0]['extra_inventory'];
-           console.log(data); 
-
-      }); 
         return $scope.printInvoice = function () {
             var originalContents, popupWin, printContents;
             return printContents = document.getElementById("invoice").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()

@@ -48,10 +48,12 @@
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':enquiry_date'=>$data->enquiry_date,':start_date' =>$data->order_date,':end_date' =>$data->end_date,':enquiry_type'=>$data->enquiry_type,':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':subscription_type'=>$data->subscription_type, ':extra_inventory'=>$data->extra_inventory));
 		//print_r($sth->errorInfo());
+
 		if ($result == 1) {
 			$data = array(
 				"status" => true,
-				"amc_order_id"=>$dbh->lastInsertId()
+				"amc_order_id"=>$dbh->lastInsertId(),
+				"follow_up_type"=>$data->follow_up_type
 				);
 			echo json_encode($data);
 		} else {
@@ -76,5 +78,33 @@
 		$stmt = $dbh->query($sql_amc_by_id);
 		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode($row);	
+	}elseif ($data->method == 'update_amc_customer_details') {
+	
+		$sql = "UPDATE amc_customer_details SET enquiry_date=:enquiry_date, start_date=:start_date, end_date=:end_date, enquiry_type=:enquiry_type,follow_up_type=:follow_up_type,total=:total,subscription_type=:subscription_type,extra_inventory=:extra_inventory WHERE amc_order_id=:amc_order_id";
+		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $result = $sth->execute(array(':enquiry_date'=>$data->enquiry_date, ':start_date'=>$data->start_date, ':end_date'=>$data->end_date, ':enquiry_type'=>$data->enquiry_type, ':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':subscription_type'=>$data->subscription_type,':extra_inventory'=>$data->extra_inventory,':amc_order_id'=>$data->amc_order_id));
+
+	    if ($result == 1) {
+	        $data = array(
+	            "status" => true
+	        );
+	        echo json_encode($data);
+	    } else {
+	        $data = array(
+	        	"status" => false
+	        );
+	          echo json_encode($data);
+	    }
+	    $dbh = null;	
+	}elseif ($data->method == 'update_amc_service_details') {
+		foreach ($data->details as $value) {
+			$sql = "UPDATE amc_service_details SET service_id=:service_id, quantity=:quantity, qty_total=:qty_total WHERE amc_order_id=:amc_order_id AND service_id=:service_id";
+			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+	        $result = $sth->execute(array(':service_id'=>$value->service_id, ':quantity'=>$value->quantity, ':qty_total'=>$value->qty_total,':amc_order_id'=>$data->amc_order_id ,':service_id'=>$value->service_id));
+		}
+		$data = array(
+			"status" => true
+			);
+		echo json_encode($data);
 	}
 ?>

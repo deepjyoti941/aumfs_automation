@@ -1626,6 +1626,8 @@
             templateUrl: "views/amc/amc-edit.html"
         }).when("/amc-jobs", {
             templateUrl: "views/amc/amc-jobs.html"
+        }).when("/amc-invoice/:id", {
+            templateUrl: "views/amc/amc-invoice.html"
         }).when("/oncall/:id", {
             templateUrl: "views/oncall/oncall-edit.html"
         }).when("/oncall-charges", {
