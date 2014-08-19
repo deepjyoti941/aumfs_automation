@@ -166,10 +166,11 @@
 		            <th>Service Name</th>
 		            <th>Order Date</th>
 		            <th>Price(Rs.)</th>
-		            <th>Assigned Employee</th>
+		            <th>Employee Engaged</th>
 		            <th>Order Status</th>
 		            <th>Is Back Listed</th>
 		            <th>Action</th>
+		            <th>Invoice Action</th>
 		        </thead>
 		        <tbody>
 		        	<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
@@ -178,7 +179,7 @@
 		        	<td>{{data.customer_phone}}</td>
 		        	<td>
 		        		<div ng-if="data.service_name == '' ">
-								<span class="label label-info">Not Confirmed Yet</span>
+								<span class="label label-info">Not Confirmed</span>
 						</div>
 						<div ng-if="data.bill_number != '' ">
 								<span class="label label-info">{{data.service_name}}</span>
@@ -216,7 +217,9 @@
 						   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
 								class="fa fa-edit"></i>
 						</a>
-						<a href="#/otj-invoice/{{data.otj_service_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice</a>
+                    </td>
+                    <td>
+                    	<a href="#/otj-invoice/{{data.otj_service_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice</a>
                     </td>
 
 
