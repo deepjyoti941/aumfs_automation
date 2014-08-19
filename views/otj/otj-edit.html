@@ -1,0 +1,102 @@
+<div class="page" ng-controller="editOtjCustomerCtrl">
+
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> OTJ Update Page</strong></div>
+        <div class="panel-body">
+        	<div class="form-group">
+				<label class="" for="newTitle">Customer Name</label>
+
+				<input  type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name" required>
+			</div>
+			<div class="form-group">
+				<label class="" for="customerAddress">Customer Address</label>
+				<input name="customer_address" ng-model="selectedCustomer.customer_address" type="text" class="form-control"
+				       id="customer_address" placeholder="Enter Customer Address" required>
+			</div>
+			<div class="form-group">
+				<label class="" for="customerPhone">Customer Phone</label>
+				<input name="customer_phone" ng-model="selectedCustomer.customer_phone" type="text" class="form-control"
+				       id="customer_phone" placeholder="Enter Customer Phone Number" required>
+			</div>
+		<form class="" role="form" name="newCustomerForm" ng-submit="createCustomer()">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<label class="" for="customerId">Customer Id</label><br>
+						<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-md-4 col-lg-2">
+						<label class="" for="newCategory">Enquiry Type</label><br>
+								<span class="ui-select">
+									<select name="oncallCustomer.enquiry_type" ng-model="enquiry_type" id="enquiry_type" ng-options="enquiry.type for enquiry in enquiry_type_list track by enquiry.type" required>
+					                	<option value="" ng-hide="enquiry_type">Select Enquiry Type</option>
+					                </select>
+					            </span>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2"  style="margin-left: 30px;">
+						<label class="" for="newCategory">Follow Up Type</label><br>
+						<span class="ui-select">
+							<select name="oncallCustomer.follow_up_type" ng-model="follow_up_type" id="follow_up_type" ng-options="follow.type for follow in follow_up_type_list track by follow.type">
+			                	<option value="" ng-hide="follow_up_type">Select Follow up Type</option>
+			                </select>			            
+			            </span>
+					</div>
+
+				</div>
+
+				<div class="input-group ui-datepicker">
+					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text"
+					       class="form-control"
+						   datepicker-popup="{{format}}"
+					       show-weeks="false"
+					       ng-model="enquiry_date"
+					       id="enquiry_date" 
+					       is-open="opened"
+					       min="today"
+					       datepicker-options="dateOptions"
+					       ng-required="true"
+					       close-text="Close">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-6 col-md-4 col-lg-2">
+						<label class="" for="serviceName">Service Name</label>
+								<span class="ui-select">
+					                <select name="oncallCustomer.service_type" ng-model="oncall_services" id="serviceName" ng-options="service.service_name for service in oncall_services_list track by service.service_name">
+					                	<option value="" ng-hide="oncall_services">Select Service Type</option>
+					                </select>
+					            </span>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-4" style="margin-left: 30px;">
+						<label class="" for="aumPrice">Service Price (in Rs.)</label><br>
+						<input style="margin-top: 10px;" ng-model="aumPrice" type="text" class="form-control"
+				       id="otj_price" placeholder="Enter Price">		
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2" style="margin-left: 30px;">
+						<label class="" for="newShop">Assign This Task to</label><br>
+							<span class="ui-select">
+					                <select name="oncallCustomer.employee_list" ng-model="employee_list" id="employee_list" ng-options="list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id">
+					                </select>
+				            </span>
+						
+					</div>
+				</div>
+				<div class="form-group">
+				<label class="" for="newShortDesc">Short Description</label>
+				<textarea ng-model="short_description" id="short_description" class="form-control resizeless"
+				          rows="2" data-min="3" data-max="100"></textarea>
+			</div>
+			</div>
+
+
+			<hr/>
+			<button type="submit" ng-click="updateOtjOrder()" class="btn btn-info">Update Order</button>
+		</form>
+        </div>
+    </section>
+</div>

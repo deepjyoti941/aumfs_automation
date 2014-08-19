@@ -1665,6 +1665,10 @@
             controller: 'EmployeeEditCtrl'
         }).when("/otj", {
             templateUrl: "views/otj/otj.html"
+        }).when("/otj/:id", {
+            templateUrl: "views/otj/otj-edit.html"
+        }).when("/otj-invoice/:id", {
+            templateUrl: "views/otj/otj-invoice.html"
         }).when("/otj-jobs", {
             templateUrl: "views/otj/otj-jobs.html"
         }).otherwise({

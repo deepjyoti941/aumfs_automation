@@ -831,42 +831,25 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           }   
 
 }]).controller("editOtjCustomerCtrl", ["$scope", "$http","$routeParams", function($scope, $http, $routeParams) {
-          getServiceList();
-          getEmployeeList();
-           function getServiceList() {
-            $http.post('api/otj_controller.php', {method:'get_service_list'})
-                .success(function(data) {
-                    $scope.oncall_services_list = data;
-                
-            });    
-          }
 
-          function getEmployeeList() {
-            $http.post('api/employee_controller.php', {method:'get_free_employee_list'})
-                .success(function(data) {
-                    $scope.service_employee_list = data;
-                    var post_data = {};
-                    post_data.otj_service_id = $routeParams.id;
-                    post_data.method = 'get_otj_details_by_id'; 
-                    $http.post('api/otj_controller.php', post_data)
-                      .success(function(data) {
-                        //$scope.otj_customer_details = data;
-                         console.log(data); 
-                         angular.element('#customer_name').val(data.customer_name);
-                         angular.element('#customer_address').val(data.customer_address);
-                         angular.element('#customer_phone').val(data.customer_phone);
-                         angular.element('#customer_id').val(data.customer_id);
-                         angular.element('#enquiry_type').val(data.enquiry_type);
-                         angular.element('#follow_up_type').val(data.follow_up_type);
-                         angular.element('#enquiry_date').val(data.action_date);
-                         angular.element('#serviceName').val(data.service_name);
-                         angular.element('#otj_price').val(data.aum_price);
-                         angular.element('#employee_list').val(data.assigned_employee_id);
-                         angular.element('#short_description').val(data.short_desc);
-                    });                 
-            }); 
-          }  
+        var post_data = {};
+        post_data.otj_service_id = $routeParams.id;
+        post_data.method = 'get_otj_details_by_id'; 
+        $http.post('api/otj_controller.php', post_data)
+          .success(function(data) {
+            //$scope.otj_customer_details = data;
+             console.log(data); 
+             angular.element('#customer_name').val(data.customer_name);
+             angular.element('#customer_address').val(data.customer_address);
+             angular.element('#customer_phone').val(data.customer_phone);
+             angular.element('#customer_id').val(data.customer_id);
+             angular.element('#enquiry_type').val(data.enquiry_type);
+             angular.element('').val();
+             angular.element('').val();
+             angular.element('').val();
 
+
+        }); 
 
         $scope.enquiry_date = new Date();
         $scope.enquiry_type_list = [
@@ -901,18 +884,19 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           }else {
               var post_data = {};
               post_data.method = 'update_otj_customer';
-              post_data.otj_service_id = $routeParams.id;
+              post_data.customer_id = angular.element('#customer_id').val();
               post_data.enquiry_type = angular.element('#enquiry_type').val();
               post_data.follow_up_type = angular.element('#follow_up_type').val();
-              post_data.action_date = angular.element('#enquiry_date').val();
+              post_data.enquiry_date = angular.element('#enquiry_date').val();
               post_data.service_name = angular.element('#serviceName').val();
-              post_data.aum_price = angular.element('#otj_price').val();
+              post_data.price = angular.element('#aumPrice').val();
               post_data.assigned_employee_id = angular.element('#employee_list').val();
-              post_data.short_desc = angular.element('#short_description').val();
+              post_data.short_description = angular.element('#short_description').val();
+              console.log(post_data);
                 $http.post('api/otj_controller.php', post_data)
                     .success(function(data) {
                        if (data.status == true) {
-                                toastr.success("Order Updated successfully");
+                                toastr.success("Order Created successfully");
                                 toastr.options = {
                                   "closeButton": false,
                                   "debug": false,
@@ -933,7 +917,31 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
           }
 
-        } 
+        }
+          getCustomerList();
+          getServiceList();
+          getEmployeeList();
+          function getCustomerList(){  
+            $http.get("api/customerlist.php").success(function(data){
+                $scope.customers = data;
+            });
+          };
+
+           function getServiceList() {
+            $http.post('api/otj_controller.php', {method:'get_service_list'})
+                .success(function(data) {
+                    $scope.oncall_services_list = data;
+                
+            });    
+          }
+
+          function getEmployeeList() {
+            $http.post('api/employee_controller.php', {method:'get_free_employee_list'})
+                .success(function(data) {
+                    $scope.service_employee_list = data;
+                
+            }); 
+          }   
 
 }]).controller("otjJobsCtrl", ["$scope", "$http", function($scope, $http) {
 

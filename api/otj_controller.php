@@ -58,5 +58,26 @@
 			echo json_encode($data);
 		}	
 
+	}elseif ($data->method == 'get_otj_details_by_id') {
+		$sql_otj_by_id = "SELECT * FROM otj_customer_details AS cd STRAIGHT_JOIN customer_details AS cust WHERE cd.customer_id= cust.customer_id AND cd.otj_service_id=$data->otj_service_id";
+		$stmt = $dbh->query($sql_otj_by_id);
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		echo json_encode($row);	
+	}elseif ($data->method == 'update_otj_customer') {
+		$sql = "UPDATE otj_customer_details SET enquiry_type=:enquiry_type, follow_up_type=:follow_up_type, assigned_employee_id=:assigned_employee_id, service_name=:service_name, action_date=:action_date, aum_price=:aum_price, short_desc=:short_desc WHERE otj_service_id=:otj_service_id";
+		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $result = $sth->execute(array(':enquiry_type'=>$data->enquiry_type, ':follow_up_type'=>$data->follow_up_type, ':assigned_employee_id'=>$data->assigned_employee_id, ':service_name'=>$data->service_name, ':action_date'=>$data->action_date,':aum_price'=>$data->aum_price,':short_desc'=>$data->short_desc,':otj_service_id'=>$data->otj_service_id));
+	    if ($result == 1) {
+	        $data = array(
+	            "status" => true
+	        );
+	        echo json_encode($data);
+	    } else {
+	        $data = array(
+	        	"status" => false
+	        );
+	          echo json_encode($data);
+	    }
+	    $dbh = null;
 	}
 ?>
