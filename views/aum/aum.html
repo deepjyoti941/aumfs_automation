@@ -53,6 +53,24 @@
 				</form>
 
 				<br><br>
+			<div class="form-group">
+				<label class="" for="endDate">Enquiry Date</label><br>
+		        <div data-ng-controller="DatepickerDemoCtrl">
+	                <div class="input-group ui-datepicker">
+	                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                    <input type="text" 
+	                           class="form-control"
+	                           datepicker-popup="{{format}}"
+	                           ng-model="enquiry_date"
+	                           id="enquiry_date" 
+	                           show-weeks="false"
+	                           is-open="opened"
+	                           min="today"
+	                           datepicker-options="dateOptions" 
+	                           close-text="Close">
+	                </div>
+		        </div>
+			</div>
 		<form class="" role="form" name="aumForm">
 			<div class="row">
 				<div class="col-md-6">
@@ -207,7 +225,15 @@
 									<span class="label label-success">NO</span>
 							</div>
 		        		</td>
-		        		<td><a href="#/aum-invoice/{{data.aum_order_id}}" class="btn btn-w-md btn-gap-v btn-info">View Details/Create Invoice</a></td>
+		        		<td>
+		        			<a ng-href="#/aum/{{data.aum_order_id}}" class="btn-icon btn-icon-sm btn-primary"
+						   role="button"
+						   tooltip-placement="top" tooltip="Update" tooltip-append-to-body="true"><i
+								class="fa fa-edit"></i>
+							</a>
+		        		    <a href="#/aum-invoice/{{data.aum_order_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice
+		        		    </a>
+		        		</td>
 
 		        	</tr>
 		        </tbody>

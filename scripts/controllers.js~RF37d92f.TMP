@@ -960,7 +960,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }
 
 
-      $scope.enquiry_date = new Date();
+      $scope.order_date = new Date();
       $scope.subscription_fee = 1000;
       $scope.service_quantity = 0;
       $scope.oncallCustomer = {};
@@ -1070,8 +1070,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         var post_data = {};
         post_data.method = 'save_aum_customer_details';
         post_data.customer_id = angular.element('#customer_id').val();
-        post_data.enquiry_date = angular.element('#enquiry_date').val();
-        post_data.start_date = angular.element('#start_date').val();
+        post_data.order_date = angular.element('#order_date').val();
         post_data.end_date = angular.element('#end_date').val();
         post_data.subscription_type = angular.element('#subscription_fee').val();
         post_data.total = aum_price;
@@ -1113,119 +1112,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     }
 
 
-
-}]).controller("editAumCustomerCtrl", ["$scope", "$http","$routeParams", function($scope, $http, $routeParams) {
-
-    $scope.removeService = function($index) {
-       $scope.aum_services_list.splice($index, 1);
-    }
-    var post_data = {};
-    post_data.aum_order_id = $routeParams.id;
-    post_data.method = 'get_aum_details_by_id'; 
-    $http.post('api/aum_controller.php', post_data)
-      .success(function(data) {
-        $scope.aum_services_list = data;
-         console.log(data); 
-          angular.element('#customer_name').val(data[0]['customer_name']);
-          angular.element('#customer_address').val(data[0]['customer_address']);  
-          angular.element('#customer_phone').val(data[0]['customer_phone']);  
-          angular.element('#enquiry_date').val(data[0]['order_date']);
-          angular.element('#customer_id').val(data[0]['customer_id']);
-          angular.element('#subscription_fee').val(data[0]['subscription_type']);
-          angular.element('#start_date').val(data[0]['start_date']);
-          angular.element('#end_date').val(data[0]['end_date']);
-          angular.element('#price_result').val(data[0]['total']);
-    }); 
-
-    $scope.calculatePrice = function() {
-      if (angular.element('#customer_id').val() == '') {
-            toastr.error("Idiot!! You must insert organization first");
-            toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "positionClass": "toast-bottom-left",
-              "onclick": null,
-              "showDuration": "800",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-            }
-      }else {
-
-        var aum_service_array = [];
-        var total = [];
-        var test = document.getElementById("service_list_data").getElementsByTagName("input");
-        for(var i=0;i<test.length;i++) {
-            var text_id = test[i].id;
-            var service_price = parseInt(angular.element('#'+text_id).closest('td').prev().html());
-            var total_price = service_price * test[i].value;
-            var aum_service = {};
-            aum_service.service_id = test[i].id;
-            aum_service.quantity = test[i].value;
-            aum_service.qty_total = total_price;
-            aum_service_array.push(aum_service);
-            total.push(total_price);
-        }  
-        var aum_price = total.reduce(function(prev, cur) {
-          return prev + cur;
-        });
-        console.log(aum_service_array);
-        if (angular.element('#subscription_fee').val() == '1000/yr') {
-         aum_price = aum_price + 1000; 
-       }else {
-         aum_price = aum_price + 1900; 
-       }
-        
-        $scope.price_result = aum_price
-
-        var post_data = {};
-        post_data.method = 'update_aum_customer_details';
-        post_data.aum_order_id = $routeParams.id;
-        post_data.enquiry_date = angular.element('#enquiry_date').val();
-        post_data.start_date = angular.element('#start_date').val();
-        post_data.end_date = angular.element('#end_date').val();
-        post_data.subscription_type = angular.element('#subscription_fee').val();
-        post_data.total = aum_price;
-        $http.post('api/aum_controller.php', post_data)
-          .success(function(data) {
-               if (data.status == true) {
-                var aum_service_details = {};
-                aum_service_details.method = 'update_aum_service_details'
-                aum_service_details.aum_order_id = $routeParams.id;
-                aum_service_details.details = aum_service_array
-                  $http.post('api/aum_controller.php', aum_service_details)
-                    .success(function(data) {
-                         if (data.status == true) {
-                            toastr.success("Customer Updated Successfully");
-                              toastr.options = {
-                                "closeButton": false,
-                                "debug": false,
-                                "positionClass": "toast-bottom-left",
-                                "onclick": null,
-                                "showDuration": "800",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                              }                            
-
-                          };              
-                    
-                  });
-
-                };              
-          
-        }); 
-       
-      }
-    }
 
 }]).controller("aumJobsCtrl", ["$scope", "$http", function($scope, $http) {
 
@@ -1311,47 +1197,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
       }); 
     }
 
-}]).controller("aumInvoiceCtrl", ["$scope","$http","$routeParams", "$window", function ($scope, $http, $routeParams) {
- 
-      var post_data = {};
-      post_data.aum_order_id = $routeParams.id;
-      post_data.method = 'get_aum_details_by_id'; 
-      $http.post('api/aum_controller.php', post_data)
-        .success(function(data) {
-          $scope.aum_services_list = data;
-          $scope.get_sub_total = function() {
-            var total = 0;
-            for(var i = 0; i < data.length; i++){
-                total += parseInt(data[i]['qty_total']);
-            }
-            return total;
-          }
-          var today = new Date();
-          var dd = today.getDate();
-          var mm = today.getMonth()+1; //January is 0!
-          var yyyy = today.getFullYear();
-
-          if(dd<10) {
-              dd='0'+dd
-          } 
-
-          if(mm<10) {
-              mm='0'+mm
-          } 
-          today = dd+'/'+mm+'/'+yyyy;
-          $scope.invoice_date = today;
-          $scope.package_name = 'AUM Package';
-          $scope.invoice_number = '#AUM'+$routeParams.id;
-          $scope.customer_name = data[0]['customer_name'];
-          $scope.customer_phone = data[0]['customer_phone'];
-          $scope.customer_address = data[0]['customer_address'];
-          $scope.subscription_type = data[0]['subscription_type'];
-          $scope.start_date = data[0]['start_date'];
-          $scope.end_date = data[0]['end_date'];
-          $scope.grand_total = data[0]['total'];
-           console.log(data); 
-
-      }); 
+}]).controller("aumInvoiceCtrl", ["$scope","$routeParams", "$window" ,"$http", function ($scope, $routeParams, $http) {
+      $scope.order_id = $routeParams.id;
+      $scope.main_name = 'Aumfs Automation Company';
         return $scope.printInvoice = function () {
             var originalContents, popupWin, printContents;
             return printContents = document.getElementById("invoice").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()
@@ -1772,7 +1620,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           $scope.get_sub_total = function() {
             var total = 0;
             for(var i = 0; i < data.length; i++){
-                total += parseInt(data[i]['qty_total']);
+                total += data[i]['qty_total'];
             }
             return total;
           }
@@ -1796,8 +1644,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           $scope.customer_phone = data[0]['customer_phone'];
           $scope.customer_address = data[0]['customer_address'];
           $scope.subscription_type = data[0]['subscription_type'];
-          $scope.start_date = data[0]['start_date'];
-          $scope.end_date = data[0]['end_date'];
           $scope.grand_total = data[0]['total'];
           $scope.extra_inventory = data[0]['extra_inventory'];
            console.log(data); 

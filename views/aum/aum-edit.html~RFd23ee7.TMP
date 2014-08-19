@@ -1,0 +1,131 @@
+<div class="page" ng-controller="editAumCustomerCtrl">
+
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> AUM Update Page</strong></div>
+        <div class="panel-body">
+			<div class="form-group">
+				<label class="" for="newTitle">Customer Name</label>
+				<input  style="display:none" type="text" ng-model="selectedCustomer.customer_id" name="customer_id" class="form-control" id="existing_customer_id" placeholder="Customer Id" >
+
+				<input  type="text" ng-model="selectedCustomer.customer_name" name="customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name" value="{{somebinding.id}}" required>
+			</div>
+			<div class="form-group">
+				<label class="" for="customerAddress">Customer Address</label>
+				<input name="customer_address" ng-model="selectedCustomer.customer_address" type="text" class="form-control"
+				       id="customer_address" placeholder="Enter Customer Address" required>
+			</div>
+			<div class="form-group">
+				<label class="" for="customerPhone">Customer Phone</label>
+				<input name="customer_phone" ng-model="selectedCustomer.customer_phone" type="text" class="form-control" id="customer_phone" placeholder="Enter Customer Phone Number" required>
+			</div>
+			<div class="form-group">
+				<label class="" for="endDate">Enquiry Date</label><br>
+		        <div data-ng-controller="DatepickerDemoCtrl">
+	                <div class="input-group ui-datepicker">
+	                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                    <input type="text" 
+	                           class="form-control"
+	                           datepicker-popup="{{format}}"
+	                           ng-model="enquiry_date"
+	                           id="enquiry_date" 
+	                           show-weeks="false"
+	                           is-open="opened"
+	                           min="today"
+	                           datepicker-options="dateOptions" 
+	                           close-text="Close">
+	                </div>
+		        </div>
+			</div>
+		<form class="" role="form" name="aumForm">
+			<div class="row">
+				<div class="col-md-6">
+					<label class="" for="customerId">Customer Id</label><br>
+					<input type="text" readonly class="form-control" ng-model="oncallCustomer.customer_id" name="oncallCustomer.existing_customer_id" id="customer_id" required><br>
+				</div>
+				<div class="col-md-6">
+						<span class="ui-select">
+							<select style="margin-top: 20px;" name="subscription_fee"  id="subscription_fee">
+			                	<option value="0">Select Subcription Type</option>
+			                	<option value="1000/yr">1000/yr</option>
+			                	<option value="1900/yr">1900/yr</option>
+			                </select>
+			            </span>
+					<!-- <input type="text" readonly class="form-control" ng-model="subscription_fee" name="subscription_fee" id="subscription_fee"> -->
+
+				</div>
+			</div>
+			<label class="" for="startDate">Start Date</label><br>
+			<div class="input-group ui-datepicker">
+				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+				 <input type="text" 
+                       class="form-control"
+                       datepicker-popup="{{format}}"
+                       ng-model="start_date"
+                       id="start_date" 
+                       show-weeks="false"
+                       is-open="opened"
+                       min="today"
+                       datepicker-options="dateOptions" 
+                       date-disabled="disabled(date, mode)"
+                       close-text="Close">
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="" for="endDate">End Date</label><br>
+		        <div data-ng-controller="DatepickerDemoCtrl">
+	                <div class="input-group ui-datepicker">
+	                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                    <input type="text" 
+	                           class="form-control"
+	                           datepicker-popup="{{format}}"
+	                           ng-model="endDate"
+	                           id="end_date" 
+	                           show-weeks="false"
+	                           is-open="opened"
+	                           min="today"
+	                           datepicker-options="dateOptions" 
+	                           close-text="Close">
+	                </div>
+		        </div>
+			</div>
+		    <div class="row" id="service_list_data">
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-striped table-responsive">
+			            <thead>
+
+				            <th>Service ID</th>
+				            <th>Service Name</th>
+				            <th>Service Price</th>
+				            <th>Quantity</th>
+				            <th>Frequency <a tooltip-placement="top" tooltip="1 Year = 365, 6 Months = 180, 4 Months = 90, 3 Months = 120 , 1 Month = 30, Unlimited = 0" tooltip-append-to-body="true"><strong>(?)</strong></a></th>
+				            <th>Action</th>
+				            
+				        </thead>
+				        <tbody>
+				        <tr ng-repeat="data in aum_services_list">
+				        	<td>{{data.service_id}}</td>
+				        	<td>{{data.service_name}}</td>
+				        	<td>{{data.service_price}}</td>
+				        	<td>
+				        		<input type="number" id="{{data.service_id}}" class="form-control"  name="service_quantity" value="{{data.quantity}}">
+				        	</td>
+				        	<td>{{data.service_frequency}}</td>
+				        	<td><a href ng:click="removeService($index)" class="btn-icon btn-icon-sm btn-danger"><i class="fa fa-times"></i></a></td>
+				        </tr>
+				        	
+				        </tbody>
+				    </table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<input type="submit" class="btn btn-info"  ng-click="calculatePrice()" value="Calculate And Save">
+				</div>
+				<div class="col-md-2">
+					<input type="text" readonly class="form-control" ng-model="price_result">
+				</div>
+			</div>
+		</form>	
+        </div>
+    </section>
+</div>

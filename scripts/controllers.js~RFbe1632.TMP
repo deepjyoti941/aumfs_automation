@@ -960,7 +960,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }
 
 
-      $scope.enquiry_date = new Date();
+      $scope.order_date = new Date();
       $scope.subscription_fee = 1000;
       $scope.service_quantity = 0;
       $scope.oncallCustomer = {};
@@ -1070,8 +1070,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         var post_data = {};
         post_data.method = 'save_aum_customer_details';
         post_data.customer_id = angular.element('#customer_id').val();
-        post_data.enquiry_date = angular.element('#enquiry_date').val();
-        post_data.start_date = angular.element('#start_date').val();
+        post_data.order_date = angular.element('#order_date').val();
         post_data.end_date = angular.element('#end_date').val();
         post_data.subscription_type = angular.element('#subscription_fee').val();
         post_data.total = aum_price;
@@ -1129,10 +1128,10 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           angular.element('#customer_name').val(data[0]['customer_name']);
           angular.element('#customer_address').val(data[0]['customer_address']);  
           angular.element('#customer_phone').val(data[0]['customer_phone']);  
-          angular.element('#enquiry_date').val(data[0]['order_date']);
+          angular.element('#enquiry_date').val(data[0]['enquiry_date']);
           angular.element('#customer_id').val(data[0]['customer_id']);
           angular.element('#subscription_fee').val(data[0]['subscription_type']);
-          angular.element('#start_date').val(data[0]['start_date']);
+          angular.element('#order_date').val(data[0]['start_date']);
           angular.element('#end_date').val(data[0]['end_date']);
           angular.element('#price_result').val(data[0]['total']);
     }); 
@@ -1183,24 +1182,28 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.price_result = aum_price
 
         var post_data = {};
-        post_data.method = 'update_aum_customer_details';
-        post_data.aum_order_id = $routeParams.id;
+        post_data.method = 'update_amc_customer_details';
+        post_data.amc_order_id = $routeParams.id;
         post_data.enquiry_date = angular.element('#enquiry_date').val();
-        post_data.start_date = angular.element('#start_date').val();
+        post_data.start_date = angular.element('#order_date').val();
         post_data.end_date = angular.element('#end_date').val();
+        post_data.enquiry_type = angular.element('#enquiry_type').val();
+        post_data.enquiry_date = angular.element('#enquiry_date').val();
+        post_data.follow_up_type = angular.element('#follow_up_type').val();
         post_data.subscription_type = angular.element('#subscription_fee').val();
+        post_data.extra_inventory = angular.element('#extra_inventory').val();
         post_data.total = aum_price;
-        $http.post('api/aum_controller.php', post_data)
+        $http.post('api/amc_controller.php', post_data)
           .success(function(data) {
                if (data.status == true) {
-                var aum_service_details = {};
-                aum_service_details.method = 'update_aum_service_details'
-                aum_service_details.aum_order_id = $routeParams.id;
-                aum_service_details.details = aum_service_array
-                  $http.post('api/aum_controller.php', aum_service_details)
+                var amc_service_details = {};
+                amc_service_details.method = 'update_amc_service_details'
+                amc_service_details.amc_order_id = $routeParams.id;
+                amc_service_details.details = aum_service_array
+                  $http.post('api/amc_controller.php', amc_service_details)
                     .success(function(data) {
                          if (data.status == true) {
-                            toastr.success("Customer Updated Successfully");
+                            toastr.success("Organization Updated Successfully");
                               toastr.options = {
                                 "closeButton": false,
                                 "debug": false,
@@ -1340,14 +1343,12 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           } 
           today = dd+'/'+mm+'/'+yyyy;
           $scope.invoice_date = today;
-          $scope.package_name = 'AUM Package';
-          $scope.invoice_number = '#AUM'+$routeParams.id;
+          $scope.package_name = 'Corporate AMC';
+          $scope.invoice_number = '#AMC'+$routeParams.id;
           $scope.customer_name = data[0]['customer_name'];
           $scope.customer_phone = data[0]['customer_phone'];
           $scope.customer_address = data[0]['customer_address'];
           $scope.subscription_type = data[0]['subscription_type'];
-          $scope.start_date = data[0]['start_date'];
-          $scope.end_date = data[0]['end_date'];
           $scope.grand_total = data[0]['total'];
            console.log(data); 
 
@@ -1796,8 +1797,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           $scope.customer_phone = data[0]['customer_phone'];
           $scope.customer_address = data[0]['customer_address'];
           $scope.subscription_type = data[0]['subscription_type'];
-          $scope.start_date = data[0]['start_date'];
-          $scope.end_date = data[0]['end_date'];
           $scope.grand_total = data[0]['total'];
           $scope.extra_inventory = data[0]['extra_inventory'];
            console.log(data); 

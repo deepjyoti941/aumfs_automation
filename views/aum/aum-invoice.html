@@ -5,12 +5,16 @@
             
             <div class="row">
                 <div class="col-xs-6">
-                    <p class="size-h2">{{main_name}}</p>
-                    <p class="text-muted">AUMFS Automation</p>
+                    <p class="size-h2">AUM Facility Service</p>
+                    <p class="text-muted">33, Barthakur Mill Road, Ulubari</p>
+                    <p class="text-muted">Guwahati - 781007, Assam</p>
+                    <p class="text-muted">Phone: 0361 - 2528888, 2527777</p>
+                    <p class="text-muted">Email: info@aumfs.com</p>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <p class="size-h2">INVOICE NO. #4685357995</p>
-                    <p>1st May 2014</p>                
+                    <p class="size-h2">{{package_name}}</p>
+                    <p class="size-h2">INVOICE NO. {{invoice_number}}</p>
+                    <p class="size-h4">Service Period:  <strong>{{start_date}}</strong> to <strong>{{end_date}}</strong></p>                
                 </div>
             </div>
 
@@ -18,15 +22,14 @@
 
             <div class="row">
                 <div class="col-xs-6">
-                    {{main.name}} <br>
-                    address goes here<br>
-                    mail@site.com
+                    {{customer_name}} <br>
+                    {{customer_address}}<br>
+                    {{customer_phone}}
 
                 </div>
                 <div class="col-xs-6 text-right">
                     <p><strong>Order Details:</strong></p>
-                    <strong>Date:</strong> 1st May 2014 <br>
-                    <strong>Order ID:</strong> {{order_id}}<br>
+                    <strong>Date:</strong> {{invoice_date}} <br>
                 </div>            
             </div>
 
@@ -35,7 +38,6 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr class="bg-dark">
-                        <th class="text-center">#</th>
                         <th>Product</th>
                         <th class="text-center">Unit Cost</th>
                         <th class="text-center">Quantity</th>
@@ -43,47 +45,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">1</td>
-                        <td>Product One</td>
-                        <td class="text-center">100</td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">100</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td>Product Two</td>
-                        <td class="text-center">550</td>
-                        <td class="text-center">2</td>
-                        <td class="text-center">1100</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td>Product Three</td>
-                        <td class="text-center">320</td>
-                        <td class="text-center">2</td>
-                        <td class="text-center">640</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">4</td>
-                        <td>Product Four</td>
-                        <td class="text-center">80</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">400</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">5</td>
-                        <td>Product Five</td>
-                        <td class="text-center">90</td>
-                        <td class="text-center">4</td>
-                        <td class="text-center">360</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">6</td>
-                        <td>Product Six</td>
-                        <td class="text-center">35</td>
-                        <td class="text-center">4</td>
-                        <td class="text-center">140</td>
+                    <tr ng-repeat="data in aum_services_list">
+                        <td>{{data.service_name}}</td>
+                        <td class="text-center">{{data.service_price}}</td>
+                        <td class="text-center">{{data.quantity}}</td>
+                        <td class="text-center">{{data.qty_total}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -101,10 +67,11 @@
                 </div>
                 <div class="col-xs-4 invoice-sum text-right">
                     <ul class="list-unstyled">
-                        <li>Sub - Total amount: $ 2740</li>
-                        <li>Discount: -----</li>
-                        <li>Tax (12%): #300</li>
-                        <li><strong>Grand Total: $ 3040</strong></li>
+                        <li>Sub - Total amount: Rs. {{get_sub_total()}}</li>
+                        <li>Subscription Fee: Rs. {{subscription_type}}</li>
+                       <!--  <li>Discount: -----</li>
+                        <li>Tax (12%): #300</li> -->
+                        <li><strong>Grand Total: Rs. {{grand_total}}</strong></li>
                     </ul>
                 </div>            
             </div>

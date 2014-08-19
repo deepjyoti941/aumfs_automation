@@ -41,10 +41,10 @@
 			echo json_encode($data);
 		}			
 	}elseif ($data->method == 'save_aum_customer_details') { 
-		$sql = "INSERT INTO  aum_customer_details (customer_id,order_date,end_date,total,subscription_type) VALUES (:customer_id,:order_date,:end_date,:total,:subscription_type)";
+		$sql = "INSERT INTO  aum_customer_details (customer_id,order_date,start_date,end_date,total,subscription_type) VALUES (:customer_id,:order_date,:start_date,:end_date,:total,:subscription_type)";
 
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':order_date' =>$data->order_date,':end_date' =>$data->end_date,':total'=>$data->total,':subscription_type'=>$data->subscription_type));
+		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':order_date' =>$data->enquiry_date,':start_date' =>$data->start_date,':end_date' =>$data->end_date,':total'=>$data->total,':subscription_type'=>$data->subscription_type));
 		//print_r($sth->errorInfo());
 		if ($result == 1) {
 			$data = array(
@@ -70,7 +70,38 @@
 			"status" => true
 			);
 		echo json_encode($data);
-	}elseif ($data->method == 'get_aum_customer_list') {
-		# code...
+	}elseif ($data->method == 'get_aum_details_by_id') {
+		$sql_aum_by_id = "SELECT * FROM aum_customer_details AS cd STRAIGHT_JOIN aum_service_details AS sd STRAIGHT_JOIN aum_service_type AS st STRAIGHT_JOIN customer_details AS cust WHERE cd.aum_order_id=sd.aum_order_id AND cd.customer_id= cust.customer_id AND sd.service_id=st.service_id AND cd.aum_order_id=$data->aum_order_id";
+		$stmt = $dbh->query($sql_aum_by_id);
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($row);	
+	}elseif ($data->method == 'update_aum_customer_details') {
+	
+		$sql = "UPDATE aum_customer_details SET order_date=:order_date, start_date=:start_date, end_date=:end_date, total=:total,subscription_type=:subscription_type WHERE aum_order_id=:aum_order_id";
+		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $result = $sth->execute(array(':order_date'=>$data->enquiry_date, ':start_date'=>$data->start_date, ':end_date'=>$data->end_date, ':total'=>$data->total,':subscription_type'=>$data->subscription_type,':aum_order_id'=>$data->aum_order_id));
+
+	    if ($result == 1) {
+	        $data = array(
+	            "status" => true
+	        );
+	        echo json_encode($data);
+	    } else {
+	        $data = array(
+	        	"status" => false
+	        );
+	          echo json_encode($data);
+	    }
+	    $dbh = null;	
+	}elseif ($data->method == 'update_aum_service_details') {
+		foreach ($data->details as $value) {
+			$sql = "UPDATE aum_service_details SET service_id=:service_id, quantity=:quantity, qty_total=:qty_total WHERE aum_order_id=:aum_order_id AND service_id=:service_id";
+			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+	        $result = $sth->execute(array(':service_id'=>$value->service_id, ':quantity'=>$value->quantity, ':qty_total'=>$value->qty_total,':aum_order_id'=>$data->aum_order_id ,':service_id'=>$value->service_id));
+		}
+		$data = array(
+			"status" => true
+			);
+		echo json_encode($data);
 	}
 ?>
