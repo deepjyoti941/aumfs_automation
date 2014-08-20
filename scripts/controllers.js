@@ -2016,7 +2016,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     }
   };
 }]).run(function($rootScope, $location, loginService){
-  var routespermission=['/dashboard','/about'];  //route that require login
+  var routespermission=['/dashboard','/about','/oncall','/oncall/:id','/oncall-charges','/aum','/aum-jobs','/aum/:id','/aum-invoice/:id','/amc','/amc/:id','/amc-jobs','/amc-invoice/:id','/employee-listing','/employee-status','/employee-status/:id','/employee-listing/:id','/otj','/otj/:id','/otj-invoice/:id','/otj-jobs'];  //route that require login
   $rootScope.$on('$routeChangeStart', function(){
     if( routespermission.indexOf($location.path()) !=-1)
     {
