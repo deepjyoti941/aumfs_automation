@@ -4,16 +4,44 @@
 		"selected_items":
 		[
 			[
+				"otj",
+				"otj_service_id"
+			],
+			[
+				"ser",
+				"service_name"
+			],
+			[
+				"en",
+				"enquiry_date"
+			],
+			[
+				"fo",
+				"follow_up_type"
+			],
+			[
+				"cus",
+				"customer_id"
+			],
+			[
+				"cu",
+				"customer_phone"
+			],
+			[
+				"customer",
+				"customer_address"
+			],
+			[
+				"custo",
+				"customer_address"
+			],
+			[
 				"start",
 				"start_date"
 			],
 			[
 				"su",
 				"subscription_type"
-			],
-			[
-				"custo",
-				"customer_phone"
 			],
 			[
 				"el",
@@ -44,10 +72,6 @@
 				"array"
 			],
 			[
-				"ser",
-				"service_list"
-			],
-			[
 				"amc",
 				"amc_order_id"
 			],
@@ -70,10 +94,6 @@
 			[
 				"th",
 				"thead	Tag"
-			],
-			[
-				"en",
-				"enquiry_type"
 			],
 			[
 				"assigned",
@@ -144,14 +164,6 @@
 				"data"
 			],
 			[
-				"cus",
-				"customer_phone"
-			],
-			[
-				"cu",
-				"customer_name"
-			],
-			[
 				"onca",
 				"oncall_service_id"
 			],
@@ -198,10 +210,6 @@
 			[
 				"pos",
 				"post_data"
-			],
-			[
-				"customer",
-				"customer_id"
 			],
 			[
 				"po",
@@ -288,14 +296,6 @@
 			}
 		},
 		{
-			"file": "scripts/controllers.js",
-			"settings":
-			{
-				"buffer_size": 76050,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "api/amc_controller.php",
 			"settings":
 			{
@@ -328,10 +328,50 @@
 			}
 		},
 		{
-			"file": "scripts/app.js",
+			"file": "api/otj_controller.php",
 			"settings":
 			{
-				"buffer_size": 72876,
+				"buffer_size": 3679,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "api/config/mysql_config.php",
+			"settings":
+			{
+				"buffer_size": 578,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/controllers.js",
+			"settings":
+			{
+				"buffer_size": 80909,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/otj/otj-invoice.html",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/otj/otj.html",
+			"settings":
+			{
+				"buffer_size": 11065,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/otj/otj-edit.html",
+			"settings":
+			{
+				"buffer_size": 4807,
 				"line_ending": "Windows"
 			}
 		}
@@ -372,6 +412,8 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/aumfs_automation/views/otj/otj-edit.html",
+		"/C/wamp/www/aumfs_automation/scripts/app.js",
 		"/C/wamp/www/aumfs_automation/api/employee_controller.php",
 		"/C/wamp/www/aumfs_automation/views/amc/amc.html",
 		"/C/wamp/www/aumfs_automation/api/oncall_controller.php",
@@ -383,7 +425,6 @@
 		"/C/wamp/www/aumfs_automation/api/amc_controller.php~RF2d900f.TMP",
 		"/C/wamp/www/aumfs_automation/api/amc_controller.php",
 		"/C/wamp/www/aumfs_automation/api/aum_controller.php",
-		"/C/wamp/www/aumfs_automation/scripts/app.js",
 		"/C/wamp/www/aumfs_automation/views/pages/services.html",
 		"/C/wamp/www/aumfs_automation/scripts/services.js",
 		"/C/wamp/www/aumfs_automation/api/getOtjCustomerList.php",
@@ -479,6 +520,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"service_employee_list",
+			"customer_id",
 			"enquiry_date",
 			"update_aum_customer_details",
 			"aum",
@@ -593,7 +636,7 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 13,
 			"sheets":
 			[
 				{
@@ -609,8 +652,8 @@
 						"selection":
 						[
 							[
-								4259,
-								4259
+								3410,
+								2975
 							]
 						],
 						"settings":
@@ -619,10 +662,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1662.0,
+						"translation.y": 1302.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -638,8 +681,8 @@
 						"selection":
 						[
 							[
-								3348,
-								3358
+								249,
+								0
 							]
 						],
 						"settings":
@@ -647,10 +690,10 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 813.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -679,7 +722,7 @@
 						"translation.y": 1880.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -708,41 +751,11 @@
 						"translation.y": 1734.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "scripts/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 76050,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								74140,
-								74140
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 32821.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "api/amc_controller.php",
 					"semi_transient": false,
 					"settings":
@@ -754,8 +767,8 @@
 						"selection":
 						[
 							[
-								5415,
-								3715
+								4779,
+								3775
 							]
 						],
 						"settings":
@@ -764,14 +777,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1260.0,
+						"translation.y": 1460.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "views/aum/aum-invoice.html",
 					"semi_transient": false,
 					"settings":
@@ -797,11 +810,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "views/amc/amc-invoice.html",
 					"semi_transient": false,
 					"settings":
@@ -827,11 +840,11 @@
 						"translation.y": 140.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 7,
 					"file": "views/amc/amc-edit.html",
 					"semi_transient": false,
 					"settings":
@@ -852,40 +865,184 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3240.0,
+						"translation.y": 1460.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "scripts/app.js",
+					"buffer": 8,
+					"file": "api/otj_controller.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 72876,
+						"buffer_size": 3679,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								58087,
-								58087
+								3458,
+								3458
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1042.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "api/config/mysql_config.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 578,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9,
+								9
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "scripts/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 80909,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36328,
+								36328
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 32181.0,
+						"translation.y": 15562.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "views/otj/otj-invoice.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "views/otj/otj.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11065,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3098,
+								3098
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1010.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "views/otj/otj-edit.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4807,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4021,
+								4021
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1500.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -938,6 +1095,18 @@
 		"selected_items":
 		[
 			[
+				"otj",
+				"views\\otj\\otj-edit.html"
+			],
+			[
+				"otj-ed",
+				"views\\otj\\otj-edit.html"
+			],
+			[
+				"app",
+				"scripts\\app.js"
+			],
+			[
 				"co",
 				"scripts\\controllers.js"
 			],
@@ -958,20 +1127,12 @@
 				"scripts\\controllers.js"
 			],
 			[
-				"app",
-				"scripts\\app.js"
-			],
-			[
 				"onca",
 				"api\\oncall_controller.php"
 			],
 			[
 				"am",
 				"views\\amc\\amc.html"
-			],
-			[
-				"otj",
-				"views\\otj\\otj.html"
 			],
 			[
 				"se",
@@ -1087,7 +1248,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 222.0,
+	"side_bar_width": 225.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

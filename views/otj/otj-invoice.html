@@ -1,0 +1,74 @@
+<div class="page page-invoice" data-ng-controller="otjInvoiceCtrl">
+
+    <div class="invoice-wrapper">
+        <section class="invoice-container" id="invoice">
+            
+            <div class="row">
+                <div class="col-xs-6">
+                    <p class="size-h2">AUM Facility Service</p>
+                    <p class="text-muted">33, Barthakur Mill Road, Ulubari</p>
+                    <p class="text-muted">Guwahati - 781007, Assam</p>
+                    <p class="text-muted">Phone: 0361 - 2528888, 2527777</p>
+                    <p class="text-muted">Email: info@aumfs.com</p>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <p class="size-h2">{{package_name}}</p>
+                    <p class="size-h2">INVOICE NO. {{invoice_number}}</p>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    {{otj_services_list.customer_name}} <br>
+                    {{otj_services_list.customer_address}}<br>
+                    {{otj_services_list.customer_phone}}
+                </div>
+                <div class="col-xs-6 text-right">
+                    <p><strong>Order Details:</strong></p>
+                    <strong>Date:</strong> {{invoice_date}} <br>
+                </div>            
+            </div>
+
+            <div class="divider divider-lg"></div>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr class="bg-dark">
+                        <th>Service Name</th>
+                        <th class="text-center">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{otj_services_list.service_name}}</td>
+                        <td class="text-center">{{otj_services_list.aum_price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-xs-8">
+                    <p class="size-h3">Thanks for your business</p>
+                    <ul>
+                        <li>All packages are applicable only to one residential appartment.</li>
+                        <li>Payment as per quote has to be made in advance.</li>
+                        <li>Schedule of services will be emailed to the subscriber.</li>
+                        <li>The period of the contract for maintenance is one year from the date of payment.</li>
+                        <li>All complaints made before 2 PM on working days will attended on the same day otherwise on the next working day.</li>
+                        <li>Please note all spare parts required will be charged to customers on actuals.</li>
+                    </ul>
+                </div>
+                <div class="col-xs-4 invoice-sum text-right">
+                    <ul class="list-unstyled">
+                        <li><strong>Grand Total: Rs. {{otj_services_list.aum_price}}</strong></li>
+                    </ul>
+                </div>            
+            </div>
+        </section>
+
+        <section class="text-center no-print">
+            <a href="" ng-click="printInvoice()" class="btn btn-primary btn-lg btn-w-lg"><i class="fa fa-print"></i> Print</a>
+        </section>
+    </div>
+</div>

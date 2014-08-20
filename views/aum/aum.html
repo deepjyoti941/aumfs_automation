@@ -199,6 +199,7 @@
 		            <th>Order Status</th>
 		            <th>Is Back Listed</th>
 		            <th>Action</th>
+		            <th>Invoice Action</th>
 		        </thead>
 		        <tbody>
 		        	<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
@@ -231,8 +232,9 @@
 						   tooltip-placement="top" tooltip="Update" tooltip-append-to-body="true"><i
 								class="fa fa-edit"></i>
 							</a>
-		        		    <a href="#/aum-invoice/{{data.aum_order_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice
-		        		    </a>
+		        		</td>
+		        		<td>
+		        			<a href="#/aum-invoice/{{data.aum_order_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice</a>
 		        		</td>
 
 		        	</tr>

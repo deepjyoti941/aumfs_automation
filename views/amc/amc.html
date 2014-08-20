@@ -219,6 +219,7 @@
 		            <th>Order Status</th>
 		            <th>Is Back Listed</th>
 		            <th>Action</th>
+		            <th>Invoice Action</th>
 		        </thead>
 		        <tbody>
 		        	<tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
@@ -246,13 +247,14 @@
 							</div>
 		        		</td>
 		        		<td>
-		        		<a ng-href="#/amc/{{data.amc_order_id}}" class="btn-icon btn-icon-sm btn-primary"
-						   role="button"
-						   tooltip-placement="top" tooltip="Update" tooltip-append-to-body="true"><i
-								class="fa fa-edit"></i>
-						</a>
-		        		<a href="#/amc-invoice/{{data.amc_order_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice</a>
-
+			        		<a ng-href="#/amc/{{data.amc_order_id}}" class="btn-icon btn-icon-sm btn-primary"
+							   role="button"
+							   tooltip-placement="top" tooltip="Update" tooltip-append-to-body="true"><i
+									class="fa fa-edit"></i>
+							</a>
+		        		</td>
+		        		<td>
+		        			<a href="#/amc-invoice/{{data.amc_order_id}}" class="btn btn-w-md btn-gap-v btn-info">Create Invoice</a>
 		        		</td>
 
 		        	</tr>
