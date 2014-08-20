@@ -14,6 +14,12 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }).length, $scope.$on("taskRemaining:changed", function (event, count) {
             return $scope.taskRemainingCount = count;
         });
+}]).controller("loginCtrl", ["$scope","loginService", function ($scope,loginService) { 
+    $scope.msgtxt='';
+    $scope.login=function(data){
+    loginService.login(data,$scope); //call login service
+  };
+
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
 
@@ -1965,6 +1971,61 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }     
  
     };
+}).factory("loginService", ["$http", "$location", "sessionService",function ($http, $location, sessionService) {
+  return{
+    login:function(data,scope){
+      var $promise=$http.post('api/user.php',data); //send data to user.php
+      $promise.then(function(msg){
+        var uid=msg.data;
+        if(uid){
+          //scope.msgtxt='Correct information';
+          sessionService.set('uid',uid);
+          $location.path('/dashboard');
+        }        
+        
+        else  {
+          scope.msgtxt='incorrect information';
+          $location.path('/pages/signin');
+        }          
+      });
+    },
+    logout:function(){
+      sessionService.destroy('uid');
+      $location.path('/pages/signin');
+    },
+    islogged:function(){
+      var $checkSessionServer=$http.post('api/check_session.php');
+      return $checkSessionServer;
+      /*
+      if(sessionService.get('user')) return true;
+      else return false;
+      */
+    }
+  }
+}]).factory("sessionService", ["$http",function ($http) {
+  return{
+    set:function(key,value){
+      return sessionStorage.setItem(key,value);
+    },
+    get:function(key){
+      return sessionStorage.getItem(key);
+    },
+    destroy:function(key){
+      $http.post('api/destroy_session.php');
+      return sessionStorage.removeItem(key);
+    }
+  };
+}]).run(function($rootScope, $location, loginService){
+  var routespermission=['/dashboard','/about'];  //route that require login
+  $rootScope.$on('$routeChangeStart', function(){
+    if( routespermission.indexOf($location.path()) !=-1)
+    {
+      var connected=loginService.islogged();
+      connected.then(function(msg){
+        if(!msg.data) $location.path('/pages/signin');
+      });
+    }
+  });
 });
 
 

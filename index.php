@@ -42,7 +42,6 @@
         <script src="scripts/ui-bootstrap-tpls-0.9.0.js"></script>
 
         <script src="scripts/app.js"></script>
-        <script src="scripts/services.js"></script>
         <script src="scripts/directives.js"></script>
         <script src="scripts/controllers.js"></script>
         
