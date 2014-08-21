@@ -20,10 +20,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     loginService.login(data,$scope); //call login service
   };
 
-}]).controller("logoutCtrl", ["$scope","loginService", function ($scope,loginService) { 
-    $scope.logout=function(){
-      loginService.logout();
-    }
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
 
