@@ -352,31 +352,31 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                   $scope.short_description = data.description;
                   //$scope.actDate = data.act_date;
                   //$scope.actualDate = data.completion_date;
-                  //$scope.actionTime = data.act_time;
-                  //$scope.completionTime = data.completion_time;
+                  $scope.actionTime = data.act_time;
+                  $scope.completionTime = data.completion_time;
 
-                  if (data.act_date == "0000-00-00") {
+                  if (data[0].act_date == "0000-00-00") {
                     $scope.actDate = '';
                   }else {
-                    $scope.actDate = data.act_date;
+                    $scope.actDate = data[0].act_date;
                   };
 
-                  if (data.completion_date == "0000-00-00") {
+                  if (data[0].completion_date == "0000-00-00") {
                     $scope.actualDate = '';
                   }else{
-                    $scope.actualDate = data.completion_date;
+                    $scope.actualDate = data[0].completion_date;
                   };
 
-                  if (data.act_time == "12:00 AM") {
+                  if (data[0].act_time == "12:00 AM") {
                     $scope.actionTime = '';
                   }else{
-                    $scope.actionTime = data.act_time;
+                    $scope.actionTime = data[0].act_time;
                   };
 
-                  if (data.completion_time == "12:00 AM") {
+                  if (data[0].completion_time == "12:00 AM") {
                     $scope.completionTime = '';
                   }else{
-                    $scope.completionTime = data.completion_time;
+                    $scope.completionTime = data[0].completion_time;
                   };
         });
 
