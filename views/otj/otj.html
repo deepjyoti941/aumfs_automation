@@ -65,23 +65,137 @@
 					<div class="col-sm-6 col-md-4 col-lg-2">
 						<label class="" for="newCategory">Enquiry Type</label><br>
 								<span class="ui-select">
-									<select name="oncallCustomer.enquiry_type" ng-model="enquiry_type" id="enquiry_type" ng-options="enquiry.type for enquiry in enquiry_type_list track by enquiry.type" required>
+<!-- 									<select name="oncallCustomer.enquiry_type" ng-model="enquiry_type" id="enquiry_type" ng-options="enquiry.type for enquiry in enquiry_type_list track by enquiry.type" required>
 					                	<option value="" ng-hide="enquiry_type">Select Enquiry Type</option>
+					                </select> -->
+							        <select ng-model="enquiry_type" id="enquiry_type">
+				                		<option value="" ng-hide="enquiry_type">Select Enquiry Type</option>
+				                	    <option value="Assessment">Assessment</option>
+									    <option value="Quotation">Quotation</option>
+									    <option value="FollowUp">FollowUp</option>
 					                </select>
 					            </span>
 					</div>
-					<div class="col-sm-6 col-md-4 col-lg-2"  style="margin-left: 30px;">
+					<div class="col-sm-6 col-md-4 col-lg-2"  style="margin-left: 30px;" ng-show="enquiry_type=='FollowUp'">
 						<label class="" for="newCategory">Follow Up Type</label><br>
 						<span class="ui-select">
-							<select name="oncallCustomer.follow_up_type" ng-model="follow_up_type" id="follow_up_type" ng-options="follow.type for follow in follow_up_type_list track by follow.type">
+<!-- 							<select name="oncallCustomer.follow_up_type" ng-model="follow_up_type" id="follow_up_type" ng-options="follow.type for follow in follow_up_type_list track by follow.type">
 			                	<option value="" ng-hide="follow_up_type">Select Follow up Type</option>
+			                </select> -->
+			                <select ng-model="follow_up_type" id="follow_up_type">
+			                		<option value="" ng-hide="enquiry_type">Select Follow Up Type</option>
+			                	    <option value="Delay">Delay</option>
+								    <option value="Cancel">Cancel</option>
+								    <option value="Confirm">Confirm</option>
 			                </select>			            
 			            </span>
 					</div>
+					<div ng-show="follow_up_type=='Confirm'">
+					<div class="col-sm-6 col-md-4 col-lg-3"  style="margin-left: 30px;margin-top: 10px;">
+						<div class="form-group">
+							<label class="" for="endDate">Start Date</label><br>
+					        <div data-ng-controller="DatepickerDemoCtrl">
+				                <div class="input-group ui-datepicker">
+				                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+				                    <input type="text" 
+				                           class="form-control"
+				                           datepicker-popup="{{format}}"
+				                           ng-model="start_date"
+				                           id="start_date" 
+				                           show-weeks="false"
+				                           is-open="opened"
+				                           min="today"
+				                           datepicker-options="dateOptions" 
+				                           close-text="Close">
+				                </div>
+					        </div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-3"  style="margin-left: 30px;margin-top: 10px;">
+						<div class="form-group">
+							<label class="" for="endDate">End Date</label><br>
+					        <div data-ng-controller="DatepickerDemoCtrl">
+				                <div class="input-group ui-datepicker">
+				                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+				                    <input type="text" 
+				                           class="form-control"
+				                           datepicker-popup="{{format}}"
+				                           ng-model="end_date"
+				                           id="end_date" 
+				                           show-weeks="false"
+				                           is-open="opened"
+				                           min="today"
+				                           datepicker-options="dateOptions" 
+				                           close-text="Close">
+				                </div>
+					        </div>
+						</div>	
+					</div>
+					</div>
 
 				</div>
+				<div class="form-group">
+					<label class="" for="endDate">Enquiry Date</label><br>
+			        <div data-ng-controller="DatepickerDemoCtrl">
+		                <div class="input-group ui-datepicker">
+		                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		                    <input type="text" 
+		                           class="form-control"
+		                           datepicker-popup="{{format}}"
+		                           ng-model="enquiry_date"
+		                           id="enquiry_date" 
+		                           show-weeks="false"
+		                           is-open="opened"
+		                           min="today"
+		                           datepicker-options="dateOptions" 
+		                           close-text="Close">
+		                </div>
+			        </div>
+				</div>
+<!-- 				<div class="row" ng-show="follow_up_type=='Confirm'">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="" for="endDate">Start Date</label><br>
+						        <div data-ng-controller="DatepickerDemoCtrl">
+					                <div class="input-group ui-datepicker">
+					                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                    <input type="text" 
+					                           class="form-control"
+					                           datepicker-popup="{{format}}"
+					                           ng-model="start_date"
+					                           id="start_date" 
+					                           show-weeks="false"
+					                           is-open="opened"
+					                           min="today"
+					                           datepicker-options="dateOptions" 
+					                           close-text="Close">
+					                </div>
+						        </div>
+							</div>
+						  </div>
+						  <div class="col-md-6">
+							<div class="form-group">
+								<label class="" for="endDate">End Date</label><br>
+						        <div data-ng-controller="DatepickerDemoCtrl">
+					                <div class="input-group ui-datepicker">
+					                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                    <input type="text" 
+					                           class="form-control"
+					                           datepicker-popup="{{format}}"
+					                           ng-model="end_date"
+					                           id="end_date" 
+					                           show-weeks="false"
+					                           is-open="opened"
+					                           min="today"
+					                           datepicker-options="dateOptions" 
+					                           close-text="Close">
+					                </div>
+						        </div>
+							</div>				  	
+						  </div>
+				</div> -->
 
-				<div class="input-group ui-datepicker">
+<!-- 				<div class="input-group ui-datepicker">
 					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 					<input type="text"
 					       class="form-control"
@@ -94,7 +208,7 @@
 					       datepicker-options="dateOptions"
 					       ng-required="true"
 					       close-text="Close">
-				</div>
+				</div> -->
 			</div>
 			<div class="form-group">
 				<div class="row">
@@ -121,11 +235,13 @@
 						
 					</div>
 				</div>
+			<br>
+
 				<div class="form-group">
-				<label class="" for="newShortDesc">Short Description</label>
-				<textarea ng-model="short_description" id="short_description" class="form-control resizeless"
-				          rows="2" data-min="3" data-max="100"></textarea>
-			</div>
+					<label class="" for="newShortDesc">Short Description</label>
+					<textarea ng-model="short_description" id="short_description" class="form-control resizeless"
+					          rows="2" data-min="3" data-max="100"></textarea>
+				</div>
 			</div>
 
 

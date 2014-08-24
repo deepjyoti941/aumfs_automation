@@ -1,4 +1,4 @@
-<div class="page" ng-controller="adminSettingsCtrl">
+<div class="page" data-ng-controller="adminSettingsCtrl">
 
     <section class="panel panel-default">
         <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Admin Settings Page</strong></div>
@@ -34,12 +34,19 @@
 						</thead>
 						<tbody>
 						<tr>
-							<td>Admin</td>
-							<td>admin@gmail.com</td>
-							<td>Master</td>
-							<td><span class="label label-success">Active</span></td>
+							<td>{{admin_details.name}}</td>
+							<td>{{admin_details.email}}</td>
+							<td>{{admin_details.user_type}}</td>
 							<td>
-								<a ng-href="#/settings/2" class="btn-icon btn-icon-sm btn-primary"
+				        		<div ng-if="admin_details.status == '1' ">
+									<span class="label label-success">Active</span>
+								</div>
+								<div ng-if="admin_details.status != '1' ">
+										<span class="label label-danger">Inactive</span>
+								</div>
+							</td>
+							<td>
+								<a ng-href="#/settings/{{admin_details.id}}" class="btn-icon btn-icon-sm btn-primary"
 								   role="button"
 								   tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
 										class="fa fa-edit"></i></a>

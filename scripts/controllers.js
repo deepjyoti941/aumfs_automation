@@ -17,6 +17,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("loginCtrl", ["$scope","loginService", function ($scope,loginService) { 
     $scope.msgtxt='';
     $scope.login=function(data){
+      data.method = "login";
     loginService.login(data,$scope); //call login service
   };
 
@@ -24,6 +25,20 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     $scope.logout=function(){
       loginService.logout();
     }
+}]).controller("forgotPasswordCtrl", ["$scope","$http", function ($scope,$http) { 
+
+  $scope.secret_code = function(data) {
+    data.method = "forgotpassword";
+      $http.post('api/user.php', data)
+      .success(function(data) {
+          if (data.status == true) {
+            alert('Email: ' +data.results.email+ ' & Password: '+data.results.password);
+          }else{
+            alert('Invalid code!!');
+          }
+  }); 
+  }
+
 }]).controller("DashboardCtrl", ["$scope", function () { 
 
 
@@ -31,7 +46,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         // var x = new Date('3/16/2013 17:00:00');// x is now a date object
        // x.setHours(0,0,0,0); set  hours to 0, min Secs and milliSecs as well
        // Logger.log(x);
-
+        $scope.rate = 0;
         var date = new Date();
         $scope.assignDate = date;
         $scope.assignTime = date;
@@ -171,7 +186,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             post_data.customer_id = angular.element('#customer_id').val();
             post_data.service_type = angular.element('#serviceName').val();
             post_data.assign_employee_id = angular.element('#employee_list').val();
-
+            post_data.order_date = angular.element('#order_date').val();
             post_data.act_date = angular.element('#actDate').val();
             post_data.act_time = angular.element('#actTime').val();
             post_data.completion_date = angular.element('#actualDate').val();
@@ -181,6 +196,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             post_data.bill_amount = angular.element('#bill_amount').val();
             post_data.bill_number = angular.element('#bill-number').val();
             post_data.short_desc = angular.element('#shortDesc').val();
+            post_data.customer_feedback = angular.element('#customer_feedback').val();
             post_data.method = 'save_oncall_details';
             $http.post('api/oncall_controller.php', post_data)
                 .success(function(data) {
@@ -253,7 +269,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                 hour_carry += 1;
             }
             var hour = e[0]-s[0]-hour_carry;
-            if (min >= 25) { 
+            if (min >= 20) { 
               hour = hour + 1;
               $('#working-hours').val(hour);
             }else{
@@ -309,6 +325,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         ]
 
 }]).controller("editOncallCustomerCtrl", ["$scope","$timeout", "$routeParams","$rootScope","$http","$filter","timeDifference", function($scope,$routeParams,$timeout,$rootScope,$http,$filter,timeDifference) {
+        //$scope.rate = 5;
         var post_oncall_data = {};
         var url = document.URL
         var id = url.substring(url.lastIndexOf('/') + 1);
@@ -317,20 +334,27 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $http.post('api/oncall_controller.php', post_oncall_data)
                 .success(function(data) {
                   console.log(data);
-                  $scope.ext_employee_id = data[0].assigned_employee_id;
-                  $scope.customer_name = data[0].customer_name;
-                  $scope.customer_address = data[0].customer_address;
-                  $scope.customer_phone = data[0].customer_phone;
-                  $scope.customer_id = data[0].customer_id;
-                  $scope.service_name = data[0].service_name;
-                  $scope.assigned_employee = data[0].employee_name;
-                  $scope.assignDate = new Date(data[0].order_date_time);
-                  $scope.orderTime = data[0].order_date_time_all;
-                  $scope.numberOfHelpers = data[0].helper_number;
-                  $scope.workingHour = data[0].working_hour;
-                  $scope.billAmount = data[0].billing_price;
-                  $scope.billNumber = data[0].bill_number;
-                  $scope.short_description = data[0].description;
+                  $scope.oncall_customer_list = data;
+                  $scope.ext_employee_id = data.assigned_employee_id;
+                  $scope.customer_name = data.customer_name;
+                  $scope.customer_address = data.customer_address;
+                  $scope.customer_phone = data.customer_phone;
+                  $scope.customer_id = data.customer_id;
+                  $scope.service_name = data.service_name;
+                  $scope.assigned_employee = data.employee_name;
+                  $scope.assignDate = new Date(data.order_date_time);
+                  $scope.orderTime = data.order_date_time_all;
+                  $scope.numberOfHelpers = data.helper_number;
+                  $scope.workingHour = data.working_hour;
+                  $scope.billAmount = data.billing_price;
+                  $scope.billNumber = data.bill_number;
+                  $scope.rate = data.customer_feedback;
+                  $scope.short_description = data.description;
+                  //$scope.actDate = data.act_date;
+                  //$scope.actualDate = data.completion_date;
+                  $scope.actionTime = data.act_time;
+                  $scope.completionTime = data.completion_time;
+
                   if (data[0].act_date == "0000-00-00") {
                     $scope.actDate = '';
                   }else {
@@ -343,17 +367,17 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                     $scope.actualDate = data[0].completion_date;
                   };
 
-                  if (data[0].act_time == "12:00 AM") {
-                    $scope.actionTime = '';
-                  }else{
-                    $scope.actionTime = data[0].act_time;
-                  };
+                  // if (data[0].act_time == "12:00 AM") {
+                  //   $scope.actionTime = '';
+                  // }else{
+                  //   $scope.actionTime = data[0].act_time;
+                  // };
 
-                  if (data[0].completion_time == "12:00 AM") {
-                    $scope.completionTime = '';
-                  }else{
-                    $scope.completionTime = data[0].completion_time;
-                  };
+                  // if (data[0].completion_time == "12:00 AM") {
+                  //   $scope.completionTime = '';
+                  // }else{
+                  //   $scope.completionTime = data[0].completion_time;
+                  // };
         });
 
         $scope.updateOrder = function() {
@@ -371,6 +395,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             post_data.bill_amount = angular.element('#bill_amount').val();
             post_data.bill_number = angular.element('#bill-number').val();
             post_data.short_desc = angular.element('#shortDesc').val();
+            post_data.customer_feedback = angular.element('#customer_feedback').val();
             post_data.method = 'update_oncall_details'; 
             $http.post('api/oncall_controller.php', post_data)
                 .success(function(data) {
@@ -458,7 +483,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                 hour_carry += 1;
             }
             var hour = e[0]-s[0]-hour_carry;
-            if (min >= 25) { 
+            if (min >= 20) { 
               hour = hour + 1;
               $('#working-hours').val(hour);
             }else{
@@ -469,6 +494,26 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }; 
 
 }]).controller("onCallChargesCtrl", ["$scope","$http", function($scope, $http) {
+
+}]).controller("oncallRatingCtrl", ["$scope","$http", function($scope, $http) {
+
+
+      return $scope.max = 10, $scope.isReadonly = !1, $scope.hoveringOver = function (value) {
+          return $scope.overStar = value, $scope.percent = 100 * (value / $scope.max)
+      }, $scope.ratingStates = [{
+          stateOn: "glyphicon-ok-sign",
+          stateOff: "glyphicon-ok-circle"
+      }, {
+          stateOn: "glyphicon-star",
+          stateOff: "glyphicon-star-empty"
+      }, {
+          stateOn: "glyphicon-heart",
+          stateOff: "glyphicon-ban-circle"
+      }, {
+          stateOn: "glyphicon-heart"
+      }, {
+          stateOff: "glyphicon-off"
+      }];
 
 }]).controller("addOncallChargesForm", ["$scope" , "$http", function($scope, $http) {
      $scope.helper_charge = 50;
@@ -786,6 +831,8 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
               post_data.enquiry_type = angular.element('#enquiry_type').val();
               post_data.follow_up_type = angular.element('#follow_up_type').val();
               post_data.enquiry_date = angular.element('#enquiry_date').val();
+              post_data.start_date = angular.element('#start_date').val();
+              post_data.end_date = angular.element('#end_date').val();
               post_data.service_name = angular.element('#serviceName').val();
               post_data.price = angular.element('#aumPrice').val();
               post_data.assigned_employee_id = angular.element('#employee_list').val();
@@ -862,13 +909,15 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                     $http.post('api/otj_controller.php', post_data)
                       .success(function(data) {
                         //$scope.otj_customer_details = data;
-                         console.log(data); 
+                         $scope.otj_customer_list = data;
                          angular.element('#customer_name').val(data.customer_name);
                          angular.element('#customer_address').val(data.customer_address);
                          angular.element('#customer_phone').val(data.customer_phone);
                          angular.element('#customer_id').val(data.customer_id);
                          angular.element('#enquiry_type').val(data.enquiry_type);
                          angular.element('#follow_up_type').val(data.follow_up_type);
+                         angular.element('#start_date').val(data.start_date);
+                         angular.element('#end_date').val(data.end_date);
                          angular.element('#enquiry_date').val(data.action_date);
                          angular.element('#serviceName').val(data.service_name);
                          angular.element('#otj_price').val(data.aum_price);
@@ -916,6 +965,8 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
               post_data.enquiry_type = angular.element('#enquiry_type').val();
               post_data.follow_up_type = angular.element('#follow_up_type').val();
               post_data.action_date = angular.element('#enquiry_date').val();
+              post_data.start_date = angular.element('#start_date').val();
+              post_data.end_date = angular.element('#end_date').val();
               post_data.service_name = angular.element('#serviceName').val();
               post_data.aum_price = angular.element('#otj_price').val();
               post_data.assigned_employee_id = angular.element('#employee_list').val();
@@ -1085,7 +1136,15 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             return printContents = document.getElementById("invoice").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()
         }
 }]).controller("adminSettingsCtrl", ["$scope", "$http", function($scope, $http) {
-
+      $http.post('api/admin_controller.php', {method:'get_admin_details'})
+          .success(function(data) {
+              $scope.admin_details = data;          
+      });    
+}]).controller("adminUpdateCtrl", ["$scope", "$http","$routeParams", function($scope, $http, $routeParams) {
+      $http.post('api/admin_controller.php', {method:'get_admin_details_by_id', id:$routeParams.id})
+          .success(function(data) {
+              $scope.admin_details = data;          
+      });    
 }]).controller("aumCustomerCtrl", ["$scope", "$http", function($scope, $http) {
 
         $http.get('api/getAumCustomerList.php').success(function(data){

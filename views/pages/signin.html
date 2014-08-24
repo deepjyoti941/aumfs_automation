@@ -41,9 +41,30 @@
 
 <!--                             <a href="#/dashboard" class="btn btn-primary btn-lg btn-block">Log in</a>
  -->                     </div>
+                        <div class="form-group">
+                            <a href="#/pages/forgot" ng-model="forgot_password">Forgot Password ?</a>
+                        </div>
                         <p>{{msgtxt}}</p>
                     </fieldset>
-                </form>                
+                </form> 
+<!--                 <div ng-show="forgot_password">
+                    <form role="form" name="form2" class="form-horizontal">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                <input type="password" ng-model="secret.code" class="form-control" placeholder="Enter secret code" required>
+                            </div>
+                        </div>
+                                            <div class="form-group">
+                          <button class="btn btn-primary btn-lg btn-block" type="submit" ng-click="secret(secret)" ng-disabled="form2.$invalid">Submit</button>
+                </div>  -->
+<!--                             <a href="#/dashboard" class="btn btn-primary btn-lg btn-block">Log in</a>
+ -->                     </div>                    
+                    </div> 
+                </form>             
             </div>
         </div>
     </div>
