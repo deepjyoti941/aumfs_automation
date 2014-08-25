@@ -1,7 +1,7 @@
 <?php 
 require_once 'config/config.php';
 
-	$query="SELECT otj.otj_service_id,otj.service_name,otj.aum_price,otj.action_date,otj.order_status,otj.assigned_employee_id,cd.customer_address,cd.customer_phone,cd.black_listed,cd.customer_name
+	$query="SELECT otj.otj_service_id,otj.service_name,otj.aum_price,otj.action_date,otj.order_status,otj.assigned_employee_id,otj.customer_feedback,cd.customer_address,cd.customer_phone,cd.black_listed,cd.customer_name
 				FROM otj_customer_details AS otj
 				STRAIGHT_JOIN customer_details AS cd
 				WHERE otj.customer_id = cd.customer_id

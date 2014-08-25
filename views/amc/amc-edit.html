@@ -166,6 +166,26 @@
                 <label for="">Extra Inventory</label>
                     <textarea name="extra_inventory" id="extra_inventory" class="form-control" rows="4"></textarea> 
             </div>
+			<div class="form-group" data-ng-controller="oncallRatingCtrl">
+				<label class="" for="customerFeedback">Customer Feedback</label></br>
+                <rating class="ui-rating size-h3"
+                        value="rate"
+                        max="max"
+                        readonly="isReadonly"
+                        on-hover="hoveringOver(value)"
+                        on-leave="overStar = null"
+                        state-on="'fa fa-star'"
+                        state-off="'fa fa-star-o'"></rating>
+                <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                </br></br>
+<!--                     <div class="callout callout-info">
+                    <p>Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></p>
+                </div> -->
+                <input style="display:none" type="text" class="form-control" id="customer_feedback" value="{{rate}}">
+                <div class="form-group">
+                	<button class="btn btn-danger" ng-click="rate = 0" ng-disabled="isReadonly">Clear</button>
+                </div> 					
+			</div>
 			<div class="row">
 				<div class="col-md-2">
 					<input type="submit" class="btn btn-info"  ng-click="calculatePrice()" value="Calculate And Update">

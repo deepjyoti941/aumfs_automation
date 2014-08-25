@@ -21,19 +21,10 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     loginService.login(data,$scope); //call login service
   };
 
-}]).controller("logoutCtrl", ["$scope","$http","loginService", function ($scope,$http, loginService) { 
-    $http.post('api/admin_controller.php', {method:'get_admin_details'})
-          .success(function(data) {
-             $scope.admin_details = data;       
-      });  
+}]).controller("logoutCtrl", ["$scope","loginService", function ($scope,loginService) { 
     $scope.logout=function(){
       loginService.logout();
     }
-}]).controller("lockScreenCtrl", ["$scope","$http","loginService", function ($scope,$http, loginService) { 
-    $http.post('api/admin_controller.php', {method:'get_admin_details'})
-          .success(function(data) {
-               $scope.admin_details = data;          
-      });  
 }]).controller("forgotPasswordCtrl", ["$scope","$http", function ($scope,$http) { 
 
   $scope.secret_code = function(data) {
@@ -1156,97 +1147,8 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("adminUpdateCtrl", ["$scope", "$http","$routeParams", function($scope, $http, $routeParams) {
       $http.post('api/admin_controller.php', {method:'get_admin_details_by_id', id:$routeParams.id})
           .success(function(data) {
-              $scope.admin = {};
-              $scope.admin_details = data;
-              $scope.admin.name = data.name;  
-              $scope.admin.email = data.email;
-              $scope.admin.short_description = data.short_desc;        
-      }); 
-
-    $scope.UpdateAdmin = function() {
-
-      if (angular.element('#admin_old_password').val() == '' || angular.element('#admin_new_password').val() == '') {
-          toastr.error("Idiot!! You must enter Old password first");
-            toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "positionClass": "toast-bottom-left",
-              "onclick": null,
-              "showDuration": "800",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-            }
-      }else{
-        var updated_data = {};
-        updated_data.method = 'update_admin_data';
-        updated_data.email = angular.element('#admin_email').val(); 
-        updated_data.short_desc = angular.element('#admin_short_desc').val(); 
-        updated_data.old_password = angular.element('#admin_old_password').val(); 
-        updated_data.new_password = angular.element('#admin_new_password').val(); 
-        updated_data.admin_id = $routeParams.id;
-        updated_data.admin_name = angular.element('#admin_name').val(); ;
-        $http.post("api/admin_controller.php", updated_data).success(function(data) {
-           if (data.status == true) {
-                    toastr.success("Admin Updated successfully");
-                    toastr.options = {
-                      "closeButton": false,
-                      "debug": false,
-                      "positionClass": "toast-top-right",
-                      "onclick": null,
-                      "showDuration": "900",
-                      "hideDuration": "1000",
-                      "timeOut": "5000",
-                      "extendedTimeOut": "1000",
-                      "showEasing": "swing",
-                      "hideEasing": "linear",
-                      "showMethod": "fadeIn",
-                      "hideMethod": "fadeOut"
-                    }
-
-            };
-            
-        });        
-      }
-       
-    }
-      $scope.uploadFile = function(files) {
-          var fd = new FormData();
-          //Take the first selected file
-          fd.append("file", files[0]);
-          fd.append("admin_id", $routeParams.id);
-          fd.append("method","update_admin_image");
-          $http.post("/api/admin_controller.php", fd, {
-              withCredentials: true,
-              headers: {'Content-Type': undefined },
-              transformRequest: angular.identity
-          }).success(function(data) {
-                 if (data.status == true) {
-                          toastr.success("Image Updated successfully");
-                          toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "positionClass": "toast-top-right",
-                            "onclick": null,
-                            "showDuration": "800",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                          }
-                  $scope.admin_details.admin_image= data.admin_image;
-
-                  };
-          }).error();
-
-      };     
+              $scope.admin_details = data;          
+      });    
 }]).controller("aumCustomerCtrl", ["$scope", "$http", function($scope, $http) {
 
         $http.get('api/getAumCustomerList.php').success(function(data){
@@ -1389,7 +1291,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         post_data.start_date = angular.element('#start_date').val();
         post_data.end_date = angular.element('#end_date').val();
         post_data.subscription_type = angular.element('#subscription_fee').val();
-        post_data.customer_feedback = angular.element('#customer_feedback').val();
         post_data.total = aum_price;
         $http.post('api/aum_controller.php', post_data)
           .success(function(data) {
@@ -1451,8 +1352,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           angular.element('#start_date').val(data[0]['start_date']);
           angular.element('#end_date').val(data[0]['end_date']);
           angular.element('#price_result').val(data[0]['total']);
-          $scope.rate = data[0].customer_feedback;
-
     }); 
 
     $scope.calculatePrice = function() {
@@ -1507,7 +1406,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         post_data.start_date = angular.element('#start_date').val();
         post_data.end_date = angular.element('#end_date').val();
         post_data.subscription_type = angular.element('#subscription_fee').val();
-        post_data.customer_feedback = angular.element('#customer_feedback').val();
         post_data.total = aum_price;
         $http.post('api/aum_controller.php', post_data)
           .success(function(data) {
@@ -1831,7 +1729,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           post_data.follow_up_type = angular.element('#follow_up_type').val();
           post_data.subscription_type = angular.element('#subscription_fee').val();
           post_data.extra_inventory = angular.element('#extra_inventory').val();
-          post_data.customer_feedback = angular.element('#customer_feedback').val();
           post_data.total = aum_price;
           $http.post('api/amc_controller.php', post_data)
             .success(function(data) {
@@ -1909,8 +1806,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           angular.element('#end_date').val(data[0]['end_date']);
           angular.element('#extra_inventory').val(data[0]['extra_inventory']);
           angular.element('#price_result').val(data[0]['total']);
-          $scope.rate = data[0].customer_feedback;
-
     }); 
 
     $scope.calculatePrice = function() {
@@ -1969,7 +1864,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         post_data.follow_up_type = angular.element('#follow_up_type').val();
         post_data.subscription_type = angular.element('#subscription_fee').val();
         post_data.extra_inventory = angular.element('#extra_inventory').val();
-        post_data.customer_feedback = angular.element('#customer_feedback').val();
         post_data.total = aum_price;
         $http.post('api/amc_controller.php', post_data)
           .success(function(data) {
@@ -2189,7 +2083,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     }
   };
 }]).run(function($rootScope, $location, loginService){
-  var routespermission=['/dashboard','/settings','/about','/oncall','/oncall/:id','/oncall-charges','/aum','/aum-jobs','/aum/:id','/aum-invoice/:id','/amc','/amc/:id','/amc-jobs','/amc-invoice/:id','/employee-listing','/employee-status','/employee-status/:id','/employee-listing/:id','/otj','/otj/:id','/otj-invoice/:id','/otj-jobs'];  //route that require login
+  var routespermission=['/dashboard','/about','/oncall','/oncall/:id','/oncall-charges','/aum','/aum-jobs','/aum/:id','/aum-invoice/:id','/amc','/amc/:id','/amc-jobs','/amc-invoice/:id','/employee-listing','/employee-status','/employee-status/:id','/employee-listing/:id','/otj','/otj/:id','/otj-invoice/:id','/otj-jobs'];  //route that require login
   $rootScope.$on('$routeChangeStart', function(){
     if( routespermission.indexOf($location.path()) !=-1)
     {

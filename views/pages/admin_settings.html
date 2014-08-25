@@ -19,27 +19,27 @@
 				<div class="form-group">
 					<label class="" for="adminOldPassword">Old Password</label>
 					<input ng-model="admin.old_password" type="text" class="form-control"
-					       id="admin_email" placeholder="Admin Old Password" required>
+					       id="admin_old_password" placeholder="Admin Old Password" required>
 				</div>
 				<div class="form-group">
 					<label class="" for="adminNewPassword">New Password</label>
 					<input ng-model="admin.new_password" type="text" class="form-control"
-					       id="admin_email" placeholder="Admin New Password" required>
+					       id="admin_new_password" placeholder="Admin New Password" required>
 				</div>
 				<div class="form-group">
 					<label class="" for="newShortDesc">Short Description Of Admin</label>
-					<textarea ng-model="admin.short_description" id="newShortDesc" class="form-control resizeless"
+					<textarea ng-model="admin.short_description" id="admin_short_desc" class="form-control resizeless"
 					          rows="2" required data-min="3" data-max="100"></textarea>
 				</div>
 				<div class="form-group">
 				<div id="imageUploadPanel">
 					<div class="thumbnail bg-bright">
 						<div class="bgImg-employee">
-							<div ng-if="admin.admin_photo =='' ">
-								<p>No image for this employee</p>								
+							<div ng-if="admin_details.admin_image =='' ">
+								<p>No image for admin</p>								
 							</div>
-							<div ng-if="admin.admin_photo !=''">
-								<img ng-src="{{admin.admin_photo}}">								
+							<div ng-if="admin_details.admin_image !=''">
+								<img ng-src="{{admin_details.admin_image}}">								
 							</div>
 						</div>
 					</div>
@@ -49,7 +49,7 @@
 				</div>
 				</div>
 				<hr/>
-				<button type="submit" ng-click="updateAdmin(admin)" class="btn btn-info">Update</button>
+				<button type="submit" ng-click="UpdateAdmin()" class="btn btn-info">Update</button>
 			</form>
 
 </div>

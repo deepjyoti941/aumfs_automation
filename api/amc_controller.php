@@ -43,10 +43,10 @@
 			echo json_encode($data);
 		}			
 	}elseif ($data->method == 'save_amc_customer_details') { 
-		$sql = "INSERT INTO  amc_customer_details (customer_id,enquiry_date,start_date,end_date,enquiry_type,follow_up_type,total,subscription_type,extra_inventory) VALUES (:customer_id, :enquiry_date, :start_date, :end_date, :enquiry_type, :follow_up_type, :total, :subscription_type, :extra_inventory)";
+		$sql = "INSERT INTO  amc_customer_details (customer_id,enquiry_date,start_date,end_date,enquiry_type,follow_up_type,total,subscription_type,extra_inventory, customer_feedback) VALUES (:customer_id, :enquiry_date, :start_date, :end_date, :enquiry_type, :follow_up_type, :total, :subscription_type, :extra_inventory, :customer_feedback)";
 
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':enquiry_date'=>$data->enquiry_date,':start_date' =>$data->order_date,':end_date' =>$data->end_date,':enquiry_type'=>$data->enquiry_type,':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':subscription_type'=>$data->subscription_type, ':extra_inventory'=>$data->extra_inventory));
+		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':enquiry_date'=>$data->enquiry_date,':start_date' =>$data->order_date,':end_date' =>$data->end_date,':enquiry_type'=>$data->enquiry_type,':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':subscription_type'=>$data->subscription_type, ':extra_inventory'=>$data->extra_inventory, ':customer_feedback'=>$data->customer_feedback));
 		//print_r($sth->errorInfo());
 
 		if ($result == 1) {
@@ -80,9 +80,9 @@
 		echo json_encode($row);	
 	}elseif ($data->method == 'update_amc_customer_details') {
 	
-		$sql = "UPDATE amc_customer_details SET enquiry_date=:enquiry_date, start_date=:start_date, end_date=:end_date, enquiry_type=:enquiry_type,follow_up_type=:follow_up_type,total=:total,subscription_type=:subscription_type,extra_inventory=:extra_inventory WHERE amc_order_id=:amc_order_id";
+		$sql = "UPDATE amc_customer_details SET enquiry_date=:enquiry_date, start_date=:start_date, end_date=:end_date, enquiry_type=:enquiry_type,follow_up_type=:follow_up_type,total=:total,subscription_type=:subscription_type,extra_inventory=:extra_inventory, customer_feedback=:customer_feedback WHERE amc_order_id=:amc_order_id";
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $result = $sth->execute(array(':enquiry_date'=>$data->enquiry_date, ':start_date'=>$data->start_date, ':end_date'=>$data->end_date, ':enquiry_type'=>$data->enquiry_type, ':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':subscription_type'=>$data->subscription_type,':extra_inventory'=>$data->extra_inventory,':amc_order_id'=>$data->amc_order_id));
+        $result = $sth->execute(array(':enquiry_date'=>$data->enquiry_date, ':start_date'=>$data->start_date, ':end_date'=>$data->end_date, ':enquiry_type'=>$data->enquiry_type, ':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':subscription_type'=>$data->subscription_type,':extra_inventory'=>$data->extra_inventory,':customer_feedback'=>$data->customer_feedback,':amc_order_id'=>$data->amc_order_id));
 
 	    if ($result == 1) {
 	        $data = array(

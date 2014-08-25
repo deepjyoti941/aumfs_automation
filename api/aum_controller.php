@@ -41,10 +41,10 @@
 			echo json_encode($data);
 		}			
 	}elseif ($data->method == 'save_aum_customer_details') { 
-		$sql = "INSERT INTO  aum_customer_details (customer_id,order_date,start_date,end_date,total,subscription_type) VALUES (:customer_id,:order_date,:start_date,:end_date,:total,:subscription_type)";
+		$sql = "INSERT INTO  aum_customer_details (customer_id,order_date,start_date,end_date,total,subscription_type,customer_feedback) VALUES (:customer_id,:order_date,:start_date,:end_date,:total,:subscription_type,:customer_feedback)";
 
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':order_date' =>$data->enquiry_date,':start_date' =>$data->start_date,':end_date' =>$data->end_date,':total'=>$data->total,':subscription_type'=>$data->subscription_type));
+		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':order_date' =>$data->enquiry_date,':start_date' =>$data->start_date,':end_date' =>$data->end_date,':total'=>$data->total,':subscription_type'=>$data->subscription_type,':customer_feedback'=>$data->customer_feedback));
 		//print_r($sth->errorInfo());
 		if ($result == 1) {
 			$data = array(
@@ -77,9 +77,9 @@
 		echo json_encode($row);	
 	}elseif ($data->method == 'update_aum_customer_details') {
 	
-		$sql = "UPDATE aum_customer_details SET order_date=:order_date, start_date=:start_date, end_date=:end_date, total=:total,subscription_type=:subscription_type WHERE aum_order_id=:aum_order_id";
+		$sql = "UPDATE aum_customer_details SET order_date=:order_date, start_date=:start_date, end_date=:end_date, total=:total,subscription_type=:subscription_type, customer_feedback=:customer_feedback WHERE aum_order_id=:aum_order_id";
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $result = $sth->execute(array(':order_date'=>$data->enquiry_date, ':start_date'=>$data->start_date, ':end_date'=>$data->end_date, ':total'=>$data->total,':subscription_type'=>$data->subscription_type,':aum_order_id'=>$data->aum_order_id));
+        $result = $sth->execute(array(':order_date'=>$data->enquiry_date, ':start_date'=>$data->start_date, ':end_date'=>$data->end_date, ':total'=>$data->total,':subscription_type'=>$data->subscription_type,':customer_feedback'=>$data->customer_feedback,':aum_order_id'=>$data->aum_order_id));
 
 	    if ($result == 1) {
 	        $data = array(

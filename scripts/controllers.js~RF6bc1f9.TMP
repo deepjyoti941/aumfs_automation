@@ -21,19 +21,10 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     loginService.login(data,$scope); //call login service
   };
 
-}]).controller("logoutCtrl", ["$scope","$http","loginService", function ($scope,$http, loginService) { 
-    $http.post('api/admin_controller.php', {method:'get_admin_details'})
-          .success(function(data) {
-             $scope.admin_details = data;       
-      });  
+}]).controller("logoutCtrl", ["$scope","loginService", function ($scope,loginService) { 
     $scope.logout=function(){
       loginService.logout();
     }
-}]).controller("lockScreenCtrl", ["$scope","$http","loginService", function ($scope,$http, loginService) { 
-    $http.post('api/admin_controller.php', {method:'get_admin_details'})
-          .success(function(data) {
-               $scope.admin_details = data;          
-      });  
 }]).controller("forgotPasswordCtrl", ["$scope","$http", function ($scope,$http) { 
 
   $scope.secret_code = function(data) {
@@ -1163,56 +1154,36 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
               $scope.admin.short_description = data.short_desc;        
       }); 
 
-    $scope.UpdateAdmin = function() {
+    $scope.UpdateAdmin = function(admin) {
+      console.log(admin);
+        // var updated_data = {};
+        // updated_data.method = 'update_employee';
+        // updated_data.employee_email = $scope.employee_email; 
+        // updated_data.employee_desc = $scope.employee_desc;
+        // updated_data.employee_mobile = $scope.employee_mobile;
+        // updated_data.employee_name = $scope.employee_name;
+        // updated_data.employee_id = $scope.employee_id;
+        // $http.post("api/employee_controller.php", updated_data).success(function(data) {
+        //    if (data.status == true) {
+        //             toastr.success("Employee Updated successfully");
+        //             toastr.options = {
+        //               "closeButton": false,
+        //               "debug": false,
+        //               "positionClass": "toast-top-right",
+        //               "onclick": null,
+        //               "showDuration": "900",
+        //               "hideDuration": "1000",
+        //               "timeOut": "5000",
+        //               "extendedTimeOut": "1000",
+        //               "showEasing": "swing",
+        //               "hideEasing": "linear",
+        //               "showMethod": "fadeIn",
+        //               "hideMethod": "fadeOut"
+        //             }
 
-      if (angular.element('#admin_old_password').val() == '' || angular.element('#admin_new_password').val() == '') {
-          toastr.error("Idiot!! You must enter Old password first");
-            toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "positionClass": "toast-bottom-left",
-              "onclick": null,
-              "showDuration": "800",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-            }
-      }else{
-        var updated_data = {};
-        updated_data.method = 'update_admin_data';
-        updated_data.email = angular.element('#admin_email').val(); 
-        updated_data.short_desc = angular.element('#admin_short_desc').val(); 
-        updated_data.old_password = angular.element('#admin_old_password').val(); 
-        updated_data.new_password = angular.element('#admin_new_password').val(); 
-        updated_data.admin_id = $routeParams.id;
-        updated_data.admin_name = angular.element('#admin_name').val(); ;
-        $http.post("api/admin_controller.php", updated_data).success(function(data) {
-           if (data.status == true) {
-                    toastr.success("Admin Updated successfully");
-                    toastr.options = {
-                      "closeButton": false,
-                      "debug": false,
-                      "positionClass": "toast-top-right",
-                      "onclick": null,
-                      "showDuration": "900",
-                      "hideDuration": "1000",
-                      "timeOut": "5000",
-                      "extendedTimeOut": "1000",
-                      "showEasing": "swing",
-                      "hideEasing": "linear",
-                      "showMethod": "fadeIn",
-                      "hideMethod": "fadeOut"
-                    }
-
-            };
+        //     };
             
-        });        
-      }
-       
+        // });        
     }
       $scope.uploadFile = function(files) {
           var fd = new FormData();
@@ -2189,7 +2160,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     }
   };
 }]).run(function($rootScope, $location, loginService){
-  var routespermission=['/dashboard','/settings','/about','/oncall','/oncall/:id','/oncall-charges','/aum','/aum-jobs','/aum/:id','/aum-invoice/:id','/amc','/amc/:id','/amc-jobs','/amc-invoice/:id','/employee-listing','/employee-status','/employee-status/:id','/employee-listing/:id','/otj','/otj/:id','/otj-invoice/:id','/otj-jobs'];  //route that require login
+  var routespermission=['/dashboard','/about','/oncall','/oncall/:id','/oncall-charges','/aum','/aum-jobs','/aum/:id','/aum-invoice/:id','/amc','/amc/:id','/amc-jobs','/amc-invoice/:id','/employee-listing','/employee-status','/employee-status/:id','/employee-listing/:id','/otj','/otj/:id','/otj-invoice/:id','/otj-jobs'];  //route that require login
   $rootScope.$on('$routeChangeStart', function(){
     if( routespermission.indexOf($location.path()) !=-1)
     {

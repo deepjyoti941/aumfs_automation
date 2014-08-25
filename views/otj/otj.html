@@ -242,6 +242,26 @@
 					<textarea ng-model="short_description" id="short_description" class="form-control resizeless"
 					          rows="2" data-min="3" data-max="100"></textarea>
 				</div>
+				<div class="form-group" data-ng-controller="oncallRatingCtrl">
+					<label class="" for="customerFeedback">Customer Feedback</label></br>
+                    <rating class="ui-rating size-h3"
+                            value="rate"
+                            max="max"
+                            readonly="isReadonly"
+                            on-hover="hoveringOver(value)"
+                            on-leave="overStar = null"
+                            state-on="'fa fa-star'"
+                            state-off="'fa fa-star-o'"></rating>
+                    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                    </br></br>
+<!--                     <div class="callout callout-info">
+                        <p>Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></p>
+                    </div> -->
+                    <input style="display:none" type="text" class="form-control" id="customer_feedback" value="{{rate}}">
+                    <div class="form-group">
+                    	<button class="btn btn-danger" ng-click="rate = 0" ng-disabled="isReadonly">Clear</button>
+                    </div> 					
+				</div>
 			</div>
 
 
@@ -312,10 +332,10 @@
 						</div>
 					</td>
 					<td>
-                    	<div ng-if="data.aum_price == '0' ">
+                    	<div ng-if="data.customer_feedback == '0' ">
 								<span class="label label-danger">Pending</span>
 						</div>
-						<div ng-if="data.aum_price != '0' ">
+						<div ng-if="data.customer_feedback != '0' ">
 								<span class="label label-success">Completed</span>
 						</div>	
                     </td>
