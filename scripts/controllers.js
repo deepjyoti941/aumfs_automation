@@ -367,6 +367,23 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }
 
         $scope.submitOncall = function() {
+          if (angular.element('#customer_id').val() == '') {
+            toastr.error("Idiot!! You must insert customer first");
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "positionClass": "toast-bottom-left",
+              "onclick": null,
+              "showDuration": "800",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+          }else{
             var post_data = {};
             post_data.customer_id = angular.element('#customer_id').val();
             post_data.service_type = angular.element('#serviceName').val();
@@ -403,7 +420,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
                         }
  
                     };
-            });            
+            });             
+          }
+           
         }
 
         $scope.getBillAmount = function() {
