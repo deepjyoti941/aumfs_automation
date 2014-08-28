@@ -1,0 +1,127 @@
+<div class="page page-dashboard" data-ng-controller="DashboardCtrl">
+    <!-- stats -->
+    <div class="row">
+        <div class="col-lg-4 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-success">
+                    <i class="fa fa-rocket"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">25 <span class="size-h4">%</span></p>
+                    <p class="text-muted"><span data-i18n="Growth"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-info">
+                    <i class="fa fa-users"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">112</p>
+                    <p class="text-muted"><span data-i18n="New Customers"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-warning">
+                    <i class="fa fa-rupee"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">4,550</p>
+                    <p class="text-muted"><span data-i18n="Profit"></span></p>
+                </div>
+            </div>
+        </div>
+<!--         <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-danger">
+                    <i class="fa fa-shopping-cart"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">262</p>
+                    <p class="text-muted"><span data-i18n="Sales"></span></p>
+                </div>
+            </div>
+        </div> -->
+
+    </div>
+    <!-- end stats -->
+   <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Oncall Notifications</strong>
+        <div class="row">
+            <div class="col-md-12" ng-show="filteredItems > 0">
+                <table class="table table-bordered table-striped table-responsive">
+                    <thead>
+                        <th>Service ID</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Customer Phone</th>
+                        <th>Service Name</th>
+                        <th>Act Date</th>
+                        <th>Act Time</th>
+                        <th>Assigned Employee</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"> 
+                       <td>{{data.oncall_service_id}}</td>
+                       <td>{{data.customer_name}}</td>
+                       <td>{{data.customer_address}}</td>
+                       <td>{{data.customer_phone}}</td>
+                       <td>{{data.service_name}}</td>
+                       <td>{{data.act_date}}</td>
+                       <td>{{data.action_time}}</td>
+                       <td>{{data.employee_name}}</td>
+                       <td>
+                            <a ng-href="#/oncall/{{data.oncall_service_id}}" class="btn-icon btn-icon-sm btn-primary"
+                               role="button"
+                               tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
+                                    class="fa fa-edit"></i>
+                            </a>
+                       </td>
+                       </tr>                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        </div>
+
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> OTJ Notifications</strong>
+        <div class="ui-tab-container">
+           <tabset justified="true" class="ui-tab">
+                <tab heading="Admin Notifications">Admin Notifications</tab>
+                <tab heading="Employee Notifications">Employee Notifications</tab>
+            </tabset>
+        </div>
+        </div>
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> AUM Notifications</strong>
+           <tabset justified="true" class="ui-tab">
+                <tab heading="Admin Notifications">Admin Notifications</tab>
+                <tab heading="Employee Notifications">Employee Notifications</tab>
+            </tabset>
+        </div>
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> AMC Notifications</strong>
+           <tabset justified="true" class="ui-tab">
+                <tab heading="Admin Notifications">Admin Notifications</tab>
+                <tab heading="Employee Notifications">Employee Notifications</tab>
+            </tabset>
+        </div>
+
+    </div>
+
+</div>
+  

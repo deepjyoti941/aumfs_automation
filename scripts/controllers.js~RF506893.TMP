@@ -7,6 +7,14 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         brand: "AUMFS Automation",
         name: "Admin"
     }
+    var customer_count = {};
+      customer_count.method = "get_customer_count";
+      $http.post('api/dashboard_controller.php', customer_count)
+      .success(function(data) {
+        console.log(data);
+            $scope.customer_count = parseInt(data);
+          
+        });
 
 }]).controller("NavCtrl", ["$scope", "taskStorage", "filterFilter", function ($scope, taskStorage, filterFilter) {
         var tasks;
@@ -49,161 +57,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
   }); 
   }
 
-}]).controller("navCtrl", ["$scope","$http", function ($scope,$http) { 
-      var employee_count = {};
-      employee_count.method = "get_employee_count";
-      $http.post('api/employee_controller.php', employee_count)
-      .success(function(data) {
-          $scope.employee_count = parseInt(data);          
-        });
-
 }]).controller("DashboardCtrl", ["$scope","$http", function ($scope,$http) { 
-      var customer_count = {};
-      customer_count.method = "get_customer_count";
-      $http.post('api/dashboard_controller.php', customer_count)
-      .success(function(data) {
-          $scope.count_list = data; 
-          $scope.growth = parseInt(data.total_income /data.customer_count);         
-        });
 
         $http.get('api/getOncallNotifications.php').success(function(data){
-
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
-            var yyyy = today.getFullYear();
-
-            if(dd<10) {
-                dd='0'+dd
-            } 
-
-            if(mm<10) {
-                mm='0'+mm
-            } 
-
-            today = yyyy+'-'+mm+'-'+dd;
-            $scope.current_date = today;
-          console.log(data);
-            $scope.list = data;
-            $scope.currentPage = 1; //current page
-            $scope.entryLimit = 5; //max no of items to display in a page
-            $scope.filteredItems = $scope.list.length; //Initially for no filter  
-            $scope.totalItems = $scope.list.length;
-        });
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.filter = function() {
-            $timeout(function() { 
-                $scope.filteredItems = $scope.filtered.length;
-            }, 10);
-        };
-        $scope.sort_by = function(predicate) {
-            $scope.predicate = predicate;
-            $scope.reverse = !$scope.reverse;
-        };
-
-}]).controller("otjAdminNotificationsCtrl", ["$scope","$http", function ($scope,$http) { 
-
-        $http.get('api/getOtjNotifications.php').success(function(data){
-          console.log(data);
-            $scope.list = data;
-            $scope.currentPage = 1; //current page
-            $scope.entryLimit = 5; //max no of items to display in a page
-            $scope.filteredItems = $scope.list.length; //Initially for no filter  
-            $scope.totalItems = $scope.list.length;
-        });
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.filter = function() {
-            $timeout(function() { 
-                $scope.filteredItems = $scope.filtered.length;
-            }, 10);
-        };
-        $scope.sort_by = function(predicate) {
-            $scope.predicate = predicate;
-            $scope.reverse = !$scope.reverse;
-        };
-
-}]).controller("otjEmployeeNotificationsCtrl", ["$scope","$http", function ($scope,$http) { 
-
-        $scope.changeColor = true;
-        $http.get('api/getEmployeeOtjNotifications.php').success(function(data){
-          console.log(data);
-            $scope.list = data;
-            $scope.currentPage = 1; //current page
-            $scope.entryLimit = 5; //max no of items to display in a page
-            $scope.filteredItems = $scope.list.length; //Initially for no filter  
-            $scope.totalItems = $scope.list.length;
-        });
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.filter = function() {
-            $timeout(function() { 
-                $scope.filteredItems = $scope.filtered.length;
-            }, 10);
-        };
-        $scope.sort_by = function(predicate) {
-            $scope.predicate = predicate;
-            $scope.reverse = !$scope.reverse;
-        };
-
-}]).controller("aumAdminNotificationsCtrl", ["$scope","$http", function ($scope,$http) { 
-
-        $scope.changeColor = true;
-        $http.get('api/getAdminAumNotifications.php').success(function(data){
-          console.log(data);
-            $scope.list = data;
-            $scope.currentPage = 1; //current page
-            $scope.entryLimit = 5; //max no of items to display in a page
-            $scope.filteredItems = $scope.list.length; //Initially for no filter  
-            $scope.totalItems = $scope.list.length;
-        });
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.filter = function() {
-            $timeout(function() { 
-                $scope.filteredItems = $scope.filtered.length;
-            }, 10);
-        };
-        $scope.sort_by = function(predicate) {
-            $scope.predicate = predicate;
-            $scope.reverse = !$scope.reverse;
-        };
-
-
-
-}]).controller("aumEmployeeNotificationsCtrl", ["$scope","$http", function ($scope,$http) { 
-
-        $scope.changeColor = true;
-        $http.get('api/getEmployeeAumNotifications.php').success(function(data){
-          console.log(data);
-            $scope.list = data;
-            $scope.currentPage = 1; //current page
-            $scope.entryLimit = 5; //max no of items to display in a page
-            $scope.filteredItems = $scope.list.length; //Initially for no filter  
-            $scope.totalItems = $scope.list.length;
-        });
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.filter = function() {
-            $timeout(function() { 
-                $scope.filteredItems = $scope.filtered.length;
-            }, 10);
-        };
-        $scope.sort_by = function(predicate) {
-            $scope.predicate = predicate;
-            $scope.reverse = !$scope.reverse;
-        };
-
-}]).controller("getAmcAdminNotifications", ["$scope","$http", function ($scope,$http) { 
-
-        $scope.changeColor = true;
-        $http.get('api/getAmcAdminNotifications.php').success(function(data){
           console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
@@ -1552,11 +1408,9 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         console.log(aum_service_array);
         if (angular.element('#subscription_fee').val() == '1000/yr') {
          aum_price = aum_price + 1000; 
-         }else if(angular.element('#subscription_fee').val() == '1900/yr') {
-           aum_price = aum_price + 1900; 
-         }else{
-          aum_price = 0;
-         }
+       }else {
+         aum_price = aum_price + 1900; 
+       }
         
         $scope.price_result = aum_price
 
@@ -1991,7 +1845,12 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             return prev + cur;
           });
           console.log(aum_service_array);
-          aum_price = aum_price + 0;
+          if (angular.element('#subscription_fee').val() == '1000/yr') {
+           aum_price = aum_price + 1000; 
+         }else {
+           aum_price = aum_price + 1900; 
+         }
+          
           $scope.price_result = aum_price
 
           var post_data = {};
@@ -2005,7 +1864,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           post_data.subscription_type = angular.element('#subscription_fee').val();
           post_data.extra_inventory = angular.element('#extra_inventory').val();
           post_data.customer_feedback = angular.element('#customer_feedback').val();
-          post_data.billing_frequency = angular.element('#billing_frequency').val();
           post_data.total = aum_price;
           $http.post('api/amc_controller.php', post_data)
             .success(function(data) {
@@ -2083,7 +1941,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           angular.element('#end_date').val(data[0]['end_date']);
           angular.element('#extra_inventory').val(data[0]['extra_inventory']);
           angular.element('#price_result').val(data[0]['total']);
-          angular.element('#billing_frequency').val(data[0]['billing_frequency']);
           $scope.rate = data[0].customer_feedback;
 
     }); 
@@ -2125,8 +1982,11 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           return prev + cur;
         });
         console.log(aum_service_array);
-          aum_price = aum_price + 0; 
-
+        if (angular.element('#subscription_fee').val() == '1000/yr') {
+         aum_price = aum_price + 1000; 
+       }else {
+         aum_price = aum_price + 1900; 
+       }
         
         $scope.price_result = aum_price
 
@@ -2142,9 +2002,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         post_data.subscription_type = angular.element('#subscription_fee').val();
         post_data.extra_inventory = angular.element('#extra_inventory').val();
         post_data.customer_feedback = angular.element('#customer_feedback').val();
-        post_data.customer_feedback = angular.element('#billing_frequency').val();
-        post_data.bill_date = angular.element('#order_date').val();
-
         post_data.total = aum_price;
         $http.post('api/amc_controller.php', post_data)
           .success(function(data) {

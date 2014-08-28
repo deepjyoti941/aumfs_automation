@@ -164,5 +164,11 @@
 	    }
 	    $dbh = null;
 
+	}elseif ($data->method == 'get_employee_count') {
+		$sql = "SELECT count(*) FROM employee_details"; 
+		$result = $dbh->prepare($sql); 
+		$result->execute(); 
+		$number_of_rows = $result->fetchColumn(); 
+		echo $number_of_rows;
 	}
 ?>

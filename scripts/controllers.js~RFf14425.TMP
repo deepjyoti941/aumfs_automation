@@ -200,30 +200,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             $scope.reverse = !$scope.reverse;
         };
 
-}]).controller("getAmcAdminNotifications", ["$scope","$http", function ($scope,$http) { 
-
-        $scope.changeColor = true;
-        $http.get('api/getAmcAdminNotifications.php').success(function(data){
-          console.log(data);
-            $scope.list = data;
-            $scope.currentPage = 1; //current page
-            $scope.entryLimit = 5; //max no of items to display in a page
-            $scope.filteredItems = $scope.list.length; //Initially for no filter  
-            $scope.totalItems = $scope.list.length;
-        });
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.filter = function() {
-            $timeout(function() { 
-                $scope.filteredItems = $scope.filtered.length;
-            }, 10);
-        };
-        $scope.sort_by = function(predicate) {
-            $scope.predicate = predicate;
-            $scope.reverse = !$scope.reverse;
-        };
-
 }]).controller("oncallCustomerCtrl", ["$scope","$timeout","$rootScope","$http","$filter","timeDifference", function($scope,$timeout,$rootScope,$http,$filter,timeDifference) {
         // var x = new Date('3/16/2013 17:00:00');// x is now a date object
        // x.setHours(0,0,0,0); set  hours to 0, min Secs and milliSecs as well
@@ -2083,7 +2059,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           angular.element('#end_date').val(data[0]['end_date']);
           angular.element('#extra_inventory').val(data[0]['extra_inventory']);
           angular.element('#price_result').val(data[0]['total']);
-          angular.element('#billing_frequency').val(data[0]['billing_frequency']);
           $scope.rate = data[0].customer_feedback;
 
     }); 
@@ -2142,9 +2117,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         post_data.subscription_type = angular.element('#subscription_fee').val();
         post_data.extra_inventory = angular.element('#extra_inventory').val();
         post_data.customer_feedback = angular.element('#customer_feedback').val();
-        post_data.customer_feedback = angular.element('#billing_frequency').val();
-        post_data.bill_date = angular.element('#order_date').val();
-
         post_data.total = aum_price;
         $http.post('api/amc_controller.php', post_data)
           .success(function(data) {

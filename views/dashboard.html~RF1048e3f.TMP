@@ -242,67 +242,6 @@
                                 </tabset>
                             </div>                            
                         </accordion-group>
-                        <accordion-group heading="Corporate AMC Notifications" is-open="false">
-                            <div class="ui-tab-container">
-                               <tabset justified="true" class="ui-tab">
-                                    <tab heading="Admin Notifications" data-ng-controller="getAmcAdminNotifications">
-                                        <div class="row">
-                                            <div class="col-md-2">PageSize:
-                                                <select ng-model="entryLimit" class="form-control">
-                                                    <option>5</option>
-                                                    <option>10</option>
-                                                    <option>20</option>
-                                                    <option>50</option>
-                                                    <option>100</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-3">Filter:
-                                                <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5>
-                                            </div>
-                                        </div>
-                                        </br>
-                                       <div class="row">
-                                            <div class="col-md-12" ng-show="filteredItems > 0">
-                                                <table class="table table-bordered table-striped table-responsive">
-                                                    <thead>
-                                                        <th>Customer Name</th>
-                                                        <th>Address</th>
-                                                        <th>Customer Phone</th>
-                                                        <th>Action</th>
-                                                    </thead>
-                                                    <tbody>
-                                                       <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"> 
-                                                       <td>{{data.customer_name}}</td>
-                                                       <td>{{data.customer_address}}</td>
-                                                       <td>{{data.customer_phone}}</td>
-                                                       <td>
-                                                            <a ng-href="#/amc/{{data.amc_order_id}}" class="btn-icon btn-icon-sm btn-primary"
-                                                               role="button"
-                                                               tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
-                                                                    class="fa fa-edit"></i>
-                                                            </a>
-                                                       </td>
-                                                       </tr>                       
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        <div class="col-md-12" ng-show="filteredItems == 0">
-                                            <div class="col-md-12">
-                                                <h4>No customers found</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12" ng-show="filteredItems > 0">    
-                                            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>     
-                                        </div>
-                                        </div>
-
-                                    </tab>
-                                </tabset>
-                            </div>                         
-                        </accordion-group>
                         <accordion-group heading="AUM Notifications" is-open="false">
                             <div class="ui-tab-container">
                                <tabset justified="true" class="ui-tab">
@@ -424,9 +363,15 @@
                                      </tab>
                                 </tabset>                           
                         </accordion-group>
-
+                        <accordion-group heading="Corporate AMC Notifications" is-open="false">
+                            <div class="ui-tab-container">
+                               <tabset justified="true" class="ui-tab">
+                                    <tab heading="Admin Notifications" data-ng-controller="getAmcAdminNotifications">
+                                    </tab>
+                                </tabset>
+                            </div>                         
+                        </accordion-group>
                     </accordion>
-
                 </div>         
             </div>
 

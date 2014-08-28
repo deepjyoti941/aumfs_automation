@@ -1,4 +1,4 @@
-<div id="nav-wrapper">
+<div id="nav-wrapper" data-ng-controller="navCtrl">
     <ul id="nav"
         data-ng-controller="NavCtrl"
         data-slim-scroll
@@ -36,7 +36,7 @@
         <li>
             <a href="#/employee"><i class="fa fa-users"></i><span data-i18n="Employee"></span></a>
             <ul>
-                <li><a href="#/employee-listing"><i class="fa fa-caret-right"></i><span data-i18n="Empolyee Listing"></span> <span class="badge badge-success">14</span></a></li>
+                <li><a href="#/employee-listing"><i class="fa fa-caret-right"></i><span data-i18n="Empolyee Listing"></span> <span class="badge badge-success">{{employee_count}}</span></a></li>
                 <li><a href="#/employee-status"><i class="fa fa-caret-right"></i><span data-i18n="Employee Work Status"></span></a></li>
             </ul>
         </li>

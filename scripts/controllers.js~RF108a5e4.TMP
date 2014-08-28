@@ -200,30 +200,6 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             $scope.reverse = !$scope.reverse;
         };
 
-}]).controller("getAmcAdminNotifications", ["$scope","$http", function ($scope,$http) { 
-
-        $scope.changeColor = true;
-        $http.get('api/getAmcAdminNotifications.php').success(function(data){
-          console.log(data);
-            $scope.list = data;
-            $scope.currentPage = 1; //current page
-            $scope.entryLimit = 5; //max no of items to display in a page
-            $scope.filteredItems = $scope.list.length; //Initially for no filter  
-            $scope.totalItems = $scope.list.length;
-        });
-        $scope.setPage = function(pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.filter = function() {
-            $timeout(function() { 
-                $scope.filteredItems = $scope.filtered.length;
-            }, 10);
-        };
-        $scope.sort_by = function(predicate) {
-            $scope.predicate = predicate;
-            $scope.reverse = !$scope.reverse;
-        };
-
 }]).controller("oncallCustomerCtrl", ["$scope","$timeout","$rootScope","$http","$filter","timeDifference", function($scope,$timeout,$rootScope,$http,$filter,timeDifference) {
         // var x = new Date('3/16/2013 17:00:00');// x is now a date object
        // x.setHours(0,0,0,0); set  hours to 0, min Secs and milliSecs as well

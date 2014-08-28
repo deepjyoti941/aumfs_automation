@@ -21,3 +21,7 @@
 div.thumbnail {
 	width:180px;
 }
+
+.work_warning {
+	color: red;
+}

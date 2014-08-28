@@ -278,8 +278,9 @@
                                                        <td>{{data.customer_name}}</td>
                                                        <td>{{data.customer_address}}</td>
                                                        <td>{{data.customer_phone}}</td>
+                                                       <td>{{data.subscription_type}}</td>
                                                        <td>
-                                                            <a ng-href="#/amc/{{data.amc_order_id}}" class="btn-icon btn-icon-sm btn-primary"
+                                                            <a ng-href="#/aum/{{data.aum_order_id}}" class="btn-icon btn-icon-sm btn-primary"
                                                                role="button"
                                                                tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
                                                                     class="fa fa-edit"></i>
