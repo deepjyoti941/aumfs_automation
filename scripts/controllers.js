@@ -1168,6 +1168,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
               var post_data = {};
               post_data.method = 'update_otj_customer';
               post_data.otj_service_id = $routeParams.id;
+              post_data.customer_id = angular.element('#customer_id').val();
               post_data.enquiry_type = angular.element('#enquiry_type').val();
               post_data.follow_up_type = angular.element('#follow_up_type').val();
               post_data.action_date = angular.element('#enquiry_date').val();

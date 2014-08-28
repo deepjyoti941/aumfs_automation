@@ -20,9 +20,9 @@
 			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 			$result = $sth->execute(array(':employee_id' => $data->assign_employee_id));
 			if ($result == 1) {
-				$sql = "INSERT INTO employee_assigned_service_details(employee_id,assigned_date, assigned_service) VALUES (:employee_id, :assigned_date, :assigned_service )";
+				$sql = "INSERT INTO employee_assigned_service_details(employee_id,customer_id,assigned_date, assigned_service) VALUES (:employee_id, :customer_id, :assigned_date, :assigned_service )";
 				$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-				$result = $sth->execute(array(':employee_id' =>$data->assign_employee_id,':assigned_date'=>$data->act_date,':assigned_service'=>$data->service_type));
+				$result = $sth->execute(array(':employee_id' =>$data->assign_employee_id, ':customer_id' =>$data->customer_id,':assigned_date'=>$data->act_date,':assigned_service'=>$data->service_type));
 					//print_r($sth->errorInfo());
 					if ($result == 1) {
 				        $data = array(
@@ -64,7 +64,6 @@
         	$sql_update_employee = "UPDATE employee_details SET is_engaged = 0 WHERE employee_id=:employee_id";
 			$sth = $dbh->prepare($sql_update_employee, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         	$result = $sth->execute(array(':employee_id'=>$data->assigned_employee_id));
-
         }
 	    if ($result == 1) {
 	        $data = array(
