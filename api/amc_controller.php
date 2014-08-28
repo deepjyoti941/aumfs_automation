@@ -43,10 +43,10 @@
 			echo json_encode($data);
 		}			
 	}elseif ($data->method == 'save_amc_customer_details') { 
-		$sql = "INSERT INTO  amc_customer_details (customer_id,enquiry_date,start_date,end_date,enquiry_type,follow_up_type,total,billing_frequency,extra_inventory, customer_feedback,bill_date) VALUES (:customer_id, :enquiry_date, :start_date, :end_date, :enquiry_type, :follow_up_type, :total, :subscription_type, :extra_inventory, :customer_feedback,bill_date)";
+		$sql = "INSERT INTO  amc_customer_details (customer_id,enquiry_date,start_date,end_date,enquiry_type,follow_up_type,total,billing_frequency,extra_inventory, customer_feedback,bill_date) VALUES (:customer_id, :enquiry_date, :start_date, :end_date, :enquiry_type, :follow_up_type, :total, :billing_frequency, :extra_inventory, :customer_feedback,:bill_date)";
 
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':enquiry_date'=>$data->enquiry_date,':start_date' =>$data->order_date,':end_date' =>$data->end_date,':enquiry_type'=>$data->enquiry_type,':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':subscription_type'=>$data->billing_frequency, ':extra_inventory'=>$data->extra_inventory, ':customer_feedback'=>$data->customer_feedback,':bill_date'=>$data->order_date));
+		$result = $sth->execute(array(':customer_id' =>$data->customer_id,':enquiry_date'=>$data->enquiry_date,':start_date' =>$data->order_date,':end_date' =>$data->end_date,':enquiry_type'=>$data->enquiry_type,':follow_up_type'=>$data->follow_up_type,':total'=>$data->total,':billing_frequency'=>$data->billing_frequency, ':extra_inventory'=>$data->extra_inventory, ':customer_feedback'=>$data->customer_feedback,':bill_date'=>$data->order_date));
 		//print_r($sth->errorInfo());
 
 		if ($result == 1) {
