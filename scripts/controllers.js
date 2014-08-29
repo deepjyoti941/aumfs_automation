@@ -263,14 +263,13 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             if(mm<10) {
                 mm='0'+mm
             } 
-
           today = yyyy+'-'+mm+'-'+dd;
           post_data.amc_order_id = amc_id;
           post_data.method = 'update_amc_bill_date';
           post_data.next_bill_date = today;
           $http.post('api/amc_controller.php', post_data)
               .success(function(data) {
-                  $scope.oncall_services_list = data;
+                  
               
           }); 
         }
@@ -335,8 +334,28 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         //         .success(function(data) {
                 
         //     }); 
-        $scope.actDateChanged = function($event) {
-          console.log($event);
+        $scope.actDateChanged = function(actDate) {
+            var d = new Date(actDate);
+            var dd = d.getDate();
+            var mm = d.getMonth()+1; //January is 0!
+            var yyyy = d.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+            var action_date = yyyy+'-'+mm+'-'+dd;
+            var post_data = {};
+            post_data.method = 'get_avilable_employee_by_date';
+            post_data.action_date = action_date;
+            $http.post('api/employee_controller.php', post_data)
+                .success(function(data) {
+                    $scope.service_employee_list = data;
+                    
+            }); 
         }
 
         $scope.change = function($event) {

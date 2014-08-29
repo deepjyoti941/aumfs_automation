@@ -66,7 +66,14 @@
 
 	} elseif ($data->method == 'get_free_employee_list') {
 
-		$sql_employee = "SELECT DISTINCT ed.employee_id, ed.employee_name FROM employee_details as ed STRAIGHT_JOIN employee_assigned_service_details as ead WHERE ed.employee_id = ead.employee_id AND ead.assigned_date != CURDATE()";
+		$sql_employee = "SELECT DISTINCT ed.employee_id, ed.employee_name FROM employee_details as ed STRAIGHT_JOIN employee_assigned_service_details as ead WHERE ed.employee_id = ead.employee_id AND ead.assigned_date != 'CURDATE()'";
+		$stmt = $dbh->query($sql_employee);
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($row);
+
+	}elseif ($data->method == 'get_avilable_employee_by_date') {
+
+		$sql_employee = "SELECT DISTINCT ed.employee_id, ed.employee_name FROM employee_details as ed STRAIGHT_JOIN employee_assigned_service_details as ead WHERE ed.employee_id = ead.employee_id AND ead.assigned_date != '$data->action_date'";
 		$stmt = $dbh->query($sql_employee);
 		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode($row);
