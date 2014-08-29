@@ -65,7 +65,7 @@
   //       $result_employee = $sth_employee->execute(array(':act_date'=>$data->act_date, ':act_time'=>$data->act_time, ':completion_date'=>$data->completion_date, ':completion_time'=>$data->completion_time, ':helper_number'=>$data->number_of_helpers, ':working_hour'=>$data->working_hours, ':billing_price'=>$data->bill_amount, ':bill_number'=>$data->bill_number, ':description'=>$data->short_desc, ':customer_feedback'=>$data->customer_feedback,':oncall_service_id'=>$data->oncall_service_id));
 
 
-        if ($data->bill_number) {
+        if ($data->customer_feedback) {
         	$sql_update_employee = "UPDATE employee_details SET is_engaged = 0 WHERE employee_id=:employee_id";
 			$sth = $dbh->prepare($sql_update_employee, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         	$result = $sth->execute(array(':employee_id'=>$data->assigned_employee_id));

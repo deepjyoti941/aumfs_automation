@@ -82,7 +82,7 @@
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $result = $sth->execute(array(':enquiry_type'=>$data->enquiry_type, ':follow_up_type'=>$data->follow_up_type, ':assigned_employee_id'=>$data->assigned_employee_id, ':service_name'=>$data->service_name, ':action_date'=>$data->action_date, ':start_date'=>$data->start_date, ':end_date'=>$data->end_date,':aum_price'=>$data->aum_price,':short_desc'=>$data->short_desc, ':customer_feedback'=>$data->customer_feedback,':otj_service_id'=>$data->otj_service_id));
 	    
-        if ($data->aum_price) {
+        if ($data->customer_feedback) {
         	$sql_update_employee = "UPDATE employee_details SET is_engaged = 0 WHERE employee_id=:employee_id";
 			$sth = $dbh->prepare($sql_update_employee, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         	$result = $sth->execute(array(':employee_id'=>$data->assigned_employee_id));
