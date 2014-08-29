@@ -106,6 +106,22 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("otjAdminNotificationsCtrl", ["$scope","$http", function ($scope,$http) { 
 
         $http.get('api/getOtjNotifications.php').success(function(data){
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = yyyy+'-'+mm+'-'+dd;
+            $scope.current_date = today;
           console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
@@ -130,6 +146,21 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
         $scope.changeColor = true;
         $http.get('api/getEmployeeOtjNotifications.php').success(function(data){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = yyyy+'-'+mm+'-'+dd;
+            $scope.current_date = today;
           console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
@@ -180,6 +211,21 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
         $scope.changeColor = true;
         $http.get('api/getEmployeeAumNotifications.php').success(function(data){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = yyyy+'-'+mm+'-'+dd;
+            $scope.current_date = today;
           console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
@@ -204,6 +250,21 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
         $scope.changeColor = true;
         $http.get('api/getAmcAdminNotifications.php').success(function(data){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = yyyy+'-'+mm+'-'+dd;
+            $scope.current_date = today;
           console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
@@ -589,6 +650,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
             var id = url.substring(url.lastIndexOf('/') + 1);
             var post_data = {};
             post_data.oncall_service_id = id;
+            post_data.customer_id = angular.element('#customer_id').val();
             post_data.assigned_employee_id = angular.element('#employee_id_assigned').val();
             post_data.act_date = angular.element('#actDate').val();
             post_data.act_time = angular.element('#actTime').val();

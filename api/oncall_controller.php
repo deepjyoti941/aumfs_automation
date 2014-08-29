@@ -20,9 +20,9 @@
 			$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 			$result = $sth->execute(array(':employee_id' => $data->assign_employee_id));
 			if ($result == 1) {
-				$sql = "INSERT INTO employee_assigned_service_details(employee_id,customer_id,assigned_date, assigned_service) VALUES (:employee_id, :customer_id, :assigned_date, :assigned_service )";
+				$sql = "INSERT INTO employee_assigned_service_details(employee_id,customer_id,assigned_date, assigned_service,job_type) VALUES (:employee_id, :customer_id, :assigned_date, :assigned_service,:job_type )";
 				$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-				$result = $sth->execute(array(':employee_id' =>$data->assign_employee_id, ':customer_id' =>$data->customer_id,':assigned_date'=>$data->act_date,':assigned_service'=>$data->service_type));
+				$result = $sth->execute(array(':employee_id' =>$data->assign_employee_id, ':customer_id' =>$data->customer_id,':assigned_date'=>$data->act_date,':assigned_service'=>$data->service_type, ':job_type'=>'oncall'));
 					//print_r($sth->errorInfo());
 					if ($result == 1) {
 				        $data = array(
@@ -60,10 +60,19 @@
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $result = $sth->execute(array(':act_date'=>$data->act_date, ':act_time'=>$data->act_time, ':completion_date'=>$data->completion_date, ':completion_time'=>$data->completion_time, ':helper_number'=>$data->number_of_helpers, ':working_hour'=>$data->working_hours, ':billing_price'=>$data->bill_amount, ':bill_number'=>$data->bill_number, ':description'=>$data->short_desc, ':customer_feedback'=>$data->customer_feedback,':oncall_service_id'=>$data->oncall_service_id));
 
+		// $sql_employee_service = "UPDATE employee_assigned_service_details SET customer_id=:customer_id WHERE oncall_service_id=:oncall_service_id";
+		// $sth_employee = $dbh->prepare($sql_employee_service, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+  //       $result_employee = $sth_employee->execute(array(':act_date'=>$data->act_date, ':act_time'=>$data->act_time, ':completion_date'=>$data->completion_date, ':completion_time'=>$data->completion_time, ':helper_number'=>$data->number_of_helpers, ':working_hour'=>$data->working_hours, ':billing_price'=>$data->bill_amount, ':bill_number'=>$data->bill_number, ':description'=>$data->short_desc, ':customer_feedback'=>$data->customer_feedback,':oncall_service_id'=>$data->oncall_service_id));
+
+
         if ($data->bill_number) {
         	$sql_update_employee = "UPDATE employee_details SET is_engaged = 0 WHERE employee_id=:employee_id";
 			$sth = $dbh->prepare($sql_update_employee, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         	$result = $sth->execute(array(':employee_id'=>$data->assigned_employee_id));
+
+	        $sql_delete = "DELETE FROM employee_assigned_service_details WHERE employee_id=:employee_id AND customer_id=:customer_id AND job_type='oncall'";
+			$sth_delete = $dbh->prepare($sql_delete, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+	        $result_delete = $sth_delete->execute(array(':employee_id'=>$data->assigned_employee_id,':customer_id'=>$data->customer_id));
         }
 	    if ($result == 1) {
 	        $data = array(

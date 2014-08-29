@@ -271,7 +271,6 @@
                                                         <th>Customer Name</th>
                                                         <th>Address</th>
                                                         <th>Customer Phone</th>
-                                                        <th>Last Bill Date</th>
                                                         <th>Action</th>
                                                     </thead>
                                                     <tbody>
@@ -279,7 +278,6 @@
                                                        <td>{{data.customer_name}}</td>
                                                        <td>{{data.customer_address}}</td>
                                                        <td>{{data.customer_phone}}</td>
-                                                       <td>{{data.bill_date}}</td>
                                                        <td>
                                                             <a ng-href="#/amc/{{data.amc_order_id}}" class="btn-icon btn-icon-sm btn-primary"
                                                                role="button"
@@ -397,7 +395,7 @@
                                                         <th>Action</th>
                                                     </thead>
                                                     <tbody>
-                                                       <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" ng-class='{work_warning : data.service_date==current_date}'> 
+                                                       <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit"> 
                                                        <td>{{data.customer_name}}</td>
                                                        <td>{{data.customer_address}}</td>
                                                        <td>{{data.customer_phone}}</td>
