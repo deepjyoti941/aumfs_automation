@@ -249,24 +249,13 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("getAmcAdminNotifications", ["$scope","$http", function ($scope,$http) { 
 
         $scope.changeColor = true;
-        $scope.addCurrentDate = function(amc_id) {
+        $scope.addCurrentDate = function(amc_id,bill_date) {
+         
           var post_data = {};
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
-            var yyyy = today.getFullYear();
-
-            if(dd<10) {
-                dd='0'+dd
-            } 
-
-            if(mm<10) {
-                mm='0'+mm
-            } 
-          today = yyyy+'-'+mm+'-'+dd;
+          console.log(bill_date);
           post_data.amc_order_id = amc_id;
+          post_data.next_date = bill_date;
           post_data.method = 'update_amc_bill_date';
-          post_data.next_bill_date = today;
           $http.post('api/amc_controller.php', post_data)
               .success(function(data) {
                   

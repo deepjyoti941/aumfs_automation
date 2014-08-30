@@ -271,7 +271,7 @@
                                                         <th>Organization Name</th>
                                                         <th>Address</th>
                                                         <th>Organization Phone</th>
-                                                        <th>Last Bill Date</th>
+                                                        <th>Next Bill Date</th>
                                                         <th>Action</th>
                                                     </thead>
                                                     <tbody>
@@ -279,9 +279,9 @@
                                                        <td>{{data.customer_name}}</td>
                                                        <td>{{data.customer_address}}</td>
                                                        <td>{{data.customer_phone}}</td>
-                                                       <td>{{data.bill_date}}</td>
+                                                       <td>{{data.billdate}}</td>
                                                        <td>
-                                                            <a ng-href="#/amc/{{data.amc_order_id}}" ng-click="addCurrentDate(data.amc_order_id)"class="btn-icon btn-icon-sm btn-primary"
+                                                            <a ng-href="#/amc/{{data.amc_order_id}}" ng-click="addCurrentDate(data.amc_order_id,data.billdate)"class="btn-icon btn-icon-sm btn-primary"
                                                                role="button"
                                                                tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
                                                                     class="fa fa-edit"></i>

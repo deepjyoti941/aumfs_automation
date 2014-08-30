@@ -108,9 +108,9 @@
 		echo json_encode($data);
 	}elseif ($data->method == 'update_amc_bill_date') {
 		
-		$sql = "UPDATE amc_customer_details SET bill_date=:bill_date WHERE amc_order_id=:amc_order_id";
+		$sql = "UPDATE amc_customer_details SET bill_date=:bill_date,bill_status=0 WHERE amc_order_id=:amc_order_id";
 		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $result = $sth->execute(array(':bill_date'=>$data->next_bill_date,':amc_order_id'=>$data->amc_order_id));
+        $result = $sth->execute(array(':bill_date'=>$data->next_date,':amc_order_id'=>$data->amc_order_id));
 	
 	}
 ?>
