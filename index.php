@@ -7,8 +7,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
-        <!-- needs images, font... therefore can not be part of ui.css -->
+<!--         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+ -->        <!-- needs images, font... therefore can not be part of ui.css -->
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css">
         <!-- end needs images -->
@@ -34,7 +34,6 @@
         </div>
 
 
-        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <script src="scripts/vendor.js"></script>
         <script src="scripts/moment.js"></script>
         <script src="scripts/ui.js"></script>
