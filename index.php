@@ -10,8 +10,8 @@
 <!--         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
  -->        <!-- needs images, font... therefore can not be part of ui.css -->
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css">
-        <!-- end needs images -->
+<!--         <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css">
+ -->        <!-- end needs images -->
         <link rel="stylesheet" href="styles/libs/toastr.css">
         <link rel="stylesheet" href="styles/main.css">
 
@@ -35,13 +35,10 @@
 
 
         <script src="scripts/vendor.js"></script>
-        <script src="scripts/moment.js"></script>
         <script src="scripts/ui.js"></script>
         <script src="scripts/libs/toastr.js"></script>
         <script src="scripts/ui-bootstrap-tpls-0.9.0.js"></script>
-
         <script src="scripts/app.js"></script>
-        <script src="scripts/directives.js"></script>
         <script src="scripts/controllers.js"></script>
         
     </body>
