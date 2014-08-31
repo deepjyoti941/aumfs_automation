@@ -35,6 +35,8 @@
 
 
         <script src="scripts/vendor.js"></script>
+        <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.min.js"></script> -->
+        <script src="scripts/angular-cookies.js"></script>
         <script src="scripts/ui.js"></script>
         <script src="scripts/libs/toastr.js"></script>
         <script src="scripts/ui-bootstrap-tpls-0.9.0.js"></script>

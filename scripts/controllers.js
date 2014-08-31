@@ -1,5 +1,5 @@
 "use strict";
-angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$location", function ($scope, $location) {
+angular.module("app.controllers", ['ngCookies']).controller("AppCtrl", ["$scope", "$location", function ($scope, $location) {
     return $scope.isSpecificPage = function () {
         var path;
         return path = $location.path(), _.contains(["/404", "/pages/500", "/pages/login", "/pages/signin", "/pages/signin1", "/pages/signin2", "/pages/signup", "/pages/signup1", "/pages/signup2", "/pages/forgot", "/pages/lock-screen"], path)
@@ -22,7 +22,14 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     loginService.login(data,$scope); //call login service
   };
 
-}]).controller("logoutCtrl", ["$scope","$http","loginService", function ($scope,$http, loginService) { 
+}]).controller("logoutCtrl", ["$scope","$http","$cookieStore","loginService", function ($scope,$http,$cookieStore,loginService) { 
+
+    $scope.lock_screen = function() {
+        var url = document.URL;
+        var current_url = url.split('#');
+        $cookieStore.put('current_url', current_url[1]);
+        
+    }
     $http.post('api/admin_controller.php', {method:'get_admin_details'})
           .success(function(data) {
              $scope.admin_details = data;       
@@ -30,10 +37,60 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     $scope.logout=function(){
       loginService.logout();
     }
-}]).controller("lockScreenCtrl", ["$scope","$http","loginService", function ($scope,$http, loginService) { 
+}]).controller("lockScreenCtrl", ["$scope","$http","loginService","$cookieStore","$location", function ($scope,$http, loginService,$cookieStore,$location) { 
+    //console.log($cookieStore.get('current_url'));
+    var admin_password;
+    $scope.unlock_screen = function() {
+        var user_password = angular.element('#lockPassword').val();
+        if (!user_password) {
+            toastr.error("You must enter password to unlock");
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "positionClass": "toast-bottom-left",
+              "onclick": null,
+              "showDuration": "800",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }            
+        } else if(user_password != admin_password) {
+            toastr.error("Incorrect Password");
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "positionClass": "toast-bottom-left",
+              "onclick": null,
+              "showDuration": "800",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            } 
+        }else {
+          var connected=loginService.islogged();
+          connected.then(function(msg){
+            if(!msg.data){
+                $location.path('/pages/signin');
+            }else {
+                $location.path($cookieStore.get('current_url'));
+            }
+          });
+        }
+
+    }
+    
     $http.post('api/admin_controller.php', {method:'get_admin_details'})
           .success(function(data) {
-               $scope.admin_details = data;          
+               $scope.admin_details = data;
+               admin_password = data.password;        
       });  
 }]).controller("forgotPasswordCtrl", ["$scope","$http", function ($scope,$http) { 
 
@@ -83,7 +140,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
             today = yyyy+'-'+mm+'-'+dd;
             $scope.current_date = today;
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -122,7 +179,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
             today = yyyy+'-'+mm+'-'+dd;
             $scope.current_date = today;
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -161,7 +218,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
             today = yyyy+'-'+mm+'-'+dd;
             $scope.current_date = today;
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -185,7 +242,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
         $scope.changeColor = true;
         $http.get('api/getAdminAumNotifications.php').success(function(data){
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -226,7 +283,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
             today = yyyy+'-'+mm+'-'+dd;
             $scope.current_date = today;
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -252,7 +309,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.addCurrentDate = function(amc_id,bill_date) {
          
           var post_data = {};
-          console.log(bill_date);
+          // console.log(bill_date);
           post_data.amc_order_id = amc_id;
           post_data.next_date = bill_date;
           post_data.method = 'update_amc_bill_date';
@@ -278,7 +335,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
             today = yyyy+'-'+mm+'-'+dd;
             $scope.current_date = today;
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -349,7 +406,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 
         $scope.change = function($event) {
             if($event == true){
-                console.log('clicked');
+                // console.log('clicked');
                 var existing_customer_id =  $('#existing_customer_id').val();
                 $scope.oncallCustomer.customer_id = existing_customer_id;
             }else {
@@ -405,7 +462,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }
 
         $http.get('api/getOncallCustomerList.php').success(function(data){
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -631,7 +688,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         post_oncall_data.method = 'get_service_by_id';
         $http.post('api/oncall_controller.php', post_oncall_data)
                 .success(function(data) {
-                  console.log(data);
+                  // console.log(data);
                   $scope.oncall_customer_list = data;
                   $scope.ext_employee_id = data.assigned_employee_id;
                   $scope.customer_name = data.customer_name;
@@ -908,11 +965,11 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 	};   
 
     $scope.deleteEmployee = function(employee_id) {
-        console.log(employee_id);
+        // console.log(employee_id);
         var r = confirm("Are You Sure! It can't be Undo");
         if (r == true) {
             $http.post("api/employee_controller.php",{method:'delete_employee',employee_id:employee_id} ).success(function(data){
-                console.log(data);
+                // console.log(data);
                 angular.element('#employee_'+employee_id).remove();
                 toastr.success("Employee Deleted successfully");
                 toastr.options = {
@@ -1016,7 +1073,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("EmployeeStatusCtrl", ["$scope", "$http", function($scope, $http) {
         $http.post("api/employee_controller.php",{method:'get_employee_list'} ).success(function(data){
         $scope.employee_list = data;
-        console.log(data);
+        // console.log(data);
     });
 
 }]).controller("EmployeeWorkDetailsCtrl", ["$scope","$http", function($scope, $http) {
@@ -1031,7 +1088,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("newOtjCustomerCtrl", ["$scope", "$http", function($scope, $http) {
 
           $http.get('api/getOtjCustomerList.php').success(function(data){
-            console.log(data);
+            // console.log(data);
               $scope.list = data;
               $scope.currentPage = 1; //current page
               $scope.entryLimit = 5; //max no of items to display in a page
@@ -1085,7 +1142,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         $scope.oncallCustomer = {};
          $scope.change = function($event) {
             if($event == true){
-                console.log('clicked');
+                // console.log('clicked');
                 var existing_customer_id =  $('#existing_customer_id').val();
                 $scope.oncallCustomer.customer_id = existing_customer_id;
             }else {
@@ -1137,7 +1194,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
               post_data.assigned_employee_id = angular.element('#employee_list').val();
               post_data.short_description = angular.element('#short_description').val();
               post_data.customer_feedback = angular.element('#customer_feedback').val();
-              console.log(post_data);
+              // console.log(post_data);
                 $http.post('api/otj_controller.php', post_data)
                     .success(function(data) {
                        if (data.status == true) {
@@ -1395,7 +1452,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     }
 
     $scope.saveService = function(item) {
-        console.log(item);
+        // console.log(item);
     }
 
 }]).controller("otjInvoiceCtrl", ["$scope","$http","$routeParams", "$window" , function($scope, $http, $routeParams) {
@@ -1432,7 +1489,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           // $scope.end_date = data[0]['end_date'];
           // $scope.grand_total = data[0]['total'];
           // $scope.extra_inventory = data[0]['extra_inventory'];
-           console.log(data); 
+           // console.log(data); 
 
       }); 
         return $scope.printInvoice = function () {
@@ -1541,7 +1598,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("aumCustomerCtrl", ["$scope", "$http", function($scope, $http) {
 
         $http.get('api/getAumCustomerList.php').success(function(data){
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -1602,7 +1659,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }
        $scope.change = function($event) {
           if($event == true){
-              console.log('clicked');
+              // console.log('clicked');
               var existing_customer_id =  $('#existing_customer_id').val();
               $scope.oncallCustomer.customer_id = existing_customer_id;
           }else {
@@ -1664,7 +1721,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         var aum_price = total.reduce(function(prev, cur) {
           return prev + cur;
         });
-        console.log(aum_service_array);
+        // console.log(aum_service_array);
         if (angular.element('#subscription_fee').val() == '1000/yr') {
          aum_price = aum_price + 1000; 
          }else if(angular.element('#subscription_fee').val() == '1900/yr') {
@@ -1734,7 +1791,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     $http.post('api/aum_controller.php', post_data)
       .success(function(data) {
         $scope.aum_services_list = data;
-         console.log(data); 
+         // console.log(data); 
           angular.element('#customer_name').val(data[0]['customer_name']);
           angular.element('#customer_address').val(data[0]['customer_address']);  
           angular.element('#customer_phone').val(data[0]['customer_phone']);  
@@ -1784,7 +1841,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         var aum_price = total.reduce(function(prev, cur) {
           return prev + cur;
         });
-        console.log(aum_service_array);
+        // console.log(aum_service_array);
         if (angular.element('#subscription_fee').val() == '1000/yr') {
          aum_price = aum_price + 1000; 
        }else {
@@ -1961,7 +2018,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           $scope.start_date = data[0]['start_date'];
           $scope.end_date = data[0]['end_date'];
           $scope.grand_total = data[0]['total'];
-           console.log(data); 
+           // console.log(data); 
 
       }); 
         return $scope.printInvoice = function () {
@@ -1971,7 +2028,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
 }]).controller("amcCustomerCtrl", ["$scope", "$http", function($scope, $http) {
 
         $http.get('api/getAmcCustomerList.php').success(function(data){
-          console.log(data);
+          // console.log(data);
             $scope.list = data;
             $scope.currentPage = 1; //current page
             $scope.entryLimit = 5; //max no of items to display in a page
@@ -2028,7 +2085,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         }
        $scope.change = function($event) {
           if($event == true){
-              console.log('clicked');
+              // console.log('clicked');
               var existing_customer_id =  $('#existing_customer_id').val();
               $scope.oncallCustomer.customer_id = existing_customer_id;
           }else {
@@ -2105,7 +2162,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           var aum_price = total.reduce(function(prev, cur) {
             return prev + cur;
           });
-          console.log(aum_service_array);
+          // console.log(aum_service_array);
           aum_price = aum_price + 0;
           $scope.price_result = aum_price
 
@@ -2185,7 +2242,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
     $http.post('api/amc_controller.php', post_data)
       .success(function(data) {
         $scope.amc_services_list = data;
-         console.log(data); 
+         // console.log(data); 
           angular.element('#organization_name').val(data[0]['customer_name']);
           angular.element('#organization_address').val(data[0]['customer_address']);  
           angular.element('#organization_phone').val(data[0]['customer_phone']); 
@@ -2239,7 +2296,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
         var aum_price = total.reduce(function(prev, cur) {
           return prev + cur;
         });
-        console.log(aum_service_array);
+        // console.log(aum_service_array);
           aum_price = aum_price + 0; 
 
         
@@ -2413,7 +2470,7 @@ angular.module("app.controllers", []).controller("AppCtrl", ["$scope", "$locatio
           $scope.end_date = data[0]['end_date'];
           $scope.grand_total = data[0]['total'];
           $scope.extra_inventory = data[0]['extra_inventory'];
-           console.log(data); 
+           // console.log(data); 
 
       }); 
         return $scope.printInvoice = function () {
