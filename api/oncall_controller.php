@@ -86,6 +86,21 @@
 	          echo json_encode($data);
 	    }
 	    $dbh = null;
+	}elseif ($data->method == 'cancel_oncall_order') { 
+		$sql = "UPDATE oncall_customer_details SET is_cancelled = 1 WHERE oncall_service_id=:oncall_service_id";
+		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $result = $sth->execute(array(':oncall_service_id'=>$data->oncall_service_id));
+	    if ($result == 1) {
+	        $data = array(
+	            "status" => true
+	        );
+	        echo json_encode($data);
+	    } else {
+	        $data = array(
+	        	"status" => false
+	        );
+	          echo json_encode($data);
+	    }
 	}
 
 ?>

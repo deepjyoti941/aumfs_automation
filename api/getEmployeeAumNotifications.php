@@ -10,8 +10,9 @@ require_once 'config/config.php';
 				WHERE st.service_id = sd.service_id AND sd.aum_order_id = cd.aum_order_id
 				AND c.customer_id = cd.customer_id
 
-				AND ADDDATE(cd.start_date, INTERVAL st.service_frequency DAY) <= CURDATE() +  INTERVAL 1 DAY AND st.service_frequency !=0 AND sd.quantity !=0  AND
-((ADDDATE(cd.start_date, INTERVAL st.service_frequency DAY)) BETWEEN cd.start_date AND cd.end_date) AND ADDDATE(cd.start_date, INTERVAL st.service_frequency DAY) = CURDATE();";
+				AND ADDDATE(cd.start_date, INTERVAL st.service_frequency DAY) <= CURDATE() +  INTERVAL 1 DAY AND st.service_frequency !=0 AND sd.quantity !=0  
+				AND ((ADDDATE(cd.start_date, INTERVAL st.service_frequency DAY)) BETWEEN cd.start_date AND cd.end_date)
+				AND status = 1";
 	$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
 	//print_r($result);

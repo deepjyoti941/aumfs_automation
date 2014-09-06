@@ -7,6 +7,7 @@ require_once 'config/config.php';
 				STRAIGHT_JOIN customer_details AS cd
 				WHERE oc.customer_id = cd.customer_id
 				AND oc.assigned_employee_id = ed.employee_id
+				AND oc.is_cancelled = 0
 				ORDER BY cd.customer_name ASC";
 	$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 

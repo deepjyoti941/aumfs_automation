@@ -267,6 +267,15 @@ angular.module("app.controllers", ['ngCookies']).controller("AppCtrl", ["$scope"
 }]).controller("aumEmployeeNotificationsCtrl", ["$scope","$http", function ($scope,$http) { 
 
         $scope.changeColor = true;
+        $scope.changeAumStatus = function(aum_id) {
+          var post_data = {};
+          post_data.aum_order_id = aum_id;
+          post_data.method = 'update_aum_employee_notification';
+          $http.post('api/aum_controller.php', post_data)
+              .success(function(data) {      
+              
+          }); 
+        }
         $http.get('api/getEmployeeAumNotifications.php').success(function(data){
             var today = new Date();
             var dd = today.getDate();
@@ -307,7 +316,6 @@ angular.module("app.controllers", ['ngCookies']).controller("AppCtrl", ["$scope"
 
         $scope.changeColor = true;
         $scope.addCurrentDate = function(amc_id,bill_date) {
-         
           var post_data = {};
           // console.log(bill_date);
           post_data.amc_order_id = amc_id;
@@ -774,6 +782,35 @@ angular.module("app.controllers", ['ngCookies']).controller("AppCtrl", ["$scope"
  
                     };
             });           
+        }
+
+        $scope.cancelOncallOrder = function() {
+            var url = document.URL
+            var id = url.substring(url.lastIndexOf('/') + 1);
+            var post_data = {};
+            post_data.oncall_service_id = id;
+            post_data.method = 'cancel_oncall_order'; 
+             $http.post('api/oncall_controller.php', post_data)
+                  .success(function(data) {
+                      if (data.status == true) {
+                          toastr.success("Order Cancelled Successfully");
+                          toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "positionClass": "toast-top-right",
+                            "onclick": null,
+                            "showDuration": "800",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                          }
+   
+                      };
+              });
         }
 
         var date = new Date();

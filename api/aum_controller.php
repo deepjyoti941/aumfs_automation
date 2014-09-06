@@ -103,5 +103,10 @@
 			"status" => true
 			);
 		echo json_encode($data);
+	}elseif ($data->method == 'update_aum_employee_notification') {
+		$sql = "UPDATE aum_service_details SET status = 1 WHERE aum_order_id=:aum_order_id";
+		$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $result = $sth->execute(array(':aum_order_id'=>$data->aum_order_id));
+	
 	}
 ?>

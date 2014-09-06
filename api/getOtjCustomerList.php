@@ -5,6 +5,7 @@ require_once 'config/config.php';
 				FROM otj_customer_details AS otj
 				STRAIGHT_JOIN customer_details AS cd
 				WHERE otj.customer_id = cd.customer_id
+				AND otj.customer_feedback <=> 'Cancel'
 				ORDER BY cd.customer_name ASC";
 	$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 

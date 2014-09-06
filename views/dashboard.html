@@ -404,7 +404,7 @@
                                                        <td>{{data.service_name}}</td>
                                                        <td>{{data.service_date}}</td>
                                                        <td>
-                                                            <a ng-href="#/aum/{{data.aum_order_id}}" class="btn-icon btn-icon-sm btn-primary"
+                                                            <a ng-href="#/aum/{{data.aum_order_id}}" ng-click="changeAumStatus(data.aum_order_id)" class="btn-icon btn-icon-sm btn-primary"
                                                                role="button"
                                                                tooltip-placement="top" tooltip="Edit" tooltip-append-to-body="true"><i
                                                                     class="fa fa-edit"></i>
