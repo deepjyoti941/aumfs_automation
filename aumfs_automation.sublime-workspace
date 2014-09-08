@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"p",
+				"p	Tag"
+			],
+			[
 				"customer",
 				"customer_id"
 			],
@@ -312,26 +316,10 @@
 	"buffers":
 	[
 		{
-			"file": "api/oncall_controller.php",
+			"file": "api/aum_controller.php",
 			"settings":
 			{
-				"buffer_size": 6566,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "api/otj_controller.php",
-			"settings":
-			{
-				"buffer_size": 6531,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "api/employee_controller.php",
-			"settings":
-			{
-				"buffer_size": 6862,
+				"buffer_size": 5376,
 				"line_ending": "Windows"
 			}
 		},
@@ -339,15 +327,7 @@
 			"file": "scripts/controllers.js",
 			"settings":
 			{
-				"buffer_size": 105118,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/oncall/oncall.html",
-			"settings":
-			{
-				"buffer_size": 19818,
+				"buffer_size": 107168,
 				"line_ending": "Windows"
 			}
 		},
@@ -355,31 +335,31 @@
 			"file": "scripts/app.js",
 			"settings":
 			{
-				"buffer_size": 73050,
+				"buffer_size": 73147,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "api/amc_controller.php",
+			"file": "views/otj/otj-work-order.html",
 			"settings":
 			{
-				"buffer_size": 6052,
+				"buffer_size": 1967,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "api/getAmcAdminNotifications.php",
+			"file": "views/otj/otj-invoice.html",
 			"settings":
 			{
-				"buffer_size": 860,
+				"buffer_size": 3348,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "views/dashboard.html",
+			"file": "views/otj/otj.html",
 			"settings":
 			{
-				"buffer_size": 31748,
+				"buffer_size": 18280,
 				"line_ending": "Windows"
 			}
 		}
@@ -420,36 +400,47 @@
 	},
 	"file_history":
 	[
-		"/C/android/sdk/tools/ant/build.xml",
-		"/C/wamp/www/aumfs_automation/views/oncall/oncall.html",
+		"/C/wamp/www/aumfs_automation/views/otj/otj-edit.html",
+		"/C/wamp/www/aumfs_automation/old/views/views/ui/typography.html",
 		"/C/wamp/www/aumfs_automation/views/otj/otj.html",
+		"/C/wamp/www/aumfs_automation/views/otj/otj-invoice.html",
+		"/C/wamp/www/aumfs_automation/views/amc/amc-invoice.html",
+		"/C/wamp/www/aumfs_automation/views/dashboard.html",
+		"/C/wamp/www/aumfs_automation/views/pages/signin.html",
+		"/C/Users/Deepjyoti/Desktop/aumfs_desktop_app/settings.json",
+		"/C/wamp/www/aumfs_automation/api/otj_controller.php",
+		"/C/wamp/www/aumfs_automation/views/pages/settings.html",
+		"/C/wamp/www/aumfs_automation/api/dashboard_controller.php",
+		"/C/wamp/www/aumfs_automation/api/employee_controller.php",
+		"/C/wamp/www/aumfs_automation/api/oncall_controller.php",
+		"/C/wamp/www/aumfs_automation/api/getOncallCustomerList.php",
+		"/C/wamp/www/aumfs_automation/api/getOtjCustomerList.php",
+		"/C/wamp/www/aumfs_automation/api/getAmcCustomerList.php",
+		"/C/wamp/www/aumfs_automation/api/getEmployeeAumNotifications.php",
+		"/C/wamp/www/aumfs_automation/views/oncall/oncall-edit.html",
+		"/C/wamp/www/aumfs_automation/views/oncall/oncall.html",
+		"/C/wamp/www/aumfs_automation/scripts/app.js",
+		"/C/wamp/www/aumfs_automation/api/amc_controller.php",
+		"/C/wamp/www/aumfs_automation/api/getAmcAdminNotifications.php",
+		"/C/wamp/www/aumfs_automation/views/oncall/oncall-charges.html",
+		"/C/android/sdk/tools/ant/build.xml",
 		"/C/wamp/www/aumfs_automation/api/user.php",
 		"/C/wamp/www/aumfs_automation/views/amc/amc.html",
-		"/C/wamp/www/aumfs_automation/scripts/app.js",
-		"/C/wamp/www/aumfs_automation/api/dashboard_controller.php",
 		"/C/wamp/www/aumfs_automation/views/employee/employee-listing.html",
-		"/C/wamp/www/aumfs_automation/api/getAmcAdminNotifications.php",
 		"/C/wamp/www/aumfs_automation/api/config/mysql_config.php",
 		"/C/wamp/www/aumfs_automation/scripts/controllers.js",
 		"/C/wamp/www/aumfs_automation/api/getEmployeeOtjNotifications.php",
 		"/C/wamp/www/aumfs_automation/api/getAdminAumNotifications.php",
 		"/C/wamp/www/aumfs_automation/api/getCustomer.php",
-		"/C/wamp/www/aumfs_automation/api/oncall_controller.php",
-		"/C/wamp/www/aumfs_automation/views/dashboard.html",
-		"/C/wamp/www/aumfs_automation/api/employee_controller.php",
-		"/C/wamp/www/aumfs_automation/api/otj_controller.php",
 		"/C/wamp/www/aumfs_automation/api/aum_controller.php",
-		"/C/wamp/www/aumfs_automation/api/amc_controller.php",
 		"/C/wamp/www/aumfs_automation/api/config/config.php",
 		"/C/wamp/www/aumfs_automation/views/pages/admin_settings.html",
 		"/C/wamp/www/aumfs_automation/views/nav.html",
-		"/C/wamp/www/aumfs_automation/api/getEmployeeAumNotifications.php",
 		"/C/wamp/www/aumfs_automation/views/amc/amc-edit.html",
 		"/C/wamp/www/aumfs_automation/views/aum/aum.html",
 		"/C/wamp/www/aumfs_automation/styles/main.css",
 		"/C/wamp/www/aumfs_automation/api/getOtjNotifications.php",
 		"/C/wamp/www/aumfs_automation/api/getOncallNotifications.php",
-		"/C/wamp/www/aumfs_automation/api/getOncallCustomerList.php",
 		"/C/wamp/www/aumfs_automation/views/pages/lock-screen.html",
 		"/C/wamp/www/aumfs_automation/views/header.html",
 		"/C/wamp/www/aumfs_automation/api/admin_controller.php",
@@ -460,20 +451,12 @@
 		"/C/wamp/www/aumfs_automation/views/otj/otj-jobs.html",
 		"/C/wamp/www/aumfs_automation/scripts/directives.js",
 		"/C/wamp/www/aumfs_automation/old/views/views/ui/calendar.html",
-		"/C/wamp/www/aumfs_automation/api/getAmcCustomerList.php",
 		"/C/wamp/www/aumfs_automation/api/getAumCustomerList.php",
-		"/C/wamp/www/aumfs_automation/views/pages/settings.html",
-		"/C/wamp/www/aumfs_automation/views/otj/otj-edit.html",
-		"/C/wamp/www/aumfs_automation/api/getOtjCustomerList.php",
 		"/C/wamp/www/aumfs_automation/views/pages/services.html",
-		"/C/wamp/www/aumfs_automation/views/amc/amc-invoice.html",
 		"/C/wamp/www/aumfs_automation/views/aum/aum-edit.html",
 		"/C/wamp/www/aumfs_automation/views/employee/employee-work-status.html",
-		"/C/wamp/www/aumfs_automation/views/oncall/oncall-edit.html",
 		"/C/wamp/www/aumfs_automation/views/pages/forgot-password.html",
 		"/C/wamp/www/aumfs_automation/views/aum/aum-invoice.html",
-		"/C/wamp/www/aumfs_automation/views/pages/signin.html",
-		"/C/wamp/www/aumfs_automation/views/otj/otj-invoice.html",
 		"/C/wamp/www/aumfs_automation/index.php",
 		"/D/data/two-dropdown-list/js/outils.js",
 		"/C/wamp/www/aumfs_automation/api/forgot_password.php",
@@ -544,10 +527,7 @@
 		"/C/wamp/www/aumfs_automation/aumfs/api/index.php",
 		"/C/wamp/www/aumfs_automation/aumfs/views/header.html",
 		"/C/Users/deepjyoti/Desktop/my-app/www/index.html",
-		"/C/wamp/www/aumfs_automation/settings.json",
-		"/C/Users/deepjyoti/Documents/appointment_system/admin001/index.php",
-		"/C/Users/deepjyoti/Documents/appointment_system/index.php",
-		"/C/Users/deepjyoti/Desktop/flipbook/trun.js"
+		"/C/wamp/www/aumfs_automation/settings.json"
 	],
 	"find":
 	{
@@ -565,6 +545,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"otjInvoiceCtrl",
+			"amc",
+			"back",
 			"getAmcAdminNotifications",
 			"AMC",
 			"Idiot",
@@ -689,10 +672,7 @@
 			"ng-repeat",
 			"repeat",
 			"class",
-			".directive",
-			"directive",
-			".directive",
-			"addOncallChargesForm"
+			".directive"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -710,24 +690,24 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "api/oncall_controller.php",
+					"file": "api/aum_controller.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6566,
+						"buffer_size": 5376,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5609,
-								5609
+								4526,
+								4526
 							]
 						],
 						"settings":
@@ -735,86 +715,28 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 18.0,
-						"translation.y": 960.0,
+						"translation.x": 0.0,
+						"translation.y": 1600.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "api/otj_controller.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6531,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5424,
-								5424
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1521.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "api/employee_controller.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6862,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2820.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "scripts/controllers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 105118,
+						"buffer_size": 107168,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10002,
-								10002
+								61663,
+								61663
 							]
 						],
 						"settings":
@@ -823,57 +745,28 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 5240.0,
+						"translation.x": 3.0,
+						"translation.y": 30062.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "views/oncall/oncall.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19818,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6464,
-								6464
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 133.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
+					"buffer": 2,
 					"file": "scripts/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 73050,
+						"buffer_size": 73147,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								24827,
-								24827
+								60596,
+								60596
 							]
 						],
 						"settings":
@@ -883,85 +776,55 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 14421.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "api/amc_controller.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6052,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6020,
-								6032
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 361.0,
-						"translation.y": 1942.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "api/getAmcAdminNotifications.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 860,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 33041.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "views/dashboard.html",
+					"buffer": 3,
+					"file": "views/otj/otj-work-order.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 31748,
+						"buffer_size": 1967,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1355,
+								1355
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 280.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/otj/otj-invoice.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3348,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								935,
+								935
 							]
 						],
 						"settings":
@@ -971,10 +834,39 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6125.0,
+						"translation.y": 620.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/otj/otj.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18280,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12545,
+								12387
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4993.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1027,20 +919,36 @@
 		"selected_items":
 		[
 			[
+				"ot",
+				"views\\otj\\otj.html"
+			],
+			[
 				"app",
 				"scripts\\app.js"
 			],
 			[
-				"oncall",
-				"views\\oncall\\oncall.html"
+				"otj",
+				"views\\otj\\otj-edit.html"
 			],
 			[
-				"amc",
-				"api\\amc_controller.php"
+				"con",
+				"scripts\\controllers.js"
+			],
+			[
+				"sign",
+				"views\\pages\\signin.html"
 			],
 			[
 				"dash",
 				"views\\dashboard.html"
+			],
+			[
+				"oncall",
+				"views\\oncall\\oncall-edit.html"
+			],
+			[
+				"amc",
+				"api\\amc_controller.php"
 			],
 			[
 				"getamcadminnotifications",
@@ -1067,16 +975,8 @@
 				"scripts\\controllers.js"
 			],
 			[
-				"otj",
-				"api\\otj_controller.php"
-			],
-			[
 				"oncal",
 				"api\\oncall_controller.php"
-			],
-			[
-				"con",
-				"scripts\\controllers.js"
 			],
 			[
 				"contro",
@@ -1252,7 +1152,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 273.0,
+	"side_bar_width": 253.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

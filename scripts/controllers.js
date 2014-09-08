@@ -1516,23 +1516,32 @@ angular.module("app.controllers", ['ngCookies']).controller("AppCtrl", ["$scope"
           } 
           today = dd+'/'+mm+'/'+yyyy;
           $scope.invoice_date = today;
-          $scope.package_name = 'Corporate AMC';
+          $scope.package_name = 'OTJ';
           $scope.invoice_number = '#OTJ'+$routeParams.id;
-          // $scope.customer_name = data[0]['customer_name'];
-          // $scope.customer_phone = data[0]['customer_phone'];
-          // $scope.customer_address = data[0]['customer_address'];
-          // $scope.subscription_type = data[0]['subscription_type'];
-          // $scope.start_date = data[0]['start_date'];
-          // $scope.end_date = data[0]['end_date'];
-          // $scope.grand_total = data[0]['total'];
-          // $scope.extra_inventory = data[0]['extra_inventory'];
-           // console.log(data); 
 
       }); 
         return $scope.printInvoice = function () {
             var originalContents, popupWin, printContents;
             return printContents = document.getElementById("invoice").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()
         }
+        
+}]).controller("otjAgreementCtrl", ["$scope","$http","$routeParams", "$window" , function($scope, $http, $routeParams) {
+      $scope.order_id = $routeParams.id;
+      $scope.main_name = 'Aumfs Automation Company';
+
+      var post_data = {};
+      post_data.otj_service_id = $routeParams.id;
+      post_data.method = 'get_otj_details_by_id'; 
+      $http.post('api/otj_controller.php', post_data)
+        .success(function(data) {
+          $scope.otj_services_list = data;
+
+      }); 
+        return $scope.printInvoice = function () {
+            var originalContents, popupWin, printContents;
+            return printContents = document.getElementById("order_agreement").innerHTML, originalContents = document.body.innerHTML, popupWin = window.open(), popupWin.document.open(), popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="styles/main.css" /></head><body onload="window.print()">' + printContents + "</html>"), popupWin.document.close()
+        }
+        
 }]).controller("adminSettingsCtrl", ["$scope", "$http", function($scope, $http) {
       $http.post('api/admin_controller.php', {method:'get_admin_details'})
           .success(function(data) {

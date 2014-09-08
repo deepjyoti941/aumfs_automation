@@ -1,0 +1,47 @@
+<div class="page page-invoice" data-ng-controller="otjAgreementCtrl">
+    <div class="invoice-wrapper">
+
+        <section class="invoice-container" id="order_agreement">
+            
+            <div class="row">
+                <div class="col-xs-6">
+                    <p class="size-h2">AUM Facility Service</p>
+                    <p class="text-muted">33, Barthakur Mill Road, Ulubari</p>
+                    <p class="text-muted">Guwahati - 781007, Assam</p>
+                    <p class="text-muted">Phone: 0361 - 2528888, 2527777</p>
+                    <p class="text-muted">Email: info@aumfs.com</p>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <p class="size-h2">Customer Details</p>
+                    {{otj_services_list.customer_name}} <br>
+                    {{otj_services_list.customer_address}}<br>
+                    {{otj_services_list.customer_phone}}
+                </div>
+            </div>
+
+            <div class="row">
+                <p align="center" class="size-h2">Work Order Description</p>
+                <div style="text-align:justify"> {{otj_services_list.short_desc}} </div>        
+            </div>
+            </br></br></br>
+            <div align="center" class="row">
+                <div class="col-md-4"> 
+                    <strong>AUMFS Signature</strong></br></br></br>
+                    <p>................................</p>
+                </div>
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <strong>Customer Signature</strong></br></br></br>
+                    <p>................................</p>
+                </div>
+
+            </div>      
+        </section>
+
+        <section class="text-center no-print">
+            <a href="" ng-click="printInvoice()" class="btn btn-primary btn-lg btn-w-lg"><i class="fa fa-print"></i> Print</a>
+        </section>
+    </div>
+
+</div>

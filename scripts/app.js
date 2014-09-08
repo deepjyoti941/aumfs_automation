@@ -1670,6 +1670,8 @@
             templateUrl: "views/otj/otj-edit.html"
         }).when("/otj-invoice/:id", {
             templateUrl: "views/otj/otj-invoice.html"
+        }).when("/otj-agreement/:id", {
+            templateUrl: "views/otj/otj-work-order.html"
         }).when("/otj-jobs", {
             templateUrl: "views/otj/otj-jobs.html"
         }).otherwise({
