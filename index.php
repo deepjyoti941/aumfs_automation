@@ -33,8 +33,10 @@
             </div>
         </div>
 
-
+  <!--<script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script> -->
+        <script src="scripts/libs/tinymce.min.js"></script>
         <script src="scripts/vendor.js"></script>
+        <script src="scripts/libs/angular-sanitize.min.js"></script>
         <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.min.js"></script> -->
         <script src="scripts/angular-cookies.js"></script>
         <script src="scripts/ui.js"></script>
