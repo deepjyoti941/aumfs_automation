@@ -1,0 +1,29 @@
+amc notification code
+*********************
+CREATE EVENT amc_notify ON SCHEDULE AT current_timestamp + INTERVAL 1 DAY DO UPDATE amc_customer_details SET bill_status=1 WHERE (ADDDATE(bill_date, INTERVAL billing_frequency DAY)) <= CURDATE() + INTERVAL 1 DAY;
+SET GLOBAL event_scheduler= on
+SHOW variables like 'event_scheduler'
+
+CREATE EVENT `amc_notify` ON SCHEDULE EVERY 1 DAY STARTS '2014-09-06 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE amc_customer_details SET bill_status=1 WHERE (ADDDATE(bill_date, INTERVAL billing_frequency DAY)) <= CURDATE() + INTERVAL 1 DAY
+
+
+CREATE EVENT amc_notify ON SCHEDULE AT current_timestamp + INTERVAL 1 minute DO UPDATE amc_customer_details SET bill_status=1 WHERE (ADDDATE(bill_date, INTERVAL billing_frequency DAY)) <= CURDATE() + INTERVAL 1 DAY;
+
+
+aum employee notifications
+**************************
+DROP EVENT aum_notifications;
+DELIMITER $$
+CREATE EVENT aum_notifications
+    ON SCHEDULE EVERY 1 DAY STARTS '2014-09-06 00:00:00' ON COMPLETION NOT PRESERVE ENABLE 
+    DO
+        BEGIN
+            UPDATE  aum_service_details sd
+                    INNER JOIN aum_customer_details cd ON sd.aum_order_id = cd.aum_order_id
+                    INNER JOIN aum_service_type st ON sd.service_id = st.service_id
+            SET     sd.status = 1
+            WHERE   ADDDATE(cd.start_date, Interval st.service_frequency DAY) <= CURDATE() + INTERVAL 1 DAY
+AND sd.quantity !=0;
+
+        END $$
+DELIMITER ;
