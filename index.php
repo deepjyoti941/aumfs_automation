@@ -43,7 +43,7 @@
         <script src="scripts/libs/toastr.js"></script>
         <script src="scripts/ui-bootstrap-tpls-0.9.0.js"></script>
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers.js"></script>
+        <script src="scripts/main.js"></script>
         
     </body>
 </html>
