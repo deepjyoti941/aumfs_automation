@@ -316,88 +316,26 @@
 	"buffers":
 	[
 		{
-			"file": "api/aum_controller.php",
+			"file": "views/aum/aum-jobs.html",
 			"settings":
 			{
-				"buffer_size": 5376,
+				"buffer_size": 2865,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "scripts/controllers.js",
+			"file": "api/admin_controller.php",
 			"settings":
 			{
-				"buffer_size": 109560,
+				"buffer_size": 2524,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<script type=\"text/ng-template\" id=\"customTemplate.html\">\n  <a>\n      <span bind-html-unsafe=\"match.label | typeaheadHighlight:query\"></span>\n      <i>({{match.model.customer_name}})</i>\n  </a>\n</script>\n\n<div class=\"page page-oncall\" ng-controller=\"newOtjCustomerCtrl\">\n<accordion close-others=\"true\" class=\"ui-accordion ui-accordion-info\" id=\"addCustomer\">\n	<accordion-group heading=\"Add OTJ Customer\">\n			<div class=\"form-group\">\n			\n             <input type=\"text\" ng-model=\"selectedCustomer\" placeholder=\"Search for existing customer here\" typeahead=\"c as c.customer_name for c in customers | filter:$viewValue | limitTo:10\" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url=\"customTemplate.html\" class=\"form-control\" style=\"width:350px;\">\n			</div>\n\n		<form class=\"\" role=\"form\" id=\"newCustomerForm\" name=\"newCustomerForm\" ng-submit=\"processNewCustomerForm(selectedCustomer)\">\n			<div class=\"form-group\">\n				<label class=\"\" for=\"newTitle\">Customer Name</label>\n				<input  style=\"display:none\" type=\"text\" ng-model=\"selectedCustomer.customer_id\" name=\"customer_id\" class=\"form-control\" id=\"existing_customer_id\" placeholder=\"Customer Id\" >\n\n				<input  type=\"text\" ng-model=\"selectedCustomer.customer_name\" name=\"customer_name\" class=\"form-control\" id=\"customer_name\" placeholder=\"Enter Customer Name\" value=\"{{somebinding.id}}\" required>\n			</div>\n			<div class=\"form-group\">\n				<label class=\"\" for=\"customerAddress\">Customer Address</label>\n				<input name=\"customer_address\" ng-model=\"selectedCustomer.customer_address\" type=\"text\" class=\"form-control\"\n				       id=\"customer_address\" placeholder=\"Enter Customer Address\" required>\n			</div>\n			<div class=\"form-group\">\n				<label class=\"\" for=\"customerPhone\">Customer Phone</label>\n				<input name=\"customer_phone\" ng-model=\"selectedCustomer.customer_phone\" type=\"text\" class=\"form-control\"\n				       id=\"customer_phone\" placeholder=\"Enter Customer Phone Number\" required>\n			</div>\n			<div class=\"row\">\n				<div class=\"col-md-4\">\n					<label class=\"ui-checkbox\"><input ng-model=\"new_customer\" name=\"new_customer_chk\" type=\"checkbox\" value=\"option2\"><span>Is it a New Customer</span></label>\n				</div>\n				<div class=\"col-md-4\">\n					<label class=\"ui-checkbox\"><input id=\"existing_customer_chk\" ng-model=\"existing_customer\" name=\"existing_customer\" ng-change=\"change(existing_customer)\" type=\"checkbox\"><span>Is it a Existing Customer</span></label>\n				</div>\n				<div class=\"col-md-4\">\n					<div ng-if=\"selectedCustomer.black_listed =='1' \">\n						<label class=\"ui-checkbox\"><input id=\"blacklisted_customer_chk\"  name=\"backlisted_customer\" type=\"checkbox\" checked><span>Blacklisted Customer</span></label>\n					</div>\n					<div ng-if=\"selectedCustomer.black_listed !='1'\">\n							<label class=\"ui-checkbox\"><input id=\"blacklist_customer_chk\" ng-model=\"blacklist_customer\" name=\"existing_customer\"  ng-change=\"changeBlacklist(blacklist_customer)\" type=\"checkbox\" checked><span>Blacklist this Customer</span></label>							\n					</div>\n				</div>\n			</div>\n			<div class=\"row\">\n				<div class=\"col-md-4\">\n					<input type=\"submit\" class=\"btn btn-info\" ng-show=\"new_customer\" value=\"Add New Customer\">\n				</div>\n			</div>	\n		</form>\n		<form class=\"\" role=\"form\" name=\"newCustomerForm\" ng-submit=\"createCustomer()\">\n			<div class=\"form-group\">\n				<div class=\"row\">\n					<div class=\"col-md-6\">\n						<label class=\"\" for=\"customerId\">Customer Id</label><br>\n						<input type=\"text\" readonly class=\"form-control\" ng-model=\"oncallCustomer.customer_id\" name=\"oncallCustomer.existing_customer_id\" id=\"customer_id\" required><br>\n\n					</div>\n				</div>\n				<div class=\"row\">\n					<div class=\"col-sm-6 col-md-4 col-lg-2\">\n						<label class=\"\" for=\"newCategory\">Enquiry Type</label><br>\n								<span class=\"ui-select\">\n<!-- 									<select name=\"oncallCustomer.enquiry_type\" ng-model=\"enquiry_type\" id=\"enquiry_type\" ng-options=\"enquiry.type for enquiry in enquiry_type_list track by enquiry.type\" required>\n					                	<option value=\"\" ng-hide=\"enquiry_type\">Select Enquiry Type</option>\n					                </select> -->\n							        <select ng-model=\"enquiry_type\" id=\"enquiry_type\">\n				                		<option value=\"\" ng-hide=\"enquiry_type\">Select Enquiry Type</option>\n				                	    <option value=\"Assessment\">Assessment</option>\n									    <option value=\"Quotation\">Quotation</option>\n									    <option value=\"FollowUp\">FollowUp</option>\n					                </select>\n					            </span>\n					</div>\n					<div class=\"col-sm-6 col-md-4 col-lg-2\"  style=\"margin-left: 30px;\" ng-show=\"enquiry_type=='FollowUp'\">\n						<label class=\"\" for=\"newCategory\">Follow Up Type</label><br>\n						<span class=\"ui-select\">\n<!-- 							<select name=\"oncallCustomer.follow_up_type\" ng-model=\"follow_up_type\" id=\"follow_up_type\" ng-options=\"follow.type for follow in follow_up_type_list track by follow.type\">\n			                	<option value=\"\" ng-hide=\"follow_up_type\">Select Follow up Type</option>\n			                </select> -->\n			                <select ng-model=\"follow_up_type\" id=\"follow_up_type\">\n			                		<option value=\"\" ng-hide=\"enquiry_type\">Select Follow Up Type</option>\n			                	    <option value=\"Delay\">Delay</option>\n								    <option value=\"Cancel\">Cancel</option>\n								    <option value=\"Confirm\">Confirm</option>\n			                </select>			            \n			            </span>\n					</div>\n					<div ng-show=\"follow_up_type=='Confirm'\">\n					<div class=\"col-sm-6 col-md-4 col-lg-3\"  style=\"margin-left: 30px;margin-top: 10px;\">\n						<div class=\"form-group\">\n							<label class=\"\" for=\"endDate\">Start Date</label><br>\n					        <div data-ng-controller=\"DatepickerDemoCtrl\">\n				                <div class=\"input-group ui-datepicker\">\n				                    <span class=\"input-group-addon\"><i class=\"fa fa-calendar\"></i></span>\n				                    <input type=\"text\" \n				                           class=\"form-control\"\n				                           datepicker-popup=\"{{format}}\"\n				                           ng-model=\"start_date\"\n				                           id=\"start_date\" \n				                           show-weeks=\"false\"\n				                           is-open=\"opened\"\n				                           min=\"today\"\n				                           datepicker-options=\"dateOptions\" \n				                           close-text=\"Close\">\n				                </div>\n					        </div>\n						</div>\n					</div>\n					<div class=\"col-sm-6 col-md-4 col-lg-3\"  style=\"margin-left: 30px;margin-top: 10px;\">\n						<div class=\"form-group\">\n							<label class=\"\" for=\"endDate\">End Date</label><br>\n					        <div data-ng-controller=\"DatepickerDemoCtrl\">\n				                <div class=\"input-group ui-datepicker\">\n				                    <span class=\"input-group-addon\"><i class=\"fa fa-calendar\"></i></span>\n				                    <input type=\"text\" \n				                           class=\"form-control\"\n				                           datepicker-popup=\"{{format}}\"\n				                           ng-model=\"end_date\"\n				                           id=\"end_date\" \n				                           show-weeks=\"false\"\n				                           is-open=\"opened\"\n				                           min=\"today\"\n				                           datepicker-options=\"dateOptions\" \n				                           close-text=\"Close\">\n				                </div>\n					        </div>\n						</div>	\n					</div>\n					</div>\n\n				</div>\n				<div class=\"form-group\">\n					<label class=\"\" for=\"endDate\">Enquiry Date</label><br>\n			        <div data-ng-controller=\"DatepickerDemoCtrl\">\n		                <div class=\"input-group ui-datepicker\">\n		                    <span class=\"input-group-addon\"><i class=\"fa fa-calendar\"></i></span>\n		                    <input type=\"text\" \n		                           class=\"form-control\"\n		                           datepicker-popup=\"{{format}}\"\n		                           ng-model=\"enquiry_date\"\n		                           id=\"enquiry_date\" \n		                           show-weeks=\"false\"\n		                           is-open=\"opened\"\n		                           min=\"today\"\n		                           datepicker-options=\"dateOptions\" \n		                           close-text=\"Close\">\n		                </div>\n			        </div>\n				</div>\n<!-- 				<div class=\"row\" ng-show=\"follow_up_type=='Confirm'\">\n						<div class=\"col-md-6\">\n							<div class=\"form-group\">\n								<label class=\"\" for=\"endDate\">Start Date</label><br>\n						        <div data-ng-controller=\"DatepickerDemoCtrl\">\n					                <div class=\"input-group ui-datepicker\">\n					                    <span class=\"input-group-addon\"><i class=\"fa fa-calendar\"></i></span>\n					                    <input type=\"text\" \n					                           class=\"form-control\"\n					                           datepicker-popup=\"{{format}}\"\n					                           ng-model=\"start_date\"\n					                           id=\"start_date\" \n					                           show-weeks=\"false\"\n					                           is-open=\"opened\"\n					                           min=\"today\"\n					                           datepicker-options=\"dateOptions\" \n					                           close-text=\"Close\">\n					                </div>\n						        </div>\n							</div>\n						  </div>\n						  <div class=\"col-md-6\">\n							<div class=\"form-group\">\n								<label class=\"\" for=\"endDate\">End Date</label><br>\n						        <div data-ng-controller=\"DatepickerDemoCtrl\">\n					                <div class=\"input-group ui-datepicker\">\n					                    <span class=\"input-group-addon\"><i class=\"fa fa-calendar\"></i></span>\n					                    <input type=\"text\" \n					                           class=\"form-control\"\n					                           datepicker-popup=\"{{format}}\"\n					                           ng-model=\"end_date\"\n					                           id=\"end_date\" \n					                           show-weeks=\"false\"\n					                           is-open=\"opened\"\n					                           min=\"today\"\n					                           datepicker-options=\"dateOptions\" \n					                           close-text=\"Close\">\n					                </div>\n						        </div>\n							</div>				  	\n						  </div>\n				</div> -->\n\n<!-- 				<div class=\"input-group ui-datepicker\">\n					<span class=\"input-group-addon\"><i class=\"fa fa-calendar\"></i></span>\n					<input type=\"text\"\n					       class=\"form-control\"\n						   datepicker-popup=\"{{format}}\"\n					       show-weeks=\"false\"\n					       ng-model=\"enquiry_date\"\n					       id=\"enquiry_date\" \n					       is-open=\"opened\"\n					       min=\"today\"\n					       datepicker-options=\"dateOptions\"\n					       ng-required=\"true\"\n					       close-text=\"Close\">\n				</div> -->\n			</div>\n			<div class=\"form-group\">\n				<div class=\"row\">\n					<div class=\"col-sm-6 col-md-4 col-lg-2\">\n						<label class=\"\" for=\"serviceName\">Service Name</label>\n								<span class=\"ui-select\">\n					                <select name=\"oncallCustomer.service_type\" ng-model=\"oncall_services\" id=\"serviceName\" ng-options=\"service.service_name for service in oncall_services_list track by service.service_name\">\n					                	<option value=\"\" ng-hide=\"oncall_services\">Select Service Type</option>\n					                </select>\n					            </span>\n					</div>\n					<div class=\"col-sm-6 col-md-4 col-lg-4\" style=\"margin-left: 30px;\">\n						<label class=\"\" for=\"aumPrice\">Service Price (in Rs.)</label><br>\n						<input style=\"margin-top: 10px;\" ng-model=\"aumPrice\" type=\"text\" class=\"form-control\"\n				       id=\"aumPrice\" placeholder=\"Enter Price\">		\n					</div>\n					<div class=\"col-sm-6 col-md-4 col-lg-2\" style=\"margin-left: 30px;\">\n						<label class=\"\" for=\"newShop\">Assign This Task to</label><br>\n							<span class=\"ui-select\">\n					                <select name=\"oncallCustomer.employee_list\" ng-model=\"employee_list\" id=\"employee_list\" ng-options=\"list_employee.employee_name for list_employee in service_employee_list track by list_employee.employee_id\">\n					                <option value=\"\" ng-hide=\"employee_list\">Select Employee</option>\n					                </select>\n				            </span>\n						\n					</div>\n				</div>\n			<br>\n\n				<div class=\"form-group\">\n					<label class=\"\" for=\"newShortDesc\">Work Order Description</label>\n					<!-- <textarea ng-model=\"short_description\" id=\"short_description\" class=\"form-control resizeless\"\n					          rows=\"10\" data-min=\"3\" data-max=\"100\"></textarea> -->\n\n			     <textarea data-ui-tinymce class=\"form-control resizeless\" ng-model=\"short_description\" id=\"short_description\"></textarea>\n				</div>\n				<div class=\"form-group\" data-ng-controller=\"oncallRatingCtrl\">\n					<label class=\"\" for=\"customerFeedback\">Customer Feedback</label></br>\n                    <rating class=\"ui-rating size-h3\"\n                            value=\"rate\"\n                            max=\"max\"\n                            readonly=\"isReadonly\"\n                            on-hover=\"hoveringOver(value)\"\n                            on-leave=\"overStar = null\"\n                            state-on=\"'fa fa-star'\"\n                            state-off=\"'fa fa-star-o'\"></rating>\n                    <span class=\"label\" ng-class=\"{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}\" ng-show=\"overStar && !isReadonly\">{{percent}}%</span>\n                    </br></br>\n<!--                     <div class=\"callout callout-info\">\n                        <p>Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || \"none\"}}</b></p>\n                    </div> -->\n                    <input style=\"display:none\" type=\"text\" class=\"form-control\" id=\"customer_feedback\" value=\"{{rate}}\">\n                    <div class=\"form-group\">\n                    	<button class=\"btn btn-danger\" ng-click=\"rate = 0\" ng-disabled=\"isReadonly\">Clear</button>\n                    </div> 					\n				</div>\n			</div>\n\n\n			<hr/>\n			<button type=\"submit\" ng-click=\"createOtjOrder()\" class=\"btn btn-info\">Create Order</button>\n		</form>\n	</accordion-group>\n</accordion>\n\n<section class=\"panel panel-default table-dynamic\">\n	<div class=\"panel-heading\"><strong><span class=\"glyphicon glyphicon-th\"></span> OTJ Customer List</strong></div>\n    <div class=\"row\">\n        <div class=\"col-md-2\">PageSize:\n            <select ng-model=\"entryLimit\" class=\"form-control\">\n                <option>5</option>\n                <option>10</option>\n                <option>20</option>\n                <option>50</option>\n                <option>100</option>\n            </select>\n        </div>\n        <div class=\"col-md-3\">Filter:\n            <input type=\"text\" ng-model=\"search\" ng-change=\"filter()\" placeholder=\"Filter\" class=\"form-control\" />\n        </div>\n        <div class=\"col-md-4\">\n            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total customers</h5>\n        </div>\n    </div>\n	<br/>\n    <div class=\"row\">\n        <div class=\"col-md-12\" ng-show=\"filteredItems > 0\">\n            <table class=\"table table-bordered table-striped table-responsive\">\n	            <thead>\n\n		            <th>Service ID</th>\n		            <th>Customer Name</th>\n		            <th>Customer Phone</th>\n		            <th>Service Name</th>\n		            <th>Order Date</th>\n		            <th>Price(Rs.)</th>\n		            <th>Employee Engaged</th>\n		            <th>Order Status</th>\n		            <th>Is Back Listed</th>\n		            <th>Action</th>\n		            <th>Work Order</th>\n		            <th>Invoice Action</th>\n		        </thead>\n		        <tbody>\n		        	<tr ng-repeat=\"data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit\">\n		        	<td>{{data.otj_service_id}}</td>\n		        	<td>{{data.customer_name}}</td>\n		        	<td>{{data.customer_phone}}</td>\n		        	<td>\n		        		<div ng-if=\"data.service_name == '' \">\n								<span class=\"label label-info\">Not Confirmed</span>\n						</div>\n						<div ng-if=\"data.bill_number != '' \">\n								<span class=\"label label-info\">{{data.service_name}}</span>\n						</div>\n		        	</td>\n					<td>{{data.action_date}}</td>\n					<td>{{data.aum_price}}</td>\n					<td>\n		        		<div ng-if=\"data.assigned_employee_id == '0' \">\n								<span class=\"label label-info\">Not Confirmed</span>\n						</div>\n						<div ng-if=\"data.assigned_employee_id != '0' \">\n								<span class=\"label label-info\">{{data.assigned_employee_id}}</span>\n						</div>\n					</td>\n					<td>\n                    	<div ng-if=\"data.customer_feedback == '0' \">\n								<span class=\"label label-danger\">Pending</span>\n						</div>\n						<div ng-if=\"data.customer_feedback != '0' \">\n								<span class=\"label label-success\">Completed</span>\n						</div>	\n                    </td>\n                    <td>\n						<div ng-if=\"data.black_listed == '1' \">\n								<span class=\"label label-danger\">YES</span>\n						</div>\n						<div ng-if=\"data.black_listed != '1' \">\n								<span class=\"label label-success\">NO</span>\n						</div>\n                    </td>\n                    <td>\n                    	<a ng-href=\"#/otj/{{data.otj_service_id}}\" class=\"btn-icon btn-icon-sm btn-primary\"\n						   role=\"button\"\n						   tooltip-placement=\"top\" tooltip=\"Edit\" tooltip-append-to-body=\"true\"><i\n								class=\"fa fa-edit\"></i>\n						</a>\n                    </td>\n                    <td>\n                    	<a href=\"#/otj-agreement/{{data.otj_service_id}}\" class=\"btn btn-w-md btn-gap-v btn-info\">Print Agreement</a>\n                    </td>\n                    <td>\n                    	<a href=\"#/otj-invoice/{{data.otj_service_id}}\" class=\"btn btn-w-md btn-gap-v btn-info\">Create Invoice</a>\n                    </td>\n\n\n		        </tbody>\n	        </table>\n	    </div>\n       <div class=\"col-md-12\" ng-show=\"filteredItems == 0\">\n            <div class=\"col-md-12\">\n                <h4>No customers found</h4>\n            </div>\n        </div>\n        <div class=\"col-md-12\" ng-show=\"filteredItems > 0\">    \n            <div pagination=\"\" page=\"currentPage\" on-select-page=\"setPage(page)\" boundary-links=\"true\" total-items=\"filteredItems\" items-per-page=\"entryLimit\" class=\"pagination-small\" previous-text=\"&laquo;\" next-text=\"&raquo;\"></div>  \n        </div>\n</section>\n</section>\n</div>",
-			"file": "views/otj/otj.html",
-			"file_size": 18839,
-			"file_write_time": 130546804744885493,
+			"file": "api/classes/class.upload.php",
 			"settings":
 			{
-				"buffer_size": 18420,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/otj/otj-edit.html",
-			"settings":
-			{
-				"buffer_size": 15348,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/app.js",
-			"settings":
-			{
-				"buffer_size": 73147,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/libs/skins/lightgray/skin.min.css",
-			"settings":
-			{
-				"buffer_size": 32971,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<div class=\"page page-invoice\" data-ng-controller=\"otjAgreementCtrl\">\n    <div class=\"invoice-wrapper\">\n\n        <section class=\"invoice-container\" id=\"order_agreement\">\n            \n            <div class=\"row\">\n                <div class=\"col-xs-6\">\n                    <p class=\"size-h2\">AUM Facility Service</p>\n                    <p class=\"text-muted\">33, Barthakur Mill Road, Ulubari</p>\n                    <p class=\"text-muted\">Guwahati - 781007, Assam</p>\n                    <p class=\"text-muted\">Phone: 0361 - 2528888, 2527777</p>\n                    <p class=\"text-muted\">Email: info@aumfs.com</p>\n                </div>\n                <div class=\"col-xs-6 text-right\">\n                    <p class=\"size-h2\">Customer Details</p>\n                    {{otj_services_list.customer_name}} <br>\n                    {{otj_services_list.customer_address}}<br>\n                    {{otj_services_list.customer_phone}}\n                </div>\n            </div>\n\n            <div class=\"row\">\n                <p align=\"center\" class=\"size-h2\">Work Order Description</p>\n                <div style=\"text-align:justify\"> {{otj_services_list.short_desc}} </div>        \n            </div>\n            </br></br></br>\n            <div align=\"center\" class=\"row\">\n                <div class=\"col-md-4\"> \n                    <strong>AUMFS Signature</strong></br></br></br>\n                    <p>................................</p>\n                </div>\n                <div class=\"col-md-4\">\n                </div>\n                <div class=\"col-md-4\">\n                    <strong>Customer Signature</strong></br></br></br>\n                    <p>................................</p>\n                </div>\n\n            </div> \n            </br>\n            </br>\n            <div style=\"float:right\">\n            	<small>Powered By <a href=\"#\" target=\"_blank\">R T Softwares (www.rtsoftwares.in)</a></small>\n            </div>    \n        </section>\n\n        <section class=\"text-center no-print\">\n            <a href=\"\" ng-click=\"printInvoice()\" class=\"btn btn-primary btn-lg btn-w-lg\"><i class=\"fa fa-print\"></i> Print</a>\n        </section>\n    </div>\n\n</div>",
-			"file": "views/otj/otj-work-order.html",
-			"file_size": 2182,
-			"file_write_time": 130546610491260059,
-			"settings":
-			{
-				"buffer_size": 2165,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 2608,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/amc/amc-invoice.html",
-			"settings":
-			{
-				"buffer_size": 4333,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/aum/aum-invoice.html",
-			"settings":
-			{
-				"buffer_size": 4127,
+				"buffer_size": 273624,
 				"line_ending": "Windows"
 			}
 		}
@@ -436,13 +374,33 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/C/wamp/www/aumfs_automation",
+		"/C/wamp/www/aumfs_automation/api",
+		"/C/wamp/www/aumfs_automation/api/classes",
+		"/C/wamp/www/aumfs_automation/views",
+		"/C/wamp/www/aumfs_automation/views/aum"
+	],
 	"file_history":
 	[
+		"/C/wamp/www/aumfs_automation/api/aum_controller.php",
+		"/C/wamp/www/aumfs_automation/scripts/controllers.js",
+		"/C/wamp/www/aumfs_automation/views/otj/otj.html",
+		"/C/wamp/www/aumfs_automation/views/otj/otj-edit.html",
+		"/C/wamp/www/aumfs_automation/scripts/app.js",
 		"/C/wamp/www/aumfs_automation/scripts/libs/skins/lightgray/skin.min.css",
+		"/C/wamp/www/aumfs_automation/views/oncall/oncall-edit.html",
+		"/C/wamp/www/aumfs_automation/index.php",
+		"/C/wamp/www/aumfs_automation/views/amc/amc-invoice.html",
+		"/C/wamp/www/aumfs_automation/views/aum/aum-invoice.html",
+		"/C/wamp/www/aumfs_automation/views/otj/otj-work-order.html",
+		"/C/Users/Deepjyoti/Desktop/aumfs_desktop_app/settings.json",
+		"/C/wamp/www/aumfs_automation/api/oncall_controller.php",
+		"/C/wamp/www/aumfs_automation/views/oncall/oncall.html",
 		"/C/wamp/www/aumfs_automation/scripts/libs/skins/lightgray/content.min.css",
 		"/C/wamp/www/aumfs_automation/views/otj/otj-invoice.html",
 		"/C/wamp/www/aumfs_automation/views/pages/signin.html",
-		"/C/Users/Deepjyoti/Desktop/aumfs_desktop_app/settings.json",
 		"/C/wamp/www/aumfs_automation/scripts/libs/angular-sanitize.min.js",
 		"/C/wamp/www/aumfs_automation/scripts/libs/tinymce.min.js",
 		"/C/Users/Deepjyoti/Desktop/aumfs_desktop_app/www/views/pages/signin.html",
@@ -453,22 +411,15 @@
 		"/D/data/media_ant_all_data/media_ant/app/views/media_option/index.php",
 		"/D/data/media_ant_all_data/media_ant/app/views/media_option/show.php",
 		"/C/wamp/www/aumfs_automation/views/pages/settings.html",
-		"/C/wamp/www/aumfs_automation/views/otj/otj-edit.html",
 		"/C/wamp/www/aumfs_automation/old/views/views/ui/typography.html",
-		"/C/wamp/www/aumfs_automation/views/otj/otj.html",
-		"/C/wamp/www/aumfs_automation/views/amc/amc-invoice.html",
 		"/C/wamp/www/aumfs_automation/views/dashboard.html",
 		"/C/wamp/www/aumfs_automation/api/otj_controller.php",
 		"/C/wamp/www/aumfs_automation/api/dashboard_controller.php",
 		"/C/wamp/www/aumfs_automation/api/employee_controller.php",
-		"/C/wamp/www/aumfs_automation/api/oncall_controller.php",
 		"/C/wamp/www/aumfs_automation/api/getOncallCustomerList.php",
 		"/C/wamp/www/aumfs_automation/api/getOtjCustomerList.php",
 		"/C/wamp/www/aumfs_automation/api/getAmcCustomerList.php",
 		"/C/wamp/www/aumfs_automation/api/getEmployeeAumNotifications.php",
-		"/C/wamp/www/aumfs_automation/views/oncall/oncall-edit.html",
-		"/C/wamp/www/aumfs_automation/views/oncall/oncall.html",
-		"/C/wamp/www/aumfs_automation/scripts/app.js",
 		"/C/wamp/www/aumfs_automation/api/amc_controller.php",
 		"/C/wamp/www/aumfs_automation/api/getAmcAdminNotifications.php",
 		"/C/wamp/www/aumfs_automation/views/oncall/oncall-charges.html",
@@ -477,11 +428,9 @@
 		"/C/wamp/www/aumfs_automation/views/amc/amc.html",
 		"/C/wamp/www/aumfs_automation/views/employee/employee-listing.html",
 		"/C/wamp/www/aumfs_automation/api/config/mysql_config.php",
-		"/C/wamp/www/aumfs_automation/scripts/controllers.js",
 		"/C/wamp/www/aumfs_automation/api/getEmployeeOtjNotifications.php",
 		"/C/wamp/www/aumfs_automation/api/getAdminAumNotifications.php",
 		"/C/wamp/www/aumfs_automation/api/getCustomer.php",
-		"/C/wamp/www/aumfs_automation/api/aum_controller.php",
 		"/C/wamp/www/aumfs_automation/api/config/config.php",
 		"/C/wamp/www/aumfs_automation/views/pages/admin_settings.html",
 		"/C/wamp/www/aumfs_automation/views/nav.html",
@@ -505,8 +454,6 @@
 		"/C/wamp/www/aumfs_automation/views/aum/aum-edit.html",
 		"/C/wamp/www/aumfs_automation/views/employee/employee-work-status.html",
 		"/C/wamp/www/aumfs_automation/views/pages/forgot-password.html",
-		"/C/wamp/www/aumfs_automation/views/aum/aum-invoice.html",
-		"/C/wamp/www/aumfs_automation/index.php",
 		"/D/data/two-dropdown-list/js/outils.js",
 		"/C/wamp/www/aumfs_automation/api/forgot_password.php",
 		"/C/wamp/www/aumfs_automation/scripts/sessionServices.js",
@@ -564,8 +511,7 @@
 		"/C/wamp/www/aumfs_automation/aumfs/scripts/ui-bootstrap-tpls-0.9.0.js",
 		"/C/wamp/www/aumfs_automation/aumfs/views/mail/inbox.html",
 		"/C/wamp/www/aumfs_automation/aumfs/old/views/scripts/views/main.html",
-		"/C/wamp/www/aumfs_automation/aumfs/old/views/styles/main.css",
-		"/C/wamp/www/aumfs_automation/aumfs/old/.idea/MarketplaceApp.iml"
+		"/C/wamp/www/aumfs_automation/aumfs/old/views/styles/main.css"
 	],
 	"find":
 	{
@@ -583,6 +529,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"fo",
+			"forg",
+			"for",
+			"actualTime",
 			"otjInvoiceCtrl",
 			"amc",
 			"back",
@@ -706,11 +656,7 @@
 			"mytime",
 			"disabled",
 			"newCoupon.expire_date",
-			"expire_date",
-			"ng-repeat",
-			"repeat",
-			"class",
-			".directive"
+			"expire_date"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -733,19 +679,48 @@
 			[
 				{
 					"buffer": 0,
-					"file": "api/aum_controller.php",
+					"file": "views/aum/aum-jobs.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5376,
+						"buffer_size": 2865,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4526,
-								4526
+								445,
+								445
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "api/admin_controller.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								723,
+								723
 							]
 						],
 						"settings":
@@ -754,37 +729,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1600.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "scripts/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 109560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								58685,
-								58641
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 28381.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -792,99 +737,11 @@
 				},
 				{
 					"buffer": 2,
-					"file": "views/otj/otj.html",
-					"semi_transient": false,
+					"file": "api/classes/class.upload.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 18420,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								12218,
-								12218
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4993.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "views/otj/otj-edit.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15348,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								13749,
-								13749
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5373.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "scripts/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 73147,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								60596,
-								60596
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 860.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "scripts/libs/skins/lightgray/skin.min.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 32971,
+						"buffer_size": 273624,
 						"regions":
 						{
 						},
@@ -892,136 +749,18 @@
 						[
 							[
 								0,
-								0
+								273624
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 320.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "views/otj/otj-work-order.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2165,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1410,
-								1427
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 260.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2608,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2019,
-								2019
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 520.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "views/amc/amc-invoice.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4333,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3991,
-								3991
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1460.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "views/aum/aum-invoice.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4127,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1458,
-								1458
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 440.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1074,6 +813,10 @@
 		"selected_items":
 		[
 			[
+				"oncall",
+				"views\\oncall\\oncall-edit.html"
+			],
+			[
 				"otj",
 				"views\\otj\\otj-edit.html"
 			],
@@ -1100,10 +843,6 @@
 			[
 				"dash",
 				"views\\dashboard.html"
-			],
-			[
-				"oncall",
-				"views\\oncall\\oncall-edit.html"
 			],
 			[
 				"amc",
@@ -1300,6 +1039,7 @@
 		],
 		"width": 0.0
 	},
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -1307,7 +1047,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 253.0,
+	"side_bar_width": 176.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
